@@ -49,7 +49,7 @@ public class MainFrame extends MainFrameModel {
 		initStartView();
 		
 		
-		showUnitView();
+		showStartView();
 	}
 	
 	private void initStartView() {

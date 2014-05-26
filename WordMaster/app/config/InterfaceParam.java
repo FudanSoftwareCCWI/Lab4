@@ -19,7 +19,7 @@ public interface InterfaceParam {
 	static int UNITLINEHEIGHT = 20;
 	static String LABELFONT = "Helvetica";
 	/* Colors */
-	static Color LIGHTGREEN = new Color(75, 140, 0);
-	static Color NORMALGREEN = new Color(70, 130, 0);
-	static Color DARKGREEN = new Color(64, 120, 0);
+	static Color LIGHTGREEN = new Color(140,224,73);//8ce049
+	static Color NORMALGREEN = new Color(89,150,57); //599639
+	static Color DARKGREEN = new Color(54,96,43);//36602b
 }
