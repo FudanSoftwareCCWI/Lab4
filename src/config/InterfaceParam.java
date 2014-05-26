@@ -1,25 +1,42 @@
 package config;
 
 import java.awt.Color;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
 
 public interface InterfaceParam {
 	/* Frame parameters */
-	static int UNITHEIGHT = 100;
-	static int UNITLONGWIDTH = 450;
-	static int UNITSHORTWIDTH = 320;
-	static int NUM_ROW = 6;
-	static int WIDTH = UNITLONGWIDTH+UNITSHORTWIDTH;
-	static int HEIGHT = NUM_ROW*UNITHEIGHT;
+	final static int UNITHEIGHT = 128;
+	final static int UNITLONGWIDTH = 630;
+	final static int UNITSHORTWIDTH = 394;
+	final static int NUM_ROW = 6;
+	final static int GLOBAL_WIDTH = 1024;
+	final static int GLOBAL_HEIGHT = 768;
 	/* String parameters */
-	static String APPNAME = "WordMaster";
+	final static String APPNAME = "WordMaster";
 	/* Label */
-	static int SMALLLABEL = 15;
-	static int MIDDLELABEL = 35;
-	static int LARGELABEL = 80;
-	static int UNITLINEHEIGHT = 20;
-	static String LABELFONT = "Helvetica";
+	final static int SMALLLABEL = 15;
+	final static int MIDDLELABEL = 35;
+	final static int LARGELABEL = 80;
+	final static int UNITLINEHEIGHT = 20;
+	final static String LABELFONT = "Helvetica";
 	/* Colors */
-	static Color LIGHTGREEN = new Color(140,224,73);//8ce049
-	static Color NORMALGREEN = new Color(89,150,57); //599639
-	static Color DARKGREEN = new Color(54,96,43);//36602b
+	final static Color LIGHTGREEN = new Color(89, 150, 57);
+	final static Color NORMALGREEN = new Color(78, 137, 47);
+	final static Color DARKGREEN = new Color(54, 96, 43);
+	final static Color NOTEALPHA = new Color(1, 1, 1, 0.5f);
+	/* Icon */
+	final static int ICON_TINY = 32;
+	final static int ICON_SMALL = 64;
+	final static int ICON_LARGE = 512;
+	final static ImageIcon QUITICON = new ImageIcon(new ImageIcon("icon/quit-64.png")
+			.getImage().getScaledInstance(ICON_TINY, ICON_TINY, Image.SCALE_FAST));
+	final static ImageIcon HOMEICON = new ImageIcon(new ImageIcon("icon/home-64.png")
+	.getImage().getScaledInstance(ICON_TINY, ICON_TINY, Image.SCALE_FAST));
+	/* Command */
+	final static int HOME_TO_STATISTIC = 0;
+	final static int HOME_TO_UNIT = 1;
+	final static int UNIT_TO_HOME = 2;
+	
 }
