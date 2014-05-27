@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridLayout;
@@ -11,9 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-
 import cmp.*;
-import config.InterfaceParam;
 
 public class UnitView extends WMView {
 
@@ -44,7 +41,6 @@ public class UnitView extends WMView {
 		this.setLayout(null);
 		scrollPane = new JScrollPane(listPanel);// TODO
 		scrollPane.setBorder(null);
-		
 		this.add(unitInfoPanel);
 		this.add(scrollPane);
 		// set position and size
