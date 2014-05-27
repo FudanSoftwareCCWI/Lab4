@@ -218,4 +218,9 @@ public class HomeView extends WMView {
 				GLOBAL_HEIGHT - GLOBAL_WIDTH / 8, GLOBAL_HEIGHT }, 3);
 	}
 
+	public void refreshHome(){
+		statisticPanel.setBackground(LIGHTGREEN);
+		recitePanel.setBackground(NORMALGREEN);
+	}
+	
 }

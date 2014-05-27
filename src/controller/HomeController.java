@@ -30,5 +30,10 @@ public class HomeController extends WMController{
 		});
 
 	}
+	
+	public HomeView getView(){
+		((HomeView)view).refreshHome();
+		return ((HomeView)view);
+	}
 
 }

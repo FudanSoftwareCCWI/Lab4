@@ -9,7 +9,7 @@ import config.InterfaceParam;
 public class WMView extends JPanel implements InterfaceParam {
 	
 	public WMView(){
-		this.setBackground(new Color(80, 140, 0));
+		this.setBackground(NORMALGREEN);
 	}
 
 }

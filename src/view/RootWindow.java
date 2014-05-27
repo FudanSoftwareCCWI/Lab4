@@ -25,7 +25,7 @@ public class RootWindow extends JFrame implements InterfaceParam{
 	public RootWindow() {
 		// init size or something
 		super();
-		Dimension fixedDimension = new Dimension(UNITLONGWIDTH+UNITSHORTWIDTH, NUM_ROW*UNITHEIGHT);
+		Dimension fixedDimension = new Dimension(GLOBAL_WIDTH, GLOBAL_HEIGHT);
 		this.setSize(fixedDimension);
 		this.setResizable(false);
 	}
