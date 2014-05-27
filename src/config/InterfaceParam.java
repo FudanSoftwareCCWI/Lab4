@@ -30,13 +30,11 @@ public interface InterfaceParam {
 	final static int ICON_TINY = 32;
 	final static int ICON_SMALL = 64;
 	final static int ICON_LARGE = 512;
-	final static ImageIcon QUITICON = new ImageIcon(new ImageIcon("icon/quit-64.png")
-			.getImage().getScaledInstance(ICON_TINY, ICON_TINY, Image.SCALE_FAST));
-	final static ImageIcon HOMEICON = new ImageIcon(new ImageIcon("icon/home-64.png")
-	.getImage().getScaledInstance(ICON_TINY, ICON_TINY, Image.SCALE_FAST));
+	final static ImageIcon QUITICON = new ImageIcon("icon/quit-32.png");
+	final static ImageIcon HOMEICON = new ImageIcon("icon/home-32.png");
 	/* Command */
 	final static int HOME_TO_STATISTIC = 0;
 	final static int HOME_TO_UNIT = 1;
 	final static int UNIT_TO_HOME = 2;
-	
+
 }
