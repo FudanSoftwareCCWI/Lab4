@@ -5,8 +5,8 @@ import view.ReciteView;
 
 public class ReciteController extends WMController {
 
-	public ReciteController(RootController rootController) {
-		super(rootController);
+	public ReciteController(RootDelegate rootDelegate) {
+		super(rootDelegate);
 		this.view = new ReciteView();
 		initListener();
 	}

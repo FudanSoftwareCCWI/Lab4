@@ -11,6 +11,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import struct.UnitRecord;
+
 /**
  * @author apple
  *
@@ -35,7 +37,8 @@ public class UnitRecordTest {
 	 * @throws java.lang.Exception
 	 */
 	@Before
-	public void setUp() throws Exception {
+	public UnitRecord setUp(String name, int num) throws Exception {
+		return new UnitRecord(name, num);
 	}
 
 	/**

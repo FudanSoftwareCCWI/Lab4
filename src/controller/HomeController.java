@@ -8,8 +8,8 @@ import view.HomeView;
 
 public class HomeController extends WMController{
 
-	public HomeController(RootController rootController) {
-		super(rootController);
+	public HomeController(RootDelegate rootDelegate) {
+		super(rootDelegate);
 		this.view = new HomeView();
 		initListener();
 	}
@@ -22,9 +22,9 @@ public class HomeController extends WMController{
 			public void propertyChange(PropertyChangeEvent evt) {
 				System.out.println("HomeController: receive "+evt.getPropertyName());
 				if(evt.getPropertyName().equals("homeToStatisticViewCommand")){
-					rootController.switchView(HOME_TO_STATISTIC);
+					rootDelegate.switchView(HOME_TO_STATISTIC);
 				}else if(evt.getPropertyName().equals("homeToUnitViewCommand")){
-					rootController.switchView(HOME_TO_UNIT);
+					rootDelegate.switchView(HOME_TO_UNIT);
 				}
 			}
 		});

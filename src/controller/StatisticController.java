@@ -4,8 +4,8 @@ import view.StatisticView;
 
 public class StatisticController extends WMController {
 
-	public StatisticController(RootController rootController) {
-		super(rootController);
+	public StatisticController(RootDelegate rootDelegate) {
+		super(rootDelegate);
 		this.view = new StatisticView();
 		initListener();
 	}

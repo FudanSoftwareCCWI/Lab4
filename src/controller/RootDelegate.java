@@ -8,7 +8,7 @@ import view.HomeView;
 import view.RootWindow;
 import view.WMView;
 
-public class RootController implements InterfaceParam {
+public class RootDelegate implements InterfaceParam {
 	/* Root window */
 	private RootWindow rootWindow;
 	/* Controllers */
@@ -17,7 +17,7 @@ public class RootController implements InterfaceParam {
 	private StatisticController statisticController;
 	private WMController currentController;
 
-	public RootController() {
+	public RootDelegate() {
 		super();
 		rootWindow = new RootWindow();
 	}
@@ -45,7 +45,7 @@ public class RootController implements InterfaceParam {
 
 			@Override
 			public void propertyChange(PropertyChangeEvent evt) {
-				RootController.this.parseRootEvent(evt);
+				RootDelegate.this.parseRootEvent(evt);
 			}
 		});
 

@@ -5,11 +5,11 @@ import view.WMView;
 
 public abstract class WMController implements InterfaceParam{
 	
-	protected RootController rootController;
+	protected RootDelegate rootDelegate;
 	protected WMView view;
 
-	public WMController(RootController rootController){
-		this.rootController = rootController;
+	public WMController(RootDelegate rootDelegate){
+		this.rootDelegate = rootDelegate;
 	}
 	
 	public WMView getView() {
