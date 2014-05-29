@@ -5,20 +5,44 @@ package test;
 
 import static org.junit.Assert.*;
 
+import java.util.Arrays;
+import java.util.List;
+
+import model.UnitRecord;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.*;
+import org.junit.runners.Parameterized.Parameters;
 
-import struct.UnitRecord;
-
+import com.sun.tools.javac.code.Attribute.Array;
 /**
  * @author apple
  *
  */
+@RunWith(Parameterized.class)
+
 public class UnitRecordTest {
 
+	private UnitRecord record;
+	private String name;
+	private int num;
+	
+	public UnitRecordTest(Object agrs[]){
+		
+	}
+	
+	@Parameters
+	public static List<Integer[]> data(){
+		return Arrays.asList(new Integer[][]{
+				{1,1,1},{2,2,2},{3,3,3}
+		});
+	}
+	
 	/**
 	 * @throws java.lang.Exception
 	 */
@@ -37,8 +61,8 @@ public class UnitRecordTest {
 	 * @throws java.lang.Exception
 	 */
 	@Before
-	public UnitRecord setUp(String name, int num) throws Exception {
-		return new UnitRecord(name, num);
+	public void setUp() throws Exception {
+		record =  new UnitRecord(name, num);
 	}
 
 	/**
@@ -50,7 +74,14 @@ public class UnitRecordTest {
 
 	@Test
 	public void test() {
-		fail("Not yet implemented");
+		try {
+			double result = record.getCorrectRate();
+			assertEquals(0, result,0.0);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 }

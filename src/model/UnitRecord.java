@@ -1,4 +1,4 @@
-package struct;
+package model;
 
 public class UnitRecord {
 	

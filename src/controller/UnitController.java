@@ -8,8 +8,8 @@ import view.UnitView;
 
 public class UnitController extends WMController{
 	
-	public UnitController(RootController rootController) {
-		super(rootController);
+	public UnitController(RootDelegate rootDelegate) {
+		super(rootDelegate);
 		this.view = new UnitView();
 		initListener();
 	}
@@ -21,7 +21,7 @@ public class UnitController extends WMController{
 			@Override
 			public void propertyChange(PropertyChangeEvent evt) {
 				if(evt.getPropertyName().equals("unitViewToHomeCommand")){
-					UnitController.this.rootController.switchView(UNIT_TO_HOME);
+					UnitController.this.rootDelegate.switchView(UNIT_TO_HOME);
 				}
 				
 			}
