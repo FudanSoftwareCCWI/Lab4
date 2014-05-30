@@ -1,4 +1,4 @@
-package view;
+package wm.view;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -10,10 +10,15 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import cmp.*;
+
+import wm.view.component.*;
 
 public class UnitView extends WMView {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5827806794895012421L;
 	private JPanel unitInfoPanel;
 	private JPanel listPanel;
 	private JScrollPane scrollPane;

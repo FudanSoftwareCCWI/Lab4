@@ -1,11 +1,11 @@
-package view;
+package wm.view;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
 
 import javax.swing.JFrame;
 
-import config.InterfaceParam;
+import wm.config.InterfaceParam;
 
 public class RootWindow extends JFrame implements InterfaceParam{
 	WMView homeView;

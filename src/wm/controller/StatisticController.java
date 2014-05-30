@@ -1,10 +1,10 @@
-package controller;
+package wm.controller;
 
-import view.StatisticView;
+import wm.view.StatisticView;
 
 public class StatisticController extends WMController {
 
-	public StatisticController(RootDelegate rootDelegate) {
+	public StatisticController(RootController rootDelegate) {
 		super(rootDelegate);
 		this.view = new StatisticView();
 		initListener();

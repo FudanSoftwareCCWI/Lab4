@@ -1,14 +1,14 @@
-package controller;
+package wm.controller;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-import config.InterfaceParam;
-import view.HomeView;
-import view.RootWindow;
-import view.WMView;
+import wm.config.InterfaceParam;
+import wm.view.HomeView;
+import wm.view.RootWindow;
+import wm.view.WMView;
 
-public class RootDelegate implements InterfaceParam {
+public class RootController implements InterfaceParam {
 	/* Root window */
 	private RootWindow rootWindow;
 	/* Controllers */
@@ -17,7 +17,7 @@ public class RootDelegate implements InterfaceParam {
 	private StatisticController statisticController;
 	private WMController currentController;
 
-	public RootDelegate() {
+	public RootController() {
 		super();
 		rootWindow = new RootWindow();
 	}
@@ -45,7 +45,7 @@ public class RootDelegate implements InterfaceParam {
 
 			@Override
 			public void propertyChange(PropertyChangeEvent evt) {
-				RootDelegate.this.parseRootEvent(evt);
+				RootController.this.parseRootEvent(evt);
 			}
 		});
 

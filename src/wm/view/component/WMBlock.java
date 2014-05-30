@@ -1,4 +1,4 @@
-package cmp;
+package wm.view.component;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -9,7 +9,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JPanel;
 
-import config.InterfaceParam;
+import wm.config.InterfaceParam;
 
 public class WMBlock extends JPanel implements InterfaceParam {
 

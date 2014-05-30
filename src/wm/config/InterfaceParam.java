@@ -1,4 +1,4 @@
-package config;
+package wm.config;
 
 import java.awt.Color;
 import java.awt.Image;

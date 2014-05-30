@@ -1,4 +1,4 @@
-package view;
+package wm.view;
 
 import java.awt.Graphics;
 import java.awt.GridLayout;
@@ -11,9 +11,14 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import cmp.WMLabel;
+import wm.view.component.WMLabel;
 
 public class HomeView extends WMView {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 113232243106457859L;
 
 	HomeView thisView;
 	

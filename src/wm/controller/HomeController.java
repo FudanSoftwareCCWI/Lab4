@@ -1,14 +1,14 @@
-package controller;
+package wm.controller;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-import config.InterfaceParam;
-import view.HomeView;
+import wm.config.InterfaceParam;
+import wm.view.HomeView;
 
 public class HomeController extends WMController{
 
-	public HomeController(RootDelegate rootDelegate) {
+	public HomeController(RootController rootDelegate) {
 		super(rootDelegate);
 		this.view = new HomeView();
 		initListener();

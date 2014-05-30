@@ -1,11 +1,11 @@
-package cmp;
+package wm.view.component;
 
 import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.JLabel;
 
-import config.InterfaceParam;
+import wm.config.InterfaceParam;
 
 public class WMLabel extends JLabel implements InterfaceParam {
 

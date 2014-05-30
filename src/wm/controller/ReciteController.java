@@ -1,11 +1,11 @@
-package controller;
+package wm.controller;
 
-import view.ReciteView;
+import wm.view.ReciteView;
 
 
 public class ReciteController extends WMController {
 
-	public ReciteController(RootDelegate rootDelegate) {
+	public ReciteController(RootController rootDelegate) {
 		super(rootDelegate);
 		this.view = new ReciteView();
 		initListener();

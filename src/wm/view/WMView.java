@@ -1,10 +1,10 @@
-package view;
+package wm.view;
 
 import java.awt.Color;
 
 import javax.swing.JPanel;
 
-import config.InterfaceParam;
+import wm.config.InterfaceParam;
 
 public class WMView extends JPanel implements InterfaceParam {
 	

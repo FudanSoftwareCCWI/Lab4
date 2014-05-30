@@ -1,14 +1,14 @@
-package controller;
+package wm.controller;
 
-import config.InterfaceParam;
-import view.WMView;
+import wm.config.InterfaceParam;
+import wm.view.WMView;
 
 public abstract class WMController implements InterfaceParam{
 	
-	protected RootDelegate rootDelegate;
+	protected RootController rootDelegate;
 	protected WMView view;
 
-	public WMController(RootDelegate rootDelegate){
+	public WMController(RootController rootDelegate){
 		this.rootDelegate = rootDelegate;
 	}
 	

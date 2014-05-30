@@ -1,10 +1,10 @@
-import controller.RootDelegate;
+import wm.controller.RootController;
 
 public class Launch {
 
 	public static void main(String[] args) {
 		System.out.println("Launch: launch...");
-		RootDelegate rootDelegate = new RootDelegate();
+		RootController rootDelegate = new RootController();
 		rootDelegate.init();
 		rootDelegate.start();
 	}

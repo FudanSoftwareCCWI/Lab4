@@ -1,10 +1,10 @@
-package controller;
+package wm.controller;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-import view.HomeView;
-import view.UnitView;
+import wm.view.HomeView;
+import wm.view.UnitView;
 
 public class UnitController extends WMController{
 	
@@ -21,7 +21,7 @@ public class UnitController extends WMController{
 			@Override
 			public void propertyChange(PropertyChangeEvent evt) {
 				if(evt.getPropertyName().equals("unitViewToHomeCommand")){
-					UnitController.this.rootController.switchView(UNIT_TO_HOME);
+					UnitController.this.rootDelegate.switchView(UNIT_TO_HOME);
 				}
 				
 			}
