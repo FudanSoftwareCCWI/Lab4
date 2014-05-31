@@ -5,14 +5,24 @@ import java.awt.Font;
 
 import javax.swing.JLabel;
 
-import wm.config.InterfaceParam;
+import wm.config.Constants;
 
-public class WMLabel extends JLabel implements InterfaceParam {
+/**
+ * 
+ * @author Sidney Fan
+ *
+ */
+public class WMLabel extends JLabel{
+
+	/**
+	 * Generated serial version ID
+	 */
+	private static final long serialVersionUID = -867913135824250509L;
 
 	public WMLabel(String text, int size) {
 		this.setText(text);
 		this.setHorizontalAlignment(JLabel.CENTER);;
-		this.setFont(new Font(LABELFONT,Font.PLAIN,size));
+		this.setFont(new Font(Constants.LABELFONT,Font.PLAIN,size));
 		this.setForeground(Color.WHITE);
 	}
 }

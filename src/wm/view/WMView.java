@@ -1,15 +1,39 @@
+/**
+ * Software Engineer lab4
+ */
 package wm.view;
-
-import java.awt.Color;
 
 import javax.swing.JPanel;
 
-import wm.config.InterfaceParam;
+import wm.config.Constants;
 
-public class WMView extends JPanel implements InterfaceParam {
-	
-	public WMView(){
-		this.setBackground(NORMALGREEN);
+/**
+ * Abstract Class WMView represents a view of the application. Any other views
+ * of the application should extend this view.
+ * 
+ * @author Sidney Fan
+ * 
+ */
+public abstract class WMView extends JPanel {
+
+	/**
+	 * Generated serial version ID
+	 */
+	private static final long serialVersionUID = 16020516862728212L;
+
+	public WMView() {
+		this.setBackground(Constants.NORMALGREEN);
+		this.initComponents();
+		this.initListener();
 	}
 
+	/**
+	 * 
+	 */
+	protected abstract void initComponents();
+
+	/**
+	 * 
+	 */
+	protected abstract void initListener();
 }

@@ -1,35 +1,55 @@
+/**
+ * Software Engineer lab4
+ */
 package wm.view;
 
 import java.awt.Dimension;
-import java.awt.Graphics;
 
 import javax.swing.JFrame;
 
-import wm.config.InterfaceParam;
+import wm.config.Constants;
 
-public class RootWindow extends JFrame implements InterfaceParam{
-	WMView homeView;
-	WMView statisticView;
-	WMView unitView;
-	WMView reciteView;
+/**
+ * Class RootWindow manages a frame of the whole application. It have methods to
+ * repaint its view.
+ * 
+ * @author Sidney Fan
+ * 
+ */
+public class RootWindow extends JFrame {
+	/**
+	 * Generated serial version ID
+	 */
+	private static final long serialVersionUID = -4846877555809396935L;
+
+	private int currentView;
+
+	/**
+	 * 
+	 */
+	public RootWindow() {
+		// init size or something
+		super();
+		Dimension fixedDimension = new Dimension(Constants.GLOBAL_WIDTH,
+				Constants.GLOBAL_HEIGHT);
+		this.setSize(fixedDimension);
+		this.setResizable(false);
+	}
 	
-	WMView currentView;
-
-	public void start(){
-		this.setBackground(NORMALGREEN);
+	/**
+	 * 
+	 */
+	public void start() {
+		this.setBackground(Constants.NORMALGREEN);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 	}
 
-	public RootWindow() {
-		// init size or something
-		super();
-		Dimension fixedDimension = new Dimension(GLOBAL_WIDTH, GLOBAL_HEIGHT);
-		this.setSize(fixedDimension);
-		this.setResizable(false);
-	}
-	
+	/**
+	 * 
+	 * @param view
+	 */
 	public void showView(WMView view) {
 		this.getContentPane().removeAll();
 		this.getContentPane().add(view);
@@ -37,5 +57,5 @@ public class RootWindow extends JFrame implements InterfaceParam{
 		this.validate();
 		System.out.println("RootWindow: showview()");
 	}
-	
+
 }

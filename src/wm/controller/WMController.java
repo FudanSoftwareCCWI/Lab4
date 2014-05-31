@@ -1,21 +1,14 @@
+/**
+ * Software Engineer lab4
+ */
 package wm.controller;
 
-import wm.config.InterfaceParam;
-import wm.view.WMView;
+/**
+ * Interface WMController represents a concept of controllers.
+ * 
+ * @author Maggie He
+ * 
+ */
+public interface WMController {
 
-public abstract class WMController implements InterfaceParam{
-	
-	protected RootController rootDelegate;
-	protected WMView view;
-
-	public WMController(RootController rootDelegate){
-		this.rootDelegate = rootDelegate;
-	}
-	
-	public WMView getView() {
-		return view;
-	}
-
-	protected abstract void initListener();
-	
 }

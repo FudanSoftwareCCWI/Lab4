@@ -3,16 +3,67 @@
  */
 package wm.model;
 
+import java.util.List;
+
 /**
- * Class Dictionary represents a particular dictionary in the recite process. It provides
- * users several methods to manage a recite process and fetch current recite
+ * Class Dictionaries represents all available dictionaries. It provides
+ * users methods to get a particular dictionary and fetch total recite
  * record.
  * 
- * @author Maggie He
- * @author Sidney Fan
  * @author Ariel Qian
  *
  */
-public class Dictionaries {
+public class Dictionaries extends WMModel{
+	/**
+	 * Generated serial version ID
+	 */
+	private static final long serialVersionUID = -6972941627269796672L;
+	private List<Dictionary> dictionaries;
+	
+	public Dictionaries(List<Dictionary> dictionaries) {
+		super();
+		this.dictionaries = dictionaries;
+	}
 
+	/**
+	 * 
+	 * @param index
+	 * @return
+	 */
+	public Dictionary getDictionary(int index){
+		return null;
+	}
+	
+	/**
+	 * 
+	 * @param name
+	 * @return
+	 */
+	public Dictionary getDictionary(String name){
+		return null;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public List<String> getDictionaryNames(){
+		return null;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public int getTotalSize(){
+		return 0;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public Record produceRecord(){
+		return null;
+	}
 }
