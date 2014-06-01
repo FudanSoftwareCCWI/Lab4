@@ -3,11 +3,13 @@
  */
 package wm.view;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -34,12 +36,12 @@ public class ReciteMainView extends WMView {
 	 */
 	private static final long serialVersionUID = -5827806794895012421L;
 	private IReciteMainController controller;
-	private JPanel unitInfoPanel;
+	private JPanel dictionaryInfoPanel;
 	private JPanel listPanel;
 	private JScrollPane scrollPane;
 
-	// unit info
-	private WMLabel unitNameLabel;
+	/* dictionary info */
+	private WMLabel dictionaryNameLabel;
 	private WMLabel totalNumLabel;
 	private WMLabel recitedNumLabel;
 	private WMLabel correctNumLabel;
@@ -47,26 +49,33 @@ public class ReciteMainView extends WMView {
 	private JButton pieIcon;// TODO
 	private JButton quitIcon;
 	private JButton homeIcon;
+	/* dictionary list */
+	private List<String> dictList;
 
 	public ReciteMainView(IReciteMainController controller) {
 		super();
 		this.controller = controller;
+		initComponents();
+		initListener();
 	}
 
 	@Override
 	protected void initComponents() {
 		initUnitInfoPanel();
 		initListPanel();
+		updateView();
+	}
+
+	private void updateView() {
 		// add left and right to view
+		this.removeAll();
 		this.setLayout(null);
-		scrollPane = new JScrollPane(listPanel);// TODO
-		scrollPane.setBorder(null);
-		this.add(unitInfoPanel);
+		this.add(dictionaryInfoPanel);
 		this.add(scrollPane);
 		// set position and size
-		unitInfoPanel.setBounds(0, 0, Constants.UNITSHORTWIDTH,
+		dictionaryInfoPanel.setBounds(0, 0, Constants.UNITSHORTWIDTH,
 				Constants.GLOBAL_HEIGHT);
-		unitInfoPanel.setOpaque(false);
+		dictionaryInfoPanel.setOpaque(false);
 		scrollPane.setBounds(Constants.UNITSHORTWIDTH, 0,
 				Constants.UNITLONGWIDTH, Constants.GLOBAL_HEIGHT);
 		scrollPane.setOpaque(false);
@@ -77,13 +86,13 @@ public class ReciteMainView extends WMView {
 
 	private void initUnitInfoPanel() {
 		// init statistic panels
-		unitInfoPanel = new JPanel();
-		unitInfoPanel.setLayout(null);
+		dictionaryInfoPanel = new JPanel();
+		dictionaryInfoPanel.setLayout(null);
 		// 1
-		unitNameLabel = new WMLabel("Unit  A", Constants.NORMALLABEL); // TODO
+		dictionaryNameLabel = new WMLabel("Unit  A", Constants.NORMALLABEL); // TODO
 		JPanel titlePanel = new JPanel();
 		titlePanel.setLayout(new GridLayout(1, 1));
-		titlePanel.add(unitNameLabel);
+		titlePanel.add(dictionaryNameLabel);
 		titlePanel.setOpaque(false);
 
 		// 2
@@ -132,11 +141,11 @@ public class ReciteMainView extends WMView {
 		iconPanel.add(homeIcon);
 		iconPanel.add(quitIcon);
 		// add all and set position
-		unitInfoPanel.add(titlePanel);
-		unitInfoPanel.add(totalPanel);
-		unitInfoPanel.add(infoPanel);
-		unitInfoPanel.add(piePanel);
-		unitInfoPanel.add(iconPanel);
+		dictionaryInfoPanel.add(titlePanel);
+		dictionaryInfoPanel.add(totalPanel);
+		dictionaryInfoPanel.add(infoPanel);
+		dictionaryInfoPanel.add(piePanel);
+		dictionaryInfoPanel.add(iconPanel);
 		titlePanel.setBounds(0, 0, Constants.UNITSHORTWIDTH,
 				Constants.UNITHEIGHT);
 		totalPanel.setBounds(0, Constants.UNITHEIGHT, Constants.UNITSHORTWIDTH,
@@ -150,24 +159,9 @@ public class ReciteMainView extends WMView {
 	}
 
 	private void initListPanel() {
-		// init list panel
 		listPanel = new JPanel();
-		listPanel.setLayout(new GridLayout(Constants.NUM_ROW, 1));
-		WMBlock tempBlock;
-		for (int i = 0; i < Constants.NUM_ROW; i++) {
-			tempBlock = new WMBlock(Constants.UNITLONGWIDTH,
-					Constants.UNITHEIGHT, 1, 1);
-			tempBlock.addLabel(String.format("Unit %s", (char) ('A' + i)),
-					Constants.MIDDLELABEL); // TODO
-			listPanel.add(tempBlock);
-			if (i % 2 == 0) {
-				tempBlock.setColor(Constants.NORMALGREEN, Constants.DARKGREEN);
-			} else {
-				tempBlock.setColor(Constants.LIGHTGREEN, Constants.DARKGREEN);
-			}
-		}
-		// listPanel.setPreferredSize(new Dimension(UNITLONGWIDTH, 8 *
-		// UNITHEIGHT));
+		scrollPane = new JScrollPane(listPanel);
+		scrollPane.setBorder(null);
 	}
 
 	@Override
@@ -185,9 +179,10 @@ public class ReciteMainView extends WMView {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("UnitView: Fire unitViewToHomeCommand");
-				ReciteMainView.this.firePropertyChange("unitViewToHomeCommand",
-						null, null);
+				System.out
+						.println("UnitView: Fire dictionaryViewToHomeCommand");
+				ReciteMainView.this.firePropertyChange(
+						"dictionaryViewToHomeCommand", null, null);
 			}
 
 		});
@@ -203,13 +198,40 @@ public class ReciteMainView extends WMView {
 	}
 
 	/**
-	 * Set the content of the dictionary list panel.
+	 * <b>setListPanelContent</b>
+	 * 
+	 * <pre>
+	 * <code>public void <b>setListPanelContent</b>(List&lt;<em>String</em>&gt; nameList)</code>
+	 * </pre>
+	 * 
+	 * <blockquote> Set the content of the dictionary list panel. <br>
+	 * <br>
 	 * 
 	 * @param nameList
-	 *            The name list of all dictionaries
+	 *            -The name list of all dictionaries, such as "Dictionary A" or
+	 *            "Dictionary B". </blockquote>
 	 */
 	public void setListPanelContent(List<String> nameList) {
-
+		dictList = nameList;
+		listPanel.removeAll();
+		listPanel.setLayout(new GridLayout(nameList.size(), 1));
+		WMBlock tempBlock;
+		String tempname;
+		Iterator<String> it = dictList.iterator();
+		int i = 0;
+		while (it.hasNext()) {
+			tempname = it.next();
+			tempBlock = new WMBlock(Constants.UNITLONGWIDTH,
+					Constants.UNITHEIGHT, 1, 1);
+			tempBlock.addLabel(tempname, Constants.MIDDLELABEL);
+			listPanel.add(tempBlock);
+			if (i % 2 == 0) {
+				tempBlock.setColor(Constants.NORMALGREEN, Constants.DARKGREEN);
+			} else {
+				tempBlock.setColor(Constants.LIGHTGREEN, Constants.DARKGREEN);
+			}
+			i++;
+		}
 	}
 
 	/**
