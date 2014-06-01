@@ -18,10 +18,10 @@ Tips:
 Comment template
 
 	 * <b></b>
-	 * <p><pre>
-	 * <code></code>
-	 * </pre>
+	 * <p>
+	 * <pre><code></code></pre>
 	 * <blockquote>
+	 * Discription
 	 * <br></br>
 	 * @param
 	 * @return
