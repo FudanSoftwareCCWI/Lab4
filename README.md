@@ -14,3 +14,16 @@ Resources:
 Tips:
 1. Java Swing
 2. MVC [Model + Controller&View]
+
+Comment template
+
+	 * <b></b>
+	 * <p><pre>
+	 * <code></code>
+	 * </pre>
+	 * <blockquote>
+	 * <br></br>
+	 * @param
+	 * @return
+	 * @author
+	 * </blockquote></p>
