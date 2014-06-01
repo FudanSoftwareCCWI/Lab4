@@ -85,6 +85,7 @@ public class ReciteMainView extends WMView {
 		titlePanel.setLayout(new GridLayout(1, 1));
 		titlePanel.add(unitNameLabel);
 		titlePanel.setOpaque(false);
+
 		// 2
 		WMLabel total = new WMLabel("单元单词总数", Constants.SMALLERLABEL);
 		totalNumLabel = new WMLabel("237", Constants.SMALLERLABEL); // TODO

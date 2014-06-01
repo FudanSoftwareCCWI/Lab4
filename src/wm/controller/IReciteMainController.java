@@ -3,27 +3,51 @@
  */
 package wm.controller;
 
+import java.util.List;
+
 /**
+ * <b>IReciteMainController</b>
+ * <p>
  * Interface IReciteMainController provides methods to manage a recite main
  * view.
+ * </p>
+ * IReciteMainController takes charge of views:<br>
+ * <ul>
+ * <li>{@link wm.view.ReciteMainView}</li>
+ * </ul>
  * 
  * @author Maggie He
  * 
  */
 public interface IReciteMainController extends WMController {
+
 	/**
-	 * 
+	 * <b>showDictionaryDetail</b>
+	 * <pre><code>public void <b>showDictionaryDetail</b>(int index)</code></pre>
+	 * <blockquote>
+	 * Display the details of a dictionary.<br></br>
 	 * @param index
+	 *            -index of a dictionary
+	 * </blockquote>
 	 */
 	public void showDictionaryDetail(int index);
 
 	/**
-	 * 
+	 * <b>switchToReciteProcess</b>
+	 * <pre><code>public void <b>switchToReciteProcess</b>()</code></pre>
+	 * <blockquote>
+	 * Switch to recite process view and controller to {@link wm.controller.IReciteProcessController}<br></br>
+	 * </blockquote>
 	 */
-	public void switchToStartSelect();
+	public void switchToSelectView();
 
 	/**
-	 * 
+	 * <b>switchToHome</b>
+	 * <pre><code>public void <b>switchToHome</b>()</code></pre>
+	 * <blockquote>
+	 * Switch to home view and controller to {@link wm.controller.IHomeController}<br></br>
+	 * </blockquote>
 	 */
 	public void switchToHome();
+	
 }
