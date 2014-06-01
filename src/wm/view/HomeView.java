@@ -47,10 +47,28 @@ public class HomeView extends WMView {
 
 	JButton quitIcon; // should be extracted
 
+	/**
+	 * <b>HomeView</b>
+	 * 
+	 * <pre>
+	 * <code>public HomeView(IHomeController controller)</code>
+	 * </pre>
+	 * 
+	 * <blockquote>
+	 * <p>
+	 * Constructor of home view.
+	 * </p>
+	 * 
+	 * @param controller
+	 *            -controller of home view
+	 * 
+	 */
 	public HomeView(IHomeController controller) {
 		super();
-		this.controller=controller;
+		this.controller = controller;
 		thisView = this;
+		initComponents();
+		initListener();
 	}
 
 	@Override
@@ -142,9 +160,9 @@ public class HomeView extends WMView {
 				statisticPanel.setBackground(Constants.DARKGREEN);
 				pressed = false;
 				// fire property changed
-				System.out.println("HomeView: Fire homeToStatisticViewCommand");
-				thisView.firePropertyChange("homeToStatisticViewCommand", null,
-						null);
+//				System.out.println("HomeView: Fire homeToStatisticViewCommand");
+//				thisView.firePropertyChange("homeToStatisticViewCommand", null,	null);
+				controller.switchToRecord();
 			}
 
 			@Override
@@ -192,9 +210,9 @@ public class HomeView extends WMView {
 				recitePanel.setBackground(Constants.DARKGREEN);
 				pressed = false;
 				// fire property changed
-				System.out.println("HomeView: Fire homeToUnitViewCommand");
-				thisView.firePropertyChange("homeToUnitViewCommand", null, null);
-
+//				System.out.println("HomeView: Fire homeToUnitViewCommand");
+//				thisView.firePropertyChange("homeToUnitViewCommand", null, null);
+				controller.switchToRecite();
 			}
 
 			@Override
@@ -246,11 +264,23 @@ public class HomeView extends WMView {
 	}
 
 	/**
-	 * 
+	 * <b>refreshHome</b>
+	 * <pre><code>public void <b>refreshHome</b>()</code></pre>
+	 * <blockquote>
+	 * <p>RefreshHome to repaint the select panel. This must be invoke after any view swiched to home view.</p>
+	 * </blockquote>
 	 */
 	public void refreshHome() {
 		statisticPanel.setBackground(Constants.LIGHTGREEN);
 		recitePanel.setBackground(Constants.NORMALGREEN);
 	}
 
+	public JPanel getStatisticPanel() {
+		return statisticPanel;
+	}
+
+	public JPanel getRecitePanel() {
+		return recitePanel;
+	}
+	
 }
