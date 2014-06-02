@@ -4,11 +4,14 @@
 package wm.view;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Iterator;
 import java.util.List;
 
@@ -43,14 +46,15 @@ public class ReciteMainView extends WMView {
 	/* dictionary info */
 	private WMLabel dictionaryNameLabel;
 	private WMLabel totalNumLabel;
-	private WMLabel recitedNumLabel;
-	private WMLabel correctNumLabel;
-	private WMLabel recitedRateLabel;
-	private JButton pieIcon;// TODO
+	private WMLabel dictSizeLabel;
+	private WMLabel sizeRateLabel;
+	private WMPie pie;
 	private JButton quitIcon;
 	private JButton homeIcon;
+	private JButton nextIcon;
 	/* dictionary list */
 	private List<String> dictList;
+	private int currentDictIndex;
 
 	public ReciteMainView(IReciteMainController controller) {
 		super();
@@ -88,58 +92,63 @@ public class ReciteMainView extends WMView {
 		// init statistic panels
 		dictionaryInfoPanel = new JPanel();
 		dictionaryInfoPanel.setLayout(null);
-		// 1
-		dictionaryNameLabel = new WMLabel("Unit  A", Constants.NORMALLABEL); // TODO
+
+		// 1 row
 		JPanel titlePanel = new JPanel();
 		titlePanel.setLayout(new GridLayout(1, 1));
-		titlePanel.add(dictionaryNameLabel);
+		titlePanel.add(new WMLabel("Word Master", Constants.NORMALLABEL));
 		titlePanel.setOpaque(false);
 
-		// 2
-		WMLabel total = new WMLabel("单元单词总数", Constants.SMALLERLABEL);
-		totalNumLabel = new WMLabel("237", Constants.SMALLERLABEL); // TODO
+		// 2 row
+		dictionaryNameLabel = new WMLabel("词库 ~", Constants.MIDDLELABEL);
 		JPanel totalPanel = new JPanel();
-		totalPanel.setLayout(new GridLayout(2, 1));
-		totalPanel.add(total);
-		totalPanel.add(totalNumLabel);
-		totalNumLabel.setVerticalAlignment(JLabel.TOP);
+		totalPanel.setLayout(new GridLayout(1, 1));
+		totalPanel.add(dictionaryNameLabel);
 		totalPanel.setOpaque(false);
-		// 3
-		WMLabel recite = new WMLabel("已背", Constants.SMALLERLABEL);
-		WMLabel correct = new WMLabel("正确", Constants.SMALLERLABEL);
-		WMLabel rate = new WMLabel("正确率", Constants.SMALLERLABEL);
-		recitedNumLabel = new WMLabel("0", Constants.SMALLERLABEL);// TODO
-		correctNumLabel = new WMLabel("0", Constants.SMALLERLABEL);// TODO
-		recitedRateLabel = new WMLabel("0%", Constants.SMALLERLABEL);// TODO
+
+		// 3 row
 		JPanel infoPanel = new JPanel();
 		infoPanel.setLayout(new GridLayout(2, 3));
+		WMLabel recite = new WMLabel("单词总量", Constants.SMALLERLABEL);
+		WMLabel correct = new WMLabel("单词量", Constants.SMALLERLABEL);
+		WMLabel rate = new WMLabel("词量比例", Constants.SMALLERLABEL);
+		totalNumLabel = new WMLabel("~", Constants.SMALLERLABEL);
+		dictSizeLabel = new WMLabel("~", Constants.SMALLERLABEL);
+		sizeRateLabel = new WMLabel("~", Constants.SMALLERLABEL);
+		totalNumLabel.setVerticalAlignment(JLabel.TOP);
+		dictSizeLabel.setVerticalAlignment(JLabel.TOP);
+		sizeRateLabel.setVerticalAlignment(JLabel.TOP);
 		infoPanel.add(recite);
 		infoPanel.add(correct);
 		infoPanel.add(rate);
-		infoPanel.add(recitedNumLabel);
-		infoPanel.add(correctNumLabel);
-		infoPanel.add(recitedRateLabel);
-		recitedNumLabel.setVerticalAlignment(JLabel.TOP);
-		correctNumLabel.setVerticalAlignment(JLabel.TOP);
-		recitedRateLabel.setVerticalAlignment(JLabel.TOP);
+		infoPanel.add(totalNumLabel);
+		infoPanel.add(dictSizeLabel);
+		infoPanel.add(sizeRateLabel);
 		infoPanel.setOpaque(false);
+
 		// 4-5
-		pieIcon = new JButton(Constants.PIEICON256);
-		pieIcon.setBorder(null);
+		pie = new WMPie();
+		pie.setBounds((Constants.UNITSHORTWIDTH - Constants.ICON_MIDDLE) / 2,
+				0, Constants.ICON_MIDDLE + 1, Constants.ICON_MIDDLE);
 		JPanel piePanel = new JPanel();
-		piePanel.setLayout(new GridLayout(1, 1));
-		piePanel.add(pieIcon);
+		piePanel.setLayout(null);
+		piePanel.add(pie);
 		piePanel.setOpaque(false);
+
 		// 6
 		quitIcon = new JButton(Constants.QUITICON);
 		homeIcon = new JButton(Constants.HOMEICON);
+		nextIcon = new JButton(Constants.NEXTICON);
 		quitIcon.setBorder(null);
 		homeIcon.setBorder(null);
+		nextIcon.setBorder(null);
 		JPanel iconPanel = new JPanel();
 		iconPanel.setOpaque(false);
-		iconPanel.setLayout(new GridLayout(1, 2));
+		iconPanel.setLayout(new GridLayout(1, 3));
 		iconPanel.add(homeIcon);
+		iconPanel.add(nextIcon);
 		iconPanel.add(quitIcon);
+
 		// add all and set position
 		dictionaryInfoPanel.add(titlePanel);
 		dictionaryInfoPanel.add(totalPanel);
@@ -179,22 +188,32 @@ public class ReciteMainView extends WMView {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				System.out
-						.println("UnitView: Fire dictionaryViewToHomeCommand");
-				ReciteMainView.this.firePropertyChange(
-						"dictionaryViewToHomeCommand", null, null);
+//				System.out.println("UnitView: Fire dictionaryViewToHomeCommand");
+//				ReciteMainView.this.firePropertyChange("dictionaryViewToHomeCommand", null, null);
+				controller.switchToHome();
 			}
 
 		});
+
+		nextIcon.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				controller.switchToSelectView();
+			}
+		});
 	}
 
-	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		g.setColor(Constants.NORMALGREEN);
-		g.fillRect(0, 0, Constants.UNITSHORTWIDTH, Constants.GLOBAL_HEIGHT);
-		g.setColor(Constants.LIGHTGREEN);
-		g.fillRect(Constants.UNITSHORTWIDTH, 0, Constants.UNITLONGWIDTH,
-				Constants.GLOBAL_HEIGHT);
+	private void setListBlockListener() {
+		for (final Component block : listPanel.getComponents()) {
+			block.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					setCurrentBlock((WMBlock) block);
+					controller.showDictionaryDetail(currentDictIndex);
+				}
+			});
+		}
 	}
 
 	/**
@@ -232,6 +251,8 @@ public class ReciteMainView extends WMView {
 			}
 			i++;
 		}
+		// set new blocks listener
+		setListBlockListener();
 	}
 
 	/**
@@ -241,7 +262,8 @@ public class ReciteMainView extends WMView {
 	 *            The name of the dictionary
 	 */
 	public void setNameLabelText(String name) {
-
+		dictionaryNameLabel.setText(name);
+		dictionaryNameLabel.revalidate();
 	}
 
 	/**
@@ -254,7 +276,12 @@ public class ReciteMainView extends WMView {
 	 *            The total size of all dictionaries
 	 */
 	public void setPieIcon(int size, int totalSize) {
-
+		dictSizeLabel.setText(String.valueOf(size));
+		totalNumLabel.setText(String.valueOf(totalSize));
+		
+		int rate = (int) (((double) size / (double) totalSize)*100);
+		sizeRateLabel.setText(String.format("%d%%", rate));
+		pie.createPie(new int[] { size, totalSize });
 	}
 
 	/**
@@ -264,7 +291,7 @@ public class ReciteMainView extends WMView {
 	 *            The size of the selected dictionary
 	 */
 	public void setSizeLabelText(int size) {
-
+		dictSizeLabel.setText(String.valueOf(size));
 	}
 
 	/**
@@ -274,6 +301,51 @@ public class ReciteMainView extends WMView {
 	 *            The total size of all dictionaries
 	 */
 	public void setTotalSizeLabelText(int totalSize) {
+		totalNumLabel.setText(String.valueOf(totalSize));
+	}
 
+	/**
+	 * Returns current clicked dictionary's index. Should be called when switch
+	 * to recite process view.
+	 * 
+	 * @return currentDictIndex
+	 */
+	public int getCurrentDictIndex() {
+		return currentDictIndex;
+	}
+
+	/**
+	 * Set the current dictionary. This method will paint the current index
+	 * block simultaneously.
+	 * 
+	 * @param currentDictIndex
+	 */
+	public void setCurrentDictIndex(int currentDictIndex) {
+		setCurrentBlock((WMBlock) (listPanel.getComponents()[currentDictIndex]));
+	}
+
+	private void setCurrentBlock(WMBlock clickedBlock) {
+		Component[] siblings = listPanel.getComponents();
+		int i = 0;
+		for (Component block : siblings) {
+			if (clickedBlock.equals((WMBlock) block)) {
+				this.currentDictIndex = i;
+				continue;
+			}
+			((WMBlock) block).release();
+			((WMBlock) block).paintLocal();
+			i++;
+		}
+		clickedBlock.paintPress();
+		clickedBlock.fix();
+	}
+
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		g.setColor(Constants.DARKGREEN);
+		g.fillRect(0, 0, Constants.UNITSHORTWIDTH, Constants.GLOBAL_HEIGHT);
+		g.setColor(Constants.LIGHTGREEN);
+		g.fillRect(Constants.UNITSHORTWIDTH, 0, Constants.UNITLONGWIDTH,
+				Constants.GLOBAL_HEIGHT);
 	}
 }

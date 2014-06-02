@@ -31,12 +31,14 @@ public class Constants {
 	/* Icon */
 	public final static int ICON_TINY = 32;
 	public final static int ICON_SMALL = 64;
+	public final static int ICON_MIDDLE = 256;
 	public final static int ICON_LARGE = 512;
 	public final static ImageIcon QUITICON = new ImageIcon("icon/quit-32.png");
 	public final static ImageIcon HOMEICON = new ImageIcon("icon/home-32.png");
+	public final static ImageIcon NEXTICON = new ImageIcon("icon/next-32.png");
 	public final static ImageIcon PIEICON = new ImageIcon("icon/pie-128.png");
 	public final static ImageIcon PIEICON256 = new ImageIcon(new ImageIcon(
-			"icon/pie-512.png").getImage().getScaledInstance(256, 256, Image.SCALE_DEFAULT));
+			"icon/pie-512.png").getImage().getScaledInstance(ICON_MIDDLE, ICON_MIDDLE, Image.SCALE_DEFAULT));
 	/* Command */
 	public final static int HOME_TO_STATISTIC = 0;
 	public final static int HOME_TO_UNIT = 1;
