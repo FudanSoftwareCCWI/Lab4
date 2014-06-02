@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 /**
  * 
  * @author Sidney Fan
- *
+ * 
  */
 public class WMBlock extends JPanel {
 
@@ -24,6 +24,7 @@ public class WMBlock extends JPanel {
 	private Color localColor;
 	private Color pressColor;
 	private WMBlock thisWMBlock;
+	private int blockState; // 1 is changeable background
 
 	public WMBlock(int width, int height, int row, int col) {
 		this.width = width;
@@ -32,6 +33,7 @@ public class WMBlock extends JPanel {
 		this.setBorder(null);
 		this.setLayout(new GridLayout(row, col));
 		thisWMBlock = this;
+		blockState = 0;
 	}
 
 	public void addLabel(String text, int size) {
@@ -43,6 +45,56 @@ public class WMBlock extends JPanel {
 	public void addLabel(WMLabel label) {
 		label.setSize(width, label.getHeight());
 		this.add(label);
+	}
+
+	/**
+	 * <b>paintLocal</b>
+	 * 
+	 * <pre>
+	 * public void <b>paintLocal</b>()
+	 * </pre>
+	 * 
+	 * <blockquote>
+	 * <p>
+	 * Set the block background to the origin local color.
+	 * <p>
+	 * </blockquote>
+	 */
+	public void paintLocal() {
+		if (blockState == 0)
+			thisWMBlock.setBackground(thisWMBlock.localColor);
+	}
+
+	/**
+	 * <b>paintPress</b>
+	 * 
+	 * <pre>
+	 * public void <b>paintPress</b>()
+	 * </pre>
+	 * 
+	 * <blockquote>
+	 * <p>
+	 * Set the block background to the pressed color.
+	 * <p>
+	 * </blockquote>
+	 */
+	public void paintPress() {
+		if (blockState == 0)
+			thisWMBlock.setBackground(thisWMBlock.pressColor);
+	}
+
+	/**
+	 * Fix the state of block to unchangeable background.
+	 */
+	public void fix() {
+		blockState = 1;
+	}
+
+	/**
+	 * Release the state of block to changeable background.
+	 */
+	public void release() {
+		blockState = 0;
 	}
 
 	public void setColor(Color localColor, Color pressColor) {
@@ -63,17 +115,17 @@ public class WMBlock extends JPanel {
 
 			@Override
 			public void mouseExited(MouseEvent arg0) {
-				thisWMBlock.setBackground(thisWMBlock.localColor);
+				paintLocal();
 			}
 
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
-				thisWMBlock.setBackground(thisWMBlock.pressColor);
+				paintPress();
 			}
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				
+
 			}
 		});
 
@@ -81,10 +133,11 @@ public class WMBlock extends JPanel {
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-//		g.setColor(DARKGREEN);
-//		g.fillPolygon(new int[] { 0, 10, 10, width, width, 10, 10 }, new int[] {
-//				height / 2, height / 2 - 10, height, height, 0, 0,
-//				height / 2 + 10 }, 7);
+		// g.setColor(DARKGREEN);
+		// g.fillPolygon(new int[] { 0, 10, 10, width, width, 10, 10 }, new
+		// int[] {
+		// height / 2, height / 2 - 10, height, height, 0, 0,
+		// height / 2 + 10 }, 7);
 	}
-	
+
 }
