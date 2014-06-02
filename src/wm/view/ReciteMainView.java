@@ -49,9 +49,9 @@ public class ReciteMainView extends WMView {
 	private WMLabel dictSizeLabel;
 	private WMLabel sizeRateLabel;
 	private WMPie pie;
-	private JButton quitIcon;
-	private JButton homeIcon;
-	private JButton nextIcon;
+	private JButton quitBtn;
+	private JButton homeBtn;
+	private JButton nextBtn;
 	/* dictionary list */
 	private List<String> dictList;
 	private int currentDictIndex;
@@ -136,18 +136,18 @@ public class ReciteMainView extends WMView {
 		piePanel.setOpaque(false);
 
 		// 6
-		quitIcon = new JButton(Constants.QUITICON);
-		homeIcon = new JButton(Constants.HOMEICON);
-		nextIcon = new JButton(Constants.NEXTICON);
-		quitIcon.setBorder(null);
-		homeIcon.setBorder(null);
-		nextIcon.setBorder(null);
+		quitBtn = new JButton(Constants.QUITICON);
+		homeBtn = new JButton(Constants.HOMEICON);
+		nextBtn = new JButton(Constants.NEXTICON);
+		quitBtn.setBorder(null);
+		homeBtn.setBorder(null);
+		nextBtn.setBorder(null);
 		JPanel iconPanel = new JPanel();
 		iconPanel.setOpaque(false);
 		iconPanel.setLayout(new GridLayout(1, 3));
-		iconPanel.add(homeIcon);
-		iconPanel.add(nextIcon);
-		iconPanel.add(quitIcon);
+		iconPanel.add(homeBtn);
+		iconPanel.add(nextBtn);
+		iconPanel.add(quitBtn);
 
 		// add all and set position
 		dictionaryInfoPanel.add(titlePanel);
@@ -175,7 +175,7 @@ public class ReciteMainView extends WMView {
 
 	@Override
 	protected void initListener() {
-		quitIcon.addActionListener(new ActionListener() {
+		quitBtn.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -184,7 +184,7 @@ public class ReciteMainView extends WMView {
 
 		});
 
-		homeIcon.addActionListener(new ActionListener() {
+		homeBtn.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -195,7 +195,7 @@ public class ReciteMainView extends WMView {
 
 		});
 
-		nextIcon.addActionListener(new ActionListener() {
+		nextBtn.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {

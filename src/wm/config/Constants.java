@@ -33,6 +33,7 @@ public class Constants {
 	public final static int ICON_SMALL = 64;
 	public final static int ICON_MIDDLE = 256;
 	public final static int ICON_LARGE = 512;
+	public final static int ICON_BORDER = 10;
 	public final static ImageIcon QUITICON = new ImageIcon("icon/quit-32.png");
 	public final static ImageIcon HOMEICON = new ImageIcon("icon/home-32.png");
 	public final static ImageIcon NEXTICON = new ImageIcon("icon/next-32.png");
@@ -43,5 +44,10 @@ public class Constants {
 	public final static int HOME_TO_STATISTIC = 0;
 	public final static int HOME_TO_UNIT = 1;
 	public final static int UNIT_TO_HOME = 2;
+	/* Chinese */
+	public final static String CHIN_STAETBYFIRST = "<html>从第一个<br>单词开始</html>";
+	public final static String CHIN_STARTBYLAST = "<html>从上次背到<br的地方开始</html>";
+	public final static String CHIN_STARTBYCUSTOM = "<html>自定义<br起点</html>";
+	public final static String CHIN_SELECTSTARTMETHOD = "<html>选择背诵起点</html>";
 
 }

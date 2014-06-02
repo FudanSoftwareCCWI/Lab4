@@ -32,20 +32,20 @@ public class HomeView extends WMView {
 	 */
 	private static final long serialVersionUID = 113232243106457859L;
 
-	IHomeController controller;
-	HomeView thisView;
+	private IHomeController controller;
+	private HomeView thisView;
 
-	WMLabel logoLabel;
-	WMLabel statisticLabel;
-	WMLabel reciteLabel;
-	WMLabel statisticNote;
-	WMLabel reciteNote;
+	private WMLabel logoLabel;
+	private WMLabel statisticLabel;
+	private WMLabel reciteLabel;
+	private WMLabel statisticNote;
+	private WMLabel reciteNote;
 
-	JPanel selectPanel;
-	JPanel statisticPanel;
-	JPanel recitePanel;
+	private JPanel selectPanel;
+	private JPanel statisticPanel;
+	private JPanel recitePanel;
 
-	JButton quitIcon; // should be extracted
+	private JButton quitBtn; // should be extracted
 
 	/**
 	 * <b>HomeView</b>
@@ -79,14 +79,14 @@ public class HomeView extends WMView {
 		reciteLabel = new WMLabel("选词书", Constants.MIDDLELABEL);
 		statisticNote = new WMLabel("包含每一个单元和整个词库的统计信息", Constants.SMALLLABEL);
 		reciteNote = new WMLabel("点此进入单元的选择", Constants.SMALLLABEL);
-		quitIcon = new JButton(Constants.QUITICON);
+		quitBtn = new JButton(Constants.QUITICON);
 
 		// set note color and alignment
 		statisticNote.setForeground(Constants.NOTEALPHA);
 		reciteNote.setForeground(Constants.NOTEALPHA);
 		statisticLabel.setVerticalAlignment(JLabel.BOTTOM);
 		reciteLabel.setVerticalAlignment(JLabel.BOTTOM);
-		quitIcon.setBorder(null);
+		quitBtn.setBorder(null);
 
 		// select panel
 		selectPanel = new JPanel();
@@ -125,8 +125,8 @@ public class HomeView extends WMView {
 		this.add(selectPanel);
 		selectPanel.setBounds(0, Constants.GLOBAL_HEIGHT / 2,
 				Constants.GLOBAL_WIDTH, Constants.GLOBAL_HEIGHT / 2);
-		this.add(quitIcon);
-		quitIcon.setBounds(Constants.GLOBAL_WIDTH - Constants.ICON_SMALL - 10,
+		this.add(quitBtn);
+		quitBtn.setBounds(Constants.GLOBAL_WIDTH - Constants.ICON_SMALL - 10,
 				10, Constants.ICON_SMALL, Constants.ICON_SMALL);
 	}
 
@@ -234,7 +234,7 @@ public class HomeView extends WMView {
 			}
 		});
 
-		quitIcon.addActionListener(new ActionListener() {
+		quitBtn.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
