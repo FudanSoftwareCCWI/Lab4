@@ -1,5 +1,7 @@
 package wm.view;
 
+import wm.controller.IReciteProcessController;
+
 /**
  * Class ReciteWordView present the chinese meaning of the word.
  * The user input the spelling into the input area and get the feedback,
@@ -14,6 +16,12 @@ public class ReciteWordView extends WMView {
 	 * 
 	 */
 	private static final long serialVersionUID = 5402598615372695937L;
+	private IReciteProcessController controller;
+	
+	public ReciteWordView(IReciteProcessController controller) {
+		super();
+		this.controller = controller;
+	}
 
 	@Override
 	protected void initComponents() {
