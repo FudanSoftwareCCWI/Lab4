@@ -1,4 +1,4 @@
-package wm.view.test;
+package wm.test.view;
 
 import java.awt.event.MouseEvent;
 

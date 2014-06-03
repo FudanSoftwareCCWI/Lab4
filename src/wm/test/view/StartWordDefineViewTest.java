@@ -1,7 +1,7 @@
 /**
  * 
  */
-package wm.view.test;
+package wm.test.view;
 
 import static org.junit.Assert.*;
 
@@ -83,7 +83,6 @@ public class StartWordDefineViewTest extends WMViewTestCase {
 
 	@Test
 	public void test() {
-		while (true) {
-		}
+		while (true);
 	}
 }

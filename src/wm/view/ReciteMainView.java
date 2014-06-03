@@ -200,7 +200,7 @@ public class ReciteMainView extends WMView {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				//TODO
+				controller.switchToStartSelect(currentDictIndex);
 			}
 		});
 	}

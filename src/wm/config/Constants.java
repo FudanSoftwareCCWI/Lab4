@@ -52,5 +52,7 @@ public class Constants {
 	public final static String CHIN_CUMSTOMIMPUT = "<html>自定义起点</html>";
 	public final static String CHIN_NEXT_TO_CHOOSE_SIZE = "<html>选择背诵单词数量</html>";
 	public final static String CHIN_NO_MATCH = "<html>找不到匹配，默认从第一个单词开始！</html>";
+	public final static String CHIN_SELECT_SZIE = "<html>选择要背的单词数量</html>";
+	public final static String CHIN_COMFIRM_TO_START = "<html>确认并开始背诵</html>";
 
 }

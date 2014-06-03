@@ -43,12 +43,11 @@ import wm.controller.IReciteProcessController;
  */
 public class StartWordDefineView extends ReciteProcessView {
 
-	IReciteProcessController controller;
-
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -3052539781672180377L;
+	
 	private WMComboBox searchBox;
 	private JButton nextBtn;
 	private WMLabel nextTip;
