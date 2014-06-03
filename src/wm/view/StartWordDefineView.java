@@ -31,6 +31,8 @@ import wm.config.Constants;
 import wm.controller.IReciteProcessController;
 import wm.view.component.WMBlock;
 import wm.view.component.WMLabel;
+import wm.controller.IReciteProcessController;
+
 
 /**
  * Class StartWordDefineView appears when the user want to start by the input

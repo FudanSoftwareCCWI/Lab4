@@ -33,13 +33,10 @@ public interface IReciteMainController extends WMController {
 	public void showDictionaryDetail(int index);
 
 	/**
-	 * <b>switchToReciteProcess</b>
-	 * <pre><code>public void <b>switchToSelectView</b>()</code></pre>
-	 * <blockquote>
-	 * Switch to recite process view and controller to {@link wm.controller.IReciteProcessController}<br></br>
-	 * </blockquote>
+	 * 
+	 * @param index
 	 */
-	public void switchToSelectView();
+	public void switchToStartSelect(int index);
 
 	/**
 	 * <b>switchToHome</b>
