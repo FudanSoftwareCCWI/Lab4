@@ -76,6 +76,7 @@ public class HomeViewTest extends WMViewTestCase{
 						MouseEvent.MOUSE_CLICKED, 0,
 						MouseEvent.BUTTON1_DOWN_MASK, 1, 1, 1, false));
 		context.assertIsSatisfied();
+		while(true);
 	}
 	
 }

@@ -74,6 +74,8 @@ public class StartSelectView extends ReciteProcessView {
 		startByCustomBtn.setBounds(Constants.GLOBAL_WIDTH
 				- Constants.ICON_MIDDLE - PADDING, Constants.UNITHEIGHT
 				+ PADDING, Constants.ICON_MIDDLE, Constants.ICON_MIDDLE);
+		
+		setTip(Constants.CHIN_SELECTSTARTMETHOD);
 
 	}
 
@@ -115,8 +117,8 @@ public class StartSelectView extends ReciteProcessView {
 		public SelectButton(String text) {
 			super(text);
 			this.setBorder(null);
-			this.setFont(new Font(Constants.LABELFONT, Font.PLAIN,
-					Constants.SMALLERLABEL));
+			this.setFont(new Font(Constants.LABEL_FONT, Font.PLAIN,
+					Constants.LABEL_SMALL));
 			this.setForeground(Constants.NORMALGREEN);
 			hover = false;
 			setMouseAction();
@@ -144,7 +146,6 @@ public class StartSelectView extends ReciteProcessView {
 		@Override
 		public void paintComponent(Graphics g) {
 			if (hover) {
-				System.out.println("here");
 				g.setColor(Constants.NORMALGREEN);
 				g.fillArc(0, 0, Constants.ICON_MIDDLE, Constants.ICON_MIDDLE, 0,
 						360);
