@@ -19,8 +19,9 @@ public interface IReciteMainController extends WMController {
 
 	/**
 	 * 
+	 * @param index
 	 */
-	public void switchToStartSelect();
+	public void switchToStartSelect(int index);
 
 	/**
 	 * 

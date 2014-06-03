@@ -82,6 +82,10 @@ public class Dictionary extends WMModel{
 		return null;
 	}
 
+	public int getPresentWord() {
+		return this.presentWord;
+	}
+	
 	/**
 	 * Get the next English key.
 	 * 
@@ -162,5 +166,11 @@ public class Dictionary extends WMModel{
 	public Record produceRecord(int start, int end) {
 		return null;
 	}
+
+	public int getStartWord() {
+		return this.startWord;
+	}
+
+
 
 }

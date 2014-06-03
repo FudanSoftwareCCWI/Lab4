@@ -3,6 +3,8 @@
  */
 package wm.controller;
 
+import wm.model.Record;
+
 /**
  * Interface IReciteProcessController provides methods to manage a
  * recite process.
@@ -36,7 +38,7 @@ public interface IReciteProcessController extends WMController {
 	/**
 	 * 
 	 */
-	public void getAvailableSize();
+	public int getAvailableSize();
 
 	/**
 	 * 
@@ -52,12 +54,12 @@ public interface IReciteProcessController extends WMController {
 	/**
 	 * 
 	 */
-	public void checkCorrect();
+	public void checkCorrect(String input);
 
 	/**
 	 * 
 	 */
-	public void getReciteRecord();
+	public Record getReciteRecord();
 
 	/**
 	 * 

@@ -2,6 +2,8 @@ package wm.view;
 
 import java.util.List;
 
+import wm.controller.IReciteProcessController;
+
 
 /**
  * Class StartWordDefineView appears when the user want to start
@@ -19,7 +21,13 @@ public class StartWordDefineView extends WMView {
 	 * 
 	 */
 	private static final long serialVersionUID = -3052539781672180377L;
-
+	private IReciteProcessController controller;
+	
+	public StartWordDefineView(IReciteProcessController controller) {
+		super();
+		this.controller = controller;
+	}
+	
 	@Override
 	protected void initComponents() {
 		// TODO Auto-generated method stub

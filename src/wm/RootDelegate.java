@@ -3,7 +3,13 @@
  */
 package wm;
 
+import java.util.List;
+
 import wm.config.Configuration;
+import wm.controller.IHomeController;
+import wm.controller.IReciteMainController;
+import wm.controller.IReciteProcessController;
+import wm.controller.IRecordController;
 import wm.controller.WMController;
 import wm.model.Dictionaries;
 import wm.model.Dictionary;
@@ -19,6 +25,10 @@ import wm.view.RootWindow;
 public class RootDelegate implements SwitchDelegate {
 	private RootWindow rootWindow;
 	private WMController currentController;
+	private IHomeController homeController;
+	private IReciteMainController reciteMainController;
+	private IReciteProcessController reciteProcessController;
+	private IRecordController recordController;
 	private Dictionaries preLoadModel;
 	private Configuration conf;
 
@@ -30,6 +40,7 @@ public class RootDelegate implements SwitchDelegate {
 		this.rootWindow = new RootWindow();
 		this.conf = new Configuration();
 		this.preLoadModel = preload();
+		this.getHome();
 	}
 
 	/**
@@ -43,8 +54,7 @@ public class RootDelegate implements SwitchDelegate {
 
 	@Override
 	public void getHome() {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -60,31 +70,31 @@ public class RootDelegate implements SwitchDelegate {
 	}
 
 	@Override
-	public void getStartWordSelect(int dictionaryIndex) {
+	public void getStartWordSelect(int index) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void getStartWordDefine(int dictionaryIndex) {
+	public void getStartWordDefine(Dictionary model) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void getSizeSelect(int dictionaryIndex) {
+	public void getSizeSelect(Dictionary model) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void getReciteWord(int dictionaryIndex) {
+	public void getReciteWord(Dictionary model) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void getReciteRecord(int dictionaryIndex) {
+	public void getReciteRecord(Dictionary model) {
 		// TODO Auto-generated method stub
 		
 	}
