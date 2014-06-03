@@ -85,11 +85,14 @@ public class Dictionary extends Observable{
 		}
 		return match;
 	}
-
-	public int getPresentWord() {
-		return this.presentWord;
-	}
 	
+	/**
+	 * 
+	 */
+	public int getPresentWord(){
+		return presentWord;
+	}
+		
 	/**
 	 * Get the next English key.
 	 * 
@@ -208,11 +211,5 @@ public class Dictionary extends Observable{
 		}
 		return new Record(recordName, recitedSize, correctSize);
 	}
-
-	public int getStartWord() {
-		return this.startWord;
-	}
-
-
 
 }
