@@ -67,7 +67,7 @@ public abstract class ReciteProcessView extends WMView {
 		quitBtn = new JButton(Constants.QUITICON);
 		homeBtn.setBorder(null);
 		quitBtn.setBorder(null);
-		headLine = new WMLabel("Dictionary", Constants.NORMALLABEL);
+		headLine = new WMLabel("Dictionary", Constants.LABEL_NORMAL);
 		navPanel.setLayout(null);
 		navPanel.add(homeBtn);
 		navPanel.add(quitBtn);
@@ -79,12 +79,24 @@ public abstract class ReciteProcessView extends WMView {
 				* Constants.UNITHEIGHT, Constants.UNITHEIGHT);
 		// center
 		centerPanel.setLayout(null);
-		tipLabel = new WMLabel("", Constants.SMALLERLABEL);
+		tipLabel = new WMLabel("", Constants.LABEL_SMALL);
 		centerPanel.add(tipLabel);
-		tipLabel.setBounds(0, PADDING, Constants.GLOBAL_WIDTH,
+		tipLabel.setBounds(0, PADDING/2, Constants.GLOBAL_WIDTH,
 				Constants.UNITHEIGHT);
 	}
 
+	/**
+	 * Sets the top head line of recite process view.
+	 * @param text
+	 */
+	public void setHeadLineText(String text){
+		headLine.setText(text);
+	}
+	
+	public void setTip(String text){
+		tipLabel.setText(text);
+	}
+	
 	@Override
 	protected void initListener() {
 		quitBtn.addActionListener(new ActionListener() {

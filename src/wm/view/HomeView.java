@@ -74,11 +74,11 @@ public class HomeView extends WMView {
 	@Override
 	protected void initComponents() {
 		// init labels
-		logoLabel = new WMLabel(Constants.APPNAME, Constants.LARGELABEL);
-		statisticLabel = new WMLabel("统计", Constants.MIDDLELABEL);
-		reciteLabel = new WMLabel("选词书", Constants.MIDDLELABEL);
-		statisticNote = new WMLabel("包含每一个单元和整个词库的统计信息", Constants.SMALLLABEL);
-		reciteNote = new WMLabel("点此进入单元的选择", Constants.SMALLLABEL);
+		logoLabel = new WMLabel(Constants.APPNAME, Constants.LABEL_LARGE);
+		statisticLabel = new WMLabel("统计", Constants.LABEL_MIDDLE);
+		reciteLabel = new WMLabel("选词书", Constants.LABEL_MIDDLE);
+		statisticNote = new WMLabel("包含每一个单元和整个词库的统计信息", Constants.LABEL_TINY);
+		reciteNote = new WMLabel("点此进入单元的选择", Constants.LABEL_TINY);
 		quitBtn = new JButton(Constants.QUITICON);
 
 		// set note color and alignment

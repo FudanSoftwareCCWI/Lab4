@@ -6,6 +6,7 @@ import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -41,11 +42,20 @@ public class WMBlock extends JPanel {
 		label.setSize(width, label.getHeight());
 		this.add(label);
 	}
+	
+	public void addLeftLabel(String text, int size) {
+		WMLabel label = new WMLabel(text, size);
+		label.setSize(width, label.getHeight());
+		label.setHorizontalAlignment(JLabel.LEFT);
+		this.add(label);
+	}
 
 	public void addLabel(WMLabel label) {
 		label.setSize(width, label.getHeight());
 		this.add(label);
 	}
+	
+	
 
 	/**
 	 * <b>paintLocal</b>
