@@ -4,6 +4,7 @@
 package wm.controller;
 
 import java.util.List;
+import wm.model.Record;
 
 /**
  * <b>IReciteProcessController</b>
@@ -120,12 +121,12 @@ public interface IReciteProcessController extends WMController {
 	/**
 	 * 
 	 */
-	public void checkCorrect();
+	public void checkCorrect(String input);
 
 	/**
 	 * 
 	 */
-	public void getReciteRecord();
+	public Record getReciteRecord();
 
 	/**
 	 * 
