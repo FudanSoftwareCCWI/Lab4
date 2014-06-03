@@ -83,6 +83,7 @@ public class ReciteMainView extends WMView {
 		scrollPane.setBounds(Constants.UNITSHORTWIDTH, 0,
 				Constants.UNITLONGWIDTH, Constants.GLOBAL_HEIGHT);
 		scrollPane.setOpaque(false);
+		scrollPane.getVerticalScrollBar().setUI(null);
 		listPanel.setPreferredSize(new Dimension(scrollPane.getWidth() - 50,
 				Constants.NUM_ROW * Constants.UNITHEIGHT));
 		listPanel.revalidate();
@@ -96,11 +97,11 @@ public class ReciteMainView extends WMView {
 		// 1 row
 		JPanel titlePanel = new JPanel();
 		titlePanel.setLayout(new GridLayout(1, 1));
-		titlePanel.add(new WMLabel("Word Master", Constants.NORMALLABEL));
+		titlePanel.add(new WMLabel("Word Master", Constants.LABEL_NORMAL));
 		titlePanel.setOpaque(false);
 
 		// 2 row
-		dictionaryNameLabel = new WMLabel("词库 ~", Constants.MIDDLELABEL);
+		dictionaryNameLabel = new WMLabel("词库 ~", Constants.LABEL_MIDDLE);
 		JPanel totalPanel = new JPanel();
 		totalPanel.setLayout(new GridLayout(1, 1));
 		totalPanel.add(dictionaryNameLabel);
@@ -109,12 +110,12 @@ public class ReciteMainView extends WMView {
 		// 3 row
 		JPanel infoPanel = new JPanel();
 		infoPanel.setLayout(new GridLayout(2, 3));
-		WMLabel recite = new WMLabel("单词总量", Constants.SMALLERLABEL);
-		WMLabel correct = new WMLabel("单词量", Constants.SMALLERLABEL);
-		WMLabel rate = new WMLabel("词量比例", Constants.SMALLERLABEL);
-		totalNumLabel = new WMLabel("~", Constants.SMALLERLABEL);
-		dictSizeLabel = new WMLabel("~", Constants.SMALLERLABEL);
-		sizeRateLabel = new WMLabel("~", Constants.SMALLERLABEL);
+		WMLabel recite = new WMLabel("单词总量", Constants.LABEL_SMALL);
+		WMLabel correct = new WMLabel("单词量", Constants.LABEL_SMALL);
+		WMLabel rate = new WMLabel("词量比例", Constants.LABEL_SMALL);
+		totalNumLabel = new WMLabel("~", Constants.LABEL_SMALL);
+		dictSizeLabel = new WMLabel("~", Constants.LABEL_SMALL);
+		sizeRateLabel = new WMLabel("~", Constants.LABEL_SMALL);
 		totalNumLabel.setVerticalAlignment(JLabel.TOP);
 		dictSizeLabel.setVerticalAlignment(JLabel.TOP);
 		sizeRateLabel.setVerticalAlignment(JLabel.TOP);
@@ -199,7 +200,7 @@ public class ReciteMainView extends WMView {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				controller.switchToSelectView();
+				//TODO
 			}
 		});
 	}
@@ -242,7 +243,7 @@ public class ReciteMainView extends WMView {
 			tempname = it.next();
 			tempBlock = new WMBlock(Constants.UNITLONGWIDTH,
 					Constants.UNITHEIGHT, 1, 1);
-			tempBlock.addLabel(tempname, Constants.MIDDLELABEL);
+			tempBlock.addLabel(tempname, Constants.LABEL_MIDDLE);
 			listPanel.add(tempBlock);
 			if (i % 2 == 0) {
 				tempBlock.setColor(Constants.NORMALGREEN, Constants.DARKGREEN);
