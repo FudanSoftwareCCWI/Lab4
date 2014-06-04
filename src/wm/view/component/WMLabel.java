@@ -10,9 +10,9 @@ import wm.config.Constants;
 /**
  * 
  * @author Sidney Fan
- * 
+ *
  */
-public class WMLabel extends JLabel implements Cloneable {
+public class WMLabel extends JLabel{
 
 	/**
 	 * Generated serial version ID
@@ -21,18 +21,8 @@ public class WMLabel extends JLabel implements Cloneable {
 
 	public WMLabel(String text, int size) {
 		this.setText(text);
-		this.setHorizontalAlignment(JLabel.CENTER);
-		this.setFont(new Font(Constants.LABELFONT, Font.PLAIN, size));
+		this.setHorizontalAlignment(JLabel.CENTER);;
+		this.setFont(new Font(Constants.LABELFONT,Font.PLAIN,size));
 		this.setForeground(Color.WHITE);
-	}
-
-	public WMLabel clone() {
-		WMLabel o = null;
-		try {
-			o = (WMLabel) super.clone();
-		} catch (CloneNotSupportedException e) {
-			e.printStackTrace();
-		}
-		return o;
 	}
 }
