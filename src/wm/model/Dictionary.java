@@ -147,6 +147,13 @@ public class Dictionary extends Observable {
 			c = "0";
 		return r+"\t"+c;
 	}
+	
+	/**
+	 * 
+	 */
+	public int getStartWord(){
+		return startWord;
+	}
 
 	/**
 	 * Set the recitedSize.

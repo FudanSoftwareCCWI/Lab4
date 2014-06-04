@@ -1,7 +1,5 @@
 package wm.view;
 
-<<<<<<< HEAD
-=======
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.KeyAdapter;
@@ -14,7 +12,6 @@ import wm.config.Constants;
 import wm.controller.IReciteProcessController;
 import wm.view.component.WMLabel;
 
->>>>>>> origin/version2.1
 /**
  * Class ReciteWordView present the chinese meaning of the word. The user input
  * the spelling into the input area and get the feedback, then goto next word.
@@ -28,8 +25,6 @@ public class ReciteWordView extends ReciteProcessView {
 	 * 
 	 */
 	private static final long serialVersionUID = 5402598615372695937L;
-<<<<<<< HEAD
-=======
 	private IReciteProcessController controller;
 	private WMLabel paraphrase;
 	private WMLabel resultHint;
@@ -40,7 +35,6 @@ public class ReciteWordView extends ReciteProcessView {
 		addComponents();
 		addListener();
 	}
->>>>>>> origin/version2.1
 
 	protected void addComponents() {
 		setHeadLineText(Constants.CHIN_RECITING);

@@ -7,30 +7,22 @@ import javax.swing.ImageIcon;
 
 public class Constants {
 	/* Frame parameters */
-	public final static int UNITHEIGHT = 128;
-	public final static int UNITLONGWIDTH = 630;
-	public final static int UNITSHORTWIDTH = 394;
+	public final static int UNITHEIGHT = 100;
+	public final static int UNITLONGWIDTH = 500;
+	public final static int UNITSHORTWIDTH = 300;
 	public final static int NUM_ROW = 26;
-	public final static int GLOBAL_WIDTH = 1024;
-	public final static int GLOBAL_HEIGHT = 768;
+	public final static int GLOBAL_WIDTH = 800;
+	public final static int GLOBAL_HEIGHT = 600;
 	/* String parameters */
 	public final static String APPNAME = "WordMaster";
 	/* Label */
-<<<<<<< HEAD
-	public final static int SMALLLABEL = 15;
-	public final static int SMALLERLABEL = 25;
-	public final static int MIDDLELABEL = 35;
-	public final static int NORMALLABEL = 50;
-	public final static int LARGELABEL = 80;
-=======
 	public final static int LABEL_TINY = 15;
 	public final static int LABEL_SMALL = 20;
 	public final static int LABEL_MIDDLE = 30;
 	public final static int LABEL_NORMAL = 40;
 	public final static int LABEL_LARGE = 70;
->>>>>>> origin/version2.1
 	public final static int UNITLINEHEIGHT = 20;
-	public final static String LABELFONT = "Abandon";
+	public final static String LABEL_FONT = "Abandon";
 	/* Colors */
 	public final static Color LIGHTGREEN = new Color(89, 150, 57);
 	public final static Color NORMALGREEN = new Color(78, 137, 47);
@@ -39,16 +31,12 @@ public class Constants {
 	/* Icon */
 	public final static int ICON_TINY = 32;
 	public final static int ICON_SMALL = 64;
-<<<<<<< HEAD
-=======
 	public final static int ICON_RECORD = 96;
 	public final static int ICON_MIDDLE = 200;
->>>>>>> origin/version2.1
 	public final static int ICON_LARGE = 512;
+	public final static int ICON_BORDER = 10;
 	public final static ImageIcon QUITICON = new ImageIcon("icon/quit-32.png");
 	public final static ImageIcon HOMEICON = new ImageIcon("icon/home-32.png");
-<<<<<<< HEAD
-=======
 	public final static ImageIcon NEXTICON = new ImageIcon("icon/next-32.png");
 	public final static ImageIcon PIEICON96 = new ImageIcon(new ImageIcon(
 			"icon/pie-128.png").getImage().getScaledInstance(ICON_RECORD, ICON_RECORD, Image.SCALE_DEFAULT));
@@ -56,16 +44,13 @@ public class Constants {
 			"icon/bar-128.png").getImage().getScaledInstance(ICON_RECORD, ICON_RECORD, Image.SCALE_DEFAULT));
 	public final static ImageIcon TABLEICON96 = new ImageIcon(new ImageIcon(
 			"icon/table-128.png").getImage().getScaledInstance(ICON_RECORD, ICON_RECORD, Image.SCALE_DEFAULT));
->>>>>>> origin/version2.1
 	public final static ImageIcon PIEICON = new ImageIcon("icon/pie-128.png");
 	public final static ImageIcon PIEICON256 = new ImageIcon(new ImageIcon(
-			"icon/pie-512.png").getImage().getScaledInstance(256, 256, Image.SCALE_DEFAULT));
+			"icon/pie-512.png").getImage().getScaledInstance(ICON_MIDDLE, ICON_MIDDLE, Image.SCALE_DEFAULT));
 	/* Command */
 	public final static int HOME_TO_STATISTIC = 0;
 	public final static int HOME_TO_UNIT = 1;
 	public final static int UNIT_TO_HOME = 2;
-<<<<<<< HEAD
-=======
 	/* Chinese */
 	public final static String CHIN_STAETBYFIRST = "<html>从第一个<br>单词开始</html>";
 	public final static String CHIN_STARTBYLAST = "<html>从上次背到<br的地方开始</html>";
@@ -85,6 +70,5 @@ public class Constants {
 	public final static String CHIN_RATE = "正确率";
 	public final static String CHIN_CORRECT_WRONG_RATIO = "正确与错误比例";
 	public final static String CHIN_RECITE_PIE = "已背饼图";
->>>>>>> origin/version2.1
 
 }

@@ -1,7 +1,5 @@
 package wm.view;
 
-<<<<<<< HEAD
-=======
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -12,7 +10,6 @@ import javax.swing.event.ChangeListener;
 import wm.config.Constants;
 import wm.controller.IReciteProcessController;
 import wm.view.component.WMLabel;
->>>>>>> origin/version2.1
 
 /**
  * Class SizeSelectView represents a scroll and the user can move it to select
@@ -28,12 +25,6 @@ public class SizeSelectView extends ReciteProcessView {
 	 */
 	private static final long serialVersionUID = -3014427720952625543L;
 
-<<<<<<< HEAD
-	@Override
-	protected void initComponents() {
-		// TODO Auto-generated method stub
-		
-=======
 	private JButton nextBtn;
 	private WMLabel nextTip;
 	private JSlider slider;
@@ -109,7 +100,6 @@ public class SizeSelectView extends ReciteProcessView {
 				controller.switchToReciteWord();
 			}
 		});
->>>>>>> origin/version2.1
 	}
 
 	private void setPivot(int value) {

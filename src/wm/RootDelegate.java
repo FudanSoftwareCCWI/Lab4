@@ -4,8 +4,6 @@
 package wm;
 
 import wm.config.Configuration;
-<<<<<<< HEAD
-=======
 import wm.controller.HomeController;
 import wm.controller.IHomeController;
 import wm.controller.IReciteMainController;
@@ -14,7 +12,6 @@ import wm.controller.IRecordController;
 import wm.controller.ReciteMainController;
 import wm.controller.ReciteProcessController;
 import wm.controller.RecordController;
->>>>>>> origin/version2.1
 import wm.controller.WMController;
 import wm.model.Dictionaries;
 import wm.model.Dictionary;
@@ -32,6 +29,10 @@ import wm.view.RootWindow;
 public class RootDelegate implements SwitchDelegate {
 	private RootWindow rootWindow;
 	private WMController currentController;
+	private IHomeController homeController;
+	private IReciteMainController reciteMainController;
+	private IReciteProcessController reciteProcessController;
+	private IRecordController recordController;
 	private Dictionaries preLoadModel;
 	private Configuration conf;
 
@@ -54,21 +55,16 @@ public class RootDelegate implements SwitchDelegate {
 	 */
 	private Dictionaries preload() {
 		DictionaryDAO dictionaryDAO=new DictionaryImpl();
-		return dictionaryDAO.selectAllDictionay();
+		return dictionaryDAO.selectAllDictionay("dictionary.txt");
 	}
 
 	@Override
 	public void getHome() {
-<<<<<<< HEAD
-		// TODO Auto-generated method stub
-		
-=======
 		if(homeController==null){
 			homeController=new HomeController(this);
 		}
 		currentController=homeController;
 		rootWindow.showView(currentController.getView());
->>>>>>> origin/version2.1
 	}
 
 	@Override
@@ -90,35 +86,6 @@ public class RootDelegate implements SwitchDelegate {
 	}
 
 	@Override
-<<<<<<< HEAD
-	public void getStartWordSelect(int dictionaryIndex) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void getStartWordDefine(int dictionaryIndex) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void getSizeSelect(int dictionaryIndex) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void getReciteWord(int dictionaryIndex) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void getReciteRecord(int dictionaryIndex) {
-		// TODO Auto-generated method stub
-		
-=======
 	public void getStartWordSelect(int index) {
 		if(reciteProcessController==null){
 			reciteProcessController=new ReciteProcessController(this, preLoadModel.getDictionary(index));
@@ -145,7 +112,6 @@ public class RootDelegate implements SwitchDelegate {
 	@Override
 	public void getReciteRecord(Dictionary model) {
 		rootWindow.showView(currentController.getView());
->>>>>>> origin/version2.1
 	}
 
 
