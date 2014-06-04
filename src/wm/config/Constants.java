@@ -19,7 +19,7 @@ public class Constants {
 	public final static int LABEL_TINY = 15;
 	public final static int LABEL_SMALL = 20;
 	public final static int LABEL_MIDDLE = 30;
-	public final static int LABEL_NORMAL = 45;
+	public final static int LABEL_NORMAL = 40;
 	public final static int LABEL_LARGE = 70;
 	public final static int UNITLINEHEIGHT = 20;
 	public final static String LABEL_FONT = "Abandon";
@@ -54,5 +54,6 @@ public class Constants {
 	public final static String CHIN_NO_MATCH = "<html>找不到匹配，默认从第一个单词开始！</html>";
 	public final static String CHIN_SELECT_SZIE = "<html>选择要背的单词数量</html>";
 	public final static String CHIN_COMFIRM_TO_START = "<html>确认并开始背诵</html>";
+	public final static String CHIN_RECITING = "<html>正在背诵</html>";
 
 }
