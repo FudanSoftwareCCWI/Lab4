@@ -4,8 +4,6 @@
 package wm;
 
 import wm.config.Configuration;
-<<<<<<< HEAD
-=======
 import wm.controller.HomeController;
 import wm.controller.IHomeController;
 import wm.controller.IReciteMainController;
@@ -14,7 +12,6 @@ import wm.controller.IRecordController;
 import wm.controller.ReciteMainController;
 import wm.controller.ReciteProcessController;
 import wm.controller.RecordController;
->>>>>>> FETCH_HEAD
 import wm.controller.WMController;
 import wm.model.Dictionaries;
 import wm.model.Dictionary;
@@ -59,16 +56,11 @@ public class RootDelegate implements SwitchDelegate {
 
 	@Override
 	public void getHome() {
-<<<<<<< HEAD
-		// TODO Auto-generated method stub
-		
-=======
 		if(homeController==null){
 			homeController=new HomeController(this);
 		}
 		currentController=homeController;
 		rootWindow.showView(currentController.getView());
->>>>>>> FETCH_HEAD
 	}
 
 	@Override
