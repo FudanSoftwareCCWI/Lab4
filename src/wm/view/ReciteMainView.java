@@ -189,15 +189,16 @@ public class ReciteMainView extends WMView {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-//				System.out.println("UnitView: Fire dictionaryViewToHomeCommand");
-//				ReciteMainView.this.firePropertyChange("dictionaryViewToHomeCommand", null, null);
+				// System.out.println("UnitView: Fire dictionaryViewToHomeCommand");
+				// ReciteMainView.this.firePropertyChange("dictionaryViewToHomeCommand",
+				// null, null);
 				controller.switchToHome();
 			}
 
 		});
 
 		nextBtn.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				controller.switchToStartSelect(currentDictIndex);
@@ -279,10 +280,10 @@ public class ReciteMainView extends WMView {
 	public void setPieIcon(int size, int totalSize) {
 		dictSizeLabel.setText(String.valueOf(size));
 		totalNumLabel.setText(String.valueOf(totalSize));
-		
-		int rate = (int) (((double) size / (double) totalSize)*100);
+
+		int rate = (int) (((double) size / (double) totalSize) * 100);
 		sizeRateLabel.setText(String.format("%d%%", rate));
-		pie.createPie(new int[] { size, totalSize });
+		pie.createPie(new int[] { size, totalSize - size });
 	}
 
 	/**

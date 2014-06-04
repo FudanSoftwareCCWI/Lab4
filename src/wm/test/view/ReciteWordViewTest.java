@@ -2,6 +2,8 @@ package wm.test.view;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.junit.After;

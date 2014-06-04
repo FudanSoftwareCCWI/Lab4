@@ -127,7 +127,7 @@ public class StartWordDefineView extends ReciteProcessView {
 		nextTip.setText(Constants.CHIN_NEXT_TO_CHOOSE_SIZE);
 	}
 
-	public class WMComboBox extends JComponent {
+	protected class WMComboBox extends JComponent {
 
 		JTextField field;
 		JScrollPane scrollPane;
