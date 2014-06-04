@@ -3,6 +3,7 @@ package wm.controller;
 import wm.SwitchDelegate;
 import wm.model.Dictionaries;
 import wm.view.ReciteMainView;
+import wm.view.WMView;
 
 public class ReciteMainController implements IReciteMainController {
 	SwitchDelegate delegate;
@@ -13,6 +14,8 @@ public class ReciteMainController implements IReciteMainController {
 		super();
 		this.delegate = delegate;
 		this.view = new ReciteMainView(this);
+		this.showDictionaryDetail(0);
+		view.setListPanelContent(model.getDictionaryNames());
 	}
 
 	@Override
@@ -34,4 +37,10 @@ public class ReciteMainController implements IReciteMainController {
 		delegate.getHome();
 	}
 
+	@Override
+	public WMView getView() {
+		return view;
+	}
+
+	
 }
