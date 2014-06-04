@@ -3,7 +3,9 @@
  */
 package wm.model;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
 /**
  * Class Dictionaries represents all available dictionaries. It provides
@@ -13,11 +15,8 @@ import java.util.List;
  * @author Ariel Qian
  *
  */
-public class Dictionaries extends WMModel{
-	/**
-	 * Generated serial version ID
-	 */
-	private static final long serialVersionUID = -6972941627269796672L;
+public class Dictionaries extends Observable{
+	
 	private List<Dictionary> dictionaries;
 	
 	public Dictionaries(List<Dictionary> dictionaries) {
@@ -31,7 +30,7 @@ public class Dictionaries extends WMModel{
 	 * @return
 	 */
 	public Dictionary getDictionary(int index){
-		return null;
+		return dictionaries.get(index);
 	}
 	
 	/**
@@ -40,7 +39,14 @@ public class Dictionaries extends WMModel{
 	 * @return
 	 */
 	public Dictionary getDictionary(String name){
-		return null;
+		Dictionary dictionary=null;
+		for(Dictionary dic: dictionaries){
+			if(dic.getName().equals(name)){
+				dictionary = dic;
+				break;
+			}
+		}
+		return dictionary;
 	}
 	
 	/**
@@ -48,6 +54,10 @@ public class Dictionaries extends WMModel{
 	 * @return
 	 */
 	public List<String> getDictionaryNames(){
+		List<String> names = new ArrayList<String>();
+		for(Dictionary dic: dictionaries){
+			names.add(dic.getName());
+		}
 		return null;
 	}
 	
@@ -56,7 +66,7 @@ public class Dictionaries extends WMModel{
 	 * @return
 	 */
 	public int getTotalSize(){
-		return 0;
+		return dictionaries.size();
 	}
 	
 	/**
@@ -64,6 +74,17 @@ public class Dictionaries extends WMModel{
 	 * @return
 	 */
 	public Record produceRecord(){
-		return null;
+		String name = "All Record";
+		int totalSize = 0;
+		int recitedSize = 0;
+		int correctSize = 0;
+		Record singleRecord = null;
+		for(Dictionary dic: dictionaries){
+			totalSize+=dic.getSize();
+			singleRecord = dic.produceRecord();
+			recitedSize += singleRecord.getRecitedSize();
+			correctSize += singleRecord.getCorrect();
+		}
+		return new Record(name, totalSize, recitedSize, correctSize);
 	}
 }

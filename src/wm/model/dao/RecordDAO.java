@@ -6,6 +6,8 @@ package wm.model.dao;
 import wm.model.Record;
 
 /**
+ * Do not need to implement yet.
+ * 
  * Interface RecordDAO provides methods to visit a record, including select,
  * update, insert and delete operations.
  * 

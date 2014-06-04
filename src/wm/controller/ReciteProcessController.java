@@ -68,9 +68,10 @@ public class ReciteProcessController implements IReciteProcessController {
 	 * @see wm.controller.IReciteProcessController#getAvailableWordList(java.lang.String)
 	 */
 	@Override
-	public void getAvailableWordList(String prefix) {
+	public List<String> getAvailableWordList(String prefix) {
 		List<String> words=model.getMatchWords(prefix);
-		startWordDefineView.setWordListTextarea(words);
+//		startWordDefineView.setWordListTextarea(words);
+		return words;
 	}
 
 	/** (non-Javadoc)

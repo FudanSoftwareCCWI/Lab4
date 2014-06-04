@@ -3,7 +3,9 @@
  */
 package wm.model;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
 /**
  * Class Dictionary represents a particular dictionary in the recite process. It
@@ -13,11 +15,8 @@ import java.util.List;
  * @author Ariel Qian
  * 
  */
-public class Dictionary extends WMModel{
-	/**
-	 * Generated serial version ID
-	 */
-	private static final long serialVersionUID = -3393449066800517704L;
+public class Dictionary extends Observable{
+	
 	private String name;
 	private List<Word> words;
 	private int presentWord;
@@ -59,7 +58,7 @@ public class Dictionary extends WMModel{
 	 * @return The name of the dictionary
 	 */
 	public String getName() {
-		return null;
+		return name;
 	}
 
 	/**
@@ -68,7 +67,7 @@ public class Dictionary extends WMModel{
 	 * @return The size of the dictionary
 	 */
 	public int getSize() {
-		return 0;
+		return words.size();
 	}
 
 	/**
@@ -79,7 +78,12 @@ public class Dictionary extends WMModel{
 	 * @return A list of words with this prefix
 	 */
 	public List<String> getMatchWords(String prefix) {
-		return null;
+		List<String> match = new ArrayList<String>();
+		for(Word w: words){
+			if(w.getKey().startsWith(prefix))
+				match.add(w.getKey());
+		}
+		return match;
 	}
 
 	public int getPresentWord() {
@@ -92,7 +96,8 @@ public class Dictionary extends WMModel{
 	 * @return The next English key
 	 */
 	public String getNextKey() {
-		return null;
+		Word word = words.get(presentWord+1);
+		return word.getKey();
 	}
 
 	/**
@@ -101,7 +106,8 @@ public class Dictionary extends WMModel{
 	 * @return The Chinese meaning
 	 */
 	public String getNextMeaning() {
-		return null;
+		Word word = words.get(presentWord+1);
+		return word.getMeaning();
 	}
 
 	/**
@@ -111,7 +117,7 @@ public class Dictionary extends WMModel{
 	 *            The recitedSize
 	 */
 	public void setRecitedSize(int size) {
-
+		recitedSize = size;
 	}
 
 	/**
@@ -121,7 +127,7 @@ public class Dictionary extends WMModel{
 	 *            The index of the start word
 	 */
 	public void setStartWord(int index) {
-
+		startWord = index;
 	}
 
 	/**
@@ -131,9 +137,24 @@ public class Dictionary extends WMModel{
 	 * @param index
 	 *            The index of the present word
 	 */
-	private void setPresentWord(int index) {
-
+	public void setPresentWord(int index) {
+		presentWord = index;
 	}
+	
+	/**
+	 * 
+	 */
+	public void setWordRecited() {
+		words.get(presentWord).setRecited(true);
+	}
+	
+	/**
+	 * 
+	 */
+	public void setWordCorrect(boolean correct) {
+		words.get(presentWord).setCorrect(correct);
+	}
+	
 
 	/**
 	 * Calculate the available size when start word is set. Must be called after
@@ -142,7 +163,7 @@ public class Dictionary extends WMModel{
 	 * @return The available size with a particular start
 	 */
 	public int calAvailableSize() {
-		return 0;
+		return words.size()-startWord;
 	}
 
 	/**
@@ -151,7 +172,17 @@ public class Dictionary extends WMModel{
 	 * @return A record
 	 */
 	public Record produceRecord() {
-		return produceRecord(0, getSize() - 1);
+		String recordName = name;
+		int totalSize = words.size();
+		int recitedSize = 0;
+		int correctSize = 0;
+		for(Word w: words){
+			if(w.isRecited())
+				recitedSize++;
+			if(w.isCorrect())
+				correctSize++;
+		}
+		return new Record(name, totalSize, recitedSize,correctSize);
 	}
 
 	/**
@@ -164,7 +195,18 @@ public class Dictionary extends WMModel{
 	 * @return A record
 	 */
 	public Record produceRecord(int start, int end) {
-		return null;
+		String recordName = name;
+		int recitedSize = 0;
+		int correctSize = 0;
+		Word w = null;
+		for(int i = start; i <= end; i++){
+			w = words.get(i);
+			if(w.isRecited())
+				recitedSize++;
+			if(w.isCorrect())
+				correctSize++;
+		}
+		return new Record(recordName, recitedSize, correctSize);
 	}
 
 	public int getStartWord() {
