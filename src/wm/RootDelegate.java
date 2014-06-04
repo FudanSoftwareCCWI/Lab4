@@ -55,7 +55,7 @@ public class RootDelegate implements SwitchDelegate {
 	 */
 	private Dictionaries preload() {
 		DictionaryDAO dictionaryDAO=new DictionaryImpl();
-		return dictionaryDAO.selectAllDictionay();
+		return dictionaryDAO.selectAllDictionay("dictionary.txt");
 	}
 
 	@Override
