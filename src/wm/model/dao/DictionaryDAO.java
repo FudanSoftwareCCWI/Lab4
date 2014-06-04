@@ -3,6 +3,8 @@
  */
 package wm.model.dao;
 
+import java.io.IOException;
+
 import wm.model.Dictionaries;
 import wm.model.Dictionary;
 
@@ -17,8 +19,9 @@ public interface DictionaryDAO {
 	/**
 	 * 
 	 * @return
+	 * @throws IOException 
 	 */
-	public Dictionaries selectAllDictionay();
+	public Dictionaries selectAllDictionay(String filename);
 	
 	/**
 	 * 
