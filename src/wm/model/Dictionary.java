@@ -15,8 +15,8 @@ import java.util.Observable;
  * @author Ariel Qian
  * 
  */
-public class Dictionary extends Observable{
-	
+public class Dictionary extends Observable {
+
 	private String name;
 	private List<Word> words;
 	private int presentWord;
@@ -79,24 +79,27 @@ public class Dictionary extends Observable{
 	 */
 	public List<String> getMatchWords(String prefix) {
 		List<String> match = new ArrayList<String>();
-		for(Word w: words){
-			if(w.getKey().startsWith(prefix))
+		for (Word w : words) {
+			if (w.getKey().startsWith(prefix))
 				match.add(w.getKey());
 		}
 		return match;
 	}
 
+	/**
+	 * 
+	 */
 	public int getPresentWord() {
-		return this.presentWord;
+		return presentWord;
 	}
-	
+
 	/**
 	 * Get the next English key.
 	 * 
 	 * @return The next English key
 	 */
 	public String getNextKey() {
-		Word word = words.get(presentWord+1);
+		Word word = words.get(presentWord);
 		return word.getKey();
 	}
 
@@ -106,8 +109,50 @@ public class Dictionary extends Observable{
 	 * @return The Chinese meaning
 	 */
 	public String getNextMeaning() {
-		Word word = words.get(presentWord+1);
+		Word word = words.get(presentWord);
 		return word.getMeaning();
+	}
+	
+	/**
+	 * 
+	 * @param index
+	 * @return
+	 */
+	public boolean getWordRecited(int index){
+		return words.get(index).isRecited();
+	}
+	
+	/**
+	 * 
+	 * @param index
+	 * @return
+	 */
+	public boolean getWordCorrect(int index){
+		return words.get(index).isCorrect();
+	}
+	
+	public String getWordEntry(int index){
+		boolean recited = this.getWordRecited(index);
+		boolean correct = this.getWordCorrect(index);
+		String c = "";
+		String r = "";
+		if (recited)
+			r = "1";
+		else
+			r = "0";
+
+		if (correct)
+			c = "1";
+		else
+			c = "0";
+		return r+"\t"+c;
+	}
+	
+	/**
+	 * 
+	 */
+	public int getStartWord(){
+		return startWord;
 	}
 
 	/**
@@ -131,6 +176,23 @@ public class Dictionary extends Observable{
 	}
 
 	/**
+	 * Set the index of the start word.
+	 * 
+	 * @param key
+	 *            The key of the start word
+	 */
+	public void setStartWord(String key) {
+		int index = 0;
+		for (int i = 0; i < words.size(); i++) {
+			if (words.get(i).getKey().equals(key)) {
+				index = i;
+				break;
+			}
+		}
+		startWord = index;
+	}
+
+	/**
 	 * Set the index of the present word. Must be called when setStartWord() is
 	 * called.
 	 * 
@@ -140,21 +202,20 @@ public class Dictionary extends Observable{
 	public void setPresentWord(int index) {
 		presentWord = index;
 	}
-	
+
 	/**
 	 * 
 	 */
 	public void setWordRecited() {
 		words.get(presentWord).setRecited(true);
 	}
-	
+
 	/**
 	 * 
 	 */
 	public void setWordCorrect(boolean correct) {
 		words.get(presentWord).setCorrect(correct);
 	}
-	
 
 	/**
 	 * Calculate the available size when start word is set. Must be called after
@@ -163,7 +224,7 @@ public class Dictionary extends Observable{
 	 * @return The available size with a particular start
 	 */
 	public int calAvailableSize() {
-		return words.size()-startWord;
+		return words.size() - startWord;
 	}
 
 	/**
@@ -176,13 +237,13 @@ public class Dictionary extends Observable{
 		int totalSize = words.size();
 		int recitedSize = 0;
 		int correctSize = 0;
-		for(Word w: words){
-			if(w.isRecited())
+		for (Word w : words) {
+			if (w.isRecited())
 				recitedSize++;
-			if(w.isCorrect())
+			if (w.isCorrect())
 				correctSize++;
 		}
-		return new Record(name, totalSize, recitedSize,correctSize);
+		return new Record(name, totalSize, recitedSize, correctSize);
 	}
 
 	/**
@@ -196,23 +257,18 @@ public class Dictionary extends Observable{
 	 */
 	public Record produceRecord(int start, int end) {
 		String recordName = name;
+		int totalSize = end - start + 1;
 		int recitedSize = 0;
 		int correctSize = 0;
 		Word w = null;
-		for(int i = start; i <= end; i++){
+		for (int i = start; i <= end; i++) {
 			w = words.get(i);
-			if(w.isRecited())
+			if (w.isRecited())
 				recitedSize++;
-			if(w.isCorrect())
+			if (w.isCorrect())
 				correctSize++;
 		}
-		return new Record(recordName, recitedSize, correctSize);
+		return new Record(recordName, totalSize, recitedSize, correctSize);
 	}
-
-	public int getStartWord() {
-		return this.startWord;
-	}
-
-
 
 }

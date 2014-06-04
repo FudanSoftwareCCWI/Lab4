@@ -1,4 +1,4 @@
-package wm.view.test;
+package wm.test.view;
 
 import java.awt.event.MouseEvent;
 
@@ -44,7 +44,7 @@ public class HomeViewTest extends WMViewTestCase{
 	public void setUp() throws Exception {
 		context = new Mockery();
 		controller = context.mock(IHomeController.class);
-		homeView = new HomeView((IHomeController) controller);
+		homeView = new HomeView(controller);
 		final States viewState = context.states("view").startsAs("showing");
 		
 		context.checking(new Expectations() {

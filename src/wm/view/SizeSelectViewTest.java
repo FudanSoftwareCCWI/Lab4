@@ -1,28 +1,23 @@
-package wm.view.test;
+package wm.view;
 
 import static org.junit.Assert.*;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseEvent;
-
 import org.jmock.Expectations;
 import org.jmock.Mockery;
-import org.jmock.States;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import wm.controller.IReciteMainController;
 import wm.controller.IReciteProcessController;
-import wm.view.ReciteMainView;
-import wm.view.StartSelectView;
+import wm.test.view.WMViewTestCase;
 
-public class StartSelectViewTest extends WMViewTestCase {
+public class SizeSelectViewTest extends WMViewTestCase {
 
-	StartSelectView view;
+	SizeSelectView view;
 	IReciteProcessController controller;
+	int expected;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -37,12 +32,14 @@ public class StartSelectViewTest extends WMViewTestCase {
 	public void setUp() throws Exception {
 		context = new Mockery();
 		controller = context.mock(IReciteProcessController.class);
+		expected = 100;
 		context.checking(new Expectations() {
 			{
-				oneOf(controller).switchToStartWordDefine();
+				allowing(controller).getAvailableSize();
+				will(returnValue(expected * 2));
 			}
 		});
-		view = new StartSelectView(controller);
+		view = new SizeSelectView(controller);
 		frame.getContentPane().removeAll();
 		frame.getContentPane().add(view);
 		frame.repaint();
@@ -54,12 +51,9 @@ public class StartSelectViewTest extends WMViewTestCase {
 	}
 
 	@Test
-	public void test() {
-		view.getStartByCustomBtn().getActionListeners()[0]
-				.actionPerformed(new ActionEvent(view.getStartByCustomBtn(),
-						ActionEvent.ACTION_PERFORMED, "Clicked"));
-		context.assertIsSatisfied();
-		while(true);
+	public void test_pivot_value() {
+		int actual = view.getSelectedSize();
+		assertEquals(expected, actual);
 	}
 
 }
