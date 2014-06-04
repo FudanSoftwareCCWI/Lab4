@@ -659,5 +659,6 @@ public class RecordView extends WMView {
 		}
 
 	}
+	
 
 }

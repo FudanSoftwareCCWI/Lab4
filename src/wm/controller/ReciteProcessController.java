@@ -13,6 +13,7 @@ import wm.view.ReciteWordView;
 import wm.view.SizeSelectView;
 import wm.view.StartSelectView;
 import wm.view.StartWordDefineView;
+import wm.view.WMView;
 
 /**
  * @author hewenqi
@@ -25,6 +26,7 @@ public class ReciteProcessController implements IReciteProcessController {
 	SizeSelectView sizeSelectView;
 	ReciteWordView reciteWordView;
 	ReciteRecordView reciteRecordView;
+	WMView currentView;
 	Dictionary model;
 	
 	
@@ -38,6 +40,7 @@ public class ReciteProcessController implements IReciteProcessController {
 		this.sizeSelectView=new SizeSelectView(this);
 		this.reciteWordView=new ReciteWordView(this);
 		this.reciteRecordView=new ReciteRecordView(this);
+		this.currentView=startSelectView;
 	}
 
 	/** (non-Javadoc)
@@ -61,7 +64,7 @@ public class ReciteProcessController implements IReciteProcessController {
 	 */
 	@Override
 	public void startByInput(String key) {
-		model.setStartWord(0);// TODO
+		model.setStartWord(0);//TODO
 	}
 
 	/** (non-Javadoc)
@@ -126,6 +129,7 @@ public class ReciteProcessController implements IReciteProcessController {
 	 */
 	@Override
 	public void switchToStartWordDefine() {
+		this.currentView=startWordDefineView;
 		delegate.getStartWordDefine(model);
 	}
 
@@ -134,7 +138,8 @@ public class ReciteProcessController implements IReciteProcessController {
 	 */
 	@Override
 	public void switchToSizeSelect() {
-		
+		this.currentView=sizeSelectView;
+		delegate.getSizeSelect(model);
 	}
 
 	/** (non-Javadoc)
@@ -142,7 +147,8 @@ public class ReciteProcessController implements IReciteProcessController {
 	 */
 	@Override
 	public void switchToReciteWord() {
-		
+		this.currentView=reciteWordView;
+		delegate.getReciteRecord(model);
 	}
 
 	/** (non-Javadoc)
@@ -150,6 +156,7 @@ public class ReciteProcessController implements IReciteProcessController {
 	 */
 	@Override
 	public void switchToReciteRecord() {
+		this.currentView=reciteRecordView;
 		delegate.getReciteRecord(model);
 	}
 
@@ -161,4 +168,10 @@ public class ReciteProcessController implements IReciteProcessController {
 		delegate.getHome();
 	}
 
+	@Override
+	public WMView getView() {
+		return currentView;
+	}
+
+	
 }
