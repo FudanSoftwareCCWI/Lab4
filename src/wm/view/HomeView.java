@@ -32,61 +32,43 @@ public class HomeView extends WMView {
 	 */
 	private static final long serialVersionUID = 113232243106457859L;
 
-	private IHomeController controller;
-	private HomeView thisView;
+	IHomeController controller;
+	HomeView thisView;
 
-	private WMLabel logoLabel;
-	private WMLabel statisticLabel;
-	private WMLabel reciteLabel;
-	private WMLabel statisticNote;
-	private WMLabel reciteNote;
+	WMLabel logoLabel;
+	WMLabel statisticLabel;
+	WMLabel reciteLabel;
+	WMLabel statisticNote;
+	WMLabel reciteNote;
 
-	private JPanel selectPanel;
-	private JPanel statisticPanel;
-	private JPanel recitePanel;
+	JPanel selectPanel;
+	JPanel statisticPanel;
+	JPanel recitePanel;
 
-	private JButton quitBtn; // should be extracted
+	JButton quitIcon; // should be extracted
 
-	/**
-	 * <b>HomeView</b>
-	 * 
-	 * <pre>
-	 * <code>public HomeView(IHomeController controller)</code>
-	 * </pre>
-	 * 
-	 * <blockquote>
-	 * <p>
-	 * Constructor of home view.
-	 * </p>
-	 * 
-	 * @param controller
-	 *            -controller of home view
-	 * 
-	 */
 	public HomeView(IHomeController controller) {
 		super();
-		this.controller = controller;
+		this.controller=controller;
 		thisView = this;
-		initComponents();
-		initListener();
 	}
 
 	@Override
 	protected void initComponents() {
 		// init labels
-		logoLabel = new WMLabel(Constants.APPNAME, Constants.LABEL_LARGE);
-		statisticLabel = new WMLabel("统计", Constants.LABEL_MIDDLE);
-		reciteLabel = new WMLabel("选词书", Constants.LABEL_MIDDLE);
-		statisticNote = new WMLabel("包含每一个单元和整个词库的统计信息", Constants.LABEL_TINY);
-		reciteNote = new WMLabel("点此进入单元的选择", Constants.LABEL_TINY);
-		quitBtn = new JButton(Constants.QUITICON);
+		logoLabel = new WMLabel(Constants.APPNAME, Constants.LARGELABEL);
+		statisticLabel = new WMLabel("统计", Constants.MIDDLELABEL);
+		reciteLabel = new WMLabel("选词书", Constants.MIDDLELABEL);
+		statisticNote = new WMLabel("包含每一个单元和整个词库的统计信息", Constants.SMALLLABEL);
+		reciteNote = new WMLabel("点此进入单元的选择", Constants.SMALLLABEL);
+		quitIcon = new JButton(Constants.QUITICON);
 
 		// set note color and alignment
 		statisticNote.setForeground(Constants.NOTEALPHA);
 		reciteNote.setForeground(Constants.NOTEALPHA);
 		statisticLabel.setVerticalAlignment(JLabel.BOTTOM);
 		reciteLabel.setVerticalAlignment(JLabel.BOTTOM);
-		quitBtn.setBorder(null);
+		quitIcon.setBorder(null);
 
 		// select panel
 		selectPanel = new JPanel();
@@ -125,8 +107,8 @@ public class HomeView extends WMView {
 		this.add(selectPanel);
 		selectPanel.setBounds(0, Constants.GLOBAL_HEIGHT / 2,
 				Constants.GLOBAL_WIDTH, Constants.GLOBAL_HEIGHT / 2);
-		this.add(quitBtn);
-		quitBtn.setBounds(Constants.GLOBAL_WIDTH - Constants.ICON_SMALL - 10,
+		this.add(quitIcon);
+		quitIcon.setBounds(Constants.GLOBAL_WIDTH - Constants.ICON_SMALL - 10,
 				10, Constants.ICON_SMALL, Constants.ICON_SMALL);
 	}
 
@@ -160,9 +142,9 @@ public class HomeView extends WMView {
 				statisticPanel.setBackground(Constants.DARKGREEN);
 				pressed = false;
 				// fire property changed
-//				System.out.println("HomeView: Fire homeToStatisticViewCommand");
-//				thisView.firePropertyChange("homeToStatisticViewCommand", null,	null);
-				controller.switchToRecord();
+				System.out.println("HomeView: Fire homeToStatisticViewCommand");
+				thisView.firePropertyChange("homeToStatisticViewCommand", null,
+						null);
 			}
 
 			@Override
@@ -210,9 +192,9 @@ public class HomeView extends WMView {
 				recitePanel.setBackground(Constants.DARKGREEN);
 				pressed = false;
 				// fire property changed
-//				System.out.println("HomeView: Fire homeToUnitViewCommand");
-//				thisView.firePropertyChange("homeToUnitViewCommand", null, null);
-				controller.switchToRecite();
+				System.out.println("HomeView: Fire homeToUnitViewCommand");
+				thisView.firePropertyChange("homeToUnitViewCommand", null, null);
+
 			}
 
 			@Override
@@ -234,7 +216,7 @@ public class HomeView extends WMView {
 			}
 		});
 
-		quitBtn.addActionListener(new ActionListener() {
+		quitIcon.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -264,23 +246,11 @@ public class HomeView extends WMView {
 	}
 
 	/**
-	 * <b>refreshHome</b>
-	 * <pre><code>public void <b>refreshHome</b>()</code></pre>
-	 * <blockquote>
-	 * <p>RefreshHome to repaint the select panel. This must be invoke after any view swiched to home view.</p>
-	 * </blockquote>
+	 * 
 	 */
 	public void refreshHome() {
 		statisticPanel.setBackground(Constants.LIGHTGREEN);
 		recitePanel.setBackground(Constants.NORMALGREEN);
 	}
 
-	public JPanel getStatisticPanel() {
-		return statisticPanel;
-	}
-
-	public JPanel getRecitePanel() {
-		return recitePanel;
-	}
-	
 }

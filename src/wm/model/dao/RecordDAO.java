@@ -3,6 +3,8 @@
  */
 package wm.model.dao;
 
+import java.util.List;
+
 import wm.model.Record;
 
 /**
@@ -21,26 +23,21 @@ public interface RecordDAO {
 	 * @param name
 	 * @return
 	 */
-	public Record selectRecord(String name);
+	public Record selectAllRecord();
 
 	/**
 	 * 
 	 * @param record
 	 * @return
 	 */
-	public boolean insertRecord(Record record);
+	public Record selectRecordByName(String name);
 
 	/**
 	 * 
 	 * @param record
 	 * @return
 	 */
-	public boolean updateRecord(Record record);
+	public List<Record> selectAllRecordList();
 
-	/**
-	 * 
-	 * @param name
-	 * @return
-	 */
-	public boolean deleteRecord(String name);
+	
 }

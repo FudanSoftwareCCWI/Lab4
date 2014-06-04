@@ -22,20 +22,6 @@ public class Record extends WMModel{
 	private int recitedSize;
 	private int correct;
 
-	/**
-	 * Create a recite record of a particular recite process.The totalSize is
-	 * equal to recitedSize.
-	 * 
-	 * @param name
-	 *            The name of the dictionary
-	 * @param recitedSize
-	 *            The number of words recited
-	 * @param correct
-	 *            The correct number of words recited
-	 */
-	public Record(String name, int recitedSize, int correct) {
-		this(name, recitedSize, recitedSize, correct);
-	}
 
 	/**
 	 * Create a recited record of a particular dictionary.
