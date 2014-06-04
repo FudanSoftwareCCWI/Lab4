@@ -112,5 +112,6 @@ public class RecordView extends WMView {
 	public void setBarRecitedIcon(int recited, int size){
 		
 	}
+	
 
 }

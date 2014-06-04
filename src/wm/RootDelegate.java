@@ -4,9 +4,22 @@
 package wm;
 
 import wm.config.Configuration;
+<<<<<<< HEAD
+=======
+import wm.controller.HomeController;
+import wm.controller.IHomeController;
+import wm.controller.IReciteMainController;
+import wm.controller.IReciteProcessController;
+import wm.controller.IRecordController;
+import wm.controller.ReciteMainController;
+import wm.controller.ReciteProcessController;
+import wm.controller.RecordController;
+>>>>>>> FETCH_HEAD
 import wm.controller.WMController;
 import wm.model.Dictionaries;
 import wm.model.Dictionary;
+import wm.model.dao.DictionaryDAO;
+import wm.model.dao.DictionaryImpl;
 import wm.view.RootWindow;
 
 /**
@@ -32,34 +45,55 @@ public class RootDelegate implements SwitchDelegate {
 		this.preLoadModel = preload();
 	}
 
+	public void start(){
+		rootWindow.start();
+		this.getHome();
+	}
+	
+	
 	/**
 	 * 
 	 * @return
 	 */
 	private Dictionaries preload() {
-		// TODO Auto-generated method stub
-		return null;
+		DictionaryDAO dictionaryDAO=new DictionaryImpl();
+		return dictionaryDAO.selectAllDictionay();
 	}
 
 	@Override
 	public void getHome() {
+<<<<<<< HEAD
 		// TODO Auto-generated method stub
 		
+=======
+		if(homeController==null){
+			homeController=new HomeController(this);
+		}
+		currentController=homeController;
+		rootWindow.showView(currentController.getView());
+>>>>>>> FETCH_HEAD
 	}
 
 	@Override
 	public void getReciteMain() {
-		// TODO Auto-generated method stub
-		
+		if(reciteMainController==null){
+			reciteMainController=new ReciteMainController(this);
+		}
+		currentController=reciteMainController;
+		rootWindow.showView(currentController.getView());
 	}
 
 	@Override
 	public void getRecord() {
-		// TODO Auto-generated method stub
-		
+		if(recordController==null){
+			recordController=new RecordController(this, preLoadModel);
+		}
+		currentController=recordController;
+		rootWindow.showView(currentController.getView());
 	}
 
 	@Override
+<<<<<<< HEAD
 	public void getStartWordSelect(int dictionaryIndex) {
 		// TODO Auto-generated method stub
 		
@@ -87,6 +121,35 @@ public class RootDelegate implements SwitchDelegate {
 	public void getReciteRecord(int dictionaryIndex) {
 		// TODO Auto-generated method stub
 		
+=======
+	public void getStartWordSelect(int index) {
+		if(reciteProcessController==null){
+			reciteProcessController=new ReciteProcessController(this, preLoadModel.getDictionary(index));
+		}
+		currentController=reciteProcessController;
+		rootWindow.showView(currentController.getView());
 	}
+
+	@Override
+	public void getStartWordDefine(Dictionary model) {
+		rootWindow.showView(currentController.getView());
+	}
+
+	@Override
+	public void getSizeSelect(Dictionary model) {
+		rootWindow.showView(currentController.getView());
+	}
+
+	@Override
+	public void getReciteWord(Dictionary model) {
+		rootWindow.showView(currentController.getView());
+	}
+
+	@Override
+	public void getReciteRecord(Dictionary model) {
+		rootWindow.showView(currentController.getView());
+>>>>>>> FETCH_HEAD
+	}
+
 
 }
