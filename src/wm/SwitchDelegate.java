@@ -3,8 +3,6 @@
  */
 package wm;
 
-import wm.model.Dictionary;
-
 
 /**
  * Interface SwitchDelegate manages the switches between different controllers.
@@ -25,33 +23,33 @@ public interface SwitchDelegate {
 
 	/**
 	 * 
-	 * @param index
+	 * @param model
 	 */
-	public void getStartWordSelect(int index);
+	public void getStartWordSelect(int dictionaryIndex);
 
 	/**
 	 * 
 	 * @param model
 	 */
-	public void getStartWordDefine(Dictionary model);
+	public void getStartWordDefine(int dictionaryIndex);
 
 	/**
 	 * 
 	 * @param model
 	 */
-	public void getSizeSelect(Dictionary model);
+	public void getSizeSelect(int dictionaryIndex);
 
 	/**
 	 * 
 	 * @param model
 	 */
-	public void getReciteWord(Dictionary model);
+	public void getReciteWord(int dictionaryIndex);
 
 	/**
 	 * 
 	 * @param model
 	 */
-	public void getReciteRecord(Dictionary model);
+	public void getReciteRecord(int dictionaryIndex);
 
 	/**
 	 * 

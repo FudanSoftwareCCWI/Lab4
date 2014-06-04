@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 /**
  * 
  * @author Sidney Fan
- * 
+ *
  */
 public class WMBlock extends JPanel {
 
@@ -27,7 +27,6 @@ public class WMBlock extends JPanel {
 	private Color localColor;
 	private Color pressColor;
 	private WMBlock thisWMBlock;
-	private int blockState; // 1 is changeable background
 
 	/**
 	 * Constructor of WMBlcok.
@@ -43,19 +42,11 @@ public class WMBlock extends JPanel {
 		this.setBorder(null);
 		this.setLayout(new GridLayout(row, col));
 		thisWMBlock = this;
-		blockState = 0;
 	}
 
 	public void addLabel(String text, int size) {
 		WMLabel label = new WMLabel(text, size);
 		label.setSize(width, label.getHeight());
-		this.add(label);
-	}
-	
-	public void addLeftLabel(String text, int size) {
-		WMLabel label = new WMLabel(text, size);
-		label.setSize(width, label.getHeight());
-		label.setHorizontalAlignment(JLabel.LEFT);
 		this.add(label);
 	}
 
@@ -132,17 +123,17 @@ public class WMBlock extends JPanel {
 
 			@Override
 			public void mouseExited(MouseEvent arg0) {
-				paintLocal();
+				thisWMBlock.setBackground(thisWMBlock.localColor);
 			}
 
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
-				paintPress();
+				thisWMBlock.setBackground(thisWMBlock.pressColor);
 			}
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-
+				
 			}
 		});
 
@@ -150,11 +141,10 @@ public class WMBlock extends JPanel {
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		// g.setColor(DARKGREEN);
-		// g.fillPolygon(new int[] { 0, 10, 10, width, width, 10, 10 }, new
-		// int[] {
-		// height / 2, height / 2 - 10, height, height, 0, 0,
-		// height / 2 + 10 }, 7);
+//		g.setColor(DARKGREEN);
+//		g.fillPolygon(new int[] { 0, 10, 10, width, width, 10, 10 }, new int[] {
+//				height / 2, height / 2 - 10, height, height, 0, 0,
+//				height / 2 + 10 }, 7);
 	}
-
+	
 }

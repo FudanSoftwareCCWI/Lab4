@@ -25,6 +25,7 @@ public class ReciteWordView extends ReciteProcessView {
 	 * 
 	 */
 	private static final long serialVersionUID = 5402598615372695937L;
+
 	private IReciteProcessController controller;
 	private WMLabel paraphrase;
 	private WMLabel resultHint;

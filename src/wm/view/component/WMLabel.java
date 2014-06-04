@@ -21,8 +21,10 @@ public class WMLabel extends JLabel implements Cloneable {
 
 	public WMLabel(String text, int size) {
 		this.setText(text);
-		this.setHorizontalAlignment(JLabel.CENTER);
-		this.setFont(new Font(Constants.LABEL_FONT, Font.PLAIN, size));
+
+		this.setHorizontalAlignment(JLabel.CENTER);;
+		this.setFont(new Font(Constants.LABELFONT,Font.PLAIN,size));
+
 		this.setForeground(Color.WHITE);
 	}
 

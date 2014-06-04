@@ -11,6 +11,7 @@ import wm.config.Constants;
 import wm.controller.IReciteProcessController;
 import wm.view.component.WMLabel;
 
+
 /**
  * Class SizeSelectView represents a scroll and the user can move it to select
  * the number of the word he want to recite

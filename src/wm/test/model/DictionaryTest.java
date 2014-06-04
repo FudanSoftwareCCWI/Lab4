@@ -13,6 +13,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import wm.model.Dictionary;
+import wm.model.Record;
 import wm.model.Word;
 
 /**
@@ -23,6 +24,7 @@ import wm.model.Word;
 public class DictionaryTest {
 	static Dictionary dictionary1;
 	static Dictionary dictionary2;
+	
 	/**
 	 * @throws java.lang.Exception
 	 */
@@ -81,7 +83,7 @@ public class DictionaryTest {
 	 */
 	@Test
 	public void testGetPresentWord() {
-		assertEquals(0, dictionary1.getPresentWord());
+		assertEquals(4, dictionary2.getPresentWord());
 	}
 
 	/**
@@ -89,7 +91,12 @@ public class DictionaryTest {
 	 */
 	@Test
 	public void testGetMatchWords() {
-		
+		String match="aba";
+		List<String> result = dictionary1.getMatchWords(match);
+		assertEquals(2, result.size());
+		assertEquals("abandon", result.get(0));
+		assertEquals("abandonment", result.get(1));
+	
 	}
 
 	/**
@@ -97,7 +104,7 @@ public class DictionaryTest {
 	 */
 	@Test
 	public void testGetNextKey() {
-		assertEquals("abandonment", dictionary1.getNextKey());
+		assertEquals("abandon", dictionary1.getNextKey());
 	}
 
 	/**
@@ -105,37 +112,7 @@ public class DictionaryTest {
 	 */
 	@Test
 	public void testGetNextMeaning() {
-		assertEquals("能力", dictionary2.getNextKey());
-	}
-
-	/**
-	 * Test method for {@link wm.model.Dictionary#setWordRecited()}.
-	 */
-	@Test
-	public void testSetWordRecited() {
-		dictionary1.setWordRecited();
-	}
-	
-	/**
-	 * Test method for {@link wm.model.Dictionary#setWordCorrect(boolean)}.
-	 */
-	@Test
-	public void testSetWordCorrect() {
-	}
-	
-	/**
-	 * Test method for {@link wm.model.Dictionary#setRecitedSize(int)}.
-	 */
-	@Test
-	public void testSetRecitedSize() {
-		
-	}
-
-	/**
-	 * Test method for {@link wm.model.Dictionary#setStartWord(int)}.
-	 */
-	@Test
-	public void testSetStartWord() {
+		assertEquals("遵守", dictionary2.getNextMeaning());
 	}
 
 	/**
@@ -143,7 +120,7 @@ public class DictionaryTest {
 	 */
 	@Test
 	public void testCalAvailableSize() {
-		dictionary2.setStartWord(4);
+		dictionary2.setStartWord("abide");
 		assertEquals(6, dictionary2.calAvailableSize());
 	}
 
@@ -152,6 +129,13 @@ public class DictionaryTest {
 	 */
 	@Test
 	public void testProduceRecord() {
+		dictionary1.setPresentWord(5);
+		dictionary1.setWordRecited();
+		dictionary1.setWordCorrect(true);
+		Record record = dictionary1.produceRecord();
+		assertEquals(1, record.getRecitedSize());
+		assertEquals(0, record.getWrong());
+		assertEquals(10, record.getTotalSize());
 		
 	}
 
@@ -160,7 +144,13 @@ public class DictionaryTest {
 	 */
 	@Test
 	public void testProduceRecordIntInt() {
-		
+		dictionary1.setPresentWord(5);
+		dictionary1.setWordRecited();
+		dictionary1.setWordCorrect(true);
+		Record record = dictionary1.produceRecord(2, 5);
+		assertEquals(1, record.getRecitedSize());
+		assertEquals(0, record.getWrong());
+		assertEquals(4, record.getTotalSize());
 	}
 
 }
