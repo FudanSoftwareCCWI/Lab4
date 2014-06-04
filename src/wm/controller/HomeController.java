@@ -2,6 +2,7 @@ package wm.controller;
 
 import wm.SwitchDelegate;
 import wm.view.HomeView;
+import wm.view.WMView;
 
 public class HomeController implements IHomeController {
 	SwitchDelegate delegate;
@@ -25,4 +26,10 @@ public class HomeController implements IHomeController {
 		delegate.getRecord();
 	}
 
+	@Override
+	public WMView getView() {
+		return view;
+	}
+
+	
 }

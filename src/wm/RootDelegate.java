@@ -3,16 +3,20 @@
  */
 package wm;
 
-import java.util.List;
-
 import wm.config.Configuration;
+import wm.controller.HomeController;
 import wm.controller.IHomeController;
 import wm.controller.IReciteMainController;
 import wm.controller.IReciteProcessController;
 import wm.controller.IRecordController;
+import wm.controller.ReciteMainController;
+import wm.controller.ReciteProcessController;
+import wm.controller.RecordController;
 import wm.controller.WMController;
 import wm.model.Dictionaries;
 import wm.model.Dictionary;
+import wm.model.dao.DictionaryDAO;
+import wm.model.dao.DictionaryImpl;
 import wm.view.RootWindow;
 
 /**
@@ -40,63 +44,78 @@ public class RootDelegate implements SwitchDelegate {
 		this.rootWindow = new RootWindow();
 		this.conf = new Configuration();
 		this.preLoadModel = preload();
-		this.getHome();
 	}
 
+	public void start(){
+		rootWindow.start();
+		this.getHome();
+	}
+	
+	
 	/**
 	 * 
 	 * @return
 	 */
 	private Dictionaries preload() {
-		// TODO Auto-generated method stub
-		return null;
+		DictionaryDAO dictionaryDAO=new DictionaryImpl();
+		return dictionaryDAO.selectAllDictionay();
 	}
 
 	@Override
 	public void getHome() {
-
+		if(homeController==null){
+			homeController=new HomeController(this);
+		}
+		currentController=homeController;
+		rootWindow.showView(currentController.getView());
 	}
 
 	@Override
 	public void getReciteMain() {
-		// TODO Auto-generated method stub
-		
+		if(reciteMainController==null){
+			reciteMainController=new ReciteMainController(this);
+		}
+		currentController=reciteMainController;
+		rootWindow.showView(currentController.getView());
 	}
 
 	@Override
 	public void getRecord() {
-		// TODO Auto-generated method stub
-		
+		if(recordController==null){
+			recordController=new RecordController(this, preLoadModel);
+		}
+		currentController=recordController;
+		rootWindow.showView(currentController.getView());
 	}
 
 	@Override
 	public void getStartWordSelect(int index) {
-		// TODO Auto-generated method stub
-		
+		if(reciteProcessController==null){
+			reciteProcessController=new ReciteProcessController(this, preLoadModel.getDictionary(index));
+		}
+		currentController=reciteProcessController;
+		rootWindow.showView(currentController.getView());
 	}
 
 	@Override
 	public void getStartWordDefine(Dictionary model) {
-		// TODO Auto-generated method stub
-		
+		rootWindow.showView(currentController.getView());
 	}
 
 	@Override
 	public void getSizeSelect(Dictionary model) {
-		// TODO Auto-generated method stub
-		
+		rootWindow.showView(currentController.getView());
 	}
 
 	@Override
 	public void getReciteWord(Dictionary model) {
-		// TODO Auto-generated method stub
-		
+		rootWindow.showView(currentController.getView());
 	}
 
 	@Override
 	public void getReciteRecord(Dictionary model) {
-		// TODO Auto-generated method stub
-		
+		rootWindow.showView(currentController.getView());
 	}
+
 
 }

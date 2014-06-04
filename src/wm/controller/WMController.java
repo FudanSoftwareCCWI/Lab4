@@ -3,6 +3,8 @@
  */
 package wm.controller;
 
+import wm.view.WMView;
+
 /**
  * Interface WMController represents a concept of controllers.
  * 
@@ -10,5 +12,5 @@ package wm.controller;
  * 
  */
 public interface WMController {
-
+	public WMView getView();
 }
