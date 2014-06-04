@@ -43,12 +43,11 @@ import wm.controller.IReciteProcessController;
  */
 public class StartWordDefineView extends ReciteProcessView {
 
-	IReciteProcessController controller;
-
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -3052539781672180377L;
+	
 	private WMComboBox searchBox;
 	private JButton nextBtn;
 	private WMLabel nextTip;
@@ -128,7 +127,7 @@ public class StartWordDefineView extends ReciteProcessView {
 		nextTip.setText(Constants.CHIN_NEXT_TO_CHOOSE_SIZE);
 	}
 
-	public class WMComboBox extends JComponent {
+	protected class WMComboBox extends JComponent {
 
 		JTextField field;
 		JScrollPane scrollPane;

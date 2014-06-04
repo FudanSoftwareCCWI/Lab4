@@ -19,7 +19,7 @@ public class Constants {
 	public final static int LABEL_TINY = 15;
 	public final static int LABEL_SMALL = 20;
 	public final static int LABEL_MIDDLE = 30;
-	public final static int LABEL_NORMAL = 45;
+	public final static int LABEL_NORMAL = 40;
 	public final static int LABEL_LARGE = 70;
 	public final static int UNITLINEHEIGHT = 20;
 	public final static String LABEL_FONT = "Abandon";
@@ -31,12 +31,19 @@ public class Constants {
 	/* Icon */
 	public final static int ICON_TINY = 32;
 	public final static int ICON_SMALL = 64;
+	public final static int ICON_RECORD = 96;
 	public final static int ICON_MIDDLE = 200;
 	public final static int ICON_LARGE = 512;
 	public final static int ICON_BORDER = 10;
 	public final static ImageIcon QUITICON = new ImageIcon("icon/quit-32.png");
 	public final static ImageIcon HOMEICON = new ImageIcon("icon/home-32.png");
 	public final static ImageIcon NEXTICON = new ImageIcon("icon/next-32.png");
+	public final static ImageIcon PIEICON96 = new ImageIcon(new ImageIcon(
+			"icon/pie-128.png").getImage().getScaledInstance(ICON_RECORD, ICON_RECORD, Image.SCALE_DEFAULT));
+	public final static ImageIcon BARICON96 = new ImageIcon(new ImageIcon(
+			"icon/bar-128.png").getImage().getScaledInstance(ICON_RECORD, ICON_RECORD, Image.SCALE_DEFAULT));
+	public final static ImageIcon TABLEICON96 = new ImageIcon(new ImageIcon(
+			"icon/table-128.png").getImage().getScaledInstance(ICON_RECORD, ICON_RECORD, Image.SCALE_DEFAULT));
 	public final static ImageIcon PIEICON = new ImageIcon("icon/pie-128.png");
 	public final static ImageIcon PIEICON256 = new ImageIcon(new ImageIcon(
 			"icon/pie-512.png").getImage().getScaledInstance(ICON_MIDDLE, ICON_MIDDLE, Image.SCALE_DEFAULT));
@@ -52,5 +59,16 @@ public class Constants {
 	public final static String CHIN_CUMSTOMIMPUT = "<html>自定义起点</html>";
 	public final static String CHIN_NEXT_TO_CHOOSE_SIZE = "<html>选择背诵单词数量</html>";
 	public final static String CHIN_NO_MATCH = "<html>找不到匹配，默认从第一个单词开始！</html>";
+	public final static String CHIN_SELECT_SZIE = "<html>选择要背的单词数量</html>";
+	public final static String CHIN_COMFIRM_TO_START = "<html>确认并开始背诵</html>";
+	public final static String CHIN_RECITING = "<html>正在背诵</html>";
+	public final static String CHIN_DICTNAME = "词库名";
+	public final static String CHIN_TOTAL = "单词总数";
+	public final static String CHIN_RECITED = "已背";
+	public final static String CHIN_CORRECT = "正确";
+	public final static String CHIN_WRONG = "错误";
+	public final static String CHIN_RATE = "正确率";
+	public final static String CHIN_CORRECT_WRONG_RATIO = "正确与错误比例";
+	public final static String CHIN_RECITE_PIE = "已背饼图";
 
 }

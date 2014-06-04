@@ -6,6 +6,8 @@ import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -27,6 +29,13 @@ public class WMBlock extends JPanel {
 	private WMBlock thisWMBlock;
 	private int blockState; // 1 is changeable background
 
+	/**
+	 * Constructor of WMBlcok.
+	 * @param width
+	 * @param height
+	 * @param row
+	 * @param col
+	 */
 	public WMBlock(int width, int height, int row, int col) {
 		this.width = width;
 		this.height = height;
@@ -55,8 +64,6 @@ public class WMBlock extends JPanel {
 		this.add(label);
 	}
 	
-	
-
 	/**
 	 * <b>paintLocal</b>
 	 * 

@@ -1,4 +1,4 @@
-package wm.view.test;
+package wm.test.view;
 
 import java.awt.Dimension;
 
@@ -35,7 +35,7 @@ public abstract class WMViewTestCase {
 	protected static void setUpFrame(){
 		frame = new JFrame();
 		Dimension fixedDimension = new Dimension(Constants.GLOBAL_WIDTH,
-				Constants.GLOBAL_HEIGHT);
+				Constants.GLOBAL_HEIGHT+20);
 		frame.setSize(fixedDimension);
 		frame.setResizable(false);
 		frame.setBackground(Constants.NORMALGREEN);

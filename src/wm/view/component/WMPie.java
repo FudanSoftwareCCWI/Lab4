@@ -26,6 +26,7 @@ public class WMPie extends JPanel {
 	Slice[] slices;
 
 	public WMPie() {
+		createPie(new int[]{50,300});
 	}
 	
 	public WMPie(int[] nums) {

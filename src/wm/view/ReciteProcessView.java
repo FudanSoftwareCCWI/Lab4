@@ -89,12 +89,20 @@ public abstract class ReciteProcessView extends WMView {
 	 * Sets the top head line of recite process view.
 	 * @param text
 	 */
-	public void setHeadLineText(String text){
+	protected void setHeadLineText(String text){
 		headLine.setText(text);
 	}
 	
-	public void setTip(String text){
+	protected String getHeadLineText(){
+		return headLine.getText();
+	}
+	
+	protected void setTip(String text){
 		tipLabel.setText(text);
+	}
+	
+	protected void hideTip(){
+		centerPanel.remove(tipLabel);
 	}
 	
 	@Override
