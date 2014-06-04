@@ -6,6 +6,12 @@ import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+<<<<<<< HEAD
+=======
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+>>>>>>> origin/version2.1
 import javax.swing.JPanel;
 
 /**
@@ -25,6 +31,13 @@ public class WMBlock extends JPanel {
 	private Color pressColor;
 	private WMBlock thisWMBlock;
 
+	/**
+	 * Constructor of WMBlcok.
+	 * @param width
+	 * @param height
+	 * @param row
+	 * @param col
+	 */
 	public WMBlock(int width, int height, int row, int col) {
 		this.width = width;
 		this.height = height;
@@ -44,6 +57,59 @@ public class WMBlock extends JPanel {
 		label.setSize(width, label.getHeight());
 		this.add(label);
 	}
+<<<<<<< HEAD
+=======
+	
+	/**
+	 * <b>paintLocal</b>
+	 * 
+	 * <pre>
+	 * public void <b>paintLocal</b>()
+	 * </pre>
+	 * 
+	 * <blockquote>
+	 * <p>
+	 * Set the block background to the origin local color.
+	 * <p>
+	 * </blockquote>
+	 */
+	public void paintLocal() {
+		if (blockState == 0)
+			thisWMBlock.setBackground(thisWMBlock.localColor);
+	}
+
+	/**
+	 * <b>paintPress</b>
+	 * 
+	 * <pre>
+	 * public void <b>paintPress</b>()
+	 * </pre>
+	 * 
+	 * <blockquote>
+	 * <p>
+	 * Set the block background to the pressed color.
+	 * <p>
+	 * </blockquote>
+	 */
+	public void paintPress() {
+		if (blockState == 0)
+			thisWMBlock.setBackground(thisWMBlock.pressColor);
+	}
+
+	/**
+	 * Fix the state of block to unchangeable background.
+	 */
+	public void fix() {
+		blockState = 1;
+	}
+
+	/**
+	 * Release the state of block to changeable background.
+	 */
+	public void release() {
+		blockState = 0;
+	}
+>>>>>>> origin/version2.1
 
 	public void setColor(Color localColor, Color pressColor) {
 		this.localColor = localColor;
