@@ -10,6 +10,7 @@ package wm.controller;
  * 
  */
 public interface IRecordController extends WMController {
+	public void showDictList();
 	/**
 	 * 
 	 * @param index
