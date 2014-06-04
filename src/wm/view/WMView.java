@@ -23,8 +23,8 @@ public abstract class WMView extends JPanel {
 
 	public WMView() {
 		this.setBackground(Constants.NORMALGREEN);
-//		this.initComponents();
-//		this.initListener();
+		this.initComponents();
+		this.initListener();
 	}
 
 	/**
