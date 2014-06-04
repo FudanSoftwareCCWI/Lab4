@@ -35,9 +35,6 @@ public class RootDelegate implements SwitchDelegate {
 	private Dictionaries preLoadModel;
 	private Configuration conf;
 
-	/**
-	 * 
-	 */
 	public RootDelegate() {
 		super();
 		this.rootWindow = new RootWindow();
