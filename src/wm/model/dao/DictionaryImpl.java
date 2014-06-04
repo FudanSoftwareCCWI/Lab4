@@ -1,26 +1,115 @@
 package wm.model.dao;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import wm.model.Dictionaries;
 import wm.model.Dictionary;
+import wm.model.Word;
 
 public class DictionaryImpl implements DictionaryDAO {
+	private final static int DICNUMBER = 26;
 
 	@Override
-	public Dictionaries selectAllDictionay() {
-		File logfile = new File("material/dictionary.txt");
-		if(logfile.exists()){
-			
-		}else{
-			
+	public Dictionaries selectAllDictionay(String filename) {
+		List<Dictionary> dic = new ArrayList<Dictionary>();
+		List<Word>[] tempWords = new ArrayList[DICNUMBER];
+		for (int i = 0; i < tempWords.length; i++) {
+			tempWords[i] = new ArrayList<Word>();
 		}
-		return null;
+		int index = 0;
+
+		try {
+			File allDic = new File("material/"+filename);
+			File logfile = new File("material/log.txt");
+			String[] entry;
+			String[] flag;
+			String d = "";
+			String log = "";
+			boolean recited = false;
+			boolean correct = false;
+			BufferedReader dicReader = new BufferedReader(
+					new FileReader(allDic));
+
+			if (logfile.exists()) {
+				BufferedReader logReader = new BufferedReader(new FileReader(
+						logfile));
+				while ((d = dicReader.readLine()) != null
+						&& (log = logReader.readLine()) != null) {
+
+					entry = d.split("\\s+");
+					flag = log.split("\t");
+					if (flag[0].equals("1")) {
+						recited = true;
+					} else {
+						recited = false;
+					}
+
+					if (flag[1].equals("1")) {
+						correct = true;
+					} else {
+						correct = false;
+					}
+
+					index = entry[0].charAt(0) - 'a';
+
+					tempWords[index].add(new Word(entry[0], entry[1], recited,
+							correct));
+				}
+
+			} else {
+				while ((d = dicReader.readLine()) != null) {
+					entry = d.split("\\s+");
+					index = entry[0].charAt(0) - 'a';
+					tempWords[index].add(new Word(entry[0], entry[1], false,
+							false));
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		for (int i = 0; i < tempWords.length; i++) {
+			char name = (char) ('A' + i);
+			Dictionary tempD = new Dictionary("Dictionary " + name,
+					tempWords[i]);
+			dic.add(tempD);
+		}
+
+		return new Dictionaries(dic);
 	}
 
 	@Override
 	public boolean updateAllDictionary(Dictionaries dictionaries) {
-		// TODO Auto-generated method stub
+		Dictionary dic;
+		int wordSize;
+		
+		String record = "";
+
+		try {
+			File logfile = new File("material/log.txt");
+			if (!logfile.exists()) {
+				logfile.createNewFile();
+			}
+			PrintWriter logWriter = new PrintWriter(logfile);
+			for (int i = 0; i < dictionaries.getTotalSize(); i++) {
+				dic = dictionaries.getDictionary(i);
+				wordSize = dic.getSize();
+				for (int j = 0; j < wordSize; j++) {
+					record = dic.getWordEntry(j);
+					logWriter.println(record);
+				}
+			}
+			logWriter.close();
+		} catch (Exception e) {
+			e.getStackTrace();
+		}
+
 		return false;
 	}
 

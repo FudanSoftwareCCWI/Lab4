@@ -1,5 +1,7 @@
 package wm.controller;
 
+import java.util.ArrayList;
+
 import wm.SwitchDelegate;
 import wm.model.Dictionaries;
 import wm.model.Record;
@@ -35,16 +37,16 @@ public class RecordController implements IRecordController {
 	public void showRecordByBar(int index) {
 		//TODO
 		Record record=model.getDictionary(index).produceRecord();
-		view.setBarRecitedIcon(record.getRecitedSize(), record.getTotalSize());
-		view.setBarCorrectIcon(record.getRecitedSize(), record.getTotalSize());
+		view.setBarRecitedIcon(new ArrayList<Integer>());
+		view.setBarCorrectIcon(new ArrayList<Integer>());
 	}
 
 	@Override
 	public void showRecordByBar() {
 		//TODO
 		Record record=model.produceRecord();
-		view.setBarRecitedIcon(record.getRecitedSize(), record.getTotalSize());
-		view.setBarCorrectIcon(record.getRecitedSize(), record.getTotalSize());
+		view.setBarRecitedIcon(new ArrayList<Integer>());
+		view.setBarCorrectIcon(new ArrayList<Integer>());
 	}
 
 	@Override
