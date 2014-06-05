@@ -3,40 +3,24 @@
  */
 package wm.view;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
-import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
-import javax.swing.border.LineBorder;
-import javax.swing.border.MatteBorder;
-import javax.swing.event.CaretEvent;
-import javax.swing.event.CaretListener;
 
 import wm.config.Constants;
-import wm.controller.IReciteProcessController;
 import wm.controller.IRecordController;
 import wm.view.component.WMBar;
-import wm.view.component.WMBlock;
 import wm.view.component.WMButton;
 import wm.view.component.WMLabel;
+import wm.view.component.WMListBox;
 import wm.view.component.WMPie;
 import wm.view.component.WMTable;
 
@@ -92,8 +76,6 @@ public class RecordView extends WMView {
 	private static int INPIE = 2;
 	private static int INBAR = 3;
 	private int currentDicIndex;
-	/* Dictionary list */
-	private List<String> dictist;
 	/* Icons */
 	private WMTable tableIcon;
 	private WMPie pieCorrectIcon;
@@ -140,8 +122,8 @@ public class RecordView extends WMView {
 	 * @param dictist
 	 */
 	public void setDictist(List<String> dictist) {
-		this.dictist = dictist;
-		listBox.setText(0);
+		listBox.setDictist(dictist);
+		listBox.setCurrentIndex(0);
 	}
 
 	/**
@@ -318,13 +300,14 @@ public class RecordView extends WMView {
 		// initialize different components
 		initDictNamePanel();
 		initInfoPanel();
-		initTablePanel();
 		initIconPanel();
-
+		initBottomNav();
 	}
 
 	private void initDictNamePanel() {
+		currentDicIndex = 0;
 		listBox = new WMListBox(Constants.UNITHEIGHT, Constants.LABEL_SMALL + 5);
+		listBox.setCurrentIndex(currentDicIndex);
 		dictNameLabel = new WMLabel(Constants.CHIN_DICTNAME,
 				Constants.LABEL_TINY);
 		dictNameLabel.setBounds(0, 0, Constants.GLOBAL_WIDTH, PADDING);
@@ -371,7 +354,7 @@ public class RecordView extends WMView {
 
 		initPiePanel();
 		initBarPanel();
-		initBottomNav();
+		initTablePanel();
 	}
 
 	private void initTablePanel() {
@@ -534,6 +517,25 @@ public class RecordView extends WMView {
 			}
 		});
 
+		listBox.addPropertyChangeListener(Constants.PROPERTY_DICTCHANGE,
+				new PropertyChangeListener() {
+
+					@Override
+					public void propertyChange(PropertyChangeEvent evt) {
+						System.out.println(Constants.PROPERTY_DICTCHANGE
+								+ currentBtnIndex);
+						int newValue = (Integer) evt.getNewValue();
+						int oldValue = (Integer) evt.getOldValue();
+						if (currentBtnIndex == INTABLE) {
+							controller.showRecordByTable(newValue);
+						} else if (currentBtnIndex == INPIE) {
+							controller.showRecordByPie(newValue);
+						} else if (currentBtnIndex == INBAR) {
+							controller.showRecordByBar(newValue);
+						}
+					}
+				});
+
 	}
 
 	private void setCurrentBlock(WMButton clickedbtn) {
@@ -546,24 +548,40 @@ public class RecordView extends WMView {
 		clickedbtn.paintPress();
 		clickedbtn.fix();
 		// inform controller TODO should remove comment
-		// if (currentBtnIndex == INTABLE) {
-		// controller.showRecordByTable(currentDicIndex);
-		// } else if (currentBtnIndex == INPIE) {
-		// controller.showRecordByPie(currentDicIndex);
-		// } else if (currentBtnIndex == INBAR) {
-		// controller.showRecordByBar(currentDicIndex);
-		// }
+		if (currentBtnIndex == INTABLE) {
+			controller.showRecordByTable(currentDicIndex);
+		} else if (currentBtnIndex == INPIE) {
+			controller.showRecordByPie(currentDicIndex);
+		} else if (currentBtnIndex == INBAR) {
+			controller.showRecordByBar(currentDicIndex);
+		}
 
 	}
 
 	public void showTablePanel() {
+		// default
+		ArrayList<String> names = new ArrayList<String>();
+		ArrayList<Integer> values = new ArrayList<Integer>();
+		names.add(Constants.CHIN_TOTAL);
+		names.add(Constants.CHIN_RECITED);
+		names.add(Constants.CHIN_CORRECT);
+		names.add(Constants.CHIN_WRONG);
+		names.add(Constants.CHIN_RATE);
+		values.add(dictSizeValue);
+		values.add(dictRecitedValue);
+		values.add(dictCorrectValue);
+		values.add(dictWrongValue);
+		values.add(dictRateValue);
+
 		iconPanel.removeAll();
+		tableIcon.createTable(values, names);
 		iconPanel.add(tablePanel);
 		iconPanel.repaint();
 
 		// TODO
-		controller.showRecordByPie(currentDicIndex);
-		listBox.setText(currentDicIndex);
+		// controller.showRecordByPie(currentDicIndex);
+		currentBtnIndex = INTABLE;
+		listBox.setCurrentIndex(currentDicIndex);
 	}
 
 	public void showPiePanel() {
@@ -572,8 +590,9 @@ public class RecordView extends WMView {
 		iconPanel.repaint();
 
 		// TODO
-		controller.showRecordByPie(currentDicIndex);
-		listBox.setText(currentDicIndex);
+		// controller.showRecordByPie(currentDicIndex);
+		currentBtnIndex = INPIE;
+		listBox.setCurrentIndex(currentDicIndex);
 	}
 
 	public void showBarPanel() {
@@ -582,8 +601,9 @@ public class RecordView extends WMView {
 		iconPanel.repaint();
 
 		// TODO
-		controller.showRecordByPie(currentDicIndex);
-		listBox.setText(currentDicIndex);
+		// controller.showRecordByPie(currentDicIndex);
+		currentBtnIndex = INBAR;
+		listBox.setCurrentIndex(currentDicIndex);
 	}
 
 	@Override
@@ -595,144 +615,6 @@ public class RecordView extends WMView {
 		g.fillRect(0, 0, Constants.GLOBAL_WIDTH, Constants.UNITHEIGHT);
 		g.fillRect(0, Constants.GLOBAL_HEIGHT - Constants.UNITHEIGHT,
 				Constants.GLOBAL_WIDTH, Constants.UNITHEIGHT);
-	}
-
-	protected class WMListBox extends JComponent {
-
-		JTextField field;
-		JScrollPane scrollPane;
-		JPanel comboBox;
-
-		int width;
-		int height;
-		int currentDictIndex;
-		boolean isComboShow;
-
-		WMListBox(int width, int height) {
-			this.width = width;
-			this.height = height;
-			this.isComboShow = false;
-
-			initWMComboBox();
-			initComboListener();
-		}
-
-		private void initWMComboBox() {
-			field = new JTextField();
-			comboBox = new JPanel();
-			scrollPane = new JScrollPane(comboBox);
-
-			field.setBorder(new MatteBorder(1, 0, 1, 0, Color.WHITE));
-			scrollPane.setBorder(null);
-			scrollPane.getVerticalScrollBar().setUI(null);
-			field.setFont(new Font(Constants.LABEL_FONT, Font.PLAIN,
-					Constants.LABEL_TINY));
-			field.setForeground(Color.WHITE);
-			field.setBackground(new Color(0, 0, 0, 0));
-			field.setEditable(false);
-
-			this.setLayout(null);
-			this.add(field);
-			this.add(scrollPane);
-			field.setBounds(0, 0, width, height);
-			scrollPane.setBounds(0, height + 5, width, 2 * height);
-			hideComboBox();
-		}
-
-		public String getPrefix() {
-			return field.getText();
-		}
-
-		private void initComboListener() {
-			field.addMouseListener(new MouseAdapter() {
-
-				@Override
-				public void mouseClicked(MouseEvent arg0) {
-					if (isComboShow) {
-						hideComboBox();
-					} else {
-						setComboBox();
-					}
-				}
-			});
-		}
-
-		public void setComboBox() {
-			comboBox.removeAll();
-			comboBox.setLayout(new GridLayout(dictist.size(), 1));
-			if (dictist.size() == 0)
-				return;
-			WMBlock tempBlock;
-			String tempname;
-			Iterator<String> it = dictist.iterator();
-			while (it.hasNext()) {
-				tempname = it.next();
-				tempBlock = new WMBlock(width, 20, 1, 1);
-				tempBlock.addLeftLabel(tempname, Constants.LABEL_TINY);
-				tempBlock.setColor(Constants.LIGHTGREEN, Constants.NOTEALPHA);
-				comboBox.add(tempBlock);
-			}
-			comboBox.setPreferredSize(new Dimension(scrollPane.getWidth() - 50,
-					dictist.size() * (Constants.LABEL_SMALL + 3)));
-			setListBlockListener();
-			showComboBox();
-		}
-
-		public void showComboBox() {
-			isComboShow = true;
-			scrollPane.setVisible(true);
-		}
-
-		public void hideComboBox() {
-			isComboShow = false;
-			scrollPane.setVisible(false);
-		}
-
-		private void setListBlockListener() {
-			for (final Component block : comboBox.getComponents()) {
-				block.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent arg0) {
-						setCurrentBlock((WMBlock) block);
-						field.setText(dictist.get(currentDictIndex));
-					}
-				});
-			}
-		}
-
-		private void setCurrentBlock(WMBlock clickedBlock) {
-			Component[] siblings = comboBox.getComponents();
-			int i = 0;
-			for (Component block : siblings) {
-				if (clickedBlock.equals((WMBlock) block)) {
-					this.currentDictIndex = i;
-					continue;
-				}
-				((WMBlock) block).release();
-				((WMBlock) block).paintLocal();
-				i++;
-			}
-			clickedBlock.paintPress();
-			clickedBlock.fix();
-			hideComboBox();
-		}
-
-		protected JTextField getField() {
-			return field;
-		}
-
-		protected void setText(String text) {
-			field.setText(text);
-		}
-
-		protected void setText(int index) {
-			if (index < 0) {
-				field.setText("Empty");
-			} else
-				field.setText(dictist.get(index));
-
-		}
-
 	}
 
 }
