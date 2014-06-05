@@ -87,7 +87,9 @@ public class Dictionary extends Observable {
 	}
 
 	/**
+	 * Get the presentWord.
 	 * 
+	 * @return {@code precentWord}
 	 */
 	public int getPresentWord() {
 		return presentWord;
@@ -112,26 +114,38 @@ public class Dictionary extends Observable {
 		Word word = words.get(presentWord);
 		return word.getMeaning();
 	}
-	
+
 	/**
+	 * Get the word's if recited by the index.
 	 * 
 	 * @param index
-	 * @return
+	 *            The index of the word
+	 * @return The {@code recited} of the word
 	 */
-	public boolean getWordRecited(int index){
+	public boolean getWordRecited(int index) {
 		return words.get(index).isRecited();
 	}
-	
+
 	/**
+	 * Get the word's if correct by the index.
 	 * 
 	 * @param index
-	 * @return
+	 *            The index of the word
+	 * @return The {@code correct} of the word
 	 */
-	public boolean getWordCorrect(int index){
+	public boolean getWordCorrect(int index) {
 		return words.get(index).isCorrect();
 	}
-	
-	public String getWordEntry(int index){
+
+	/**
+	 * Get the word if recited and correct. This function is used to record the
+	 * info.
+	 * 
+	 * @param index
+	 *            The index of the word
+	 * @return A String: {@code recited} + "\t" + {@code correct}
+	 */
+	public String getWordEntry(int index) {
 		boolean recited = this.getWordRecited(index);
 		boolean correct = this.getWordCorrect(index);
 		String c = "";
@@ -145,13 +159,15 @@ public class Dictionary extends Observable {
 			c = "1";
 		else
 			c = "0";
-		return r+"\t"+c;
+		return r + "\t" + c;
 	}
-	
+
 	/**
+	 * Get the startWord/
 	 * 
+	 * @return {@code startWord}
 	 */
-	public int getStartWord(){
+	public int getStartWord() {
 		return startWord;
 	}
 
@@ -204,6 +220,7 @@ public class Dictionary extends Observable {
 	}
 
 	/**
+	 * Set the present word is already recited
 	 * 
 	 */
 	public void setWordRecited() {
@@ -211,7 +228,10 @@ public class Dictionary extends Observable {
 	}
 
 	/**
+	 * Set the present word is correct or not
 	 * 
+	 * @param correct
+	 * 			a boolean show if the word is correct 
 	 */
 	public void setWordCorrect(boolean correct) {
 		words.get(presentWord).setCorrect(correct);

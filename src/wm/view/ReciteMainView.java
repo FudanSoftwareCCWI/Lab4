@@ -49,6 +49,7 @@ public class ReciteMainView extends WMView {
 	private WMLabel dictSizeLabel;
 	private WMLabel sizeRateLabel;
 	private WMPie pie;
+	private JPanel piePanel;
 	private JButton quitBtn;
 	private JButton homeBtn;
 	private JButton nextBtn;
@@ -131,10 +132,10 @@ public class ReciteMainView extends WMView {
 		pie = new WMPie();
 		pie.setBounds((Constants.UNITSHORTWIDTH - Constants.ICON_MIDDLE) / 2,
 				0, Constants.ICON_MIDDLE + 1, Constants.ICON_MIDDLE);
-		JPanel piePanel = new JPanel();
+		piePanel = new JPanel();
 		piePanel.setLayout(null);
-		piePanel.add(pie);
 		piePanel.setOpaque(false);
+		piePanel.add(pie);
 
 		// 6
 		quitBtn = new JButton(Constants.QUITICON);
@@ -284,6 +285,7 @@ public class ReciteMainView extends WMView {
 		int rate = (int) (((double) size / (double) totalSize) * 100);
 		sizeRateLabel.setText(String.format("%d%%", rate));
 		pie.createPie(new int[] { size, totalSize - size });
+		piePanel.repaint();
 	}
 
 	/**
