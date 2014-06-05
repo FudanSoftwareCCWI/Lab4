@@ -1,6 +1,5 @@
 /**
- * ArielQian
- * 2014年6月4日 下午9:10:25
+ * Software Engineer lab4
  */
 package wm.test.model;
 
