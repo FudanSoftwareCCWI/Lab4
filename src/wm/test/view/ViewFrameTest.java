@@ -1,6 +1,8 @@
 package wm.test.view;
 
 import java.awt.Dimension;
+import java.util.List;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
@@ -11,8 +13,11 @@ import wm.view.*;
 public class ViewFrameTest {
 	
 	static JFrame frame;
-	private static WMView view;
-	private static IReciteMainController controller;
+//	private static ReciteRecordView view;
+//	private static IReciteProcessController controller;
+
+	private static RecordView view;
+	private static IRecordController controller;
 	
 	public static void main(String args[]){
 		frame = new JFrame();
@@ -25,7 +30,24 @@ public class ViewFrameTest {
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 		
-		view = new ReciteMainView(controller);
+		List<String> dictist = new ArrayList<String>();
+		dictist.add("Dictionary A");
+		dictist.add("Dictionary B");
+		dictist.add("Dictionary C");
+		dictist.add("Dictionary D");
+		dictist.add("Dictionary E");
+		dictist.add("Dictionary F");
+		dictist.add("Dictionary G");
+		
+		view = new RecordView(controller);
+		view.setDictist(dictist);
+		view.setSizeText(376);
+		view.setReciteSizeText(123);
+		view.setCorrectText(111);
+		view.setCorrectPercentage(0.86);
+		view.setWrongText(12);
+		view.showPiePanel();
+		
 		frame.getContentPane().removeAll();
 		frame.getContentPane().add(view);
 		frame.repaint();
