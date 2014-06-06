@@ -20,9 +20,9 @@ public class DictionaryImpl implements DictionaryDAO {
 	@Override
 	public Dictionaries selectAllDictionay(String filename) {
 		List<Dictionary> dic = new ArrayList<Dictionary>();
-		List<Word>[] tempWords = new ArrayList[DICNUMBER];
-		for (int i = 0; i < tempWords.length; i++) {
-			tempWords[i] = new ArrayList<Word>();
+		List<List<Word>> tempWords = new ArrayList<List<Word>>();
+		for (int i = 0; i < DICNUMBER; i++) {
+			tempWords.add( new ArrayList<Word>() );
 		}
 		int index = 0;
 
@@ -60,7 +60,7 @@ public class DictionaryImpl implements DictionaryDAO {
 
 					index = entry[0].charAt(0) - 'a';
 
-					tempWords[index].add(new Word(entry[0], entry[1], recited,
+					tempWords.get(index).add(new Word(entry[0], entry[1], recited,
 							correct));
 				}
 
@@ -68,7 +68,7 @@ public class DictionaryImpl implements DictionaryDAO {
 				while ((d = dicReader.readLine()) != null) {
 					entry = d.split("\\s+");
 					index = entry[0].charAt(0) - 'a';
-					tempWords[index].add(new Word(entry[0], entry[1], false,
+					tempWords.get(index).add(new Word(entry[0], entry[1], false,
 							false));
 				}
 			}
@@ -76,10 +76,10 @@ public class DictionaryImpl implements DictionaryDAO {
 			e.printStackTrace();
 		}
 
-		for (int i = 0; i < tempWords.length; i++) {
+		for (int i = 0; i < tempWords.size(); i++) {
 			char name = (char) ('A' + i);
 			Dictionary tempD = new Dictionary("Dictionary " + name,
-					tempWords[i]);
+					tempWords.get(i));
 			dic.add(tempD);
 		}
 
