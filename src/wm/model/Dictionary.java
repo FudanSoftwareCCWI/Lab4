@@ -20,8 +20,6 @@ public class Dictionary extends Observable {
 	private String name;
 	private List<Word> words;
 	private int presentWord;
-	private int startWord;
-	private int recitedSize;
 
 	/**
 	 * Create a dictionary with name, words and default presentWord.
@@ -95,26 +93,14 @@ public class Dictionary extends Observable {
 		return presentWord;
 	}
 
-	/**
-	 * Get the next English key.
-	 * 
-	 * @return The next English key
-	 */
-	public String getNextKey() {
-		Word word = words.get(presentWord);
-		return word.getKey();
+	public String getKey(int index){
+		return words.get(index).getKey();
 	}
-
-	/**
-	 * Get the next Chinese meaning.
-	 * 
-	 * @return The Chinese meaning
-	 */
-	public String getNextMeaning() {
-		Word word = words.get(presentWord);
-		return word.getMeaning();
+	
+	public String getMeaning(int index){
+		return words.get(index).getMeaning();
 	}
-
+	
 	/**
 	 * Get the word's if recited by the index.
 	 * 
@@ -161,43 +147,8 @@ public class Dictionary extends Observable {
 			c = "0";
 		return r + "\t" + c;
 	}
-
-	/**
-	 * Get the startWord/
-	 * 
-	 * @return {@code startWord}
-	 */
-	public int getStartWord() {
-		return startWord;
-	}
-
-	/**
-	 * Set the recitedSize.
-	 * 
-	 * @param size
-	 *            The recitedSize
-	 */
-	public void setRecitedSize(int size) {
-		recitedSize = size;
-	}
-
-	/**
-	 * Set the index of the start word.
-	 * 
-	 * @param index
-	 *            The index of the start word
-	 */
-	public void setStartWord(int index) {
-		startWord = index;
-	}
-
-	/**
-	 * Set the index of the start word.
-	 * 
-	 * @param key
-	 *            The key of the start word
-	 */
-	public int setStartWord(String key) {
+	
+	public int getWordIndex(String key) {
 		int index = 0;
 		for (int i = 0; i < words.size(); i++) {
 			if (words.get(i).getKey().equals(key)) {
@@ -205,7 +156,6 @@ public class Dictionary extends Observable {
 				break;
 			}
 		}
-		startWord = index;
 		return index;
 	}
 
@@ -229,23 +179,33 @@ public class Dictionary extends Observable {
 	}
 
 	/**
-	 * Set the present word is correct or not
+	 * Set the present word is already recited
+	 * 
+	 */
+	public void setWordRecited(int index) {
+		words.get(index).setRecited(true);
+	}
+	
+	/**
+	 * Set the present word is correct or not. If the word is already correct, do not modify it.
 	 * 
 	 * @param correct
 	 * 			a boolean show if the word is correct 
 	 */
 	public void setWordCorrect(boolean correct) {
-		words.get(presentWord).setCorrect(correct);
+		boolean isCorrect=words.get(presentWord).isCorrect();
+		if(!isCorrect)
+			words.get(presentWord).setCorrect(correct);
 	}
-
-	/**
-	 * Calculate the available size when start word is set. Must be called after
-	 * the start word is set.
-	 * 
-	 * @return The available size with a particular start
-	 */
-	public int calAvailableSize() {
-		return words.size() - startWord;
+	
+	public void setWordCorrect(int index,boolean correct) {
+		boolean isCorrect=words.get(index).isCorrect();
+		if(!isCorrect)
+			words.get(index).setCorrect(correct);
+	}
+	
+	public int calAvailableSize(int start) {
+		return words.size() - start;
 	}
 
 	/**
@@ -254,17 +214,7 @@ public class Dictionary extends Observable {
 	 * @return A record
 	 */
 	public Record produceRecord() {
-		String recordName = name;
-		int totalSize = words.size();
-		int recitedSize = 0;
-		int correctSize = 0;
-		for (Word w : words) {
-			if (w.isRecited())
-				recitedSize++;
-			if (w.isCorrect())
-				correctSize++;
-		}
-		return new Record(name, totalSize, recitedSize, correctSize);
+		return produceRecord(0,getSize()-1);
 	}
 
 	/**
