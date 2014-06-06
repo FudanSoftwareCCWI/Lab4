@@ -1,7 +1,6 @@
-package cmp;
+package wm.view.component;
 
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
@@ -9,10 +8,17 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JPanel;
 
-import config.InterfaceParam;
+/**
+ * 
+ * @author Sidney Fan
+ *
+ */
+public class WMBlock extends JPanel {
 
-public class WMBlock extends JPanel implements InterfaceParam {
-
+	/**
+	 * Generated serial version ID
+	 */
+	private static final long serialVersionUID = -1163413579217397402L;
 	private int width;
 	private int height;
 	private Color localColor;
