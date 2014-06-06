@@ -136,6 +136,7 @@ public class Dictionary extends Observable {
 		boolean correct = this.getWordCorrect(index);
 		String c = "";
 		String r = "";
+		String prefix = name.substring(11,12).toLowerCase();
 		if (recited)
 			r = "1";
 		else
@@ -145,7 +146,7 @@ public class Dictionary extends Observable {
 			c = "1";
 		else
 			c = "0";
-		return r + "\t" + c;
+		return prefix + "\t" + r + "\t" + c;
 	}
 	
 	public int getWordIndex(String key) {
