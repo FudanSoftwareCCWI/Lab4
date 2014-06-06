@@ -11,17 +11,16 @@ package wm.model;
  * @author Ariel Qian
  * 
  */
-public class Record extends WMModel{
+public class Record extends WMModel {
 	/**
 	 * Generated serial version ID
 	 */
 	private static final long serialVersionUID = 6614689523828436387L;
-	
+
 	private String name;
 	private int totalSize;
 	private int recitedSize;
 	private int correct;
-
 
 	/**
 	 * Create a recited record of a particular dictionary.
@@ -46,7 +45,7 @@ public class Record extends WMModel{
 	/**
 	 * Get the name of the dictionary.
 	 * 
-	 * @return The name of the dictionary
+	 * @return The {@code name} of the dictionary
 	 */
 	public String getName() {
 		return name;
@@ -55,7 +54,7 @@ public class Record extends WMModel{
 	/**
 	 * Get the total size of the dictionary.
 	 * 
-	 * @return The number of words in the dictionary
+	 * @return {@code totalSize}, the number of words in the dictionary.
 	 */
 	public int getTotalSize() {
 		return totalSize;
@@ -64,7 +63,7 @@ public class Record extends WMModel{
 	/**
 	 * Get the recited size.
 	 * 
-	 * @return The number of words recited
+	 * @return {@code recitedSize}, the number of words recited.
 	 */
 	public int getRecitedSize() {
 		return recitedSize;
@@ -73,7 +72,7 @@ public class Record extends WMModel{
 	/**
 	 * Get the correct number of words recited.
 	 * 
-	 * @return The correct number of words recited
+	 * @return The {@code correct} number of words recited
 	 */
 	public int getCorrect() {
 		return correct;
@@ -96,6 +95,16 @@ public class Record extends WMModel{
 	 */
 	public double getCorrectRate() {
 		return (double) correct / (double) recitedSize;
+	}
+
+	/**
+	 * The toString function. Used in the unit test.
+	 * 
+	 * @return The parametres of the current record.
+	 */
+	public String toString() {
+		return name + " " + totalSize + " " + recitedSize + " " + correct;
+
 	}
 
 }

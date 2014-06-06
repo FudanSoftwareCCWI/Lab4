@@ -17,7 +17,21 @@ public class Word {
 	private boolean recited;
 	private boolean correct;
 
-	
+	/**
+	 * The constructor. It needs 4 parameters, including key, meaning, if the
+	 * word is recited and if the word is correctly answered.
+	 * 
+	 * @param key
+	 *            The english expression of the word
+	 * @param meaning
+	 *            The chinese meaning of the word
+	 * @param recited
+	 *            If the word is recited, it will be {@code true}, else it will
+	 *            be {@code false}
+	 * @param correct
+	 *            If the user answer the meaning correct, it will be
+	 *            {@code true}, else it will be {@code false};
+	 */
 	public Word(String key, String meaning, boolean recited, boolean correct) {
 		super();
 		this.key = key;
@@ -26,26 +40,56 @@ public class Word {
 		this.correct = correct;
 	}
 
+	/**
+	 * The get function of {@code recited}.
+	 * 
+	 * @return {@code recited}
+	 */
 	public boolean isRecited() {
 		return recited;
 	}
 
+	/**
+	 * The set function of {@code recited}.
+	 * 
+	 * @param recited
+	 */
 	public void setRecited(boolean recited) {
 		this.recited = recited;
 	}
 
+	/**
+	 * The get function of {@code correct}.
+	 * 
+	 * @return {@code correct}
+	 */
 	public boolean isCorrect() {
 		return correct;
 	}
 
+	/**
+	 * The set function of {@code correct}.
+	 * 
+	 * @param correct
+	 */
 	public void setCorrect(boolean correct) {
 		this.correct = correct;
 	}
 
+	/**
+	 * The get function of {@code key}.
+	 * 
+	 * @return {@code key}
+	 */
 	public String getKey() {
 		return key;
 	}
 
+	/**
+	 * The get function of {@code meaning}.
+	 * 
+	 * @return {@code meaning}
+	 */
 	public String getMeaning() {
 		return meaning;
 	}

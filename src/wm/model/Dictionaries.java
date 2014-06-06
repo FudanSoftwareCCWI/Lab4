@@ -24,33 +24,36 @@ public class Dictionaries extends Observable {
 	}
 
 	/**
+	 * Get the dictionary by the index
 	 * 
 	 * @param index
-	 * @return
+	 *            The index of the dictionary
+	 * @return {@code dictionary}
 	 */
 	public Dictionary getDictionary(int index) {
 		return dictionaries.get(index);
 	}
 
 	/**
+	 * Get the dictionary by the name
 	 * 
 	 * @param name
-	 * @return
+	 *            The name of the dictionary
+	 * @return {@code dictionary}
 	 */
 	public Dictionary getDictionary(String name) {
-		Dictionary dictionary = null;
 		for (Dictionary dic : dictionaries) {
 			if (dic.getName().equals(name)) {
-				dictionary = dic;
-				break;
+				return dic;
 			}
 		}
-		return dictionary;
+		return null;
 	}
 
 	/**
+	 * Get all dictionaries' name
 	 * 
-	 * @return
+	 * @return a {@code List<String>} of the dictionaries' name
 	 */
 	public List<String> getDictionaryNames() {
 		List<String> names = new ArrayList<String>();
@@ -61,16 +64,31 @@ public class Dictionaries extends Observable {
 	}
 
 	/**
+	 * Get the number of the dictionaries
 	 * 
-	 * @return
+	 * @return {@code int}
 	 */
-	public int getTotalSize() {
+	public int getDicNumber() {
 		return dictionaries.size();
+	}
+	
+	/**
+	 * Get the total size of the dictionaries
+	 * 
+	 * @return {@code int}
+	 */
+	public int getTotalSize(){
+		int totalSize = 0;
+		for(Dictionary dic: dictionaries){
+			totalSize += dic.getSize();
+		}
+		return totalSize;
 	}
 
 	/**
+	 * Get a Record of all dictionaries.
 	 * 
-	 * @return
+	 * @return {@code Record}
 	 */
 	public Record produceRecord() {
 		String name = "All Record";

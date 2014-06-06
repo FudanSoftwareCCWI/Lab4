@@ -1,6 +1,5 @@
 /**
- * ArielQian
- * 2014年6月3日 上午11:01:55
+ * Software Engineer lab4
  */
 package wm.test.model;
 
@@ -92,11 +91,11 @@ public class DictionariesTest {
 	}
 
 	/**
-	 * Test method for {@link wm.model.Dictionaries#getTotalSize()}.
+	 * Test method for {@link wm.model.Dictionaries#getDicNumber()}.
 	 */
 	@Test	
 	public void testGetTotalSize() {
-		assertEquals(2, dic.getTotalSize());
+		assertEquals(2, dic.getDicNumber());
 	}
 
 	/**

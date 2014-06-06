@@ -1,27 +1,46 @@
+/**
+ * Software Engineer lab4
+ */
 package wm.model.dao;
 
 import java.util.List;
 
+import wm.model.Dictionaries;
 import wm.model.Record;
 
 public class RecordImpl implements RecordDAO {
+	private Record allRecord;
+	private List<Record> singleRecord;
+	
+	public RecordImpl(Dictionaries dic){
+		allRecord = dic.produceRecord();
+		for(int i = 0; i < dic.getDicNumber(); i++){
+			singleRecord.add(dic.getDictionary(i).produceRecord());
+		}
+	}
 
 	@Override
-	public Record selectAllRecord() {
-		// TODO Auto-generated method stub
-		return null;
+	public Record selectAllRecord() {	
+		return allRecord;
 	}
 
 	@Override
 	public Record selectRecordByName(String name) {
-		// TODO Auto-generated method stub
+		for(Record r: singleRecord){
+			if(r.getName().equals(name)){
+				return r;
+			}				
+		}
 		return null;
 	}
 
 	@Override
-	public List<Record> selectAllRecordList() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Record> selectAllRecordList() {		
+		return singleRecord;
+	}
+
+	public Record selectRecordByIndex(int index) {
+		return singleRecord.get(index);
 	}
 
 

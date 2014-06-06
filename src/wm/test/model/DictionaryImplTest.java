@@ -1,6 +1,5 @@
 /**
- * ArielQian
- * 2014年6月4日 下午9:10:25
+ * Software Engineer lab4
  */
 package wm.test.model;
 
@@ -39,7 +38,7 @@ public class DictionaryImplTest {
 	@Test
 	public void testSelectAllDictionay() {
 		Dictionary dictionary = dic.getDictionary(0);
-		assertEquals(26, dic.getTotalSize());
+		assertEquals(26, dic.getDicNumber());
 		assertEquals("abandon", dictionary.getNextKey());
 		dictionary.setWordRecited();
 		dictionary.setWordCorrect(true);
