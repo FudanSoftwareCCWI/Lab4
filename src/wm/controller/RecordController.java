@@ -65,24 +65,27 @@ public class RecordController implements IRecordController {
 
 	@Override
 	public void showRecordByBar(int index) {
-		if (index > 0) {
-			Record dictrecord = model.getSingleRecord(index - 1);
-			List<Record> records = model.getRecords();
-			List<Integer> recited = new ArrayList<Integer>();
-			List<Integer> correct = new ArrayList<Integer>();
-			for (Record record : records) {
-				recited.add(record.getRecitedSize());
-				correct.add((int) (record.getCorrectRate() * 100));
-			}
-			view.setSizeText(dictrecord.getTotalSize());
-			view.setReciteSizeText(dictrecord.getRecitedSize());
-			view.setCorrectText(dictrecord.getCorrect());
-			view.setWrongText(dictrecord.getWrong());
-			view.setCorrectPercentage(dictrecord.getCorrectRate());
-			view.setBarRecitedIcon(recited);
-			view.setBarCorrectIcon(correct);
-			view.showBarPanel();
+		List<Record> records = model.getRecords();
+		List<Integer> recited = new ArrayList<Integer>();
+		List<Integer> correct = new ArrayList<Integer>();
+		for (Record r : records) {
+			recited.add(r.getRecitedSize());
+			correct.add((int) (r.getCorrectRate() * 100));
 		}
+		Record record;
+		if (index == 0) {
+			record = model.getAllRecord();
+		} else {
+			record = model.getSingleRecord(index - 1);
+		}
+		view.setSizeText(record.getTotalSize());
+		view.setReciteSizeText(record.getRecitedSize());
+		view.setCorrectText(record.getCorrect());
+		view.setWrongText(record.getWrong());
+		view.setCorrectPercentage(record.getCorrectRate());
+		view.setBarRecitedIcon(recited);
+		view.setBarCorrectIcon(correct);
+		view.showBarPanel();
 	}
 
 	@Override

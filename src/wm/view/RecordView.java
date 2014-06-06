@@ -577,7 +577,7 @@ public class RecordView extends WMView {
 		} else if (currentBtnIndex == INPIE) {
 			controller.showRecordByPie(currentDicIndex);
 		} else if (currentBtnIndex == INBAR) {
-			controller.showRecordByBar();
+			controller.showRecordByBar(currentDicIndex);
 		}
 
 	}
