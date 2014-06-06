@@ -50,7 +50,7 @@ public class SizeSelectView extends ReciteProcessView {
 				Constants.LABEL_TINY);
 		nextBtn.setBorder(null);
 
-		leftValue = 0;
+		leftValue = 1;
 		rightValue = controller.getAvailableSize();
 
 		pivotValue = rightValue / 2;
@@ -67,8 +67,8 @@ public class SizeSelectView extends ReciteProcessView {
 		centerPanel.add(right);
 		centerPanel.add(pivot);
 
-		slider.setBounds(Constants.GLOBAL_WIDTH / 4, Constants.UNITHEIGHT,
-				Constants.GLOBAL_WIDTH / 2, 3 * Constants.UNITHEIGHT);
+		slider.setBounds(Constants.GLOBAL_WIDTH / 4, 2*Constants.UNITHEIGHT,
+				Constants.GLOBAL_WIDTH / 2, Constants.UNITHEIGHT);
 		left.setBounds(Constants.GLOBAL_WIDTH / 4 - 20,
 				2 * Constants.UNITHEIGHT + 37, Constants.LABEL_SMALL,
 				Constants.LABEL_SMALL);
@@ -97,7 +97,8 @@ public class SizeSelectView extends ReciteProcessView {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				controller.switchToReciteWord();
+				controller.setReciteSize(slider.getValue());
+//				controller.switchToReciteWord();
 			}
 		});
 	}

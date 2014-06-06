@@ -28,6 +28,12 @@ public interface IRecordController extends WMController {
 	public void showRecordByBar();
 	
 	/**
+	 * show all dictionaries record
+	 * @param index
+	 */
+	void showRecordByBar(int index);
+	
+	/**
 	 * 
 	 * @param index
 	 */
@@ -37,4 +43,5 @@ public interface IRecordController extends WMController {
 	 * 
 	 */
 	public void switchToHome();
+	
 }

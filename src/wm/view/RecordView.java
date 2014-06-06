@@ -133,12 +133,14 @@ public class RecordView extends WMView {
 	 */
 	public void setSizeText(int size) {
 		dictSizeValue = size;
-		dictSizeLabel.setText("");
-		dictSizeLabel.setLayout(new GridLayout(2, 1));
-		dictSizeLabel.add(new WMLabel(Constants.CHIN_TOTAL,
-				Constants.LABEL_TINY));
-		dictSizeLabel.add(new WMLabel(String.valueOf(size),
-				Constants.LABEL_TINY));
+		dictSizeLabel.setText(String.format("<html>%s<br>%d</html>", Constants.CHIN_TOTAL,size));
+//		dictSizeLabel.setText("");
+//		dictSizeLabel.removeAll();
+//		dictSizeLabel.setLayout(new GridLayout(2, 1));
+//		dictSizeLabel.add(new WMLabel(Constants.CHIN_RECITED,
+//				Constants.LABEL_TINY));
+//		dictSizeLabel.add(new WMLabel(String.valueOf(size),
+//				Constants.LABEL_TINY));
 	}
 
 	/**
@@ -148,12 +150,14 @@ public class RecordView extends WMView {
 	 */
 	public void setReciteSizeText(int recitedSize) {
 		dictRecitedValue = recitedSize;
-		dictRecitedLabel.setText("");
-		dictRecitedLabel.setLayout(new GridLayout(2, 1));
-		dictRecitedLabel.add(new WMLabel(Constants.CHIN_RECITED,
-				Constants.LABEL_TINY));
-		dictRecitedLabel.add(new WMLabel(String.valueOf(recitedSize),
-				Constants.LABEL_TINY));
+		dictRecitedLabel.setText(String.format("<html>%s<br>%d</html>", Constants.CHIN_RECITED,recitedSize));
+//		dictRecitedLabel.setText("");
+//		dictRecitedLabel.removeAll();
+//		dictRecitedLabel.setLayout(new GridLayout(2, 1));
+//		dictRecitedLabel.add(new WMLabel(Constants.CHIN_RECITED,
+//				Constants.LABEL_TINY));
+//		dictRecitedLabel.add(new WMLabel(String.valueOf(recitedSize),
+//				Constants.LABEL_TINY));
 	}
 
 	/**
@@ -163,12 +167,13 @@ public class RecordView extends WMView {
 	 */
 	public void setCorrectText(int correct) {
 		dictCorrectValue = correct;
-		dictCorrectLabel.setText("");
-		dictCorrectLabel.setLayout(new GridLayout(2, 1));
-		dictCorrectLabel.add(new WMLabel(Constants.CHIN_CORRECT,
-				Constants.LABEL_TINY));
-		dictCorrectLabel.add(new WMLabel(String.valueOf(correct),
-				Constants.LABEL_TINY));
+		dictCorrectLabel.setText(String.format("<html>%s<br>%d</html>", Constants.CHIN_CORRECT,correct));
+//		dictCorrectLabel.setText("");
+//		dictCorrectLabel.setLayout(new GridLayout(2, 1));
+//		dictCorrectLabel.add(new WMLabel(Constants.CHIN_CORRECT,
+//				Constants.LABEL_TINY));
+//		dictCorrectLabel.add(new WMLabel(String.valueOf(correct),
+//				Constants.LABEL_TINY));
 	}
 
 	/**
@@ -177,13 +182,14 @@ public class RecordView extends WMView {
 	 * @param percentage
 	 */
 	public void setCorrectPercentage(double percentage) {
-		dictRateValue = (int) (percentage * 100);
-		dictRateLabel.setText("");
-		dictRateLabel.setLayout(new GridLayout(2, 1));
-		dictRateLabel
-				.add(new WMLabel(Constants.CHIN_RATE, Constants.LABEL_TINY));
-		dictRateLabel.add(new WMLabel(String.valueOf((int) (percentage * 100))
-				+ "%", Constants.LABEL_TINY));
+		dictRateValue = (int) (percentage * 100.00);
+		dictRateLabel.setText(String.format("<html>%s<br>%.2f</html>", Constants.CHIN_RATE,percentage*100.00));
+//		dictRateLabel.setText("");
+//		dictRateLabel.setLayout(new GridLayout(2, 1));
+//		dictRateLabel
+//				.add(new WMLabel(Constants.CHIN_RATE, Constants.LABEL_TINY));
+//		dictRateLabel.add(new WMLabel(String.valueOf((int) (percentage * 100))
+//				+ "%", Constants.LABEL_TINY));
 	}
 
 	/**
@@ -193,12 +199,13 @@ public class RecordView extends WMView {
 	 */
 	public void setWrongText(int wrong) {
 		dictWrongValue = wrong;
-		dictWrongLabel.setText("");
-		dictWrongLabel.setLayout(new GridLayout(2, 1));
-		dictWrongLabel.add(new WMLabel(Constants.CHIN_TOTAL,
-				Constants.LABEL_TINY));
-		dictWrongLabel.add(new WMLabel(String.valueOf(wrong),
-				Constants.LABEL_TINY));
+		dictWrongLabel.setText(String.format("<html>%s<br>%d</html>", Constants.CHIN_RATE,wrong));
+//		dictWrongLabel.setText("");
+//		dictWrongLabel.setLayout(new GridLayout(2, 1));
+//		dictWrongLabel.add(new WMLabel(Constants.CHIN_TOTAL,
+//				Constants.LABEL_TINY));
+//		dictWrongLabel.add(new WMLabel(String.valueOf(wrong),
+//				Constants.LABEL_TINY));
 	}
 
 	/**
@@ -491,8 +498,8 @@ public class RecordView extends WMView {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				setCurrentBlock(tableBlock);
 				currentBtnIndex = INTABLE;
+				setCurrentBlock(tableBlock);
 				// showTablePanel(); // TODO should be remove after publish
 			}
 		});
@@ -501,8 +508,8 @@ public class RecordView extends WMView {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				setCurrentBlock(pieBlock);
 				currentBtnIndex = INPIE;
+				setCurrentBlock(pieBlock);
 				// showPiePanel(); // TODO should be remove after publish
 			}
 		});
@@ -511,8 +518,8 @@ public class RecordView extends WMView {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				setCurrentBlock(barBlock);
 				currentBtnIndex = INBAR;
+				setCurrentBlock(barBlock);
 				// showBarPanel(); // TODO should be remove after publish
 			}
 		});
@@ -522,16 +529,14 @@ public class RecordView extends WMView {
 
 					@Override
 					public void propertyChange(PropertyChangeEvent evt) {
-						System.out.println(Constants.PROPERTY_DICTCHANGE
-								+ currentBtnIndex);
 						int newValue = (Integer) evt.getNewValue();
-						int oldValue = (Integer) evt.getOldValue();
+						currentDicIndex = newValue;
 						if (currentBtnIndex == INTABLE) {
 							controller.showRecordByTable(newValue);
 						} else if (currentBtnIndex == INPIE) {
 							controller.showRecordByPie(newValue);
 						} else if (currentBtnIndex == INBAR) {
-							controller.showRecordByBar(newValue);
+							controller.showRecordByBar();
 						}
 					}
 				});

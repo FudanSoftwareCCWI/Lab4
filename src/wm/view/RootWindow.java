@@ -31,7 +31,7 @@ public class RootWindow extends JFrame {
 		// init size or something
 		super();
 		Dimension fixedDimension = new Dimension(Constants.GLOBAL_WIDTH,
-				Constants.GLOBAL_HEIGHT);
+				Constants.GLOBAL_HEIGHT+20);
 		this.setSize(fixedDimension);
 		this.setResizable(false);
 	}
