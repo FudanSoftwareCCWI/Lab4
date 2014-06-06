@@ -200,7 +200,7 @@ public class RecordView extends WMView {
 	 */
 	public void setWrongText(int wrong) {
 		dictWrongValue = wrong;
-		dictWrongLabel.setText(String.format("<html>%s<br>%d</html>", Constants.CHIN_RATE,wrong));
+		dictWrongLabel.setText(String.format("<html>%s<br>%d</html>", Constants.CHIN_WRONG,wrong));
 //		dictWrongLabel.setText("");
 //		dictWrongLabel.setLayout(new GridLayout(2, 1));
 //		dictWrongLabel.add(new WMLabel(Constants.CHIN_TOTAL,
