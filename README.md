@@ -14,3 +14,5 @@ Resources:
 Tips:
 1. Java Swing
 2. MVC [Model + Controller&View]
+
+This branch is a copy of the origin design, You can see the total code and the whole develop process in the branch named ArielQian, SidneyFan, MaggieHe and Version1.x, Version2.x
