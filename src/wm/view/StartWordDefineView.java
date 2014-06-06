@@ -33,7 +33,6 @@ import wm.view.component.WMBlock;
 import wm.view.component.WMLabel;
 import wm.controller.IReciteProcessController;
 
-
 /**
  * Class StartWordDefineView appears when the user want to start by the input
  * word, the user can input the word he want to start with and go to next stop.
@@ -47,7 +46,7 @@ public class StartWordDefineView extends ReciteProcessView {
 	 * 
 	 */
 	private static final long serialVersionUID = -3052539781672180377L;
-	
+
 	private WMComboBox searchBox;
 	private JButton nextBtn;
 	private WMLabel nextTip;
@@ -95,7 +94,13 @@ public class StartWordDefineView extends ReciteProcessView {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if (nextTag == TOSIZEVIEW) {
+<<<<<<< HEAD
+					controller.startByInput(searchBox.getPrefix()); // version
+																	// 2.2
+					controller.switchToSizeSelect();
+=======
 					controller.startByInput("");//TODO
+>>>>>>> MaggieHe
 				} else if (nextTag == TOSTARTBYFIRSTVIEW) {
 					controller.startByFirstWord();
 				}
@@ -190,8 +195,10 @@ public class StartWordDefineView extends ReciteProcessView {
 				public void caretUpdate(CaretEvent arg0) {
 					String text = getPrefix();
 					System.out.println(text);
+
 					setComboBox(controller.getAvailableWordList(text)); 
 					setComboBox(result);
+
 					if (list.contains(text)) {
 						validInput();
 					} else {
