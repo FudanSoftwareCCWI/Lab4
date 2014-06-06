@@ -39,7 +39,7 @@ public class DictionaryImplTest {
 	public void testSelectAllDictionay() {
 		Dictionary dictionary = dic.getDictionary(0);
 		assertEquals(26, dic.getDicNumber());
-		assertEquals("abandon", dictionary.getNextKey());
+		assertEquals("abandon", dictionary.getKey(0));
 		dictionary.setWordRecited();
 		dictionary.setWordCorrect(true);
 	}

@@ -113,35 +113,16 @@ public interface IReciteProcessController extends WMController {
 	 */
 	public void setReciteSize(int size);
 
-	/**
-	 * 
-	 */
-	public void reciteNextWord();
+//	/**
+//	 * 
+//	 */
+//	public void reciteNextWord();
 
 	/**
 	 * 
 	 */
 	public void checkCorrect(String input);
 
-	/**
-	 * 
-	 */
-	public Record getReciteRecord();
-
-	/**
-	 * 
-	 */
-	public void switchToSizeSelect();
-
-	/**
-	 * 
-	 */
-	public void switchToReciteWord();
-
-	/**
-	 * 
-	 */
-	public void switchToReciteRecord();
 
 	/**
 	 * 

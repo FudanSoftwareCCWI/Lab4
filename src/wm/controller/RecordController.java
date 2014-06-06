@@ -5,15 +5,15 @@ import java.util.List;
 
 import wm.SwitchDelegate;
 import wm.model.Record;
-import wm.model.dao.RecordImpl;
+import wm.model.Records;
 import wm.view.RecordView;
 
 public class RecordController implements IRecordController {
 	SwitchDelegate delegate;
 	RecordView view;
-	RecordImpl model;
-	
-	public RecordController(SwitchDelegate delegate, RecordImpl model) {
+	Records model;
+
+	public RecordController(SwitchDelegate delegate, Records model) {
 		super();
 		this.delegate = delegate;
 		this.model = model;
@@ -25,7 +25,12 @@ public class RecordController implements IRecordController {
 
 	@Override
 	public void showRecordByPie(int index) {
-		Record record=model.selectRecordByIndex(index);
+		Record record;
+		if (index == 0) {
+			record = model.getAllRecord();
+		} else {
+			record = model.getSingleRecord(index - 1);
+		}
 		view.setSizeText(record.getTotalSize());
 		view.setReciteSizeText(record.getRecitedSize());
 		view.setCorrectText(record.getCorrect());
@@ -38,7 +43,7 @@ public class RecordController implements IRecordController {
 
 	@Override
 	public void showRecordByPie() {
-		Record record = model.selectAllRecord();
+		Record record = model.getAllRecord();
 		view.setPieRecitedIcon(record.getRecitedSize(), record.getTotalSize());
 		view.setPieCorrectIcon(record.getRecitedSize(), record.getTotalSize());
 		view.showPiePanel();
@@ -46,42 +51,48 @@ public class RecordController implements IRecordController {
 
 	@Override
 	public void showRecordByBar() {
-		List<Record> records=model.selectAllRecordList();
-		List<Integer> recited=new ArrayList<Integer>();
-		List<Integer> correct=new ArrayList<Integer>();
-		for(Record record:records){
+		List<Record> records = model.getRecords();
+		List<Integer> recited = new ArrayList<Integer>();
+		List<Integer> correct = new ArrayList<Integer>();
+		for (Record record : records) {
 			recited.add(record.getRecitedSize());
-			correct.add((int)(record.getCorrectRate()*100));
+			correct.add((int) (record.getCorrectRate() * 100));
 		}
-		view.setBarRecitedIcon(recited);
-		view.setBarCorrectIcon(correct);
-		view.showBarPanel();
-	}
-	
-	@Override
-	public void showRecordByBar(int index) {
-		Record dictrecord=model.selectRecordByIndex(index);
-		List<Record> records=model.selectAllRecordList();
-		List<Integer> recited=new ArrayList<Integer>();
-		List<Integer> correct=new ArrayList<Integer>();
-		for(Record record:records){
-			recited.add(record.getRecitedSize());
-			correct.add((int)(record.getCorrectRate()*100));
-		}
-		view.setSizeText(dictrecord.getTotalSize());
-		view.setReciteSizeText(dictrecord.getRecitedSize());
-		view.setCorrectText(dictrecord.getCorrect());
-		view.setWrongText(dictrecord.getWrong());
-		view.setCorrectPercentage(dictrecord.getCorrectRate());
 		view.setBarRecitedIcon(recited);
 		view.setBarCorrectIcon(correct);
 		view.showBarPanel();
 	}
 
 	@Override
+	public void showRecordByBar(int index) {
+		if (index > 0) {
+			Record dictrecord = model.getSingleRecord(index - 1);
+			List<Record> records = model.getRecords();
+			List<Integer> recited = new ArrayList<Integer>();
+			List<Integer> correct = new ArrayList<Integer>();
+			for (Record record : records) {
+				recited.add(record.getRecitedSize());
+				correct.add((int) (record.getCorrectRate() * 100));
+			}
+			view.setSizeText(dictrecord.getTotalSize());
+			view.setReciteSizeText(dictrecord.getRecitedSize());
+			view.setCorrectText(dictrecord.getCorrect());
+			view.setWrongText(dictrecord.getWrong());
+			view.setCorrectPercentage(dictrecord.getCorrectRate());
+			view.setBarRecitedIcon(recited);
+			view.setBarCorrectIcon(correct);
+			view.showBarPanel();
+		}
+	}
+
+	@Override
 	public void showRecordByTable(int index) {
-		System.out.println(index);
-		Record record=model.selectRecordByIndex(index);
+		Record record;
+		if (index == 0) {
+			record = model.getAllRecord();
+		} else {
+			record = model.getSingleRecord(index - 1);
+		}
 		view.setSizeText(record.getTotalSize());
 		view.setReciteSizeText(record.getRecitedSize());
 		view.setCorrectText(record.getCorrect());
@@ -92,14 +103,15 @@ public class RecordController implements IRecordController {
 
 	@Override
 	public void showDictList() {
-		List<Record>records=model.selectAllRecordList();
-		List<String>names=new ArrayList<String>();
-		for(Record record:records){
+		List<Record> records = model.getRecords();
+		List<String> names = new ArrayList<String>();
+		names.add(model.getAllRecord().getName());
+		for (Record record : records) {
 			names.add(record.getName());
 		}
 		view.setDictist(names);
 	}
-	
+
 	@Override
 	public void switchToHome() {
 		delegate.getHome();
@@ -109,5 +121,4 @@ public class RecordController implements IRecordController {
 		return view;
 	}
 
-	
 }
