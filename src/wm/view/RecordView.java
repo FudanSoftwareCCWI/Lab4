@@ -531,7 +531,7 @@ public class RecordView extends WMView {
 						} else if (currentBtnIndex == INPIE) {
 							controller.showRecordByPie(newValue);
 						} else if (currentBtnIndex == INBAR) {
-							controller.showRecordByBar(newValue);
+							controller.showRecordByBar();
 						}
 					}
 				});
@@ -553,7 +553,7 @@ public class RecordView extends WMView {
 		} else if (currentBtnIndex == INPIE) {
 			controller.showRecordByPie(currentDicIndex);
 		} else if (currentBtnIndex == INBAR) {
-			controller.showRecordByBar(currentDicIndex);
+			controller.showRecordByBar();
 		}
 
 	}

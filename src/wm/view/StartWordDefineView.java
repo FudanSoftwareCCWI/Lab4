@@ -94,13 +94,8 @@ public class StartWordDefineView extends ReciteProcessView {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if (nextTag == TOSIZEVIEW) {
-<<<<<<< HEAD
 					controller.startByInput(searchBox.getPrefix()); // version
 																	// 2.2
-					controller.switchToSizeSelect();
-=======
-					controller.startByInput("");//TODO
->>>>>>> MaggieHe
 				} else if (nextTag == TOSTARTBYFIRSTVIEW) {
 					controller.startByFirstWord();
 				}

@@ -94,6 +94,7 @@ public class ReciteProcessController implements IReciteProcessController {
 	@Override
 	public void setReciteSize(int size) {
 		model.setRecitedSize(size);
+		this.switchToReciteWord();
 	}
 
 	/** (non-Javadoc)
