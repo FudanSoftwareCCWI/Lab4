@@ -40,9 +40,9 @@ public class ReciteWordView extends ReciteProcessView {
 		setHeadLineText(Constants.CHIN_RECITING);
 		hideTip();
 
-		paraphrase = new WMLabel("n. 释义", Constants.LABEL_MIDDLE);
+		paraphrase = new WMLabel("", Constants.LABEL_MIDDLE);
 		inputField = new JTextField();
-		resultHint = new WMLabel("结果", Constants.LABEL_SMALL);
+		resultHint = new WMLabel("", Constants.LABEL_SMALL);
 
 		inputField.setBackground(new Color(0, 0, 0, 0));
 		inputField.setForeground(Color.WHITE);

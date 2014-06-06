@@ -95,7 +95,7 @@ public class StartWordDefineView extends ReciteProcessView {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if (nextTag == TOSIZEVIEW) {
-					controller.switchToSizeSelect();
+					controller.startByInput("");//TODO
 				} else if (nextTag == TOSTARTBYFIRSTVIEW) {
 					controller.startByFirstWord();
 				}
@@ -190,7 +190,7 @@ public class StartWordDefineView extends ReciteProcessView {
 				public void caretUpdate(CaretEvent arg0) {
 					String text = getPrefix();
 					System.out.println(text);
-					// setComboBox(controller.getAvailableWordList(text)); TODO
+					setComboBox(controller.getAvailableWordList(text)); 
 					setComboBox(result);
 					if (list.contains(text)) {
 						validInput();

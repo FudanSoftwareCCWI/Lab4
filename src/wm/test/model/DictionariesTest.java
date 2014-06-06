@@ -91,11 +91,11 @@ public class DictionariesTest {
 	}
 
 	/**
-	 * Test method for {@link wm.model.Dictionaries#getTotalSize()}.
+	 * Test method for {@link wm.model.Dictionaries#getDicNumber()}.
 	 */
 	@Test	
 	public void testGetTotalSize() {
-		assertEquals(2, dic.getTotalSize());
+		assertEquals(2, dic.getDicNumber());
 	}
 
 	/**

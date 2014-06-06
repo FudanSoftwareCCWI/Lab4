@@ -68,8 +68,21 @@ public class Dictionaries extends Observable {
 	 * 
 	 * @return {@code int}
 	 */
-	public int getTotalSize() {
+	public int getDicNumber() {
 		return dictionaries.size();
+	}
+	
+	/**
+	 * Get the total size of the dictionaries
+	 * 
+	 * @return {@code int}
+	 */
+	public int getTotalSize(){
+		int totalSize = 0;
+		for(Dictionary dic: dictionaries){
+			totalSize += dic.getSize();
+		}
+		return totalSize;
 	}
 
 	/**
