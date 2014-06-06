@@ -22,12 +22,12 @@ public class Constants {
 	public final static int LABEL_NORMAL = 40;
 	public final static int LABEL_LARGE = 70;
 	public final static int UNITLINEHEIGHT = 20;
-	public final static String LABEL_FONT = "Abandon";
+	public final static String LABEL_FONT = "微软雅黑";
 	/* Colors */
 	public final static Color LIGHTGREEN = new Color(89, 150, 57);
 	public final static Color NORMALGREEN = new Color(78, 137, 47);
 	public final static Color DARKGREEN = new Color(54, 96, 43);
-	public final static Color NOTEALPHA = new Color(1, 1, 1, 0.5f);
+	public final static Color NOTEALPHA = new Color(171, 224, 142);
 	/* Icon */
 	public final static int ICON_TINY = 32;
 	public final static int ICON_SMALL = 64;
@@ -39,14 +39,18 @@ public class Constants {
 	public final static ImageIcon HOMEICON = new ImageIcon("icon/home-32.png");
 	public final static ImageIcon NEXTICON = new ImageIcon("icon/next-32.png");
 	public final static ImageIcon PIEICON96 = new ImageIcon(new ImageIcon(
-			"icon/pie-128.png").getImage().getScaledInstance(ICON_RECORD, ICON_RECORD, Image.SCALE_DEFAULT));
+			"icon/pie-128.png").getImage().getScaledInstance(ICON_RECORD,
+			ICON_RECORD, Image.SCALE_DEFAULT));
 	public final static ImageIcon BARICON96 = new ImageIcon(new ImageIcon(
-			"icon/bar-128.png").getImage().getScaledInstance(ICON_RECORD, ICON_RECORD, Image.SCALE_DEFAULT));
+			"icon/bar-128.png").getImage().getScaledInstance(ICON_RECORD,
+			ICON_RECORD, Image.SCALE_DEFAULT));
 	public final static ImageIcon TABLEICON96 = new ImageIcon(new ImageIcon(
-			"icon/table-128.png").getImage().getScaledInstance(ICON_RECORD, ICON_RECORD, Image.SCALE_DEFAULT));
+			"icon/table-128.png").getImage().getScaledInstance(ICON_RECORD,
+			ICON_RECORD, Image.SCALE_DEFAULT));
 	public final static ImageIcon PIEICON = new ImageIcon("icon/pie-128.png");
 	public final static ImageIcon PIEICON256 = new ImageIcon(new ImageIcon(
-			"icon/pie-512.png").getImage().getScaledInstance(ICON_MIDDLE, ICON_MIDDLE, Image.SCALE_DEFAULT));
+			"icon/pie-512.png").getImage().getScaledInstance(ICON_MIDDLE,
+			ICON_MIDDLE, Image.SCALE_DEFAULT));
 	/* Command */
 	public final static int HOME_TO_STATISTIC = 0;
 	public final static int HOME_TO_UNIT = 1;
@@ -68,8 +72,8 @@ public class Constants {
 	public final static String CHIN_CORRECT = "正确";
 	public final static String CHIN_WRONG = "错误";
 	public final static String CHIN_RATE = "正确率";
-	public final static String CHIN_CORRECT_WRONG_RATIO = "正确与错误比例";
-	public final static String CHIN_RECITE_PIE = "已背饼图";
+	public final static String CHIN_CORRECT_WRONG_RATIO = "<html><span style='background: #FFFFFF;color: #599639'>正确</span>与<span style='background: #ABE08E; color: white'>错误</span>比例</html>";
+	public final static String CHIN_RECITE_PIE = "<html><span style='background: #FFFFFF;color: #599639'>已背</span>饼图</html>";
 	public final static String CHIN_SELECTED = "所选单词数";
 	/* Fire property name */
 	public final static String PROPERTY_DICTCHANGE = "DictChange";

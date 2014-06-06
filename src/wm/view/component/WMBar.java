@@ -66,8 +66,8 @@ public class WMBar extends JPanel {
 		int padding = 15;
 		int unitHeight = rec.height - padding;
 		g.setColor(Color.WHITE);
-		g.drawLine(-1, 0, 0, rec.height);
-		g.drawLine(0, rec.height-1, rec.width, rec.height);
+		g.drawLine(0, 0, 0, rec.height);
+		g.drawLine(0, rec.height-1, rec.width, rec.height-1);
 		
 		for (int i = 0; i < list.size(); i++) {
 			g.setColor(Constants.NOTEALPHA);
