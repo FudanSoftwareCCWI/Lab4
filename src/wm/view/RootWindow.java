@@ -6,6 +6,7 @@ package wm.view;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
+import javax.swing.UIManager;
 
 import wm.config.Constants;
 
@@ -31,11 +32,15 @@ public class RootWindow extends JFrame {
 		// init size or something
 		super();
 		Dimension fixedDimension = new Dimension(Constants.GLOBAL_WIDTH,
-				Constants.GLOBAL_HEIGHT+20);
+				Constants.GLOBAL_HEIGHT + 20);
 		this.setSize(fixedDimension);
 		this.setResizable(false);
+		try {
+			UIManager.setLookAndFeel("javax.swing.plaf..windows.WindowsLookAndFeel");
+		} catch (Exception e) {
+		}
 	}
-	
+
 	/**
 	 * 
 	 */

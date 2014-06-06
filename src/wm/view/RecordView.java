@@ -232,7 +232,7 @@ public class RecordView extends WMView {
 	 *            -List of integers of percentage, e.g. {86,72,...}
 	 */
 	public void setBarCorrectIcon(List<Integer> list) {
-		barCorrectIcon.createBar(list, currentDicIndex);
+		barCorrectIcon.createBar(list, currentDicIndex-1);
 		barCorrectIcon.repaint();
 	}
 
@@ -243,7 +243,7 @@ public class RecordView extends WMView {
 	 *            -List of integers of percentage, e.g. {86,72,...}
 	 */
 	public void setBarRecitedIcon(List<Integer> list) {
-		barRecitedIcon.createBar(list, currentDicIndex);
+		barRecitedIcon.createBar(list, currentDicIndex-1);
 		barRecitedIcon.repaint();
 	}
 
@@ -281,8 +281,10 @@ public class RecordView extends WMView {
 		// navigator
 		homeBtn = new JButton(Constants.HOMEICON);
 		quitBtn = new JButton(Constants.QUITICON);
-		homeBtn.setBorder(null);
-		quitBtn.setBorder(null);
+		homeBtn.setBorderPainted(false);
+		homeBtn.setBackground(Constants.DARKGREEN);
+		quitBtn.setBorderPainted(false);
+		quitBtn.setBackground(Constants.DARKGREEN);
 		headLine = new WMLabel("Statisics", Constants.LABEL_NORMAL);
 		navPanel.setLayout(null);
 		navPanel.add(homeBtn);
