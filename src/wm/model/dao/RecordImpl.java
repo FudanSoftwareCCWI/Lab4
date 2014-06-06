@@ -3,6 +3,7 @@
  */
 package wm.model.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import wm.model.Dictionaries;
@@ -14,6 +15,7 @@ public class RecordImpl implements RecordDAO {
 	
 	public RecordImpl(Dictionaries dic){
 		allRecord = dic.produceRecord();
+		singleRecord = new ArrayList<Record>();
 		for(int i = 0; i < dic.getDicNumber(); i++){
 			singleRecord.add(dic.getDictionary(i).produceRecord());
 		}

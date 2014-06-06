@@ -60,11 +60,15 @@ public class WMBar extends JPanel {
 		}
 
 		double curRatio = 0.0D;
-		int curPos = 0;
+		int curPos = 10;
 		int uintWidth = rec.width / list.size();
 		int barWidth = (int) (uintWidth * 0.6);
 		int padding = 15;
 		int unitHeight = rec.height - padding;
+		g.setColor(Color.WHITE);
+		g.drawLine(-1, 0, 0, rec.height);
+		g.drawLine(0, rec.height-1, rec.width, rec.height);
+		
 		for (int i = 0; i < list.size(); i++) {
 			g.setColor(Constants.NOTEALPHA);
 			if(i==curr)

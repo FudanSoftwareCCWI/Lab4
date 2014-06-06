@@ -39,11 +39,7 @@ public class WMTable extends JPanel {
 	void drawTable(Graphics2D g, List<Integer> list, List<String> name) {
 
 		Rectangle rec = this.getBounds();
-//		g.setColor(Constants.DARKGREEN);
-//		g.fillRect(0, 0, rec.width, rec.height / 2);
-//		g.setColor(Constants.NOTEALPHA);
-//		g.fillRect(0, rec.height / 2, rec.width, rec.height / 2);
-		
+
 		g.setColor(Color.WHITE);
 		g.drawLine(0, 0, rec.width, 0);
 		g.drawLine(0, rec.height/2, rec.width, rec.height/2);
@@ -64,30 +60,6 @@ public class WMTable extends JPanel {
 		}
 
 		super.paint(g);
-	}
-
-	public static void main(String[] argv) {
-		JFrame frame = new JFrame();
-
-		ArrayList<String> names = new ArrayList<String>();
-		ArrayList<Integer> values = new ArrayList<Integer>();
-		names.add(Constants.CHIN_TOTAL);
-		names.add(Constants.CHIN_RECITED);
-		names.add(Constants.CHIN_CORRECT);
-		names.add(Constants.CHIN_WRONG);
-		names.add(Constants.CHIN_RATE);
-		values.add(323);
-		values.add(122);
-		values.add(110);
-		values.add(12);
-		values.add(86);
-
-		WMTable bar = new WMTable(values, names);
-		bar.setBounds(0, 0, 200, 200);
-		frame.getContentPane().add(bar);
-
-		frame.setSize(300, 200);
-		frame.setVisible(true);
 	}
 
 }

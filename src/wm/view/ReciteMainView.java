@@ -282,8 +282,8 @@ public class ReciteMainView extends WMView {
 		dictSizeLabel.setText(String.valueOf(size));
 		totalNumLabel.setText(String.valueOf(totalSize));
 
-		int rate = (int) (((double) size / (double) totalSize) * 100);
-		sizeRateLabel.setText(String.format("%d%%", rate));
+		double rate = (double) (((double) size / (double) totalSize) * 100);
+		sizeRateLabel.setText(String.format("%.2f%%", rate));
 		pie.createPie(new int[] { size, totalSize - size });
 		piePanel.repaint();
 	}

@@ -197,7 +197,7 @@ public class Dictionary extends Observable {
 	 * @param key
 	 *            The key of the start word
 	 */
-	public void setStartWord(String key) {
+	public int setStartWord(String key) {
 		int index = 0;
 		for (int i = 0; i < words.size(); i++) {
 			if (words.get(i).getKey().equals(key)) {
@@ -206,6 +206,7 @@ public class Dictionary extends Observable {
 			}
 		}
 		startWord = index;
+		return index;
 	}
 
 	/**

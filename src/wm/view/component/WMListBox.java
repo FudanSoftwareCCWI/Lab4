@@ -48,7 +48,7 @@ public class WMListBox extends JComponent {
 		this.width = width;
 		this.height = height;
 		this.isComboShow = false;
-
+		this.currentIndex = -1;
 		initWMComboBox();
 		initComboListener();
 	}
@@ -101,12 +101,14 @@ public class WMListBox extends JComponent {
 		WMBlock tempBlock;
 		String tempname;
 		Iterator<String> it = dictist.iterator();
+		int i = 0;
 		while (it.hasNext()) {
 			tempname = it.next();
 			tempBlock = new WMBlock(width, 20, 1, 1);
 			tempBlock.addLeftLabel(tempname, Constants.LABEL_TINY);
 			tempBlock.setColor(Constants.LIGHTGREEN, Constants.NOTEALPHA);
 			comboBox.add(tempBlock);
+			i++;
 		}
 		comboBox.setPreferredSize(new Dimension(scrollPane.getWidth() - 50,
 				dictist.size() * (Constants.LABEL_SMALL + 3)));
@@ -125,34 +127,21 @@ public class WMListBox extends JComponent {
 	}
 
 	private void setListBlockListener() {
-		for (final Component block : comboBox.getComponents()) {
-			block.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent arg0) {
-					int oldIndex = currentIndex;
-					setCurrentBlock((WMBlock) block);
-					field.setText(dictist.get(currentIndex));
-					// Fire chosen
-					System.out.println("WMListBox:" +Constants.PROPERTY_DICTCHANGE);
-					WMListBox.this.firePropertyChange(
-							Constants.PROPERTY_DICTCHANGE,
-							new Integer(oldIndex), new Integer(currentIndex));
-				}
-			});
+		int i = 0;
+		for (Component block : comboBox.getComponents()) {
+			block.addMouseListener(new WMMouseClickListener(i));
+			i++;
 		}
 	}
 
 	private void setCurrentBlock(WMBlock clickedBlock) {
 		Component[] siblings = comboBox.getComponents();
-		int i = 0;
 		for (Component block : siblings) {
-			if (clickedBlock.equals((WMBlock) block)) {
-				this.currentIndex = i;
+			if (block.equals(clickedBlock)) {
 				continue;
 			}
 			((WMBlock) block).release();
 			((WMBlock) block).paintLocal();
-			i++;
 		}
 		clickedBlock.paintPress();
 		clickedBlock.fix();
@@ -165,6 +154,25 @@ public class WMListBox extends JComponent {
 
 	protected void setText(String text) {
 		field.setText(text);
+	}
+
+	class WMMouseClickListener extends MouseAdapter {
+
+		private int index;
+
+		WMMouseClickListener(int index) {
+			super();
+			this.index = index;
+		}
+
+		@Override
+		public void mouseClicked(MouseEvent arg0) {
+			currentIndex = index;
+			setCurrentBlock((WMBlock) comboBox.getComponents().clone()[index]);
+			field.setText(dictist.get(currentIndex));
+			// Fire chosen
+			WMListBox.this.firePropertyChange(Constants.PROPERTY_DICTCHANGE, new Integer(-1), new Integer(index));
+		}
 	}
 
 }
