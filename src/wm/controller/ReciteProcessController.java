@@ -49,6 +49,7 @@ public class ReciteProcessController implements IReciteProcessController {
 	@Override
 	public void startByFirstWord() {
 		model.setStartWord(0);
+		this.switchToSizeSelect();
 	}
 
 	/** (non-Javadoc)
@@ -57,6 +58,7 @@ public class ReciteProcessController implements IReciteProcessController {
 	@Override
 	public void startByLastTime() {
 		model.setStartWord(model.getPresentWord()+1);
+		this.switchToSizeSelect();
 	}
 
 	/** (non-Javadoc)
@@ -64,7 +66,8 @@ public class ReciteProcessController implements IReciteProcessController {
 	 */
 	@Override
 	public void startByInput(String key) {
-		model.setStartWord(0);//TODO
+		model.setStartWord(key);
+		this.switchToSizeSelect();
 	}
 
 	/** (non-Javadoc)
@@ -165,6 +168,7 @@ public class ReciteProcessController implements IReciteProcessController {
 	 */
 	@Override
 	public void switchToHome() {
+		this.currentView=startSelectView;
 		delegate.getHome();
 	}
 

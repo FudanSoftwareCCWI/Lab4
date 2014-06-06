@@ -17,6 +17,7 @@ import wm.model.Dictionaries;
 import wm.model.Dictionary;
 import wm.model.dao.DictionaryDAO;
 import wm.model.dao.DictionaryImpl;
+import wm.model.dao.RecordImpl;
 import wm.view.RootWindow;
 
 /**
@@ -70,7 +71,7 @@ public class RootDelegate implements SwitchDelegate {
 	@Override
 	public void getReciteMain() {
 		if(reciteMainController==null){
-			reciteMainController=new ReciteMainController(this);
+			reciteMainController=new ReciteMainController(this,this.preLoadModel);
 		}
 		currentController=reciteMainController;
 		rootWindow.showView(currentController.getView());
@@ -78,9 +79,7 @@ public class RootDelegate implements SwitchDelegate {
 
 	@Override
 	public void getRecord() {
-		if(recordController==null){
-			recordController=new RecordController(this, preLoadModel);
-		}
+		recordController=new RecordController(this, new RecordImpl(preLoadModel));
 		currentController=recordController;
 		rootWindow.showView(currentController.getView());
 	}

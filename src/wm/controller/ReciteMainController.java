@@ -10,10 +10,11 @@ public class ReciteMainController implements IReciteMainController {
 	ReciteMainView view;
 	Dictionaries model;
 	
-	public ReciteMainController(SwitchDelegate delegate) {
+	public ReciteMainController(SwitchDelegate delegate,Dictionaries model) {
 		super();
 		this.delegate = delegate;
 		this.view = new ReciteMainView(this);
+		this.model=model;
 		this.showDictionaryDetail(0);
 		view.setListPanelContent(model.getDictionaryNames());
 	}

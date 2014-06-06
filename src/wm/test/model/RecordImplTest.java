@@ -30,9 +30,9 @@ public class RecordImplTest {
 	 */
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		recordHolder = new RecordImpl();
 		DictionaryImpl reader = new DictionaryImpl();
 		dic = reader.selectAllDictionay("dictionary.txt");
+		recordHolder = new RecordImpl(dic);
 	}
 
 	/**

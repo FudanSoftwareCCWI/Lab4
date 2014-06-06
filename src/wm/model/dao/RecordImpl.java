@@ -3,24 +3,18 @@
  */
 package wm.model.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import wm.model.Dictionaries;
-import wm.model.Dictionary;
 import wm.model.Record;
 
 public class RecordImpl implements RecordDAO {
-	private Dictionaries dic;
 	private Record allRecord;
 	private List<Record> singleRecord;
 	
-	public RecordImpl(){
-		DictionaryImpl reader = new DictionaryImpl();
-		singleRecord = new ArrayList<Record>();
-		dic = reader.selectAllDictionay("dictionary.txt");
+	public RecordImpl(Dictionaries dic){
 		allRecord = dic.produceRecord();
-		for(int i = 0; i < dic.getTotalSize(); i++){
+		for(int i = 0; i < dic.getDicNumber(); i++){
 			singleRecord.add(dic.getDictionary(i).produceRecord());
 		}
 	}
@@ -43,6 +37,10 @@ public class RecordImpl implements RecordDAO {
 	@Override
 	public List<Record> selectAllRecordList() {		
 		return singleRecord;
+	}
+
+	public Record selectRecordByIndex(int index) {
+		return singleRecord.get(index);
 	}
 
 

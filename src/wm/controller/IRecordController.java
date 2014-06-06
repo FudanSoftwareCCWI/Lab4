@@ -21,12 +21,6 @@ public interface IRecordController extends WMController {
 	 * show all dictionaries record
 	 */
 	public void showRecordByPie();
-
-	/**
-	 * 
-	 * @param index
-	 */
-	public void showRecordByBar(int index);
 	
 	/**
 	 * show all dictionaries record
