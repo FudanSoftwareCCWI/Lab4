@@ -33,25 +33,25 @@ public interface SwitchDelegate {
 	 * 
 	 * @param model
 	 */
-	public void getStartWordDefine(Dictionary model);
+	public void getStartWordDefine();
 
 	/**
 	 * 
 	 * @param model
 	 */
-	public void getSizeSelect(Dictionary model);
+	public void getSizeSelect();
 
 	/**
 	 * 
 	 * @param model
 	 */
-	public void getReciteWord(Dictionary model);
+	public void getReciteWord();
 
 	/**
 	 * 
 	 * @param model
 	 */
-	public void getReciteRecord(Dictionary model);
+	public void getReciteRecord();
 
 	/**
 	 * 

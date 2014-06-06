@@ -99,29 +99,21 @@ public class DictionaryTest {
 	}
 
 	/**
-	 * Test method for {@link wm.model.Dictionary#getNextKey()}.
+	 * Test method for {@link wm.model.Dictionary#getKey()}.
 	 */
 	@Test
-	public void testGetNextKey() {
-		assertEquals("abandon", dictionary1.getNextKey());
+	public void testGetKey() {
+		assertEquals("abandon", dictionary1.getKey(0));
 	}
 
 	/**
-	 * Test method for {@link wm.model.Dictionary#getNextMeaning()}.
+	 * Test method for {@link wm.model.Dictionary#getMeaning()}.
 	 */
 	@Test
-	public void testGetNextMeaning() {
-		assertEquals("遵守", dictionary2.getNextMeaning());
+	public void testGetMeaning() {
+		assertEquals("遵守", dictionary2.getMeaning(4));
 	}
 
-	/**
-	 * Test method for {@link wm.model.Dictionary#calAvailableSize()}.
-	 */
-	@Test
-	public void testCalAvailableSize() {
-		dictionary2.setStartWord("abide");
-		assertEquals(6, dictionary2.calAvailableSize());
-	}
 
 	/**
 	 * Test method for {@link wm.model.Dictionary#produceRecord()}.
