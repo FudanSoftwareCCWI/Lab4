@@ -74,6 +74,9 @@ public class Constants {
 	public final static String CHIN_RATE = "正确率";
 	public final static String CHIN_CORRECT_WRONG_RATIO = "<html><span style='background: #FFFFFF;color: #599639'>正确</span>与<span style='background: #ABE08E; color: white'>错误</span>比例</html>";
 	public final static String CHIN_RECITE_PIE = "<html><span style='background: #FFFFFF;color: #599639'>已背</span>饼图</html>";
+	public final static String CHIN_CORRECT_WRONG_RATIO_BAR = "正确率(%)";
+	public final static String CHIN_RECITE_BAR = "已背柱状图";
+	
 	public final static String CHIN_SELECTED = "所选单词数";
 	/* Fire property name */
 	public final static String PROPERTY_DICTCHANGE = "DictChange";
