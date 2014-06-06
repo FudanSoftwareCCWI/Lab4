@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import wm.config.Constants;
@@ -183,7 +184,7 @@ public class RecordView extends WMView {
 	 */
 	public void setCorrectPercentage(double percentage) {
 		dictRateValue = (int) (percentage * 100.00);
-		dictRateLabel.setText(String.format("<html>%s<br>%.2f</html>", Constants.CHIN_RATE,percentage*100.00));
+		dictRateLabel.setText(String.format("<html>%s<br>%.2f%%</html>", Constants.CHIN_RATE,percentage*100.00));
 //		dictRateLabel.setText("");
 //		dictRateLabel.setLayout(new GridLayout(2, 1));
 //		dictRateLabel
@@ -336,14 +337,20 @@ public class RecordView extends WMView {
 				Constants.LABEL_TINY);
 		dictWrongLabel = new WMLabel(Constants.CHIN_WRONG, Constants.LABEL_TINY);
 		dictRateLabel = new WMLabel(Constants.CHIN_RATE, Constants.LABEL_TINY);
+		
+		dictSizeLabel.setHorizontalAlignment(JLabel.LEFT);
+		dictRecitedLabel.setHorizontalAlignment(JLabel.LEFT);
+		dictCorrectLabel.setHorizontalAlignment(JLabel.LEFT);
+		dictWrongLabel.setHorizontalAlignment(JLabel.LEFT);
+		dictRateLabel.setHorizontalAlignment(JLabel.LEFT);
 
 		infoPanel.add(dictSizeLabel);
 		infoPanel.add(dictRecitedLabel);
 		infoPanel.add(dictCorrectLabel);
 		infoPanel.add(dictWrongLabel);
 		infoPanel.add(dictRateLabel);
-		infoPanel.setBounds(0, Constants.UNITHEIGHT - PADDING / 2, 2
-				* Constants.UNITHEIGHT + PADDING, Constants.GLOBAL_HEIGHT - 2
+		infoPanel.setBounds(Constants.UNITHEIGHT, Constants.UNITHEIGHT - PADDING / 2, 2
+				* Constants.UNITHEIGHT, Constants.GLOBAL_HEIGHT - 2
 				* Constants.UNITHEIGHT - 2 * PADDING);
 
 		centerPanel.add(infoPanel);
@@ -536,7 +543,7 @@ public class RecordView extends WMView {
 						} else if (currentBtnIndex == INPIE) {
 							controller.showRecordByPie(newValue);
 						} else if (currentBtnIndex == INBAR) {
-							controller.showRecordByBar();
+							controller.showRecordByBar(currentDicIndex);
 						}
 					}
 				});
