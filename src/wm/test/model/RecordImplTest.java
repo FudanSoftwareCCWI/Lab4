@@ -32,7 +32,7 @@ public class RecordImplTest {
 	public static void setUpBeforeClass() throws Exception {
 		DictionaryImpl reader = new DictionaryImpl();
 		dic = reader.selectAllDictionay("dictionary.txt");
-		recordHolder = new RecordImpl(dic);
+		recordHolder = new RecordImpl();
 	}
 
 	/**
@@ -43,35 +43,5 @@ public class RecordImplTest {
 		assertNotNull(recordHolder);
 	}
 
-	/**
-	 * Test method for {@link wm.model.dao.RecordImpl#selectAllRecord()}.
-	 */
-	@Test
-	public void testSelectAllRecord() {
-		assertEquals(dic.produceRecord().toString(), recordHolder
-				.selectAllRecord().toString());
-	}
-
-	/**
-	 * Test method for
-	 * {@link wm.model.dao.RecordImpl#selectRecordByName(java.lang.String)}.
-	 */
-	@Test
-	public void testSelectRecordByName() {
-		assertEquals(dic.getDictionary(0).produceRecord().toString(),
-				recordHolder.selectRecordByName("Dictionary A").toString());
-	}
-
-	/**
-	 * Test method for {@link wm.model.dao.RecordImpl#selectAllRecordList()}.
-	 */
-	@Test
-	public void testSelectAllRecordList() {
-		List<Record> allRecord = recordHolder.selectAllRecordList();
-		assertEquals(26, allRecord.size());
-		for (int i = 0; i < 26; i++) {
-			assertEquals(dic.getDictionary(i).produceRecord().toString(),
-					allRecord.get(i).toString());
-		}
-	}
+	
 }

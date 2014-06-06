@@ -23,7 +23,6 @@ public class ReciteMainController implements IReciteMainController {
 	public void showDictionaryDetail(int index) {
 		int size = model.getDictionary(index).getSize();
 		int totalSize = model.getTotalSize();
-
 		view.setNameLabelText(model.getDictionary(index).getName());
 		view.setSizeLabelText(size);
 		view.setTotalSizeLabelText(totalSize);

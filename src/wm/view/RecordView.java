@@ -135,13 +135,6 @@ public class RecordView extends WMView {
 	public void setSizeText(int size) {
 		dictSizeValue = size;
 		dictSizeLabel.setText(String.format("<html>%s<br>%d</html>", Constants.CHIN_TOTAL,size));
-//		dictSizeLabel.setText("");
-//		dictSizeLabel.removeAll();
-//		dictSizeLabel.setLayout(new GridLayout(2, 1));
-//		dictSizeLabel.add(new WMLabel(Constants.CHIN_RECITED,
-//				Constants.LABEL_TINY));
-//		dictSizeLabel.add(new WMLabel(String.valueOf(size),
-//				Constants.LABEL_TINY));
 	}
 
 	/**
@@ -567,7 +560,7 @@ public class RecordView extends WMView {
 		} else if (currentBtnIndex == INPIE) {
 			controller.showRecordByPie(currentDicIndex);
 		} else if (currentBtnIndex == INBAR) {
-			controller.showRecordByBar(currentDicIndex);
+			controller.showRecordByBar();
 		}
 
 	}
