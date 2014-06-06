@@ -60,6 +60,7 @@ public class RecordController implements IRecordController {
 	
 	@Override
 	public void showRecordByBar(int index) {
+		System.out.println("showRecordByBar: "+index);
 		Record dictrecord=model.selectRecordByIndex(index);
 		List<Record> records=model.selectAllRecordList();
 		List<Integer> recited=new ArrayList<Integer>();
