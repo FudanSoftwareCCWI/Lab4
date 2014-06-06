@@ -9,22 +9,25 @@ public class ReciteMainController implements IReciteMainController {
 	SwitchDelegate delegate;
 	ReciteMainView view;
 	Dictionaries model;
-	
-	public ReciteMainController(SwitchDelegate delegate) {
+
+	public ReciteMainController(SwitchDelegate delegate, Dictionaries model) {
 		super();
 		this.delegate = delegate;
 		this.view = new ReciteMainView(this);
-		this.showDictionaryDetail(0);
+		this.model = model;
 		view.setListPanelContent(model.getDictionaryNames());
+		this.showDictionaryDetail(0);
 	}
 
 	@Override
 	public void showDictionaryDetail(int index) {
-		int size=model.getDictionary(index).getSize();
-		int totalSize=model.getTotalSize();
+		int size = model.getDictionary(index).getSize();
+		int totalSize = model.getTotalSize();
+		view.setNameLabelText(model.getDictionary(index).getName());
 		view.setSizeLabelText(size);
 		view.setTotalSizeLabelText(totalSize);
 		view.setPieIcon(size, totalSize);
+		view.setCurrentDictIndex(index);
 	}
 
 	@Override
@@ -42,5 +45,4 @@ public class ReciteMainController implements IReciteMainController {
 		return view;
 	}
 
-	
 }

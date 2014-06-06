@@ -22,7 +22,7 @@ public class DictionaryImpl implements DictionaryDAO {
 		List<Dictionary> dic = new ArrayList<Dictionary>();
 		List<List<Word>> tempWords = new ArrayList<List<Word>>();
 		for (int i = 0; i < DICNUMBER; i++) {
-			tempWords.add( new ArrayList<Word>() );
+			tempWords.add(new ArrayList<Word>());
 		}
 		int index = 0;
 
@@ -39,6 +39,7 @@ public class DictionaryImpl implements DictionaryDAO {
 					new FileReader(allDic));
 
 			if (logfile.exists()) {
+				System.out.println(0);
 				BufferedReader logReader = new BufferedReader(new FileReader(
 						logfile));
 				while ((d = dicReader.readLine()) != null
@@ -65,6 +66,7 @@ public class DictionaryImpl implements DictionaryDAO {
 				}
 
 			} else {
+				System.out.println(1);
 				while ((d = dicReader.readLine()) != null) {
 					entry = d.split("\\s+");
 					index = entry[0].charAt(0) - 'a';
@@ -99,7 +101,7 @@ public class DictionaryImpl implements DictionaryDAO {
 				logfile.createNewFile();
 			}
 			PrintWriter logWriter = new PrintWriter(logfile);
-			for (int i = 0; i < dictionaries.getTotalSize(); i++) {
+			for (int i = 0; i < dictionaries.getDicNumber(); i++) {
 				dic = dictionaries.getDictionary(i);
 				wordSize = dic.getSize();
 				for (int j = 0; j < wordSize; j++) {

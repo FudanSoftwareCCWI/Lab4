@@ -70,5 +70,8 @@ public class Constants {
 	public final static String CHIN_RATE = "正确率";
 	public final static String CHIN_CORRECT_WRONG_RATIO = "正确与错误比例";
 	public final static String CHIN_RECITE_PIE = "已背饼图";
+	public final static String CHIN_SELECTED = "所选单词数";
+	/* Fire property name */
+	public final static String PROPERTY_DICTCHANGE = "DictChange";
 
 }

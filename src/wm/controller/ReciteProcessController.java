@@ -3,7 +3,11 @@
  */
 package wm.controller;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
+
+import javax.swing.Timer;
 
 import wm.SwitchDelegate;
 import wm.model.Dictionary;
@@ -17,7 +21,7 @@ import wm.view.WMView;
 
 /**
  * @author hewenqi
- *
+ * 
  */
 public class ReciteProcessController implements IReciteProcessController {
 	SwitchDelegate delegate;
@@ -28,139 +32,185 @@ public class ReciteProcessController implements IReciteProcessController {
 	ReciteRecordView reciteRecordView;
 	WMView currentView;
 	Dictionary model;
-	
-	
-	
+	Timer timer;
+
+	// recite word control
+	private int startWord;
+	private int presentWord;
+	private int reciteSize;
+
 	public ReciteProcessController(SwitchDelegate delegate, Dictionary model) {
 		super();
 		this.delegate = delegate;
 		this.model = model;
-		this.startSelectView=new StartSelectView(this);
-		this.startWordDefineView=new StartWordDefineView(this);
-		this.sizeSelectView=new SizeSelectView(this);
-		this.reciteWordView=new ReciteWordView(this);
-		this.reciteRecordView=new ReciteRecordView(this);
-		this.currentView=startSelectView;
+		this.startSelectView = new StartSelectView(this);
+		this.currentView = startSelectView;
 	}
 
-	/** (non-Javadoc)
+	/**
+	 * (non-Javadoc)
+	 * 
 	 * @see wm.controller.IReciteProcessController#startByFirstWord()
 	 */
 	@Override
 	public void startByFirstWord() {
-		model.setStartWord(0);
+		this.startWord=0;
+		this.presentWord=this.startWord-1;
+		this.switchToSizeSelect();
 	}
 
-	/** (non-Javadoc)
+	/**
+	 * (non-Javadoc)
+	 * 
 	 * @see wm.controller.IReciteProcessController#startByLastTime()
 	 */
 	@Override
 	public void startByLastTime() {
-		model.setStartWord(model.getPresentWord()+1);
+		this.startWord=model.getPresentWord()+1;
+		this.presentWord=this.startWord-1;
+		this.switchToSizeSelect();
 	}
 
-	/** (non-Javadoc)
+	/**
+	 * (non-Javadoc)
+	 * 
 	 * @see wm.controller.IReciteProcessController#startByInput(java.lang.String)
 	 */
 	@Override
 	public void startByInput(String key) {
-		model.setStartWord(0);//TODO
+		this.startWord=model.getWordIndex(key);
+		this.presentWord=this.startWord-1;
+		this.switchToSizeSelect();
 	}
 
-	/** (non-Javadoc)
-	 * @see wm.controller.IReciteProcessController#getAvailableWordList(java.lang.String)
-	 */
-	@Override
-	public List<String> getAvailableWordList(String prefix) {
-		List<String> words=model.getMatchWords(prefix);
-//		startWordDefineView.setWordListTextarea(words);
-		return words;
-	}
-
-	/** (non-Javadoc)
-	 * @see wm.controller.IReciteProcessController#getAvailableSize()
-	 */
-	@Override
-	public int getAvailableSize() {
-		return model.calAvailableSize();
-	}
-
-	/** (non-Javadoc)
-	 * @see wm.controller.IReciteProcessController#setReciteSize(int)
-	 */
-	@Override
-	public void setReciteSize(int size) {
-		model.setRecitedSize(size);
-	}
-
-	/** (non-Javadoc)
-	 * @see wm.controller.IReciteProcessController#reciteNextWord()
-	 */
-	@Override
-	public void reciteNextWord() {
-		String meaning = model.getNextMeaning();
-		reciteWordView.setMeaningText(meaning);	
-	}
-
-	/** (non-Javadoc)
-	 * @see wm.controller.IReciteProcessController#checkCorrect()
-	 */
-	@Override
-	public void checkCorrect(String input) {
-		String key = model.getNextKey();
-		if(key.equalsIgnoreCase(key)){
-			reciteWordView.setCorrectInfoText("对");
-		}else{
-			reciteWordView.setCorrectInfoText("不对");
-		}
-	}
-
-	/** (non-Javadoc)
-	 * @see wm.controller.IReciteProcessController#getReciteRecord()
-	 */
-	@Override
-	public Record getReciteRecord() {
-		Record record=model.produceRecord(model.getStartWord(), model.getPresentWord());
-		return record;
-	}
-
-	/** (non-Javadoc)
+	/**
+	 * (non-Javadoc)
+	 * 
 	 * @see wm.controller.IReciteProcessController#switchToStartWordDefine()
 	 */
 	@Override
 	public void switchToStartWordDefine() {
-		this.currentView=startWordDefineView;
-		delegate.getStartWordDefine(model);
+		startWordDefineView=new StartWordDefineView(this);
+		this.currentView = startWordDefineView;
+		delegate.getStartWordDefine();
 	}
-
-	/** (non-Javadoc)
+	
+	/**
+	 * (non-Javadoc)
+	 * 
 	 * @see wm.controller.IReciteProcessController#switchToSizeSelect()
 	 */
+	private void switchToSizeSelect() {
+		sizeSelectView=new SizeSelectView(this);
+		this.currentView = sizeSelectView;
+		delegate.getSizeSelect();
+	}
+	
+	/**
+	 * (non-Javadoc)
+	 * 
+	 * @see wm.controller.IReciteProcessController#getAvailableWordList(java.lang.String)
+	 */
 	@Override
-	public void switchToSizeSelect() {
-		this.currentView=sizeSelectView;
-		delegate.getSizeSelect(model);
+	public List<String> getAvailableWordList(String prefix) {//TODO
+		List<String> words = model.getMatchWords(prefix);
+		return words;
 	}
 
-	/** (non-Javadoc)
+	/**
+	 * (non-Javadoc)
+	 * 
+	 * @see wm.controller.IReciteProcessController#getAvailableSize()
+	 */
+	@Override
+	public int getAvailableSize() {//TODO
+		return model.calAvailableSize(startWord);
+	}
+
+	/**
+	 * (non-Javadoc)
+	 * 
+	 * @see wm.controller.IReciteProcessController#setReciteSize(int)
+	 */
+	@Override
+	public void setReciteSize(int size) {
+		this.reciteSize = size;
+		this.switchToReciteWord();
+	}
+
+	/**
+	 * (non-Javadoc)
+	 * 
+	 * @see wm.controller.IReciteProcessController#checkCorrect()
+	 */
+	@Override
+	public void checkCorrect(String input) {
+		String key = model.getKey(presentWord);
+		if (key.equalsIgnoreCase(input)) {
+			model.setWordRecited(this.presentWord);
+			model.setWordCorrect(this.presentWord,true);
+			reciteWordView.setCorrectInfoText("对");
+		} else {
+			model.setWordRecited(this.presentWord);
+			model.setWordCorrect(this.presentWord,false);
+			reciteWordView.setCorrectInfoText("不对");
+		}
+		//wait for one minute to recite next word
+		timer = new Timer(1000, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				reciteNextWord();
+				timer.stop();
+			}
+
+		});
+		timer.start();
+	}
+
+	private void reciteNextWord() {
+		if (this.presentWord-this.startWord+1 == reciteSize) {// check whether meets the reciteSize 
+			this.switchToReciteRecord();
+		} else {// else
+			presentWord++;
+			model.setPresentWord(presentWord);
+			reciteWordView.setMeaningText(model.getMeaning(presentWord));
+			reciteWordView.emptyInputField();
+		}
+	}
+
+	/**
+	 * (non-Javadoc)
+	 * 
 	 * @see wm.controller.IReciteProcessController#switchToReciteWord()
 	 */
-	@Override
-	public void switchToReciteWord() {
-		this.currentView=reciteWordView;
-		delegate.getReciteRecord(model);
+	private void switchToReciteWord() {
+		reciteWordView = new ReciteWordView(this);
+		this.currentView = reciteWordView;
+		this.reciteNextWord();
+		delegate.getReciteRecord();
 	}
 
-	/** (non-Javadoc)
+	/**
+	 * (non-Javadoc)
+	 * 
 	 * @see wm.controller.IReciteProcessController#switchToReciteRecord()
 	 */
-	@Override
-	public void switchToReciteRecord() {
-		this.currentView=reciteRecordView;
-		delegate.getReciteRecord(model);
+	private void switchToReciteRecord() {
+		reciteRecordView=new ReciteRecordView(this);
+		this.currentView = reciteRecordView;
+		Record record=model.produceRecord(this.startWord,this.presentWord);
+		reciteRecordView.setNameText(model.getName());
+		reciteRecordView.setRecitedSizeText(this.reciteSize);
+		reciteRecordView.setCorrectCountText(record.getCorrect());
+		reciteRecordView.setIncorrectCountText(record.getWrong());
+		reciteRecordView.setCorrectPrecentageText(record.getCorrectRate());
+		reciteRecordView.showTablePanel();
+		delegate.getReciteRecord();
 	}
 
-	/** (non-Javadoc)
+	/**
+	 * (non-Javadoc)
+	 * 
 	 * @see wm.controller.IReciteProcessController#switchToHome()
 	 */
 	@Override
@@ -173,5 +223,4 @@ public class ReciteProcessController implements IReciteProcessController {
 		return currentView;
 	}
 
-	
 }

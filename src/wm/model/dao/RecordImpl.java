@@ -7,43 +7,37 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wm.model.Dictionaries;
-import wm.model.Dictionary;
 import wm.model.Record;
+import wm.model.Records;
 
 public class RecordImpl implements RecordDAO {
-	private Dictionaries dic;
-	private Record allRecord;
-	private List<Record> singleRecord;
-	
-	public RecordImpl(){
-		DictionaryImpl reader = new DictionaryImpl();
-		singleRecord = new ArrayList<Record>();
-		dic = reader.selectAllDictionay("dictionary.txt");
-		allRecord = dic.produceRecord();
-		for(int i = 0; i < dic.getTotalSize(); i++){
-			singleRecord.add(dic.getDictionary(i).produceRecord());
+	private final static int RECORDNUMBER = 26;
+
+	@Override
+	public Records selectAllRecord(Dictionaries dic) {	
+		List<Record> r = new ArrayList<Record>();
+		int totalSize = 0;
+		int recitedSize = 0;
+		int correct = 0;
+		for(int i = 0; i < dic.getDicNumber(); i++){
+			Record record = dic.getDictionary(i).produceRecord();
+			r.add(record);
+			totalSize += record.getTotalSize();
+			recitedSize += record.getRecitedSize();
+			correct += record.getCorrect();
 		}
+		Record all = new Record("All Records", totalSize, recitedSize, correct);
+		return new Records(r, all);
 	}
 
 	@Override
-	public Record selectAllRecord() {	
-		return allRecord;
+	public void updateAllRecord(Dictionaries dic) {
+		// TODO Auto-generated method stub
+		
 	}
 
-	@Override
-	public Record selectRecordByName(String name) {
-		for(Record r: singleRecord){
-			if(r.getName().equals(name)){
-				return r;
-			}				
-		}
-		return null;
-	}
 
-	@Override
-	public List<Record> selectAllRecordList() {		
-		return singleRecord;
-	}
+
 
 
 	

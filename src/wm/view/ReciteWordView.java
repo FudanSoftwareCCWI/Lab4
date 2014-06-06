@@ -25,7 +25,6 @@ public class ReciteWordView extends ReciteProcessView {
 	 * 
 	 */
 	private static final long serialVersionUID = 5402598615372695937L;
-	private IReciteProcessController controller;
 	private WMLabel paraphrase;
 	private WMLabel resultHint;
 	private JTextField inputField;
@@ -40,9 +39,9 @@ public class ReciteWordView extends ReciteProcessView {
 		setHeadLineText(Constants.CHIN_RECITING);
 		hideTip();
 
-		paraphrase = new WMLabel("n. 释义", Constants.LABEL_MIDDLE);
+		paraphrase = new WMLabel("", Constants.LABEL_MIDDLE);
 		inputField = new JTextField();
-		resultHint = new WMLabel("结果", Constants.LABEL_SMALL);
+		resultHint = new WMLabel("", Constants.LABEL_SMALL);
 
 		inputField.setBackground(new Color(0, 0, 0, 0));
 		inputField.setForeground(Color.WHITE);
@@ -50,7 +49,6 @@ public class ReciteWordView extends ReciteProcessView {
 		inputField.setFont(new Font(Constants.LABEL_FONT, Font.PLAIN,
 				Constants.LABEL_MIDDLE));
 		inputField.setHorizontalAlignment(JTextField.CENTER);
-		resultHint.setVisible(false);
 
 		centerPanel.add(paraphrase);
 		centerPanel.add(inputField);
@@ -74,7 +72,6 @@ public class ReciteWordView extends ReciteProcessView {
 				if(evt.getKeyChar() == KeyEvent.VK_ENTER){
 					inputField.setEditable(false);
 					controller.checkCorrect(inputField.getText());
-					
 				}
 			}
 		});
@@ -86,7 +83,6 @@ public class ReciteWordView extends ReciteProcessView {
 	 */
 	public void setCorrectInfoText(String info) {
 		resultHint.setText(info);
-		resultHint.setVisible(true);
 	}
 
 	/**
@@ -95,7 +91,6 @@ public class ReciteWordView extends ReciteProcessView {
 	 */
 	public void setMeaningText(String meaning) {
 		paraphrase.setText(meaning);
-		resultHint.setVisible(false);
 	}
 	
 	/**
@@ -103,7 +98,10 @@ public class ReciteWordView extends ReciteProcessView {
 	 */
 	public void emptyInputField(){
 		inputField.setText("");
+		resultHint.setText("");
 		inputField.setEditable(true);
+		inputField.repaint();
+		resultHint.repaint();
 	}
 
 }

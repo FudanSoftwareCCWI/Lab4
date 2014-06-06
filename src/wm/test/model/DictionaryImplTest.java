@@ -38,8 +38,8 @@ public class DictionaryImplTest {
 	@Test
 	public void testSelectAllDictionay() {
 		Dictionary dictionary = dic.getDictionary(0);
-		assertEquals(26, dic.getTotalSize());
-		assertEquals("abandon", dictionary.getNextKey());
+		assertEquals(26, dic.getDicNumber());
+		assertEquals("abandon", dictionary.getKey(0));
 		dictionary.setWordRecited();
 		dictionary.setWordCorrect(true);
 	}

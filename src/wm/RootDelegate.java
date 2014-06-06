@@ -5,18 +5,15 @@ package wm;
 
 import wm.config.Configuration;
 import wm.controller.HomeController;
-import wm.controller.IHomeController;
-import wm.controller.IReciteMainController;
-import wm.controller.IReciteProcessController;
-import wm.controller.IRecordController;
 import wm.controller.ReciteMainController;
 import wm.controller.ReciteProcessController;
 import wm.controller.RecordController;
 import wm.controller.WMController;
 import wm.model.Dictionaries;
-import wm.model.Dictionary;
 import wm.model.dao.DictionaryDAO;
 import wm.model.dao.DictionaryImpl;
+import wm.model.dao.RecordDAO;
+import wm.model.dao.RecordImpl;
 import wm.view.RootWindow;
 
 /**
@@ -29,10 +26,6 @@ import wm.view.RootWindow;
 public class RootDelegate implements SwitchDelegate {
 	private RootWindow rootWindow;
 	private WMController currentController;
-	private IHomeController homeController;
-	private IReciteMainController reciteMainController;
-	private IReciteProcessController reciteProcessController;
-	private IRecordController recordController;
 	private Dictionaries preLoadModel;
 	private Configuration conf;
 
@@ -60,57 +53,46 @@ public class RootDelegate implements SwitchDelegate {
 
 	@Override
 	public void getHome() {
-		if(homeController==null){
-			homeController=new HomeController(this);
-		}
-		currentController=homeController;
+		currentController=new HomeController(this);
 		rootWindow.showView(currentController.getView());
 	}
 
 	@Override
 	public void getReciteMain() {
-		if(reciteMainController==null){
-			reciteMainController=new ReciteMainController(this);
-		}
-		currentController=reciteMainController;
+		currentController=new ReciteMainController(this,this.preLoadModel);
 		rootWindow.showView(currentController.getView());
 	}
 
 	@Override
 	public void getRecord() {
-		if(recordController==null){
-			recordController=new RecordController(this, preLoadModel);
-		}
-		currentController=recordController;
+		RecordDAO recordDAO=new RecordImpl();
+		currentController=new RecordController(this, recordDAO.selectAllRecord(preLoadModel));
 		rootWindow.showView(currentController.getView());
 	}
 
 	@Override
 	public void getStartWordSelect(int index) {
-		if(reciteProcessController==null){
-			reciteProcessController=new ReciteProcessController(this, preLoadModel.getDictionary(index));
-		}
-		currentController=reciteProcessController;
+		currentController=new ReciteProcessController(this, preLoadModel.getDictionary(index));
 		rootWindow.showView(currentController.getView());
 	}
 
 	@Override
-	public void getStartWordDefine(Dictionary model) {
+	public void getStartWordDefine() {
 		rootWindow.showView(currentController.getView());
 	}
 
 	@Override
-	public void getSizeSelect(Dictionary model) {
+	public void getSizeSelect() {
 		rootWindow.showView(currentController.getView());
 	}
 
 	@Override
-	public void getReciteWord(Dictionary model) {
+	public void getReciteWord() {
 		rootWindow.showView(currentController.getView());
 	}
 
 	@Override
-	public void getReciteRecord(Dictionary model) {
+	public void getReciteRecord() {
 		rootWindow.showView(currentController.getView());
 	}
 

@@ -21,17 +21,17 @@ public interface IRecordController extends WMController {
 	 * show all dictionaries record
 	 */
 	public void showRecordByPie();
-
-	/**
-	 * 
-	 * @param index
-	 */
-	public void showRecordByBar(int index);
 	
 	/**
 	 * show all dictionaries record
 	 */
 	public void showRecordByBar();
+	
+	/**
+	 * show all dictionaries record
+	 * @param index
+	 */
+	void showRecordByBar(int index);
 	
 	/**
 	 * 
@@ -43,4 +43,5 @@ public interface IRecordController extends WMController {
 	 * 
 	 */
 	public void switchToHome();
+	
 }

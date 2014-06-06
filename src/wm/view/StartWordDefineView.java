@@ -33,7 +33,6 @@ import wm.view.component.WMBlock;
 import wm.view.component.WMLabel;
 import wm.controller.IReciteProcessController;
 
-
 /**
  * Class StartWordDefineView appears when the user want to start by the input
  * word, the user can input the word he want to start with and go to next stop.
@@ -47,7 +46,7 @@ public class StartWordDefineView extends ReciteProcessView {
 	 * 
 	 */
 	private static final long serialVersionUID = -3052539781672180377L;
-	
+
 	private WMComboBox searchBox;
 	private JButton nextBtn;
 	private WMLabel nextTip;
@@ -95,7 +94,7 @@ public class StartWordDefineView extends ReciteProcessView {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if (nextTag == TOSIZEVIEW) {
-					controller.switchToSizeSelect();
+					controller.startByInput(searchBox.getPrefix()); // version
 				} else if (nextTag == TOSTARTBYFIRSTVIEW) {
 					controller.startByFirstWord();
 				}
@@ -119,12 +118,14 @@ public class StartWordDefineView extends ReciteProcessView {
 		nextBtn.setVisible(true);
 		nextTip.setVisible(true);
 		nextTip.setText(Constants.CHIN_NO_MATCH);
+		nextTag = TOSTARTBYFIRSTVIEW;
 	}
 
 	public void validInput() {
 		nextBtn.setVisible(true);
 		nextTip.setVisible(true);
 		nextTip.setText(Constants.CHIN_NEXT_TO_CHOOSE_SIZE);
+		nextTag = TOSIZEVIEW;
 	}
 
 	protected class WMComboBox extends JComponent {
@@ -139,19 +140,9 @@ public class StartWordDefineView extends ReciteProcessView {
 
 		List<String> list;
 
-		ArrayList<String> result;
-
 		WMComboBox(int width, int height) {
 			this.width = width;
 			this.height = height;
-
-			result = new ArrayList<String>();
-			result.add("abandon");
-			result.add("abase");
-			result.add("abash");
-			result.add("abate");
-			result.add("abbreviate");
-			result.add("abdicate");
 
 			initWMComboBox();
 			initComboListener();
@@ -176,6 +167,7 @@ public class StartWordDefineView extends ReciteProcessView {
 			field.setBounds(0, 0, width, height);
 			scrollPane.setBounds(PADDING / 2, height + 5, width - PADDING,
 					2 * height);
+
 			hideComboBox();
 		}
 
@@ -190,8 +182,8 @@ public class StartWordDefineView extends ReciteProcessView {
 				public void caretUpdate(CaretEvent arg0) {
 					String text = getPrefix();
 					System.out.println(text);
-					// setComboBox(controller.getAvailableWordList(text)); TODO
-					setComboBox(result);
+					setComboBox(controller.getAvailableWordList(text));
+					// setComboBox(result);
 					if (list.contains(text)) {
 						validInput();
 					} else {
@@ -221,6 +213,7 @@ public class StartWordDefineView extends ReciteProcessView {
 					list.size() * (Constants.LABEL_SMALL + 3)));
 			setListBlockListener();
 			showComboBox();
+			comboBox.revalidate();
 		}
 
 		public void showComboBox() {

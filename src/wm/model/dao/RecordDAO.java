@@ -5,7 +5,9 @@ package wm.model.dao;
 
 import java.util.List;
 
+import wm.model.Dictionaries;
 import wm.model.Record;
+import wm.model.Records;
 
 /**
  * Do not need to implement yet.
@@ -23,21 +25,15 @@ public interface RecordDAO {
 	 * @param name
 	 * @return
 	 */
-	public Record selectAllRecord();
+	public Records selectAllRecord(Dictionaries dic);
 
 	/**
 	 * 
 	 * @param record
 	 * @return
 	 */
-	public Record selectRecordByName(String name);
+	public void updateAllRecord(Dictionaries dic);
 
-	/**
-	 * 
-	 * @param record
-	 * @return
-	 */
-	public List<Record> selectAllRecordList();
-
+	
 	
 }

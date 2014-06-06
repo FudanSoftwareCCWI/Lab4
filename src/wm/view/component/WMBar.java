@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -19,6 +20,18 @@ public class WMBar extends JPanel {
 	private int currentDicIndex;
 
 	public WMBar() {
+		ArrayList<Integer> a = new ArrayList<Integer>();
+		a.add(23);
+		a.add(42);
+		a.add(345);
+		a.add(23);
+		a.add(54);
+		a.add(324);
+		a.add(123);
+		a.add(222);
+		list = a;
+		currentDicIndex = 0;
+		createBar(a, 0);
 	}
 
 	public WMBar(List<Integer> list, int index) {
@@ -47,13 +60,19 @@ public class WMBar extends JPanel {
 		}
 
 		double curRatio = 0.0D;
-		int curPos = 0;
+		int curPos = 10;
 		int uintWidth = rec.width / list.size();
 		int barWidth = (int) (uintWidth * 0.6);
 		int padding = 15;
 		int unitHeight = rec.height - padding;
+		g.setColor(Color.WHITE);
+		g.drawLine(-1, 0, 0, rec.height);
+		g.drawLine(0, rec.height-1, rec.width, rec.height);
+		
 		for (int i = 0; i < list.size(); i++) {
 			g.setColor(Constants.NOTEALPHA);
+			if(i==curr)
+				g.setColor(Color.WHITE);
 			curRatio = list.get(i) / (double) max;
 			g.fillRect(curPos, (int) (unitHeight - curRatio * unitHeight)
 					+ padding, barWidth, (int) (curRatio * unitHeight));

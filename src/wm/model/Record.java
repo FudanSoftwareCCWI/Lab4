@@ -94,7 +94,9 @@ public class Record extends WMModel {
 	 * @return The correct rate of words recited
 	 */
 	public double getCorrectRate() {
-		return (double) correct / (double) recitedSize;
+		if(recitedSize!=0)
+			return (double) correct / (double) recitedSize;
+		return 0;
 	}
 
 	/**
