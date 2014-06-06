@@ -27,7 +27,7 @@ public class DictionaryImpl implements DictionaryDAO {
 		int index = 0;
 
 		try {
-			File allDic = new File("material/"+filename);
+			File allDic = new File("material/" + filename);
 			File logfile = new File("material/log.txt");
 			String[] entry;
 			String[] flag;
@@ -39,7 +39,6 @@ public class DictionaryImpl implements DictionaryDAO {
 					new FileReader(allDic));
 
 			if (logfile.exists()) {
-				System.out.println(0);
 				BufferedReader logReader = new BufferedReader(new FileReader(
 						logfile));
 				while ((d = dicReader.readLine()) != null
@@ -47,13 +46,13 @@ public class DictionaryImpl implements DictionaryDAO {
 
 					entry = d.split("\\s+");
 					flag = log.split("\t");
-					if (flag[0].equals("1")) {
+					if (flag[1].equals("1")) {
 						recited = true;
 					} else {
 						recited = false;
 					}
 
-					if (flag[1].equals("1")) {
+					if (flag[2].equals("1")) {
 						correct = true;
 					} else {
 						correct = false;
@@ -61,18 +60,21 @@ public class DictionaryImpl implements DictionaryDAO {
 
 					index = entry[0].charAt(0) - 'a';
 
-					tempWords.get(index).add(new Word(entry[0], entry[1], recited,
-							correct));
+					tempWords.get(index).add(
+							new Word(entry[0], entry[1], recited, correct));
 				}
 
 			} else {
-				System.out.println(1);
+				logfile.createNewFile();
+				PrintWriter logWriter = new PrintWriter(logfile);
 				while ((d = dicReader.readLine()) != null) {
 					entry = d.split("\\s+");
 					index = entry[0].charAt(0) - 'a';
-					tempWords.get(index).add(new Word(entry[0], entry[1], false,
-							false));
+					tempWords.get(index).add(
+							new Word(entry[0], entry[1], false, false));
+					logWriter.println(entry[0].substring(0, 1) + "\t" + 0 + "\t" + 0);
 				}
+				logWriter.close();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -84,6 +86,7 @@ public class DictionaryImpl implements DictionaryDAO {
 					tempWords.get(i));
 			dic.add(tempD);
 		}
+		
 
 		return new Dictionaries(dic);
 	}
@@ -92,7 +95,7 @@ public class DictionaryImpl implements DictionaryDAO {
 	public boolean updateAllDictionary(Dictionaries dictionaries) {
 		Dictionary dic;
 		int wordSize;
-		
+
 		String record = "";
 
 		try {
@@ -110,6 +113,7 @@ public class DictionaryImpl implements DictionaryDAO {
 				}
 			}
 			logWriter.close();
+			return true;
 		} catch (Exception e) {
 			e.getStackTrace();
 		}
@@ -131,7 +135,41 @@ public class DictionaryImpl implements DictionaryDAO {
 
 	@Override
 	public boolean updateDictionary(Dictionary dictionary) {
-		// TODO Auto-generated method stub
+		String prefix = dictionary.getKey(0).substring(0, 1);
+		String logline = "";
+		String record = "";
+		int k = 0;
+		try {
+			File logfile = new File("material/log.txt");
+			File newLogfile = new File("material/newlog.txt");
+			if (!newLogfile.exists()) {
+				newLogfile.createNewFile();
+			}
+			String[] entry;
+			PrintWriter logWriter = new PrintWriter(newLogfile);
+			BufferedReader logReader = new BufferedReader(new FileReader(
+					logfile));
+			while ((logline = logReader.readLine()) != null) {
+				entry = logline.split("\t");
+
+				if (entry[0].substring(0, 1).equals(prefix)) {
+					record = dictionary.getWordEntry(k);
+					logWriter.println(record);
+					k++;
+				} else {
+					logWriter.println(logline);
+				}
+			}
+			logWriter.close();
+			
+			logfile.delete();
+			newLogfile.renameTo(new File("material/log.txt"));
+			return true;
+
+		} catch (Exception e) {
+			e.getStackTrace();
+		}
+
 		return false;
 	}
 
