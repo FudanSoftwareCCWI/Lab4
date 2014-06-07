@@ -34,7 +34,7 @@ import wm.view.component.WMLabel;
  * @author Sidney Fan
  * 
  */
-public class StartWordDefineView extends ReciteProcessView implements IStartWordDefineView{
+public class StartWordDefineView extends ReciteProcessView {
 
 	/**
 	 * 
@@ -103,14 +103,14 @@ public class StartWordDefineView extends ReciteProcessView implements IStartWord
 		return searchBox;
 	}
 
-	private void invalidInput() {
+	public void invalidInput() {
 		nextBtn.setVisible(true);
 		nextTip.setVisible(true);
 		nextTip.setText(ScriptConstants.CHIN_NO_MATCH);
 		nextTag = TOSTARTBYFIRSTVIEW;
 	}
 
-	private void validInput() {
+	public void validInput() {
 		nextBtn.setVisible(true);
 		nextTip.setVisible(true);
 		nextTip.setText(ScriptConstants.CHIN_NEXT_TO_CHOOSE_SIZE);
