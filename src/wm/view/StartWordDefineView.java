@@ -72,11 +72,13 @@ public class StartWordDefineView extends ReciteProcessView {
 		centerPanel.add(nextTip);
 
 		searchBox.setBounds(UI_Constants.GLOBAL_WIDTH / 2
-				- (int) (UI_Constants.UNITHEIGHT * 1.5), UI_Constants.UNITHEIGHT
-				+ PADDING, 3 * UI_Constants.UNITHEIGHT, 3 * UI_Constants.UNITHEIGHT);
-		nextBtn.setBounds((UI_Constants.GLOBAL_WIDTH - IconConstants.ICON_TINY) / 2, 3
-				* UI_Constants.UNITHEIGHT + PADDING, IconConstants.ICON_TINY,
-				IconConstants.ICON_TINY);
+				- (int) (UI_Constants.UNITHEIGHT * 1.5),
+				UI_Constants.UNITHEIGHT + PADDING, 3 * UI_Constants.UNITHEIGHT,
+				3 * UI_Constants.UNITHEIGHT);
+		nextBtn.setBounds(
+				(UI_Constants.GLOBAL_WIDTH - IconConstants.ICON_TINY) / 2, 3
+						* UI_Constants.UNITHEIGHT + PADDING,
+				IconConstants.ICON_TINY, IconConstants.ICON_TINY);
 		nextTip.setBounds(0, 3 * UI_Constants.UNITHEIGHT + PADDING + 5,
 				UI_Constants.GLOBAL_WIDTH, UI_Constants.UNITHEIGHT);
 
@@ -188,8 +190,10 @@ public class StartWordDefineView extends ReciteProcessView {
 			this.list = list;
 			comboBox.removeAll();
 			comboBox.setLayout(new GridLayout(list.size(), 1));
-			if (list.size() == 0)
+			if (list.size() == 0) {
+				hideComboBox();
 				return;
+			}
 			WMBlock tempBlock;
 			String tempname;
 			Iterator<String> it = list.iterator();
@@ -197,7 +201,8 @@ public class StartWordDefineView extends ReciteProcessView {
 				tempname = it.next();
 				tempBlock = new WMBlock(width, 20, 1, 1);
 				tempBlock.addLeftLabel(tempname, WMLabel.LABEL_SMALL);
-				tempBlock.setColor(UI_Constants.LIGHTGREEN, UI_Constants.NOTEALPHA);
+				tempBlock.setColor(UI_Constants.LIGHTGREEN,
+						UI_Constants.NOTEALPHA);
 				comboBox.add(tempBlock);
 			}
 			comboBox.setPreferredSize(new Dimension(scrollPane.getWidth() - 50,

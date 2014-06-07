@@ -84,7 +84,7 @@ public class ReciteMainView extends WMView {
 		scrollPane.setBounds(UI_Constants.UNITSHORTWIDTH, 0,
 				UI_Constants.UNITLONGWIDTH, UI_Constants.GLOBAL_HEIGHT);
 		scrollPane.setOpaque(false);
-		scrollPane.getVerticalScrollBar().setUI(null);
+//		scrollPane.getVerticalScrollBar().setUI(null);
 		listPanel.setPreferredSize(new Dimension(scrollPane.getWidth() - 50,
 				UI_Constants.NUM_ROW * UI_Constants.UNITHEIGHT));
 		listPanel.revalidate();
