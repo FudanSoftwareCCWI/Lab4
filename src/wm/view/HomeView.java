@@ -239,7 +239,7 @@ public class HomeView extends WMView {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				System.exit(0); // TODO should fire quit
+				controller.closeWindow();
 			}
 
 		});

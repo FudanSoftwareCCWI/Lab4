@@ -30,7 +30,7 @@ public class Dictionary extends Observable {
 	 *            The words of the dictionary
 	 */
 	public Dictionary(String name, List<Word> words) {
-		this(name, words, 0);
+		this(name, words, -1);
 	}
 
 	/**
