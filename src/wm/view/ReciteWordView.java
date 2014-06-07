@@ -43,7 +43,7 @@ public class ReciteWordView extends ReciteProcessView {
 		inputField = new JTextField();
 		resultHint = new WMLabel("", Constants.LABEL_SMALL);
 
-		inputField.setBackground(new Color(0, 0, 0, 0));
+		inputField.setBackground(Constants.LIGHTGREEN);
 		inputField.setForeground(Color.WHITE);
 		inputField.setBorder(new LineBorder(Color.WHITE, 2));
 		inputField.setFont(new Font(Constants.LABEL_FONT, Font.PLAIN,

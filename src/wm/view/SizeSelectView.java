@@ -1,5 +1,6 @@
 package wm.view;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -7,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
 import wm.config.Constants;
 import wm.controller.IReciteProcessController;
 import wm.view.component.WMLabel;
@@ -48,7 +50,8 @@ public class SizeSelectView extends ReciteProcessView {
 		nextBtn = new JButton(Constants.NEXTICON);
 		nextTip = new WMLabel(Constants.CHIN_COMFIRM_TO_START,
 				Constants.LABEL_TINY);
-		nextBtn.setBorder(null);
+		nextBtn.setBorderPainted(false);
+		nextBtn.setBackground(Constants.LIGHTGREEN);
 
 		leftValue = 1;
 		rightValue = controller.getAvailableSize();
@@ -56,6 +59,8 @@ public class SizeSelectView extends ReciteProcessView {
 		pivotValue = rightValue / 2;
 		slider = new JSlider(leftValue, rightValue);
 		slider = new JSlider(leftValue, rightValue, pivotValue);
+		slider.setBackground(Constants.LIGHTGREEN);
+		slider.setForeground(Constants.DARKGREEN);
 		left = new WMLabel(String.valueOf(leftValue), Constants.LABEL_SMALL);
 		right = new WMLabel(String.valueOf(rightValue), Constants.LABEL_SMALL);
 		pivot = new WMLabel(String.valueOf(pivotValue), Constants.LABEL_SMALL);
@@ -67,8 +72,8 @@ public class SizeSelectView extends ReciteProcessView {
 		centerPanel.add(right);
 		centerPanel.add(pivot);
 
-		slider.setBounds(Constants.GLOBAL_WIDTH / 4, 2*Constants.UNITHEIGHT,
-				Constants.GLOBAL_WIDTH / 2, Constants.UNITHEIGHT);
+		slider.setBounds(Constants.GLOBAL_WIDTH / 4, 2*Constants.UNITHEIGHT+PADDING-10,
+				Constants.GLOBAL_WIDTH / 2, 20);
 		left.setBounds(Constants.GLOBAL_WIDTH / 4 - 20,
 				2 * Constants.UNITHEIGHT + 37, Constants.LABEL_SMALL,
 				Constants.LABEL_SMALL);

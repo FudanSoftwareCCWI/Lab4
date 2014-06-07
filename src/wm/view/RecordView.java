@@ -288,9 +288,9 @@ public class RecordView extends WMView {
 		homeBtn = new JButton(Constants.HOMEICON);
 		quitBtn = new JButton(Constants.QUITICON);
 		homeBtn.setBorderPainted(false);
-		homeBtn.setBackground(Constants.DARKGREEN);
+		homeBtn.setBackground(Constants.NORMALGREEN);
 		quitBtn.setBorderPainted(false);
-		quitBtn.setBackground(Constants.DARKGREEN);
+		quitBtn.setBackground(Constants.NORMALGREEN);
 		headLine = new WMLabel("Statisics", Constants.LABEL_NORMAL);
 		navPanel.setLayout(null);
 		navPanel.add(homeBtn);
@@ -577,7 +577,7 @@ public class RecordView extends WMView {
 		} else if (currentBtnIndex == INPIE) {
 			controller.showRecordByPie(currentDicIndex);
 		} else if (currentBtnIndex == INBAR) {
-			controller.showRecordByBar();
+			controller.showRecordByBar(currentDicIndex);
 		}
 
 	}

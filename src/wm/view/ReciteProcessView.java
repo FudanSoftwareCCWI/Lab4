@@ -66,9 +66,9 @@ public abstract class ReciteProcessView extends WMView {
 		homeBtn = new JButton(Constants.HOMEICON);
 		quitBtn = new JButton(Constants.QUITICON);
 		homeBtn.setBorderPainted(false);
-		homeBtn.setBackground(Constants.DARKGREEN);
+		homeBtn.setBackground(Constants.NORMALGREEN);
 		quitBtn.setBorderPainted(false);
-		quitBtn.setBackground(Constants.DARKGREEN);
+		quitBtn.setBackground(Constants.NORMALGREEN);
 		headLine = new WMLabel("Dictionary", Constants.LABEL_NORMAL);
 		navPanel.setLayout(null);
 		navPanel.add(homeBtn);

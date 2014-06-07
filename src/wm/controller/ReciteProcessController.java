@@ -12,6 +12,8 @@ import javax.swing.Timer;
 import wm.SwitchDelegate;
 import wm.model.Dictionary;
 import wm.model.Record;
+import wm.model.dao.DictionaryDAO;
+import wm.model.dao.DictionaryImpl;
 import wm.view.ReciteRecordView;
 import wm.view.ReciteWordView;
 import wm.view.SizeSelectView;
@@ -215,12 +217,27 @@ public class ReciteProcessController implements IReciteProcessController {
 	 */
 	@Override
 	public void switchToHome() {
+		//when switch to home in these two views, should store the dictionary state
+		if(currentView==reciteWordView||currentView==reciteRecordView){
+			DictionaryDAO dictionaryDAO=new DictionaryImpl();
+			dictionaryDAO.updateDictionary(model);
+		}
 		delegate.getHome();
 	}
 
 	@Override
 	public WMView getView() {
 		return currentView;
+	}
+
+	@Override
+	public void closeWindow() {
+		//when closing in these two views, should store the dictionary state
+		if(currentView==reciteWordView||currentView==reciteRecordView){
+			DictionaryDAO dictionaryDAO=new DictionaryImpl();
+			dictionaryDAO.updateDictionary(model);
+		}
+		System.exit(0);
 	}
 
 }

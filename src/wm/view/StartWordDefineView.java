@@ -68,7 +68,8 @@ public class StartWordDefineView extends ReciteProcessView {
 		nextBtn = new JButton(Constants.NEXTICON);
 		nextTip = new WMLabel("", Constants.LABEL_TINY);
 
-		nextBtn.setBorder(null);
+		nextBtn.setBorderPainted(false);
+		nextBtn.setBackground(Constants.LIGHTGREEN);
 		nextBtn.setVisible(false);
 		nextTip.setVisible(false);
 
