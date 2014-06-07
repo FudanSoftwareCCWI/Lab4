@@ -18,7 +18,7 @@ import wm.view.component.WMTable;
  * @author Sidney Fan
  * 
  */
-public class ReciteRecordView extends ReciteProcessView {
+public class ReciteRecordView extends ReciteProcessView implements IReciteRecordView{
 
 	/**
 	 * 
@@ -43,6 +43,51 @@ public class ReciteRecordView extends ReciteProcessView {
 		addComponents();
 	}
 
+	@Override
+	public void setCorrectPrecentageText(double percentage) {
+		dictRateValue = (int) (percentage * 100);
+	}
+
+	@Override
+	public void setCorrectCountText(int currentCount) {
+		dictCorrectValue = currentCount;
+	}
+
+	@Override
+	public void setIncorrectCountText(int incorrectCount) {
+		dictWrongValue = incorrectCount;
+	}
+
+	@Override
+	public void setNameText(String name) {
+		dictNameValue.setText(name);
+	}
+
+	@Override
+	public void setRecitedSizeText(int recitedSize) {
+		dictRecitedValue = recitedSize;
+	}
+
+	@Override
+	public void showTablePanel() {
+		// default
+		ArrayList<String> names = new ArrayList<String>();
+		ArrayList<Integer> values = new ArrayList<Integer>();
+		names.add(ScriptConstants.CHIN_SELECTED);
+		names.add(ScriptConstants.CHIN_CORRECT);
+		names.add(ScriptConstants.CHIN_WRONG);
+		names.add(ScriptConstants.CHIN_RATE+"(%)");
+		values.add(dictRecitedValue);
+		values.add(dictCorrectValue);
+		values.add(dictWrongValue);
+		values.add(dictRateValue);
+
+		iconPanel.removeAll();
+		tableIcon.createTable(values, names);
+		iconPanel.add(tablePanel);
+		iconPanel.repaint();
+	}
+	
 	protected void addComponents() {
 		// initialize different components
 		initDictNamePanel();
@@ -98,62 +143,4 @@ public class ReciteRecordView extends ReciteProcessView {
 		iconPanel.add(tablePanel);
 	}
 
-	/**
-	 * 
-	 * @param precentage
-	 */
-	public void setCorrectPrecentageText(double percentage) {
-		dictRateValue = (int) (percentage * 100);
-	}
-
-	/**
-	 * 
-	 * @param currentCount
-	 */
-	public void setCorrectCountText(int currentCount) {
-		dictCorrectValue = currentCount;
-	}
-
-	/**
-	 * 
-	 * @param incorrectCount
-	 */
-	public void setIncorrectCountText(int incorrectCount) {
-		dictWrongValue = incorrectCount;
-	}
-
-	/**
-	 * 
-	 * @param name
-	 */
-	public void setNameText(String name) {
-		dictNameValue.setText(name);
-	}
-
-	/**
-	 * 
-	 * @param recitedSize
-	 */
-	public void setRecitedSizeText(int recitedSize) {
-		dictRecitedValue = recitedSize;
-	}
-
-	public void showTablePanel() {
-		// default
-		ArrayList<String> names = new ArrayList<String>();
-		ArrayList<Integer> values = new ArrayList<Integer>();
-		names.add(ScriptConstants.CHIN_SELECTED);
-		names.add(ScriptConstants.CHIN_CORRECT);
-		names.add(ScriptConstants.CHIN_WRONG);
-		names.add(ScriptConstants.CHIN_RATE+"(%)");
-		values.add(dictRecitedValue);
-		values.add(dictCorrectValue);
-		values.add(dictWrongValue);
-		values.add(dictRateValue);
-
-		iconPanel.removeAll();
-		tableIcon.createTable(values, names);
-		iconPanel.add(tablePanel);
-		iconPanel.repaint();
-	}
 }
