@@ -10,6 +10,12 @@ import wm.model.Dictionaries;
 import wm.model.Record;
 import wm.model.Records;
 
+/**
+ * Class RecordImpl implement the RecordDAO interface.
+ * 
+ * @author ArielQian
+ *
+ */
 public class RecordImpl implements RecordDAO {
 
 	@Override

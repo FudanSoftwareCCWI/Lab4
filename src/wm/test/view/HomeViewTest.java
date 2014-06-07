@@ -1,3 +1,6 @@
+/**
+ * Software Engineer lab4
+ */
 package wm.test.view;
 
 import java.awt.event.MouseEvent;
