@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.jmock.Mockery;
-import org.jmock.States;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -12,9 +11,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import wm.controller.IHomeController;
 import wm.controller.IReciteMainController;
-import wm.view.HomeView;
 import wm.view.ReciteMainView;
 
 public class ReciteMainViewTest extends WMViewTestCase {
@@ -46,8 +43,6 @@ public class ReciteMainViewTest extends WMViewTestCase {
 		reciteMainView = new ReciteMainView((IReciteMainController) controller);
 		reciteMainView.setListPanelContent(getNameList());
 
-		final States viewState = context.states("view").startsAs("showing");
-
 		frame.getContentPane().removeAll();
 		frame.getContentPane().add(reciteMainView);
 		frame.repaint();
@@ -63,10 +58,9 @@ public class ReciteMainViewTest extends WMViewTestCase {
 		reciteMainView.setCurrentDictIndex(0);
 		reciteMainView.setNameLabelText("词库A");
 		reciteMainView.setPieIcon(237,2000);
-		while(true);
 	}
 
-//	@Test
+	@Test
 	public void test_setCurrentDictIndex() {
 		int expect = 2;
 		reciteMainView.setCurrentDictIndex(expect);

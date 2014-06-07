@@ -8,14 +8,16 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import wm.config.Constants;
-import wm.view.component.WMPie.Slice;
+import wm.config.UI_Constants;
 
 public class WMBar extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5009954405634015332L;
 	private List<Integer> list;
 	private int currentDicIndex;
 
@@ -70,7 +72,7 @@ public class WMBar extends JPanel {
 		g.drawLine(0, rec.height-1, rec.width, rec.height-1);
 		
 		for (int i = 0; i < list.size(); i++) {
-			g.setColor(Constants.NOTEALPHA);
+			g.setColor(UI_Constants.NOTEALPHA);
 			if(i==curr)
 				g.setColor(Color.WHITE);
 			curRatio = list.get(i) / (double) max;

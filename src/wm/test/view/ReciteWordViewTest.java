@@ -1,9 +1,5 @@
 package wm.test.view;
 
-import static org.junit.Assert.*;
-
-import java.util.List;
-
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.junit.After;
@@ -19,7 +15,7 @@ public class ReciteWordViewTest extends WMViewTestCase {
 
 	ReciteWordView view;
 	IReciteProcessController controller;
-	
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		setUpFrame();
@@ -51,7 +47,7 @@ public class ReciteWordViewTest extends WMViewTestCase {
 
 	@Test
 	public void test() {
-		while(true);
+		context.assertIsSatisfied();
 	}
 
 }

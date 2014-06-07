@@ -3,10 +3,7 @@
  */
 package wm.model.dao;
 
-import java.util.List;
-
 import wm.model.Dictionaries;
-import wm.model.Record;
 import wm.model.Records;
 
 /**

@@ -14,7 +14,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import wm.config.Constants;
+import wm.config.UI_Constants;
+import wm.config.IconConstants;
 import wm.controller.IHomeController;
 import wm.view.component.WMLabel;
 
@@ -33,7 +34,6 @@ public class HomeView extends WMView {
 	private static final long serialVersionUID = 113232243106457859L;
 
 	private IHomeController controller;
-	private HomeView thisView;
 
 	private WMLabel logoLabel;
 	private WMLabel statisticLabel;
@@ -66,7 +66,6 @@ public class HomeView extends WMView {
 	public HomeView(IHomeController controller) {
 		super();
 		this.controller = controller;
-		thisView = this;
 		initComponents();
 		initListener();
 	}
@@ -74,20 +73,20 @@ public class HomeView extends WMView {
 	@Override
 	protected void initComponents() {
 		// init labels
-		logoLabel = new WMLabel(Constants.APPNAME, Constants.LABEL_LARGE);
-		statisticLabel = new WMLabel("统计", Constants.LABEL_MIDDLE);
-		reciteLabel = new WMLabel("选词书", Constants.LABEL_MIDDLE);
-		statisticNote = new WMLabel("包含每一个单元和整个词库的统计信息", Constants.LABEL_TINY);
-		reciteNote = new WMLabel("点此进入单元的选择", Constants.LABEL_TINY);
-		quitBtn = new JButton(Constants.QUITICON);
+		logoLabel = new WMLabel(UI_Constants.APPNAME, WMLabel.LABEL_LARGE);
+		statisticLabel = new WMLabel("统计", WMLabel.LABEL_MIDDLE);
+		reciteLabel = new WMLabel("选词书", WMLabel.LABEL_MIDDLE);
+		statisticNote = new WMLabel("包含每一个单元和整个词库的统计信息", WMLabel.LABEL_TINY);
+		reciteNote = new WMLabel("点此进入单元的选择", WMLabel.LABEL_TINY);
+		quitBtn = new JButton(IconConstants.QUITICON);
 
 		// set note color and alignment
-		statisticNote.setForeground(Constants.NOTEALPHA);
-		reciteNote.setForeground(Constants.NOTEALPHA);
+		statisticNote.setForeground(UI_Constants.NOTEALPHA);
+		reciteNote.setForeground(UI_Constants.NOTEALPHA);
 		statisticLabel.setVerticalAlignment(JLabel.BOTTOM);
 		reciteLabel.setVerticalAlignment(JLabel.BOTTOM);
 		quitBtn.setBorderPainted(false);
-		quitBtn.setBackground(Constants.NORMALGREEN);
+		quitBtn.setBackground(UI_Constants.NORMALGREEN);
 
 		// select panel
 		selectPanel = new JPanel();
@@ -104,11 +103,11 @@ public class HomeView extends WMView {
 
 		// add left & right to select
 		selectPanel.add(statisticPanel);
-		statisticPanel.setBounds(0, 0, Constants.GLOBAL_WIDTH / 2,
-				Constants.GLOBAL_HEIGHT / 3);
+		statisticPanel.setBounds(0, 0, UI_Constants.GLOBAL_WIDTH / 2,
+				UI_Constants.GLOBAL_HEIGHT / 3);
 		selectPanel.add(recitePanel);
-		recitePanel.setBounds(Constants.GLOBAL_WIDTH / 2, 0,
-				Constants.GLOBAL_WIDTH / 2, Constants.GLOBAL_HEIGHT / 3);
+		recitePanel.setBounds(UI_Constants.GLOBAL_WIDTH / 2, 0,
+				UI_Constants.GLOBAL_WIDTH / 2, UI_Constants.GLOBAL_HEIGHT / 3);
 
 		// left add static
 		statisticPanel.add(statisticLabel);
@@ -121,14 +120,14 @@ public class HomeView extends WMView {
 		// add all to frame
 		this.setLayout(null);
 		this.add(logoLabel);
-		logoLabel.setBounds(0, 20, Constants.GLOBAL_WIDTH,
-				Constants.GLOBAL_HEIGHT / 2);
+		logoLabel.setBounds(0, 20, UI_Constants.GLOBAL_WIDTH,
+				UI_Constants.GLOBAL_HEIGHT / 2);
 		this.add(selectPanel);
-		selectPanel.setBounds(0, Constants.GLOBAL_HEIGHT / 2,
-				Constants.GLOBAL_WIDTH, Constants.GLOBAL_HEIGHT / 2);
+		selectPanel.setBounds(0, UI_Constants.GLOBAL_HEIGHT / 2,
+				UI_Constants.GLOBAL_WIDTH, UI_Constants.GLOBAL_HEIGHT / 2);
 		this.add(quitBtn);
-		quitBtn.setBounds(Constants.GLOBAL_WIDTH - Constants.ICON_SMALL - 10,
-				10, Constants.ICON_SMALL, Constants.ICON_SMALL);
+		quitBtn.setBounds(UI_Constants.GLOBAL_WIDTH - IconConstants.ICON_SMALL - 10,
+				10, IconConstants.ICON_SMALL, IconConstants.ICON_SMALL);
 	}
 
 	@Override
@@ -142,7 +141,7 @@ public class HomeView extends WMView {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				statisticPanel.setOpaque(true);
-				statisticPanel.setBackground(Constants.DARKGREEN);
+				statisticPanel.setBackground(UI_Constants.DARKGREEN);
 				in = true;
 			}
 
@@ -150,7 +149,7 @@ public class HomeView extends WMView {
 			public void mouseExited(MouseEvent e) {
 				if (!pressed) {
 					statisticPanel.setOpaque(false);
-					statisticPanel.setBackground(Constants.LIGHTGREEN);
+					statisticPanel.setBackground(UI_Constants.LIGHTGREEN);
 				}
 				in = false;
 			}
@@ -158,7 +157,7 @@ public class HomeView extends WMView {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				statisticPanel.setOpaque(true);
-				statisticPanel.setBackground(Constants.DARKGREEN);
+				statisticPanel.setBackground(UI_Constants.DARKGREEN);
 				pressed = false;
 				// fire property changed
 //				System.out.println("HomeView: Fire homeToStatisticViewCommand");
@@ -169,7 +168,7 @@ public class HomeView extends WMView {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				statisticPanel.setOpaque(true);
-				statisticPanel.setBackground(Constants.DARKGREEN.darker());
+				statisticPanel.setBackground(UI_Constants.DARKGREEN.darker());
 				pressed = true;
 			}
 
@@ -177,9 +176,9 @@ public class HomeView extends WMView {
 			public void mouseReleased(MouseEvent e) {
 				statisticPanel.setOpaque(true);
 				if (!in) {
-					statisticPanel.setBackground(Constants.LIGHTGREEN);
+					statisticPanel.setBackground(UI_Constants.LIGHTGREEN);
 				} else {
-					statisticPanel.setBackground(Constants.DARKGREEN);
+					statisticPanel.setBackground(UI_Constants.DARKGREEN);
 				}
 				pressed = false;
 			}
@@ -192,7 +191,7 @@ public class HomeView extends WMView {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				recitePanel.setOpaque(true);
-				recitePanel.setBackground(Constants.DARKGREEN);
+				recitePanel.setBackground(UI_Constants.DARKGREEN);
 				in = true;
 			}
 
@@ -200,7 +199,7 @@ public class HomeView extends WMView {
 			public void mouseExited(MouseEvent e) {
 				if (!pressed) {
 					recitePanel.setOpaque(false);
-					recitePanel.setBackground(Constants.NORMALGREEN);
+					recitePanel.setBackground(UI_Constants.NORMALGREEN);
 				}
 				in = false;
 			}
@@ -208,7 +207,7 @@ public class HomeView extends WMView {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				recitePanel.setOpaque(true);
-				recitePanel.setBackground(Constants.DARKGREEN);
+				recitePanel.setBackground(UI_Constants.DARKGREEN);
 				pressed = false;
 				// fire property changed
 //				System.out.println("HomeView: Fire homeToUnitViewCommand");
@@ -219,7 +218,7 @@ public class HomeView extends WMView {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				recitePanel.setOpaque(true);
-				recitePanel.setBackground(Constants.DARKGREEN.darker());
+				recitePanel.setBackground(UI_Constants.DARKGREEN.darker());
 				pressed = true;
 			}
 
@@ -227,9 +226,9 @@ public class HomeView extends WMView {
 			public void mouseReleased(MouseEvent e) {
 				recitePanel.setOpaque(true);
 				if (!in) {
-					recitePanel.setBackground(Constants.NORMALGREEN);
+					recitePanel.setBackground(UI_Constants.NORMALGREEN);
 				} else {
-					recitePanel.setBackground(Constants.DARKGREEN);
+					recitePanel.setBackground(UI_Constants.DARKGREEN);
 				}
 				pressed = false;
 			}
@@ -248,20 +247,20 @@ public class HomeView extends WMView {
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.setColor(Constants.LIGHTGREEN);
-		g.fillRect(0, 0, Constants.GLOBAL_WIDTH / 2, Constants.GLOBAL_HEIGHT);
-		g.setColor(Constants.NORMALGREEN);
-		g.fillRect(Constants.GLOBAL_WIDTH / 2, 0, Constants.GLOBAL_WIDTH / 2,
-				Constants.GLOBAL_HEIGHT);
-		g.fillPolygon(new int[] { 0, 0, Constants.GLOBAL_WIDTH / 8 },
-				new int[] { 0, Constants.GLOBAL_WIDTH / 8, 0 }, 3);
-		g.setColor(Constants.LIGHTGREEN);
-		g.fillPolygon(new int[] { Constants.GLOBAL_WIDTH,
-				Constants.GLOBAL_WIDTH,
-				Constants.GLOBAL_WIDTH - Constants.GLOBAL_WIDTH / 8 },
-				new int[] { Constants.GLOBAL_HEIGHT,
-						Constants.GLOBAL_HEIGHT - Constants.GLOBAL_WIDTH / 8,
-						Constants.GLOBAL_HEIGHT }, 3);
+		g.setColor(UI_Constants.LIGHTGREEN);
+		g.fillRect(0, 0, UI_Constants.GLOBAL_WIDTH / 2, UI_Constants.GLOBAL_HEIGHT);
+		g.setColor(UI_Constants.NORMALGREEN);
+		g.fillRect(UI_Constants.GLOBAL_WIDTH / 2, 0, UI_Constants.GLOBAL_WIDTH / 2,
+				UI_Constants.GLOBAL_HEIGHT);
+		g.fillPolygon(new int[] { 0, 0, UI_Constants.GLOBAL_WIDTH / 8 },
+				new int[] { 0, UI_Constants.GLOBAL_WIDTH / 8, 0 }, 3);
+		g.setColor(UI_Constants.LIGHTGREEN);
+		g.fillPolygon(new int[] { UI_Constants.GLOBAL_WIDTH,
+				UI_Constants.GLOBAL_WIDTH,
+				UI_Constants.GLOBAL_WIDTH - UI_Constants.GLOBAL_WIDTH / 8 },
+				new int[] { UI_Constants.GLOBAL_HEIGHT,
+						UI_Constants.GLOBAL_HEIGHT - UI_Constants.GLOBAL_WIDTH / 8,
+						UI_Constants.GLOBAL_HEIGHT }, 3);
 	}
 
 	/**
@@ -272,8 +271,8 @@ public class HomeView extends WMView {
 	 * </blockquote>
 	 */
 	public void refreshHome() {
-		statisticPanel.setBackground(Constants.LIGHTGREEN);
-		recitePanel.setBackground(Constants.NORMALGREEN);
+		statisticPanel.setBackground(UI_Constants.LIGHTGREEN);
+		recitePanel.setBackground(UI_Constants.NORMALGREEN);
 	}
 
 	public JPanel getStatisticPanel() {

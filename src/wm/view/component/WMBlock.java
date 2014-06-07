@@ -6,8 +6,6 @@ import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -23,7 +21,6 @@ public class WMBlock extends JPanel {
 	 */
 	private static final long serialVersionUID = -1163413579217397402L;
 	private int width;
-	private int height;
 	private Color localColor;
 	private Color pressColor;
 	private WMBlock thisWMBlock;
@@ -38,7 +35,6 @@ public class WMBlock extends JPanel {
 	 */
 	public WMBlock(int width, int height, int row, int col) {
 		this.width = width;
-		this.height = height;
 		this.setSize(width, height);
 		this.setBorder(null);
 		this.setLayout(new GridLayout(row, col));

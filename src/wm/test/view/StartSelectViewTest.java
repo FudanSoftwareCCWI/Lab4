@@ -1,22 +1,16 @@
 package wm.test.view;
 
-import static org.junit.Assert.*;
-
-import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 
 import org.jmock.Expectations;
 import org.jmock.Mockery;
-import org.jmock.States;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import wm.controller.IReciteMainController;
 import wm.controller.IReciteProcessController;
-import wm.view.ReciteMainView;
 import wm.view.StartSelectView;
 
 public class StartSelectViewTest extends WMViewTestCase {
@@ -59,8 +53,6 @@ public class StartSelectViewTest extends WMViewTestCase {
 				.mouseClicked(new MouseEvent(view.getStartByCustomBtn(), MouseEvent.MOUSE_CLICKED,
 						0, MouseEvent.BUTTON1_DOWN_MASK, 1, 1, 1, false));
 		context.assertIsSatisfied();
-		while (true)
-			;
 	}
 
 }

@@ -3,9 +3,6 @@
  */
 package wm.test.view;
 
-import static org.junit.Assert.*;
-
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import org.jmock.Expectations;
@@ -17,7 +14,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import wm.controller.IReciteProcessController;
-import wm.view.StartSelectView;
 import wm.view.StartWordDefineView;
 
 /**
@@ -83,6 +79,6 @@ public class StartWordDefineViewTest extends WMViewTestCase {
 
 	@Test
 	public void test() {
-		while (true);
+		context.assertIsSatisfied();
 	}
 }
