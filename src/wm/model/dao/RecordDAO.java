@@ -18,18 +18,21 @@ import wm.model.Records;
 public interface RecordDAO {
 
 	/**
+	 * Read the record info by the dictionaries
 	 * 
-	 * @param name
-	 * @return
+	 * @param dictionaries
+	 * 			The dictionaries need to create a record
+	 * @return	{@code Records}
 	 */
-	public Records selectAllRecord(Dictionaries dic);
+	public Records selectAllRecord(Dictionaries dictionaries);
 
 	/**
+	 * Update the record info by the dictionaries
 	 * 
-	 * @param record
-	 * @return
+	 * @param dictionaries
+	 * 			The dictionaries need to update a record
 	 */
-	public void updateAllRecord(Dictionaries dic);
+	public void updateAllRecord(Dictionaries dictionaries);
 
 	
 	

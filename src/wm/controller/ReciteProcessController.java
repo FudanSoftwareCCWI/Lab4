@@ -113,7 +113,7 @@ public class ReciteProcessController implements IReciteProcessController {
 	 * @see wm.controller.IReciteProcessController#getAvailableWordList(java.lang.String)
 	 */
 	@Override
-	public List<String> getAvailableWordList(String prefix) {//TODO
+	public List<String> getAvailableWordList(String prefix) {
 		List<String> words = model.getMatchWords(prefix);
 		return words;
 	}
@@ -124,7 +124,7 @@ public class ReciteProcessController implements IReciteProcessController {
 	 * @see wm.controller.IReciteProcessController#getAvailableSize()
 	 */
 	@Override
-	public int getAvailableSize() {//TODO
+	public int getAvailableSize() {
 		return model.calAvailableSize(startWord);
 	}
 
@@ -240,13 +240,10 @@ public class ReciteProcessController implements IReciteProcessController {
 	}
 	
 	private class SecondListener implements ActionListener{
-
 		Timer t;
-		
 		SecondListener(Timer timer){
 			t = timer;
 		}
-		
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// nothing

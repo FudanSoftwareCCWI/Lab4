@@ -1,3 +1,6 @@
+/**
+ * Software Engineer lab4
+ */
 package wm.test.view;
 
 import java.awt.event.ActionListener;
@@ -5,6 +8,11 @@ import java.awt.event.ActionListener;
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 
+/**
+ * 
+ * @author SidneyFan
+ *
+ */
 public class ActionListenerMatcher extends BaseMatcher<ActionListener> {
 
 	private ActionListener actionListener;
