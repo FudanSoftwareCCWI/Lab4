@@ -124,4 +124,9 @@ public class RecordController implements IRecordController {
 		return view;
 	}
 
+	@Override
+	public void closeWindow() {
+		System.exit(0);
+	}
+
 }

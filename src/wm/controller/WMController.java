@@ -13,4 +13,5 @@ import wm.view.WMView;
  */
 public interface WMController {
 	public WMView getView();
+	public void closeWindow();
 }
