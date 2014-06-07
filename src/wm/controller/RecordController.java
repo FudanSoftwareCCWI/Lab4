@@ -31,7 +31,11 @@ public class RecordController implements IRecordController {
 		} else {
 			record = model.getSingleRecord(index - 1);
 		}
-		setView(record);
+		view.setSizeText(record.getTotalSize());
+		view.setReciteSizeText(record.getRecitedSize());
+		view.setCorrectText(record.getCorrect());
+		view.setWrongText(record.getWrong());
+		view.setCorrectPercentage(record.getCorrectRate());
 		view.setPieRecitedIcon(record.getRecitedSize(), record.getTotalSize());
 		view.setPieCorrectIcon(record.getCorrect(), record.getRecitedSize());
 		view.showPiePanel();
@@ -74,7 +78,11 @@ public class RecordController implements IRecordController {
 		} else {
 			record = model.getSingleRecord(index - 1);
 		}
-		setView(record);
+		view.setSizeText(record.getTotalSize());
+		view.setReciteSizeText(record.getRecitedSize());
+		view.setCorrectText(record.getCorrect());
+		view.setWrongText(record.getWrong());
+		view.setCorrectPercentage(record.getCorrectRate());
 		view.setBarRecitedIcon(recited);
 		view.setBarCorrectIcon(correct);
 		view.showBarPanel();
@@ -88,7 +96,11 @@ public class RecordController implements IRecordController {
 		} else {
 			record = model.getSingleRecord(index - 1);
 		}
-		setView(record);
+		view.setSizeText(record.getTotalSize());
+		view.setReciteSizeText(record.getRecitedSize());
+		view.setCorrectText(record.getCorrect());
+		view.setWrongText(record.getWrong());
+		view.setCorrectPercentage(record.getCorrectRate());
 		view.showTablePanel();
 	}
 
@@ -108,21 +120,13 @@ public class RecordController implements IRecordController {
 		delegate.getHome();
 	}
 
+	public RecordView getView() {
+		return view;
+	}
+
 	@Override
 	public void closeWindow() {
 		System.exit(0);
 	}
 
-	public RecordView getView() {
-		return view;
-	}
-	
-	private void setView(Record record){
-		view.setSizeText(record.getTotalSize());
-		view.setReciteSizeText(record.getRecitedSize());
-		view.setCorrectText(record.getCorrect());
-		view.setWrongText(record.getWrong());
-		view.setCorrectPercentage(record.getCorrectRate());
-	}
-	
 }

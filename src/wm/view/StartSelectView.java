@@ -20,7 +20,7 @@ import wm.view.component.WMLabel;
  * @author Sidney Fan
  * 
  */
-public class StartSelectView extends ReciteProcessView implements IStartSelectView{
+public class StartSelectView extends ReciteProcessView {
 
 	/**
 	 * 

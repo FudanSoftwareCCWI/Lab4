@@ -23,7 +23,7 @@ import wm.view.component.WMLabel;
  * @author Sidney Fan
  * 
  */
-public abstract class ReciteProcessView extends WMView{
+public abstract class ReciteProcessView extends WMView {
 
 	/**
 	 * Generated serial version ID

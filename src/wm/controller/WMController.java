@@ -12,15 +12,6 @@ import wm.view.WMView;
  * 
  */
 public interface WMController {
-	
-	/**
-	 * Get controller's view.
-	 * @return
-	 */
-	
 	public WMView getView();
-	/**
-	 * Close window. Sometimes should store records.
-	 */
 	public void closeWindow();
 }
