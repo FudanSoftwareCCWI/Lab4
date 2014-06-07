@@ -1,6 +1,3 @@
-/**
- * Software Engineer lab4
- */
 package wm.test.view;
 
 import static org.junit.Assert.*;
@@ -16,12 +13,6 @@ import org.junit.Test;
 import wm.controller.IReciteProcessController;
 import wm.view.SizeSelectView;
 
-
-/**
- * 
- * @author SidneyFan
- *
- */
 public class SizeSelectViewTest extends WMViewTestCase {
 
 	SizeSelectView view;

@@ -9,15 +9,13 @@ import java.util.Observable;
 
 /**
  * Class Dictionaries represents all available dictionaries. It provides users
- * methods to get a particular dictionary and fetch total recite record. It
- * implements the {@link IDictionaries} interface. It also extends the
- * {@link Obserable} class.
+ * methods to get a particular dictionary and fetch total recite record.
  * 
  * @author Ariel Qian
  * 
  */
-public class Dictionaries extends Observable implements IDictionaries {
-	private final static int DICNUMBER = 26;
+public class Dictionaries extends Observable {
+
 	private List<Dictionary> dictionaries;
 
 	public Dictionaries(List<Dictionary> dictionaries) {
@@ -25,15 +23,24 @@ public class Dictionaries extends Observable implements IDictionaries {
 		this.dictionaries = dictionaries;
 	}
 
-	@Override
+	/**
+	 * Get the dictionary by the index
+	 * 
+	 * @param index
+	 *            The index of the dictionary
+	 * @return {@code dictionary}
+	 */
 	public Dictionary getDictionary(int index) {
-		if (index < DICNUMBER && index >= 0)
-			return dictionaries.get(index);
-		else
-			return null;
+		return dictionaries.get(index);
 	}
 
-	@Override
+	/**
+	 * Get the dictionary by the name
+	 * 
+	 * @param name
+	 *            The name of the dictionary
+	 * @return {@code dictionary}
+	 */
 	public Dictionary getDictionary(String name) {
 		for (Dictionary dic : dictionaries) {
 			if (dic.getName().equals(name)) {
@@ -43,7 +50,11 @@ public class Dictionaries extends Observable implements IDictionaries {
 		return null;
 	}
 
-	@Override
+	/**
+	 * Get all dictionaries' name
+	 * 
+	 * @return a {@code List<String>} of the dictionaries' name
+	 */
 	public List<String> getDictionaryNames() {
 		List<String> names = new ArrayList<String>();
 		for (Dictionary dic : dictionaries) {
@@ -52,21 +63,33 @@ public class Dictionaries extends Observable implements IDictionaries {
 		return names;
 	}
 
-	@Override
+	/**
+	 * Get the number of the dictionaries
+	 * 
+	 * @return {@code int}
+	 */
 	public int getDicNumber() {
 		return dictionaries.size();
 	}
-
-	@Override
-	public int getTotalSize() {
+	
+	/**
+	 * Get the total size of the dictionaries
+	 * 
+	 * @return {@code int}
+	 */
+	public int getTotalSize(){
 		int totalSize = 0;
-		for (Dictionary dic : dictionaries) {
+		for(Dictionary dic: dictionaries){
 			totalSize += dic.getSize();
 		}
 		return totalSize;
 	}
 
-	@Override
+	/**
+	 * Get a Record of all dictionaries.
+	 * 
+	 * @return {@code Record}
+	 */
 	public Record produceRecord() {
 		String name = "All Record";
 		int totalSize = 0;

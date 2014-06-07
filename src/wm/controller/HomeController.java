@@ -8,6 +8,8 @@ public class HomeController implements IHomeController {
 	SwitchDelegate delegate;
 	HomeView view;
 	
+	
+	
 	public HomeController(SwitchDelegate delegate) {
 		super();
 		this.delegate=delegate;

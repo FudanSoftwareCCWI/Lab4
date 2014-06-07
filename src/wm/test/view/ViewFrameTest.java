@@ -1,6 +1,3 @@
-/**
- * Software Engineer lab4
- */
 package wm.test.view;
 
 import java.awt.Dimension;
@@ -13,11 +10,6 @@ import wm.config.UI_Constants;
 import wm.controller.*;
 import wm.view.*;
 
-/**
- * 
- * @author ArielQian
- *
- */
 public class ViewFrameTest {
 	
 	static JFrame frame;
