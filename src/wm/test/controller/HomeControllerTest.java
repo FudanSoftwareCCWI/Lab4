@@ -1,9 +1,10 @@
 /**
- * Software Engineer lab4
+ * 
  */
 package wm.test.controller;
 
-import org.jmock.Expectations;
+import static org.junit.Assert.*;
+
 import org.jmock.Mockery;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -11,19 +12,13 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import wm.SwitchDelegate;
-import wm.controller.HomeController;
-import wm.controller.IHomeController;
-
 /**
- * @author Maggie He
+ * @author hewenqi
  * 
  */
 public class HomeControllerTest {
-	protected static Mockery context;
-	protected static SwitchDelegate delegate;
-	protected static IHomeController controller;
-	
+	protected Mockery context;
+
 	/**
 	 * @throws java.lang.Exception
 	 */
@@ -44,8 +39,7 @@ public class HomeControllerTest {
 	@Before
 	public void setUp() throws Exception {
 		context = new Mockery();
-		delegate=context.mock(SwitchDelegate.class);
-		controller=new HomeController(delegate);
+
 	}
 
 	/**
@@ -56,16 +50,20 @@ public class HomeControllerTest {
 	}
 
 	/**
+	 * Test method for
+	 * {@link wm.controller.HomeController#HomeController(wm.SwitchDelegate)}.
+	 */
+	@Test
+	public void testHomeController() {
+		fail("Not yet implemented");
+	}
+
+	/**
 	 * Test method for {@link wm.controller.HomeController#switchToRecite()}.
 	 */
 	@Test
 	public void testSwitchToRecite() {
-		context.checking(new Expectations(){
-			{
-				oneOf(delegate).getReciteMain();;
-			}
-		});
-		controller.switchToRecite();
+		fail("Not yet implemented");
 	}
 
 	/**
@@ -73,12 +71,15 @@ public class HomeControllerTest {
 	 */
 	@Test
 	public void testSwitchToRecord() {
-		context.checking(new Expectations(){
-			{
-				oneOf(delegate).getRecord();
-			}
-		});
-		controller.switchToRecord();
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link wm.controller.HomeController#getView()}.
+	 */
+	@Test
+	public void testGetView() {
+		fail("Not yet implemented");
 	}
 
 }

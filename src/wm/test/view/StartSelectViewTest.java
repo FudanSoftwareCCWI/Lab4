@@ -1,6 +1,3 @@
-/**
- * Software Engineer lab4
- */
 package wm.test.view;
 
 import java.awt.event.MouseEvent;
@@ -16,11 +13,6 @@ import org.junit.Test;
 import wm.controller.IReciteProcessController;
 import wm.view.StartSelectView;
 
-/**
- * 
- * @author SidneyFan
- *
- */
 public class StartSelectViewTest extends WMViewTestCase {
 
 	StartSelectView view;

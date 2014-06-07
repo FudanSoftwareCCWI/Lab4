@@ -38,15 +38,6 @@ public class RecordImplTest {
 	public void testRecordImpl() {
 		assertNotNull(recordHolder);
 	}
-	
-	/**
-	 * Test method for {@link wm.model.dao.RecordImpl#RecordImpl()}.
-	 */
-	@Test
-	public void testSelectAllRecord() {
-		assertNotNull(recordHolder);
-	}
-	
 
 	
 }

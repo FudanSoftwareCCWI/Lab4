@@ -39,6 +39,8 @@ public class DictionaryImplTest {
 		Dictionary dictionary = dic.getDictionary(0);
 		assertEquals(26, dic.getDicNumber());
 		assertEquals("abandon", dictionary.getKey(0));
+		dictionary.setWordRecited();
+		dictionary.setWordCorrect(true);
 	}
 
 	/**
@@ -59,6 +61,8 @@ public class DictionaryImplTest {
 	@Test
 	public void testUpdateDictionary() {
 		Dictionary dictionary = dic.getDictionary(1);
+		dictionary.setWordRecited();
+		dictionary.setWordCorrect(false);
 		reader.updateDictionary(dictionary);
 	}
 	
