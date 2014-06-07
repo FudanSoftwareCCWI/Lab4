@@ -10,13 +10,12 @@ import java.util.Observable;
 /**
  * Class Dictionary represents a particular dictionary in the recite process. It
  * provides users several methods to manage a recite process and fetch current
- * recite record. It implements the {@link IDictionary} interface and extends
- * the {@link Observable} class.
+ * recite record.
  * 
  * @author Ariel Qian
  * 
  */
-public class Dictionary extends Observable implements IDictionary {
+public class Dictionary extends Observable {
 
 	private String name;
 	private List<Word> words;
@@ -51,17 +50,31 @@ public class Dictionary extends Observable implements IDictionary {
 		this.presentWord = presentWord;
 	}
 
-	@Override
+	/**
+	 * Get the name of the dictionary.
+	 * 
+	 * @return The name of the dictionary
+	 */
 	public String getName() {
 		return name;
 	}
 
-	@Override
+	/**
+	 * Get the size of the dictionary.
+	 * 
+	 * @return The size of the dictionary
+	 */
 	public int getSize() {
 		return words.size();
 	}
 
-	@Override
+	/**
+	 * Get a list of words in the dictionary that has a particular prefix.
+	 * 
+	 * @param prefix
+	 *            The particular prefix
+	 * @return A list of words with this prefix
+	 */
 	public List<String> getMatchWords(String prefix) {
 		List<String> match = new ArrayList<String>();
 		for (Word w : words) {
@@ -71,38 +84,59 @@ public class Dictionary extends Observable implements IDictionary {
 		return match;
 	}
 
-	@Override
+	/**
+	 * Get the presentWord.
+	 * 
+	 * @return {@code precentWord}
+	 */
 	public int getPresentWord() {
 		return presentWord;
 	}
 
-	@Override
-	public String getKey(int index) {
+	public String getKey(int index){
 		return words.get(index).getKey();
 	}
-
-	@Override
-	public String getMeaning(int index) {
+	
+	public String getMeaning(int index){
 		return words.get(index).getMeaning();
 	}
-
-	@Override
+	
+	/**
+	 * Get the word's if recited by the index.
+	 * 
+	 * @param index
+	 *            The index of the word
+	 * @return The {@code recited} of the word
+	 */
 	public boolean getWordRecited(int index) {
 		return words.get(index).isRecited();
 	}
 
-	@Override
+	/**
+	 * Get the word's if correct by the index.
+	 * 
+	 * @param index
+	 *            The index of the word
+	 * @return The {@code correct} of the word
+	 */
 	public boolean getWordCorrect(int index) {
 		return words.get(index).isCorrect();
 	}
 
-	@Override
+	/**
+	 * Get the word if recited and correct. This function is used to record the
+	 * info.
+	 * 
+	 * @param index
+	 *            The index of the word
+	 * @return A String: {@code recited} + "\t" + {@code correct}
+	 */
 	public String getWordEntry(int index) {
 		boolean recited = this.getWordRecited(index);
 		boolean correct = this.getWordCorrect(index);
 		String c = "";
 		String r = "";
-		String prefix = name.substring(11, 12).toLowerCase();
+		String prefix = name.substring(11,12).toLowerCase();
 		if (recited)
 			r = "1";
 		else
@@ -114,8 +148,7 @@ public class Dictionary extends Observable implements IDictionary {
 			c = "0";
 		return prefix + "\t" + r + "\t" + c;
 	}
-
-	@Override
+	
 	public int getWordIndex(String key) {
 		int index = 0;
 		for (int i = 0; i < words.size(); i++) {
@@ -127,34 +160,73 @@ public class Dictionary extends Observable implements IDictionary {
 		return index;
 	}
 
-	@Override
+	/**
+	 * Set the index of the present word. Must be called when setStartWord() is
+	 * called.
+	 * 
+	 * @param index
+	 *            The index of the present word
+	 */
 	public void setPresentWord(int index) {
 		presentWord = index;
 	}
 
-	@Override
+	/**
+	 * Set the present word is already recited
+	 * 
+	 */
+	public void setWordRecited() {
+		words.get(presentWord).setRecited(true);
+	}
+
+	/**
+	 * Set the present word is already recited
+	 * 
+	 */
 	public void setWordRecited(int index) {
 		words.get(index).setRecited(true);
 	}
-
-	@Override
-	public void setWordCorrect(int index, boolean correct) {
-		boolean isCorrect = words.get(index).isCorrect();
-		if (!isCorrect)
+	
+	/**
+	 * Set the present word is correct or not. If the word is already correct, do not modify it.
+	 * 
+	 * @param correct
+	 * 			a boolean show if the word is correct 
+	 */
+	public void setWordCorrect(boolean correct) {
+		boolean isCorrect=words.get(presentWord).isCorrect();
+		if(!isCorrect)
+			words.get(presentWord).setCorrect(correct);
+	}
+	
+	public void setWordCorrect(int index,boolean correct) {
+		boolean isCorrect=words.get(index).isCorrect();
+		if(!isCorrect)
 			words.get(index).setCorrect(correct);
 	}
-
-	@Override
+	
 	public int calAvailableSize(int start) {
 		return words.size() - start;
 	}
 
-	@Override
+	/**
+	 * Produce a record for the whole dictionary.
+	 * 
+	 * @return A record
+	 */
 	public Record produceRecord() {
-		return produceRecord(0, getSize() - 1);
+		return produceRecord(0,getSize()-1);
 	}
 
-	@Override
+	/**
+	 * Produce a record with start and end(included).
+	 * 
+	 * @param start
+	 *            The start index
+	 * @param end
+	 *            The end index
+	 * @return A record
+	 */
 	public Record produceRecord(int start, int end) {
 		String recordName = name;
 		int totalSize = end - start + 1;

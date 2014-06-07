@@ -1,5 +1,5 @@
 /**
- * Software Engineer lab4
+ * 
  */
 package wm.test.view;
 

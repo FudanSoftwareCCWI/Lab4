@@ -14,12 +14,6 @@ import wm.model.Dictionaries;
 import wm.model.Dictionary;
 import wm.model.Word;
 
-/**
- * Class DictionaryImpl implement the DictionaryDAO interface.
- * 
- * @author ArielQian
- * 
- */
 public class DictionaryImpl implements DictionaryDAO {
 	private final static int DICNUMBER = 26;
 
@@ -158,7 +152,7 @@ public class DictionaryImpl implements DictionaryDAO {
 			if (!newLogfile.exists()) {
 				newLogfile.createNewFile();
 			}
-			if (!newLatestfile.exists()) {
+			if(!newLatestfile.exists()){
 				newLatestfile.createNewFile();
 			}
 			String[] entry;
@@ -182,7 +176,7 @@ public class DictionaryImpl implements DictionaryDAO {
 				}
 			}
 			logWriter.close();
-			while ((latestline = latestReader.readLine()) != null) {
+			while((latestline = latestReader.readLine())!=null){
 				entry = latestline.split("\t");
 
 				if (entry[0].substring(0, 1).equals(prefix)) {
@@ -211,12 +205,6 @@ public class DictionaryImpl implements DictionaryDAO {
 		return false;
 	}
 
-	/**
-	 * Create the logfile according to the input file
-	 * 
-	 * @param filename
-	 *            The dictionary name which need to be create a logfile
-	 */
 	private void createLogfile(String filename) {
 		String dicEntry = "";
 		String first = "";
@@ -242,10 +230,6 @@ public class DictionaryImpl implements DictionaryDAO {
 
 	}
 
-	/**
-	 * create the file keep track of the present word the user recited in the
-	 * file.
-	 */
 	private void createLatestFile() {
 		try {
 			File latestRicited = new File("material/latestRicite.txt");

@@ -1,6 +1,3 @@
-/**
- * Software Engineer lab4
- */
 package wm.test.view;
 
 import java.util.ArrayList;
@@ -17,11 +14,6 @@ import org.junit.Test;
 import wm.controller.IRecordController;
 import wm.view.RecordView;
 
-/**
- * 
- * @author SidneyFan
- *
- */
 public class RecordViewTest extends WMViewTestCase {
 
 	private static RecordView view;

@@ -6,13 +6,12 @@ package wm.model;
 /**
  * Class Record represents a particular record in the recite process. It
  * provides users statistic information in the recite process, either of one
- * particular dictionary or all dictionaries. It implements the {@link IRecord}
- * interface and extends the {@link WMModel} class.
+ * particular dictionary or all dictionaries.
  * 
  * @author Ariel Qian
  * 
  */
-public class Record extends WMModel implements IRecord {
+public class Record extends WMModel {
 	/**
 	 * Generated serial version ID
 	 */
@@ -43,36 +42,71 @@ public class Record extends WMModel implements IRecord {
 		this.correct = correct;
 	}
 
-	@Override
+	/**
+	 * Get the name of the dictionary.
+	 * 
+	 * @return The {@code name} of the dictionary
+	 */
 	public String getName() {
 		return name;
 	}
 
-	@Override
+	/**
+	 * Get the total size of the dictionary.
+	 * 
+	 * @return {@code totalSize}, the number of words in the dictionary.
+	 */
 	public int getTotalSize() {
 		return totalSize;
 	}
 
-	@Override
+	/**
+	 * Get the recited size.
+	 * 
+	 * @return {@code recitedSize}, the number of words recited.
+	 */
 	public int getRecitedSize() {
 		return recitedSize;
 	}
 
-	@Override
+	/**
+	 * Get the correct number of words recited.
+	 * 
+	 * @return The {@code correct} number of words recited
+	 */
 	public int getCorrect() {
 		return correct;
 	}
 
-	@Override
+	/**
+	 * Get the wrong number of words recited, obtained by subtract correct
+	 * number from recitedSize.
+	 * 
+	 * @return The wrong number of words recited
+	 */
 	public int getWrong() {
 		return recitedSize - correct;
 	}
 
-	@Override
+	/**
+	 * Get the correct rate of words recited.
+	 * 
+	 * @return The correct rate of words recited
+	 */
 	public double getCorrectRate() {
-		if (recitedSize != 0)
+		if(recitedSize!=0)
 			return (double) correct / (double) recitedSize;
 		return 0;
+	}
+
+	/**
+	 * The toString function. Used in the unit test.
+	 * 
+	 * @return The parametres of the current record.
+	 */
+	public String toString() {
+		return name + " " + totalSize + " " + recitedSize + " " + correct;
+
 	}
 
 }
