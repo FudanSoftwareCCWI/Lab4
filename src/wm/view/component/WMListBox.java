@@ -64,7 +64,7 @@ public class WMListBox extends JComponent {
 
 		field.setBorder(new MatteBorder(1, 0, 1, 0, Color.WHITE));
 		scrollPane.setBorder(null);
-		scrollPane.getVerticalScrollBar().setUI(null);
+//		scrollPane.getVerticalScrollBar().setUI(null);
 		field.setFont(new Font(WMLabel.LABEL_FONT, Font.PLAIN,
 				WMLabel.LABEL_TINY));
 		field.setForeground(Color.WHITE);
@@ -75,7 +75,7 @@ public class WMListBox extends JComponent {
 		this.add(field);
 		this.add(scrollPane);
 		field.setBounds(0, 0, width, height);
-		scrollPane.setBounds(0, height + 5, width, 2 * height);
+		scrollPane.setBounds(0, height + 5, width, 3 * height);
 		hideComboBox();
 	}
 

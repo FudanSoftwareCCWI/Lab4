@@ -317,12 +317,12 @@ public class RecordView extends WMView {
 
 	private void initDictNamePanel() {
 		currentDicIndex = 0;
-		listBox = new WMListBox(UI_Constants.UNITHEIGHT, WMLabel.LABEL_SMALL + 5);
+		listBox = new WMListBox(UI_Constants.UNITHEIGHT+30, WMLabel.LABEL_SMALL + 5);
 		listBox.setCurrentIndex(currentDicIndex);
 		dictNameLabel = new WMLabel(ScriptConstants.CHIN_DICTNAME,
 				WMLabel.LABEL_TINY);
 		dictNameLabel.setBounds(0, 0, UI_Constants.GLOBAL_WIDTH, PADDING);
-		listBox.setBounds((UI_Constants.GLOBAL_WIDTH - UI_Constants.UNITHEIGHT) / 2,
+		listBox.setBounds((UI_Constants.GLOBAL_WIDTH - UI_Constants.UNITHEIGHT-30) / 2,
 				PADDING, UI_Constants.GLOBAL_WIDTH, UI_Constants.UNITHEIGHT);
 		centerPanel.add(dictNameLabel);
 		centerPanel.add(listBox);
