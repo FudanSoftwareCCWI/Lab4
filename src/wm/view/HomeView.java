@@ -26,7 +26,7 @@ import wm.view.component.WMLabel;
  * @author Sidney Fan
  * 
  */
-public class HomeView extends WMView implements IHomeView{
+public class HomeView extends WMView {
 
 	/**
 	 * Generated serial version ID
@@ -263,7 +263,13 @@ public class HomeView extends WMView implements IHomeView{
 						UI_Constants.GLOBAL_HEIGHT }, 3);
 	}
 
-	@Override
+	/**
+	 * <b>refreshHome</b>
+	 * <pre><code>public void <b>refreshHome</b>()</code></pre>
+	 * <blockquote>
+	 * <p>RefreshHome to repaint the select panel. This must be invoke after any view swiched to home view.</p>
+	 * </blockquote>
+	 */
 	public void refreshHome() {
 		statisticPanel.setBackground(UI_Constants.LIGHTGREEN);
 		recitePanel.setBackground(UI_Constants.NORMALGREEN);
