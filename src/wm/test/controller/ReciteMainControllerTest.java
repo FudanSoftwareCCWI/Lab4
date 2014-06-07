@@ -1,10 +1,9 @@
 /**
- * 
+ * Software Engineer lab4
  */
 package wm.test.controller;
 
-import static org.junit.Assert.*;
-
+import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -13,12 +12,13 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import wm.SwitchDelegate;
+import wm.controller.IReciteMainController;
 import wm.controller.ReciteMainController;
 import wm.model.Dictionaries;
 import wm.view.ReciteMainView;
 
 /**
- * @author hewenqi
+ * @author Maggie He
  *
  */
 public class ReciteMainControllerTest {
@@ -26,7 +26,7 @@ public class ReciteMainControllerTest {
 	protected static SwitchDelegate delegate;
 	protected static ReciteMainView view;
 	protected static Dictionaries model;
-	protected static ReciteMainController controller;
+	protected static IReciteMainController controller;
 	
 	/**
 	 * @throws java.lang.Exception
@@ -48,10 +48,17 @@ public class ReciteMainControllerTest {
 	@Before
 	public void setUp() throws Exception {
 		context= new Mockery();
+		controller = context.mock(ReciteMainController.class);
+		context.checking(new Expectations(){
+			{
+				allowing(controller).showDictionaryDetail(with(any(int.class)));
+			}
+		});
+		context.assertIsSatisfied();
 		delegate=context.mock(SwitchDelegate.class);
 		view=context.mock(ReciteMainView.class);
-		model=context.mock(Dictionaries.class);
-		controller=new ReciteMainController(delegate, model);
+//		model=context.mock(Dictionaries.class);
+//		controller=new ReciteMainController(delegate, model);
 	}
 
 	/**
@@ -62,19 +69,16 @@ public class ReciteMainControllerTest {
 	}
 
 	/**
-	 * Test method for {@link wm.controller.ReciteMainController#ReciteMainController(wm.SwitchDelegate, wm.model.Dictionaries)}.
-	 */
-	@Test
-	public void testReciteMainController() {
-		fail("Not yet implemented");
-	}
-
-	/**
 	 * Test method for {@link wm.controller.ReciteMainController#showDictionaryDetail(int)}.
 	 */
 	@Test
 	public void testShowDictionaryDetail() {
-		fail("Not yet implemented");
+		//Sequence sequence=context.sequence("");
+		context.checking(new Expectations(){
+			{
+				
+			}
+		});
 	}
 
 	/**
@@ -82,7 +86,12 @@ public class ReciteMainControllerTest {
 	 */
 	@Test
 	public void testSwitchToStartSelect() {
-		fail("Not yet implemented");
+		context.checking(new Expectations(){
+			{
+				oneOf(delegate).getStartWordSelect(0);
+			}
+		});
+		controller.switchToStartSelect(0);
 	}
 
 	/**
@@ -90,15 +99,11 @@ public class ReciteMainControllerTest {
 	 */
 	@Test
 	public void testSwitchToHome() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link wm.controller.ReciteMainController#getView()}.
-	 */
-	@Test
-	public void testGetView() {
-		fail("Not yet implemented");
+		context.checking(new Expectations(){
+			{
+				
+			}
+		});
 	}
 
 }
