@@ -5,7 +5,7 @@ package wm.view;
 
 import javax.swing.JPanel;
 
-import wm.config.Constants;
+import wm.config.UI_Constants;
 
 /**
  * Abstract Class WMView represents a view of the application. Any other views
@@ -22,9 +22,7 @@ public abstract class WMView extends JPanel {
 	private static final long serialVersionUID = 16020516862728212L;
 
 	public WMView() {
-		this.setBackground(Constants.NORMALGREEN);
-//		this.initComponents();
-//		this.initListener();
+		this.setBackground(UI_Constants.NORMALGREEN);
 	}
 
 	/**

@@ -10,7 +10,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import wm.config.Constants;
+import wm.config.UI_Constants;
+import wm.config.IconConstants;
 import wm.controller.IReciteProcessController;
 import wm.view.component.WMLabel;
 
@@ -57,34 +58,34 @@ public abstract class ReciteProcessView extends WMView {
 		this.setLayout(null);
 		this.add(navPanel);
 		this.add(centerPanel);
-		navPanel.setBounds(0, 0, Constants.GLOBAL_WIDTH, Constants.UNITHEIGHT);
-		centerPanel.setBounds(0, Constants.UNITHEIGHT, Constants.GLOBAL_WIDTH,
-				Constants.GLOBAL_HEIGHT - Constants.UNITHEIGHT);
+		navPanel.setBounds(0, 0, UI_Constants.GLOBAL_WIDTH, UI_Constants.UNITHEIGHT);
+		centerPanel.setBounds(0, UI_Constants.UNITHEIGHT, UI_Constants.GLOBAL_WIDTH,
+				UI_Constants.GLOBAL_HEIGHT - UI_Constants.UNITHEIGHT);
 		navPanel.setOpaque(false);
 		centerPanel.setOpaque(false);
 		// navigator
-		homeBtn = new JButton(Constants.HOMEICON);
-		quitBtn = new JButton(Constants.QUITICON);
+		homeBtn = new JButton(IconConstants.HOMEICON);
+		quitBtn = new JButton(IconConstants.QUITICON);
 		homeBtn.setBorderPainted(false);
-		homeBtn.setBackground(Constants.DARKGREEN);
+		homeBtn.setBackground(UI_Constants.NORMALGREEN);
 		quitBtn.setBorderPainted(false);
-		quitBtn.setBackground(Constants.DARKGREEN);
-		headLine = new WMLabel("Dictionary", Constants.LABEL_NORMAL);
+		quitBtn.setBackground(UI_Constants.NORMALGREEN);
+		headLine = new WMLabel("Dictionary", WMLabel.LABEL_NORMAL);
 		navPanel.setLayout(null);
 		navPanel.add(homeBtn);
 		navPanel.add(quitBtn);
 		navPanel.add(headLine);
-		homeBtn.setBounds(0, 0, Constants.UNITHEIGHT, Constants.UNITHEIGHT);
-		quitBtn.setBounds(Constants.GLOBAL_WIDTH - Constants.UNITHEIGHT, 0,
-				Constants.UNITHEIGHT, Constants.UNITHEIGHT);
-		headLine.setBounds(Constants.UNITHEIGHT, 0, Constants.GLOBAL_WIDTH - 2
-				* Constants.UNITHEIGHT, Constants.UNITHEIGHT);
+		homeBtn.setBounds(0, 0, UI_Constants.UNITHEIGHT, UI_Constants.UNITHEIGHT);
+		quitBtn.setBounds(UI_Constants.GLOBAL_WIDTH - UI_Constants.UNITHEIGHT, 0,
+				UI_Constants.UNITHEIGHT, UI_Constants.UNITHEIGHT);
+		headLine.setBounds(UI_Constants.UNITHEIGHT, 0, UI_Constants.GLOBAL_WIDTH - 2
+				* UI_Constants.UNITHEIGHT, UI_Constants.UNITHEIGHT);
 		// center
 		centerPanel.setLayout(null);
-		tipLabel = new WMLabel("", Constants.LABEL_SMALL);
+		tipLabel = new WMLabel("", WMLabel.LABEL_SMALL);
 		centerPanel.add(tipLabel);
-		tipLabel.setBounds(0, PADDING/2, Constants.GLOBAL_WIDTH,
-				Constants.UNITHEIGHT);
+		tipLabel.setBounds(0, PADDING/2, UI_Constants.GLOBAL_WIDTH,
+				UI_Constants.UNITHEIGHT);
 	}
 
 	/**
@@ -113,7 +114,7 @@ public abstract class ReciteProcessView extends WMView {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				System.exit(0); // TODO should fire quit
+				controller.closeWindow();
 			}
 
 		});
@@ -139,10 +140,10 @@ public abstract class ReciteProcessView extends WMView {
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.setColor(Constants.LIGHTGREEN);
-		g.fillRect(0, 0, Constants.GLOBAL_WIDTH, Constants.GLOBAL_HEIGHT);
-		g.setColor(Constants.NORMALGREEN);
-		g.fillRect(0, 0, Constants.GLOBAL_WIDTH, Constants.UNITHEIGHT);
+		g.setColor(UI_Constants.LIGHTGREEN);
+		g.fillRect(0, 0, UI_Constants.GLOBAL_WIDTH, UI_Constants.GLOBAL_HEIGHT);
+		g.setColor(UI_Constants.NORMALGREEN);
+		g.fillRect(0, 0, UI_Constants.GLOBAL_WIDTH, UI_Constants.UNITHEIGHT);
 	}
 
 }

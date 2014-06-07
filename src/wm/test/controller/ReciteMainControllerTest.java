@@ -22,11 +22,11 @@ import wm.view.ReciteMainView;
  *
  */
 public class ReciteMainControllerTest {
-	private static Mockery context;
-	private static SwitchDelegate delegate;
-	private static ReciteMainView view;
-	private static Dictionaries model;
-	private static ReciteMainController controller;
+	protected static Mockery context;
+	protected static SwitchDelegate delegate;
+	protected static ReciteMainView view;
+	protected static Dictionaries model;
+	protected static ReciteMainController controller;
 	
 	/**
 	 * @throws java.lang.Exception

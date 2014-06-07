@@ -3,7 +3,6 @@
  */
 package wm;
 
-import wm.config.Configuration;
 import wm.controller.HomeController;
 import wm.controller.ReciteMainController;
 import wm.controller.ReciteProcessController;
@@ -27,12 +26,10 @@ public class RootDelegate implements SwitchDelegate {
 	private RootWindow rootWindow;
 	private WMController currentController;
 	private Dictionaries preLoadModel;
-	private Configuration conf;
 
 	public RootDelegate() {
 		super();
 		this.rootWindow = new RootWindow();
-		this.conf = new Configuration();
 		this.preLoadModel = preload();
 	}
 

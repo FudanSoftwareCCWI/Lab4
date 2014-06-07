@@ -11,7 +11,6 @@ import wm.model.Record;
 import wm.model.Records;
 
 public class RecordImpl implements RecordDAO {
-	private final static int RECORDNUMBER = 26;
 
 	@Override
 	public Records selectAllRecord(Dictionaries dic) {	
@@ -32,13 +31,8 @@ public class RecordImpl implements RecordDAO {
 
 	@Override
 	public void updateAllRecord(Dictionaries dic) {
-		// TODO Auto-generated method stub
 		
 	}
-
-
-
-
 
 	
 }

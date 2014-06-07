@@ -7,19 +7,12 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -27,11 +20,12 @@ import javax.swing.JTextField;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
 
-import wm.config.Constants;
+import wm.config.UI_Constants;
+import wm.config.IconConstants;
+import wm.config.ScriptConstants;
 import wm.controller.IReciteProcessController;
 import wm.view.component.WMBlock;
 import wm.view.component.WMLabel;
-import wm.controller.IReciteProcessController;
 
 /**
  * Class StartWordDefineView appears when the user want to start by the input
@@ -61,14 +55,15 @@ public class StartWordDefineView extends ReciteProcessView {
 	}
 
 	protected void addComponents() {
-		setTip(Constants.CHIN_CUMSTOMIMPUT);
+		setTip(ScriptConstants.CHIN_CUMSTOMIMPUT);
 
-		searchBox = new WMComboBox(3 * Constants.UNITHEIGHT,
-				Constants.UNITHEIGHT - PADDING);
-		nextBtn = new JButton(Constants.NEXTICON);
-		nextTip = new WMLabel("", Constants.LABEL_TINY);
+		searchBox = new WMComboBox(3 * UI_Constants.UNITHEIGHT,
+				UI_Constants.UNITHEIGHT - PADDING);
+		nextBtn = new JButton(IconConstants.NEXTICON);
+		nextTip = new WMLabel("", WMLabel.LABEL_TINY);
 
-		nextBtn.setBorder(null);
+		nextBtn.setBorderPainted(false);
+		nextBtn.setBackground(UI_Constants.LIGHTGREEN);
 		nextBtn.setVisible(false);
 		nextTip.setVisible(false);
 
@@ -76,14 +71,16 @@ public class StartWordDefineView extends ReciteProcessView {
 		centerPanel.add(nextBtn);
 		centerPanel.add(nextTip);
 
-		searchBox.setBounds(Constants.GLOBAL_WIDTH / 2
-				- (int) (Constants.UNITHEIGHT * 1.5), Constants.UNITHEIGHT
-				+ PADDING, 3 * Constants.UNITHEIGHT, 3 * Constants.UNITHEIGHT);
-		nextBtn.setBounds((Constants.GLOBAL_WIDTH - Constants.ICON_TINY) / 2, 3
-				* Constants.UNITHEIGHT + PADDING, Constants.ICON_TINY,
-				Constants.ICON_TINY);
-		nextTip.setBounds(0, 3 * Constants.UNITHEIGHT + PADDING + 5,
-				Constants.GLOBAL_WIDTH, Constants.UNITHEIGHT);
+		searchBox.setBounds(UI_Constants.GLOBAL_WIDTH / 2
+				- (int) (UI_Constants.UNITHEIGHT * 1.5),
+				UI_Constants.UNITHEIGHT + PADDING, 3 * UI_Constants.UNITHEIGHT,
+				3 * UI_Constants.UNITHEIGHT);
+		nextBtn.setBounds(
+				(UI_Constants.GLOBAL_WIDTH - IconConstants.ICON_TINY) / 2, 3
+						* UI_Constants.UNITHEIGHT + PADDING,
+				IconConstants.ICON_TINY, IconConstants.ICON_TINY);
+		nextTip.setBounds(0, 3 * UI_Constants.UNITHEIGHT + PADDING + 5,
+				UI_Constants.GLOBAL_WIDTH, UI_Constants.UNITHEIGHT);
 
 	}
 
@@ -102,14 +99,6 @@ public class StartWordDefineView extends ReciteProcessView {
 		});
 	}
 
-	/**
-	 * 
-	 * @param word
-	 */
-	public void setWordListTextarea(List word) {
-
-	}
-
 	public WMComboBox getSearchBox() {
 		return searchBox;
 	}
@@ -117,19 +106,23 @@ public class StartWordDefineView extends ReciteProcessView {
 	public void invalidInput() {
 		nextBtn.setVisible(true);
 		nextTip.setVisible(true);
-		nextTip.setText(Constants.CHIN_NO_MATCH);
+		nextTip.setText(ScriptConstants.CHIN_NO_MATCH);
 		nextTag = TOSTARTBYFIRSTVIEW;
 	}
 
 	public void validInput() {
 		nextBtn.setVisible(true);
 		nextTip.setVisible(true);
-		nextTip.setText(Constants.CHIN_NEXT_TO_CHOOSE_SIZE);
+		nextTip.setText(ScriptConstants.CHIN_NEXT_TO_CHOOSE_SIZE);
 		nextTag = TOSIZEVIEW;
 	}
 
 	protected class WMComboBox extends JComponent {
 
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = -6027862413274433517L;
 		JTextField field;
 		JScrollPane scrollPane;
 		JPanel comboBox;
@@ -156,10 +149,10 @@ public class StartWordDefineView extends ReciteProcessView {
 			field.setBorder(null);
 			scrollPane.setBorder(null);
 			scrollPane.getVerticalScrollBar().setUI(null);
-			field.setFont(new Font(Constants.LABEL_FONT, Font.PLAIN,
-					Constants.LABEL_MIDDLE));
+			field.setFont(new Font(WMLabel.LABEL_FONT, Font.PLAIN,
+					WMLabel.LABEL_MIDDLE));
 			field.setForeground(Color.WHITE);
-			field.setBackground(Constants.NOTEALPHA);
+			field.setBackground(UI_Constants.NOTEALPHA);
 
 			this.setLayout(null);
 			this.add(field);
@@ -197,20 +190,23 @@ public class StartWordDefineView extends ReciteProcessView {
 			this.list = list;
 			comboBox.removeAll();
 			comboBox.setLayout(new GridLayout(list.size(), 1));
-			if (list.size() == 0)
+			if (list.size() == 0) {
+				hideComboBox();
 				return;
+			}
 			WMBlock tempBlock;
 			String tempname;
 			Iterator<String> it = list.iterator();
 			while (it.hasNext()) {
 				tempname = it.next();
 				tempBlock = new WMBlock(width, 20, 1, 1);
-				tempBlock.addLeftLabel(tempname, Constants.LABEL_SMALL);
-				tempBlock.setColor(Constants.LIGHTGREEN, Constants.NOTEALPHA);
+				tempBlock.addLeftLabel(tempname, WMLabel.LABEL_SMALL);
+				tempBlock.setColor(UI_Constants.LIGHTGREEN,
+						UI_Constants.NOTEALPHA);
 				comboBox.add(tempBlock);
 			}
 			comboBox.setPreferredSize(new Dimension(scrollPane.getWidth() - 50,
-					list.size() * (Constants.LABEL_SMALL + 3)));
+					list.size() * (WMLabel.LABEL_SMALL + 3)));
 			setListBlockListener();
 			showComboBox();
 			comboBox.revalidate();

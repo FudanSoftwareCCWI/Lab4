@@ -3,8 +3,6 @@
  */
 package wm;
 
-import wm.model.Dictionary;
-
 
 /**
  * Interface SwitchDelegate manages the switches between different controllers.

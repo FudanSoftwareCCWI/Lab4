@@ -8,7 +8,7 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 
-import wm.config.Constants;
+import wm.config.UI_Constants;
 
 /**
  * Class RootWindow manages a frame of the whole application. It have methods to
@@ -23,16 +23,15 @@ public class RootWindow extends JFrame {
 	 */
 	private static final long serialVersionUID = -4846877555809396935L;
 
-	private int currentView;
 
 	/**
-	 * 
+	 * Root window frame.
 	 */
 	public RootWindow() {
 		// init size or something
 		super();
-		Dimension fixedDimension = new Dimension(Constants.GLOBAL_WIDTH,
-				Constants.GLOBAL_HEIGHT + 20);
+		Dimension fixedDimension = new Dimension(UI_Constants.GLOBAL_WIDTH+5,
+				UI_Constants.GLOBAL_HEIGHT + 20);
 		this.setSize(fixedDimension);
 		this.setResizable(false);
 		try {
@@ -42,17 +41,17 @@ public class RootWindow extends JFrame {
 	}
 
 	/**
-	 * 
+	 * Show the Frame.
 	 */
 	public void start() {
-		this.setBackground(Constants.NORMALGREEN);
+		this.setBackground(UI_Constants.NORMALGREEN);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 	}
 
 	/**
-	 * 
+	 * Show inner view,
 	 * @param view
 	 */
 	public void showView(WMView view) {

@@ -16,10 +16,14 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.MatteBorder;
 
-import wm.config.Constants;
+import wm.config.UI_Constants;
 
 public class WMListBox extends JComponent {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7550452879023653824L;
 	private JTextField field;
 	private JScrollPane scrollPane;
 	private JPanel comboBox;
@@ -60,18 +64,18 @@ public class WMListBox extends JComponent {
 
 		field.setBorder(new MatteBorder(1, 0, 1, 0, Color.WHITE));
 		scrollPane.setBorder(null);
-		scrollPane.getVerticalScrollBar().setUI(null);
-		field.setFont(new Font(Constants.LABEL_FONT, Font.PLAIN,
-				Constants.LABEL_TINY));
+//		scrollPane.getVerticalScrollBar().setUI(null);
+		field.setFont(new Font(WMLabel.LABEL_FONT, Font.PLAIN,
+				WMLabel.LABEL_TINY));
 		field.setForeground(Color.WHITE);
-		field.setBackground(Constants.LIGHTGREEN);
+		field.setBackground(UI_Constants.LIGHTGREEN);
 		field.setEditable(false);
 
 		this.setLayout(null);
 		this.add(field);
 		this.add(scrollPane);
 		field.setBounds(0, 0, width, height);
-		scrollPane.setBounds(0, height + 5, width, 2 * height);
+		scrollPane.setBounds(0, height + 5, width, 3 * height);
 		hideComboBox();
 	}
 
@@ -101,17 +105,15 @@ public class WMListBox extends JComponent {
 		WMBlock tempBlock;
 		String tempname;
 		Iterator<String> it = dictist.iterator();
-		int i = 0;
 		while (it.hasNext()) {
 			tempname = it.next();
 			tempBlock = new WMBlock(width, 20, 1, 1);
-			tempBlock.addLeftLabel(tempname, Constants.LABEL_TINY);
-			tempBlock.setColor(Constants.LIGHTGREEN, Constants.NOTEALPHA);
+			tempBlock.addLeftLabel(tempname, WMLabel.LABEL_TINY);
+			tempBlock.setColor(UI_Constants.LIGHTGREEN, UI_Constants.NOTEALPHA);
 			comboBox.add(tempBlock);
-			i++;
 		}
 		comboBox.setPreferredSize(new Dimension(scrollPane.getWidth() - 50,
-				dictist.size() * (Constants.LABEL_SMALL + 3)));
+				dictist.size() * (WMLabel.LABEL_SMALL + 3)));
 		setListBlockListener();
 		showComboBox();
 	}
@@ -171,7 +173,7 @@ public class WMListBox extends JComponent {
 			setCurrentBlock((WMBlock) comboBox.getComponents().clone()[index]);
 			field.setText(dictist.get(currentIndex));
 			// Fire chosen
-			WMListBox.this.firePropertyChange(Constants.PROPERTY_DICTCHANGE, new Integer(-1), new Integer(index));
+			WMListBox.this.firePropertyChange(UI_Constants.PROPERTY_DICTCHANGE, new Integer(-1), new Integer(index));
 		}
 	}
 

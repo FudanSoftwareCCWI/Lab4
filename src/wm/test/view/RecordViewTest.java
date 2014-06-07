@@ -1,22 +1,17 @@
 package wm.test.view;
 
-import static org.junit.Assert.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import org.jmock.Expectations;
 import org.jmock.Mockery;
-import org.jmock.States;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import wm.controller.IHomeController;
 import wm.controller.IRecordController;
-import wm.view.HomeView;
 import wm.view.RecordView;
 
 public class RecordViewTest extends WMViewTestCase {
@@ -91,7 +86,6 @@ public class RecordViewTest extends WMViewTestCase {
 		view.setBarRecitedIcon(a);
 		
 		view.setHeadLineText("Statistic");
-		while (true);
 
 	}
 

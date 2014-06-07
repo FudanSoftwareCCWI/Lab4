@@ -3,20 +3,18 @@ package wm.view.component;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.GridLayout;
 import java.awt.Rectangle;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-
-import wm.config.Constants;
 
 public class WMTable extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7471855718324608502L;
 	private List<Integer> list;
 	private List<String> name;
 
