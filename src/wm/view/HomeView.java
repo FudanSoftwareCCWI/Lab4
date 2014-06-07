@@ -86,7 +86,8 @@ public class HomeView extends WMView {
 		reciteNote.setForeground(Constants.NOTEALPHA);
 		statisticLabel.setVerticalAlignment(JLabel.BOTTOM);
 		reciteLabel.setVerticalAlignment(JLabel.BOTTOM);
-		quitBtn.setBorder(null);
+		quitBtn.setBorderPainted(false);
+		quitBtn.setBackground(Constants.NORMALGREEN);
 
 		// select panel
 		selectPanel = new JPanel();

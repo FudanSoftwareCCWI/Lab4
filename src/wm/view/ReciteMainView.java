@@ -141,9 +141,13 @@ public class ReciteMainView extends WMView {
 		quitBtn = new JButton(Constants.QUITICON);
 		homeBtn = new JButton(Constants.HOMEICON);
 		nextBtn = new JButton(Constants.NEXTICON);
-		quitBtn.setBorder(null);
-		homeBtn.setBorder(null);
-		nextBtn.setBorder(null);
+		quitBtn.setBorderPainted(false);
+		homeBtn.setBorderPainted(false);
+		nextBtn.setBorderPainted(false);
+		quitBtn.setBackground(Constants.DARKGREEN);
+		homeBtn.setBackground(Constants.DARKGREEN);
+		nextBtn.setBackground(Constants.DARKGREEN);
+
 		JPanel iconPanel = new JPanel();
 		iconPanel.setOpaque(false);
 		iconPanel.setLayout(new GridLayout(1, 3));
@@ -326,6 +330,7 @@ public class ReciteMainView extends WMView {
 	 */
 	public void setCurrentDictIndex(int currentDictIndex) {
 		setCurrentBlock((WMBlock) (listPanel.getComponents()[currentDictIndex]));
+		this.currentDictIndex = currentDictIndex;
 	}
 
 	private void setCurrentBlock(WMBlock clickedBlock) {
@@ -333,6 +338,7 @@ public class ReciteMainView extends WMView {
 		int i = 0;
 		for (Component block : siblings) {
 			if (clickedBlock.equals((WMBlock) block)) {
+				System.out.println("setCurrentBlock: "+i);
 				this.currentDictIndex = i;
 				continue;
 			}

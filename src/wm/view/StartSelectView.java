@@ -7,11 +7,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
+import javax.swing.JPanel;
 
 import wm.config.Constants;
 import wm.controller.IReciteProcessController;
+import wm.view.component.WMLabel;
 
 /**
  * Class StartSelectView represents three ways to start recite, the user can
@@ -81,45 +84,49 @@ public class StartSelectView extends ReciteProcessView {
 
 	protected void addListener() {
 		
-		startByFirstBtn.addActionListener(new ActionListener() {
-
+		startByFirstBtn.addMouseListener(new MouseAdapter() {
+			
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
+			public void mouseClicked(MouseEvent arg0) {
 				controller.startByFirstWord();
+				
 			}
-
 		});
-		startByLastBtn.addActionListener(new ActionListener() {
-
+		
+		startByLastBtn.addMouseListener(new MouseAdapter() {
+			
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
+			public void mouseClicked(MouseEvent arg0) {
 				controller.startByLastTime();
 			}
 
 		});
-		startByCustomBtn.addActionListener(new ActionListener() {
-
+		startByCustomBtn.addMouseListener(new MouseAdapter() {
+			
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
+			public void mouseClicked(MouseEvent arg0) {
 				controller.switchToStartWordDefine();
 			}
 
 		});
 	}
 
-	public class SelectButton extends JButton {
+	public class SelectButton extends JPanel {
 		/**
 		 * 
 		 */
 		private static final long serialVersionUID = 7507522887537228688L;
 		private boolean hover;
+		private WMLabel textLabel;
 		
 		public SelectButton(String text) {
-			super(text);
-			this.setBorder(null);
-			this.setFont(new Font(Constants.LABEL_FONT, Font.PLAIN,
-					Constants.LABEL_SMALL));
-			this.setForeground(Constants.NORMALGREEN);
+			super();
+			textLabel = new WMLabel(text,Constants.LABEL_SMALL);
+			textLabel.setForeground(Constants.NORMALGREEN);
+			this.setBackground(Constants.LIGHTGREEN);
+			this.setLayout(null);
+			this.add(textLabel);
+			textLabel.setBounds(0, 0, Constants.ICON_MIDDLE, Constants.ICON_MIDDLE);
 			hover = false;
 			setMouseAction();
 		}
@@ -130,6 +137,7 @@ public class StartSelectView extends ReciteProcessView {
 				public void mouseExited(MouseEvent arg0) {
 					SelectButton.this.setForeground(Constants.NORMALGREEN);
 					hover = false;
+					textLabel.setForeground(Constants.NORMALGREEN);
 					repaint();
 				}
 
@@ -137,6 +145,7 @@ public class StartSelectView extends ReciteProcessView {
 				public void mouseEntered(MouseEvent arg0) {
 					SelectButton.this.setForeground(Color.WHITE);
 					hover = true;
+					textLabel.setForeground(Color.WHITE);
 					repaint();
 				}
 			});
@@ -145,6 +154,7 @@ public class StartSelectView extends ReciteProcessView {
 
 		@Override
 		public void paintComponent(Graphics g) {
+			super.paintComponent(g);
 			if (hover) {
 				g.setColor(Constants.NORMALGREEN);
 				g.fillArc(0, 0, Constants.ICON_MIDDLE, Constants.ICON_MIDDLE, 0,
@@ -163,7 +173,7 @@ public class StartSelectView extends ReciteProcessView {
 						Constants.ICON_MIDDLE - 2 * Constants.ICON_BORDER, 0, 360);
 	        }
 			
-			super.paintComponent(g);
+			
 		}
 	}
 

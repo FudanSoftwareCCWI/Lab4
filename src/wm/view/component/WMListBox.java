@@ -64,7 +64,7 @@ public class WMListBox extends JComponent {
 		field.setFont(new Font(Constants.LABEL_FONT, Font.PLAIN,
 				Constants.LABEL_TINY));
 		field.setForeground(Color.WHITE);
-		field.setBackground(new Color(0, 0, 0, 0));
+		field.setBackground(Constants.LIGHTGREEN);
 		field.setEditable(false);
 
 		this.setLayout(null);

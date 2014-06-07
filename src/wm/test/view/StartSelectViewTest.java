@@ -55,11 +55,12 @@ public class StartSelectViewTest extends WMViewTestCase {
 
 	@Test
 	public void test() {
-		view.getStartByCustomBtn().getActionListeners()[0]
-				.actionPerformed(new ActionEvent(view.getStartByCustomBtn(),
-						ActionEvent.ACTION_PERFORMED, "Clicked"));
+		view.getStartByCustomBtn().getMouseListeners()[0]
+				.mouseClicked(new MouseEvent(view.getStartByCustomBtn(), MouseEvent.MOUSE_CLICKED,
+						0, MouseEvent.BUTTON1_DOWN_MASK, 1, 1, 1, false));
 		context.assertIsSatisfied();
-		while(true);
+		while (true)
+			;
 	}
 
 }
