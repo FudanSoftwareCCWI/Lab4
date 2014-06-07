@@ -34,7 +34,7 @@ import wm.view.component.WMTable;
  * @author Sidney Fan
  * 
  */
-public class RecordView extends WMView {
+public class RecordView extends WMView implements IRecordView{
 
 	/**
 	 * 
@@ -115,164 +115,127 @@ public class RecordView extends WMView {
 		this.controller = controller;
 		initComponents();
 		initListener();
-		// default
-		// showTablePanel();
 	}
 
-	/**
-	 * Set dictionary list.
-	 * 
-	 * @param dictist
-	 */
+	@Override
 	public void setDictist(List<String> dictist) {
 		listBox.setDictist(dictist);
 		listBox.setCurrentIndex(0);
 	}
 
-	/**
-	 * Set dictionary total size.
-	 * 
-	 * @param size
-	 */
+	@Override
 	public void setSizeText(int size) {
 		dictSizeValue = size;
 		dictSizeLabel.setText(String.format("<html>%s<br>%d</html>",
 				ScriptConstants.CHIN_TOTAL, size));
 	}
 
-	/**
-	 * Set recited size.
-	 * 
-	 * @param recitedSize
-	 */
+	@Override
 	public void setReciteSizeText(int recitedSize) {
 		dictRecitedValue = recitedSize;
 		dictRecitedLabel.setText(String.format("<html>%s<br>%d</html>",
 				ScriptConstants.CHIN_RECITED, recitedSize));
-		// dictRecitedLabel.setText("");
-		// dictRecitedLabel.removeAll();
-		// dictRecitedLabel.setLayout(new GridLayout(2, 1));
-		// dictRecitedLabel.add(new WMLabel(Constants.CHIN_RECITED,
-		// Constants.LABEL_TINY));
-		// dictRecitedLabel.add(new WMLabel(String.valueOf(recitedSize),
-		// Constants.LABEL_TINY));
 	}
 
-	/**
-	 * Set correct size.
-	 * 
-	 * @param correct
-	 */
+	@Override
 	public void setCorrectText(int correct) {
 		dictCorrectValue = correct;
 		dictCorrectLabel.setText(String.format("<html>%s<br>%d</html>",
 				ScriptConstants.CHIN_CORRECT, correct));
-		// dictCorrectLabel.setText("");
-		// dictCorrectLabel.setLayout(new GridLayout(2, 1));
-		// dictCorrectLabel.add(new WMLabel(Constants.CHIN_CORRECT,
-		// Constants.LABEL_TINY));
-		// dictCorrectLabel.add(new WMLabel(String.valueOf(correct),
-		// Constants.LABEL_TINY));
 	}
 
-	/**
-	 * Set correct percentage.
-	 * 
-	 * @param percentage
-	 */
+	@Override
 	public void setCorrectPercentage(double percentage) {
 		dictRateValue = (int) (percentage * 100.00);
 		dictRateLabel.setText(String.format("<html>%s<br>%.2f%%</html>",
 				ScriptConstants.CHIN_RATE, percentage * 100.00));
-		// dictRateLabel.setText("");
-		// dictRateLabel.setLayout(new GridLayout(2, 1));
-		// dictRateLabel
-		// .add(new WMLabel(Constants.CHIN_RATE, Constants.LABEL_TINY));
-		// dictRateLabel.add(new WMLabel(String.valueOf((int) (percentage *
-		// 100))
-		// + "%", Constants.LABEL_TINY));
 	}
 
-	/**
-	 * Set wrong size.
-	 * 
-	 * @param wrong
-	 */
+	@Override
 	public void setWrongText(int wrong) {
 		dictWrongValue = wrong;
 		dictWrongLabel.setText(String.format("<html>%s<br>%d</html>",
 				ScriptConstants.CHIN_WRONG, wrong));
-		// dictWrongLabel.setText("");
-		// dictWrongLabel.setLayout(new GridLayout(2, 1));
-		// dictWrongLabel.add(new WMLabel(Constants.CHIN_TOTAL,
-		// Constants.LABEL_TINY));
-		// dictWrongLabel.add(new WMLabel(String.valueOf(wrong),
-		// Constants.LABEL_TINY));
 	}
 
-	/**
-	 * Set correct pie icon data.
-	 * 
-	 * @param correct
-	 * @param size
-	 *            -recited size
-	 */
+	@Override
 	public void setPieCorrectIcon(int correct, int size) {
 		pieCorrectIcon.createPie(new int[] { correct, size - correct });
 	}
 
-	/**
-	 * Set recited pie icon data.
-	 * 
-	 * @param recited
-	 * @param size
-	 *            -total size
-	 */
+	@Override
 	public void setPieRecitedIcon(int recited, int size) {
 		pieRecitedIcon.createPie(new int[] { recited, size - recited });
 		pieRecitedIcon.repaint();
 	}
 
-	/**
-	 * Set correct bar data.
-	 * 
-	 * @param list
-	 *            -List of integers of percentage, e.g. {86,72,...}
-	 */
+	@Override
 	public void setBarCorrectIcon(List<Integer> list) {
 		barCorrectIcon.createBar(list, currentDicIndex - 1);
 		barCorrectIcon.repaint();
 	}
 
-	/**
-	 * Set recietd bar data.
-	 * 
-	 * @param list
-	 *            -List of integers of percentage, e.g. {86,72,...}
-	 */
+	@Override
 	public void setBarRecitedIcon(List<Integer> list) {
 		barRecitedIcon.createBar(list, currentDicIndex - 1);
 		barRecitedIcon.repaint();
 	}
 
-	/**
-	 * Set head line text.
-	 * 
-	 * @param text
-	 */
+	@Override
 	public void setHeadLineText(String text) {
 		headLine.setText(text);
 	}
 
-	/**
-	 * Get the head line text.
-	 * 
-	 * @return head line string text.
-	 */
+	@Override
 	public String getHeadLineText() {
 		return headLine.getText();
 	}
 
+	@Override
+	public void showTablePanel() {
+		// default
+		ArrayList<String> names = new ArrayList<String>();
+		ArrayList<Integer> values = new ArrayList<Integer>();
+		names.add(ScriptConstants.CHIN_TOTAL);
+		names.add(ScriptConstants.CHIN_RECITED);
+		names.add(ScriptConstants.CHIN_CORRECT);
+		names.add(ScriptConstants.CHIN_WRONG);
+		names.add(ScriptConstants.CHIN_RATE);
+		values.add(dictSizeValue);
+		values.add(dictRecitedValue);
+		values.add(dictCorrectValue);
+		values.add(dictWrongValue);
+		values.add(dictRateValue);
+
+		iconPanel.removeAll();
+		tableIcon.createTable(values, names);
+		iconPanel.add(tablePanel);
+		iconPanel.repaint();
+
+		currentBtnIndex = INTABLE;
+		listBox.setCurrentIndex(currentDicIndex);
+	}
+
+	@Override
+	public void showPiePanel() {
+		iconPanel.removeAll();
+		iconPanel.add(piePanel);
+		iconPanel.repaint();
+
+		currentBtnIndex = INPIE;
+		listBox.setCurrentIndex(currentDicIndex);
+	}
+
+	@Override
+	public void showBarPanel() {
+		iconPanel.removeAll();
+		iconPanel.add(barPanel);
+		iconPanel.repaint();
+
+		currentBtnIndex = INBAR;
+		listBox.setCurrentIndex(currentDicIndex);
+	}
+	
 	@Override
 	protected void initComponents() {
 		// Global
@@ -578,51 +541,6 @@ public class RecordView extends WMView {
 			controller.showRecordByBar(currentDicIndex);
 		}
 
-	}
-
-	public void showTablePanel() {
-		// default
-		ArrayList<String> names = new ArrayList<String>();
-		ArrayList<Integer> values = new ArrayList<Integer>();
-		names.add(ScriptConstants.CHIN_TOTAL);
-		names.add(ScriptConstants.CHIN_RECITED);
-		names.add(ScriptConstants.CHIN_CORRECT);
-		names.add(ScriptConstants.CHIN_WRONG);
-		names.add(ScriptConstants.CHIN_RATE);
-		values.add(dictSizeValue);
-		values.add(dictRecitedValue);
-		values.add(dictCorrectValue);
-		values.add(dictWrongValue);
-		values.add(dictRateValue);
-
-		iconPanel.removeAll();
-		tableIcon.createTable(values, names);
-		iconPanel.add(tablePanel);
-		iconPanel.repaint();
-
-		// TODO
-		currentBtnIndex = INTABLE;
-		listBox.setCurrentIndex(currentDicIndex);
-	}
-
-	public void showPiePanel() {
-		iconPanel.removeAll();
-		iconPanel.add(piePanel);
-		iconPanel.repaint();
-
-		// TODO
-		currentBtnIndex = INPIE;
-		listBox.setCurrentIndex(currentDicIndex);
-	}
-
-	public void showBarPanel() {
-		iconPanel.removeAll();
-		iconPanel.add(barPanel);
-		iconPanel.repaint();
-
-		// TODO
-		currentBtnIndex = INBAR;
-		listBox.setCurrentIndex(currentDicIndex);
 	}
 
 	@Override
