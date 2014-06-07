@@ -10,10 +10,6 @@ package wm.controller;
  * 
  */
 public interface IRecordController extends WMController {
-	
-	/**
-	 * Show dictionary list.
-	 */
 	public void showDictList();
 	/**
 	 * 
@@ -22,29 +18,29 @@ public interface IRecordController extends WMController {
 	public void showRecordByPie(int index);
 	
 	/**
-	 * Show all dictionaries record.
+	 * show all dictionaries record
 	 */
 	public void showRecordByPie();
 	
 	/**
-	 * Show all dictionaries record.
+	 * show all dictionaries record
 	 */
 	public void showRecordByBar();
 	
 	/**
-	 * Show all dictionaries record.
+	 * show all dictionaries record
 	 * @param index
 	 */
 	void showRecordByBar(int index);
 	
 	/**
-	 * Show record by table.
+	 * 
 	 * @param index
 	 */
 	public void showRecordByTable(int index);
 	
 	/**
-	 * Switch to home.
+	 * 
 	 */
 	public void switchToHome();
 	
