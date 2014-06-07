@@ -1,4 +1,4 @@
-package wm.view;
+package wm.test.view;
 
 import static org.junit.Assert.*;
 
@@ -11,7 +11,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import wm.controller.IReciteProcessController;
-import wm.test.view.WMViewTestCase;
+import wm.view.SizeSelectView;
 
 public class SizeSelectViewTest extends WMViewTestCase {
 

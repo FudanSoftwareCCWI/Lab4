@@ -1,21 +1,14 @@
 package wm.view;
 
-import java.awt.Color;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import wm.config.Constants;
+import wm.config.UI_Constants;
+import wm.config.IconConstants;
+import wm.config.ScriptConstants;
 import wm.controller.IReciteProcessController;
-import wm.view.component.WMBar;
-import wm.view.component.WMButton;
 import wm.view.component.WMLabel;
-import wm.view.component.WMListBox;
-import wm.view.component.WMPie;
 import wm.view.component.WMTable;
 
 /**
@@ -57,20 +50,20 @@ public class ReciteRecordView extends ReciteProcessView {
 	}
 
 	private void initDictNamePanel() {
-		dictNameLabel = new WMLabel(Constants.CHIN_DICTNAME,
-				Constants.LABEL_TINY);
-		dictNameValue = new WMLabel("Dictionary", Constants.LABEL_TINY);
-		dictNameLabel.setBounds(0, 0, Constants.GLOBAL_WIDTH, PADDING);
-		dictNameValue.setBounds(0, PADDING, Constants.GLOBAL_WIDTH, PADDING);
+		dictNameLabel = new WMLabel(ScriptConstants.CHIN_DICTNAME,
+				WMLabel.LABEL_TINY);
+		dictNameValue = new WMLabel("Dictionary", WMLabel.LABEL_TINY);
+		dictNameLabel.setBounds(0, 0, UI_Constants.GLOBAL_WIDTH, PADDING);
+		dictNameValue.setBounds(0, PADDING, UI_Constants.GLOBAL_WIDTH, PADDING);
 		centerPanel.add(dictNameLabel);
 		centerPanel.add(dictNameValue);
 	}
 
 	private void initIconPanel() {
 		iconPanel = new JPanel();
-		iconPanel.setBounds(Constants.GLOBAL_WIDTH / 2 - Constants.ICON_MIDDLE,
-				Constants.UNITHEIGHT, 2 * Constants.ICON_MIDDLE,
-				Constants.ICON_MIDDLE + PADDING);
+		iconPanel.setBounds(UI_Constants.GLOBAL_WIDTH / 2 - IconConstants.ICON_MIDDLE,
+				UI_Constants.UNITHEIGHT, 2 * IconConstants.ICON_MIDDLE,
+				IconConstants.ICON_MIDDLE + PADDING);
 		iconPanel.setLayout(null);
 		iconPanel.setOpaque(false);
 
@@ -83,25 +76,25 @@ public class ReciteRecordView extends ReciteProcessView {
 		// default
 		ArrayList<String> names = new ArrayList<String>();
 		ArrayList<Integer> values = new ArrayList<Integer>();
-		names.add(Constants.CHIN_SELECTED);
-		names.add(Constants.CHIN_CORRECT);
-		names.add(Constants.CHIN_WRONG);
-		names.add(Constants.CHIN_RATE+"(%)");
+		names.add(ScriptConstants.CHIN_SELECTED);
+		names.add(ScriptConstants.CHIN_CORRECT);
+		names.add(ScriptConstants.CHIN_WRONG);
+		names.add(ScriptConstants.CHIN_RATE+"(%)");
 		values.add(dictRecitedValue);
 		values.add(dictCorrectValue);
 		values.add(dictWrongValue);
 		values.add(dictRateValue);
 
 		tableIcon = new WMTable(values, names);
-		tableIcon.setBounds(0, PADDING, 2 * Constants.ICON_MIDDLE,
-				Constants.ICON_MIDDLE / 2);
+		tableIcon.setBounds(0, PADDING, 2 * IconConstants.ICON_MIDDLE,
+				IconConstants.ICON_MIDDLE / 2);
 
 		tablePanel.setLayout(null);
 		tablePanel.setOpaque(false);
 		tablePanel.add(tableIcon);
 
-		tablePanel.setBounds(0, 0, 2 * Constants.ICON_MIDDLE,
-				Constants.ICON_MIDDLE + PADDING);
+		tablePanel.setBounds(0, 0, 2 * IconConstants.ICON_MIDDLE,
+				IconConstants.ICON_MIDDLE + PADDING);
 		iconPanel.add(tablePanel);
 	}
 
@@ -149,10 +142,10 @@ public class ReciteRecordView extends ReciteProcessView {
 		// default
 		ArrayList<String> names = new ArrayList<String>();
 		ArrayList<Integer> values = new ArrayList<Integer>();
-		names.add(Constants.CHIN_SELECTED);
-		names.add(Constants.CHIN_CORRECT);
-		names.add(Constants.CHIN_WRONG);
-		names.add(Constants.CHIN_RATE+"(%)");
+		names.add(ScriptConstants.CHIN_SELECTED);
+		names.add(ScriptConstants.CHIN_CORRECT);
+		names.add(ScriptConstants.CHIN_WRONG);
+		names.add(ScriptConstants.CHIN_RATE+"(%)");
 		values.add(dictRecitedValue);
 		values.add(dictCorrectValue);
 		values.add(dictWrongValue);

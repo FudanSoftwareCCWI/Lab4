@@ -45,4 +45,9 @@ public class ReciteMainController implements IReciteMainController {
 		return view;
 	}
 
+	@Override
+	public void closeWindow() {
+		System.exit(0);
+	}
+
 }

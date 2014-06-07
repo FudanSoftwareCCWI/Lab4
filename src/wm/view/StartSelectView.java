@@ -1,17 +1,17 @@
 package wm.view;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.JButton;
+import javax.swing.JPanel;
 
-import wm.config.Constants;
+import wm.config.UI_Constants;
+import wm.config.IconConstants;
+import wm.config.ScriptConstants;
 import wm.controller.IReciteProcessController;
+import wm.view.component.WMLabel;
 
 /**
  * Class StartSelectView represents three ways to start recite, the user can
@@ -57,69 +57,73 @@ public class StartSelectView extends ReciteProcessView {
 
 	protected void addComponents() {
 		// selector
-		startByFirstBtn = new SelectButton(Constants.CHIN_STAETBYFIRST);
-		startByLastBtn = new SelectButton(Constants.CHIN_STARTBYLAST);
-		startByCustomBtn = new SelectButton(Constants.CHIN_STARTBYCUSTOM);
+		startByFirstBtn = new SelectButton(ScriptConstants.CHIN_STAETBYFIRST);
+		startByLastBtn = new SelectButton(ScriptConstants.CHIN_STARTBYLAST);
+		startByCustomBtn = new SelectButton(ScriptConstants.CHIN_STARTBYCUSTOM);
 		
 		centerPanel.add(startByFirstBtn);
 		centerPanel.add(startByLastBtn);
 		centerPanel.add(startByCustomBtn);
 		
-		startByFirstBtn.setBounds(PADDING, Constants.UNITHEIGHT + PADDING,
-				Constants.ICON_MIDDLE, Constants.ICON_MIDDLE);
+		startByFirstBtn.setBounds(PADDING, UI_Constants.UNITHEIGHT + PADDING,
+				IconConstants.ICON_MIDDLE, IconConstants.ICON_MIDDLE);
 		startByLastBtn.setBounds(
-				(Constants.GLOBAL_WIDTH - Constants.ICON_MIDDLE) / 2,
-				Constants.UNITHEIGHT + PADDING, Constants.ICON_MIDDLE,
-				Constants.ICON_MIDDLE);
-		startByCustomBtn.setBounds(Constants.GLOBAL_WIDTH
-				- Constants.ICON_MIDDLE - PADDING, Constants.UNITHEIGHT
-				+ PADDING, Constants.ICON_MIDDLE, Constants.ICON_MIDDLE);
+				(UI_Constants.GLOBAL_WIDTH - IconConstants.ICON_MIDDLE) / 2,
+				UI_Constants.UNITHEIGHT + PADDING, IconConstants.ICON_MIDDLE,
+				IconConstants.ICON_MIDDLE);
+		startByCustomBtn.setBounds(UI_Constants.GLOBAL_WIDTH
+				- IconConstants.ICON_MIDDLE - PADDING, UI_Constants.UNITHEIGHT
+				+ PADDING, IconConstants.ICON_MIDDLE, IconConstants.ICON_MIDDLE);
 		
-		setTip(Constants.CHIN_SELECTSTARTMETHOD);
+		setTip(ScriptConstants.CHIN_SELECTSTARTMETHOD);
 
 	}
 
 	protected void addListener() {
 		
-		startByFirstBtn.addActionListener(new ActionListener() {
-
+		startByFirstBtn.addMouseListener(new MouseAdapter() {
+			
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
+			public void mouseClicked(MouseEvent arg0) {
 				controller.startByFirstWord();
+				
 			}
-
 		});
-		startByLastBtn.addActionListener(new ActionListener() {
-
+		
+		startByLastBtn.addMouseListener(new MouseAdapter() {
+			
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
+			public void mouseClicked(MouseEvent arg0) {
 				controller.startByLastTime();
 			}
 
 		});
-		startByCustomBtn.addActionListener(new ActionListener() {
-
+		startByCustomBtn.addMouseListener(new MouseAdapter() {
+			
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
+			public void mouseClicked(MouseEvent arg0) {
 				controller.switchToStartWordDefine();
 			}
 
 		});
 	}
 
-	public class SelectButton extends JButton {
+	public class SelectButton extends JPanel {
 		/**
 		 * 
 		 */
 		private static final long serialVersionUID = 7507522887537228688L;
 		private boolean hover;
+		private WMLabel textLabel;
 		
 		public SelectButton(String text) {
-			super(text);
-			this.setBorder(null);
-			this.setFont(new Font(Constants.LABEL_FONT, Font.PLAIN,
-					Constants.LABEL_SMALL));
-			this.setForeground(Constants.NORMALGREEN);
+			super();
+			textLabel = new WMLabel(text,WMLabel.LABEL_SMALL);
+			textLabel.setForeground(UI_Constants.NORMALGREEN);
+			this.setBackground(UI_Constants.LIGHTGREEN);
+			this.setLayout(null);
+			this.add(textLabel);
+			textLabel.setBounds(0, 0, IconConstants.ICON_MIDDLE, IconConstants.ICON_MIDDLE);
 			hover = false;
 			setMouseAction();
 		}
@@ -128,8 +132,9 @@ public class StartSelectView extends ReciteProcessView {
 			this.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseExited(MouseEvent arg0) {
-					SelectButton.this.setForeground(Constants.NORMALGREEN);
+					SelectButton.this.setForeground(UI_Constants.NORMALGREEN);
 					hover = false;
+					textLabel.setForeground(UI_Constants.NORMALGREEN);
 					repaint();
 				}
 
@@ -137,6 +142,7 @@ public class StartSelectView extends ReciteProcessView {
 				public void mouseEntered(MouseEvent arg0) {
 					SelectButton.this.setForeground(Color.WHITE);
 					hover = true;
+					textLabel.setForeground(Color.WHITE);
 					repaint();
 				}
 			});
@@ -145,25 +151,26 @@ public class StartSelectView extends ReciteProcessView {
 
 		@Override
 		public void paintComponent(Graphics g) {
+			super.paintComponent(g);
 			if (hover) {
-				g.setColor(Constants.NORMALGREEN);
-				g.fillArc(0, 0, Constants.ICON_MIDDLE, Constants.ICON_MIDDLE, 0,
+				g.setColor(UI_Constants.NORMALGREEN);
+				g.fillArc(0, 0, IconConstants.ICON_MIDDLE, IconConstants.ICON_MIDDLE, 0,
 						360);
-				g.setColor(Constants.DARKGREEN);
-				g.fillArc(Constants.ICON_BORDER, Constants.ICON_BORDER,
-						Constants.ICON_MIDDLE - 2 * Constants.ICON_BORDER,
-						Constants.ICON_MIDDLE - 2 * Constants.ICON_BORDER, 0, 360);
+				g.setColor(UI_Constants.DARKGREEN);
+				g.fillArc(IconConstants.ICON_BORDER, IconConstants.ICON_BORDER,
+						IconConstants.ICON_MIDDLE - 2 * IconConstants.ICON_BORDER,
+						IconConstants.ICON_MIDDLE - 2 * IconConstants.ICON_BORDER, 0, 360);
 	        } else {
-	        	g.setColor(Constants.NORMALGREEN);
-				g.fillArc(0, 0, Constants.ICON_MIDDLE, Constants.ICON_MIDDLE, 0,
+	        	g.setColor(UI_Constants.NORMALGREEN);
+				g.fillArc(0, 0, IconConstants.ICON_MIDDLE, IconConstants.ICON_MIDDLE, 0,
 						360);
 				g.setColor(Color.WHITE);
-				g.fillArc(Constants.ICON_BORDER, Constants.ICON_BORDER,
-						Constants.ICON_MIDDLE - 2 * Constants.ICON_BORDER,
-						Constants.ICON_MIDDLE - 2 * Constants.ICON_BORDER, 0, 360);
+				g.fillArc(IconConstants.ICON_BORDER, IconConstants.ICON_BORDER,
+						IconConstants.ICON_MIDDLE - 2 * IconConstants.ICON_BORDER,
+						IconConstants.ICON_MIDDLE - 2 * IconConstants.ICON_BORDER, 0, 360);
 	        }
 			
-			super.paintComponent(g);
+			
 		}
 	}
 

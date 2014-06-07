@@ -16,7 +16,9 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import wm.config.Constants;
+import wm.config.UI_Constants;
+import wm.config.IconConstants;
+import wm.config.ScriptConstants;
 import wm.controller.IRecordController;
 import wm.view.component.WMBar;
 import wm.view.component.WMButton;
@@ -134,7 +136,8 @@ public class RecordView extends WMView {
 	 */
 	public void setSizeText(int size) {
 		dictSizeValue = size;
-		dictSizeLabel.setText(String.format("<html>%s<br>%d</html>", Constants.CHIN_TOTAL,size));
+		dictSizeLabel.setText(String.format("<html>%s<br>%d</html>",
+				ScriptConstants.CHIN_TOTAL, size));
 	}
 
 	/**
@@ -144,14 +147,15 @@ public class RecordView extends WMView {
 	 */
 	public void setReciteSizeText(int recitedSize) {
 		dictRecitedValue = recitedSize;
-		dictRecitedLabel.setText(String.format("<html>%s<br>%d</html>", Constants.CHIN_RECITED,recitedSize));
-//		dictRecitedLabel.setText("");
-//		dictRecitedLabel.removeAll();
-//		dictRecitedLabel.setLayout(new GridLayout(2, 1));
-//		dictRecitedLabel.add(new WMLabel(Constants.CHIN_RECITED,
-//				Constants.LABEL_TINY));
-//		dictRecitedLabel.add(new WMLabel(String.valueOf(recitedSize),
-//				Constants.LABEL_TINY));
+		dictRecitedLabel.setText(String.format("<html>%s<br>%d</html>",
+				ScriptConstants.CHIN_RECITED, recitedSize));
+		// dictRecitedLabel.setText("");
+		// dictRecitedLabel.removeAll();
+		// dictRecitedLabel.setLayout(new GridLayout(2, 1));
+		// dictRecitedLabel.add(new WMLabel(Constants.CHIN_RECITED,
+		// Constants.LABEL_TINY));
+		// dictRecitedLabel.add(new WMLabel(String.valueOf(recitedSize),
+		// Constants.LABEL_TINY));
 	}
 
 	/**
@@ -161,13 +165,14 @@ public class RecordView extends WMView {
 	 */
 	public void setCorrectText(int correct) {
 		dictCorrectValue = correct;
-		dictCorrectLabel.setText(String.format("<html>%s<br>%d</html>", Constants.CHIN_CORRECT,correct));
-//		dictCorrectLabel.setText("");
-//		dictCorrectLabel.setLayout(new GridLayout(2, 1));
-//		dictCorrectLabel.add(new WMLabel(Constants.CHIN_CORRECT,
-//				Constants.LABEL_TINY));
-//		dictCorrectLabel.add(new WMLabel(String.valueOf(correct),
-//				Constants.LABEL_TINY));
+		dictCorrectLabel.setText(String.format("<html>%s<br>%d</html>",
+				ScriptConstants.CHIN_CORRECT, correct));
+		// dictCorrectLabel.setText("");
+		// dictCorrectLabel.setLayout(new GridLayout(2, 1));
+		// dictCorrectLabel.add(new WMLabel(Constants.CHIN_CORRECT,
+		// Constants.LABEL_TINY));
+		// dictCorrectLabel.add(new WMLabel(String.valueOf(correct),
+		// Constants.LABEL_TINY));
 	}
 
 	/**
@@ -177,13 +182,15 @@ public class RecordView extends WMView {
 	 */
 	public void setCorrectPercentage(double percentage) {
 		dictRateValue = (int) (percentage * 100.00);
-		dictRateLabel.setText(String.format("<html>%s<br>%.2f%%</html>", Constants.CHIN_RATE,percentage*100.00));
-//		dictRateLabel.setText("");
-//		dictRateLabel.setLayout(new GridLayout(2, 1));
-//		dictRateLabel
-//				.add(new WMLabel(Constants.CHIN_RATE, Constants.LABEL_TINY));
-//		dictRateLabel.add(new WMLabel(String.valueOf((int) (percentage * 100))
-//				+ "%", Constants.LABEL_TINY));
+		dictRateLabel.setText(String.format("<html>%s<br>%.2f%%</html>",
+				ScriptConstants.CHIN_RATE, percentage * 100.00));
+		// dictRateLabel.setText("");
+		// dictRateLabel.setLayout(new GridLayout(2, 1));
+		// dictRateLabel
+		// .add(new WMLabel(Constants.CHIN_RATE, Constants.LABEL_TINY));
+		// dictRateLabel.add(new WMLabel(String.valueOf((int) (percentage *
+		// 100))
+		// + "%", Constants.LABEL_TINY));
 	}
 
 	/**
@@ -193,13 +200,14 @@ public class RecordView extends WMView {
 	 */
 	public void setWrongText(int wrong) {
 		dictWrongValue = wrong;
-		dictWrongLabel.setText(String.format("<html>%s<br>%d</html>", Constants.CHIN_WRONG,wrong));
-//		dictWrongLabel.setText("");
-//		dictWrongLabel.setLayout(new GridLayout(2, 1));
-//		dictWrongLabel.add(new WMLabel(Constants.CHIN_TOTAL,
-//				Constants.LABEL_TINY));
-//		dictWrongLabel.add(new WMLabel(String.valueOf(wrong),
-//				Constants.LABEL_TINY));
+		dictWrongLabel.setText(String.format("<html>%s<br>%d</html>",
+				ScriptConstants.CHIN_WRONG, wrong));
+		// dictWrongLabel.setText("");
+		// dictWrongLabel.setLayout(new GridLayout(2, 1));
+		// dictWrongLabel.add(new WMLabel(Constants.CHIN_TOTAL,
+		// Constants.LABEL_TINY));
+		// dictWrongLabel.add(new WMLabel(String.valueOf(wrong),
+		// Constants.LABEL_TINY));
 	}
 
 	/**
@@ -232,7 +240,7 @@ public class RecordView extends WMView {
 	 *            -List of integers of percentage, e.g. {86,72,...}
 	 */
 	public void setBarCorrectIcon(List<Integer> list) {
-		barCorrectIcon.createBar(list, currentDicIndex);
+		barCorrectIcon.createBar(list, currentDicIndex - 1);
 		barCorrectIcon.repaint();
 	}
 
@@ -243,7 +251,7 @@ public class RecordView extends WMView {
 	 *            -List of integers of percentage, e.g. {86,72,...}
 	 */
 	public void setBarRecitedIcon(List<Integer> list) {
-		barRecitedIcon.createBar(list, currentDicIndex);
+		barRecitedIcon.createBar(list, currentDicIndex - 1);
 		barRecitedIcon.repaint();
 	}
 
@@ -273,26 +281,28 @@ public class RecordView extends WMView {
 		this.setLayout(null);
 		this.add(navPanel);
 		this.add(centerPanel);
-		navPanel.setBounds(0, 0, Constants.GLOBAL_WIDTH, Constants.UNITHEIGHT);
-		centerPanel.setBounds(0, Constants.UNITHEIGHT, Constants.GLOBAL_WIDTH,
-				Constants.GLOBAL_HEIGHT - Constants.UNITHEIGHT);
+		navPanel.setBounds(0, 0, UI_Constants.GLOBAL_WIDTH, UI_Constants.UNITHEIGHT);
+		centerPanel.setBounds(0, UI_Constants.UNITHEIGHT, UI_Constants.GLOBAL_WIDTH,
+				UI_Constants.GLOBAL_HEIGHT - UI_Constants.UNITHEIGHT);
 		navPanel.setOpaque(false);
 		centerPanel.setOpaque(false);
 		// navigator
-		homeBtn = new JButton(Constants.HOMEICON);
-		quitBtn = new JButton(Constants.QUITICON);
-		homeBtn.setBorder(null);
-		quitBtn.setBorder(null);
-		headLine = new WMLabel("Statisics", Constants.LABEL_NORMAL);
+		homeBtn = new JButton(IconConstants.HOMEICON);
+		quitBtn = new JButton(IconConstants.QUITICON);
+		homeBtn.setBorderPainted(false);
+		homeBtn.setBackground(UI_Constants.NORMALGREEN);
+		quitBtn.setBorderPainted(false);
+		quitBtn.setBackground(UI_Constants.NORMALGREEN);
+		headLine = new WMLabel("Statisics", WMLabel.LABEL_NORMAL);
 		navPanel.setLayout(null);
 		navPanel.add(homeBtn);
 		navPanel.add(quitBtn);
 		navPanel.add(headLine);
-		homeBtn.setBounds(0, 0, Constants.UNITHEIGHT, Constants.UNITHEIGHT);
-		quitBtn.setBounds(Constants.GLOBAL_WIDTH - Constants.UNITHEIGHT, 0,
-				Constants.UNITHEIGHT, Constants.UNITHEIGHT);
-		headLine.setBounds(Constants.UNITHEIGHT, 0, Constants.GLOBAL_WIDTH - 2
-				* Constants.UNITHEIGHT, Constants.UNITHEIGHT);
+		homeBtn.setBounds(0, 0, UI_Constants.UNITHEIGHT, UI_Constants.UNITHEIGHT);
+		quitBtn.setBounds(UI_Constants.GLOBAL_WIDTH - UI_Constants.UNITHEIGHT, 0,
+				UI_Constants.UNITHEIGHT, UI_Constants.UNITHEIGHT);
+		headLine.setBounds(UI_Constants.UNITHEIGHT, 0, UI_Constants.GLOBAL_WIDTH - 2
+				* UI_Constants.UNITHEIGHT, UI_Constants.UNITHEIGHT);
 		addCenterPanel();
 	}
 
@@ -307,13 +317,13 @@ public class RecordView extends WMView {
 
 	private void initDictNamePanel() {
 		currentDicIndex = 0;
-		listBox = new WMListBox(Constants.UNITHEIGHT, Constants.LABEL_SMALL + 5);
+		listBox = new WMListBox(UI_Constants.UNITHEIGHT+30, WMLabel.LABEL_SMALL + 5);
 		listBox.setCurrentIndex(currentDicIndex);
-		dictNameLabel = new WMLabel(Constants.CHIN_DICTNAME,
-				Constants.LABEL_TINY);
-		dictNameLabel.setBounds(0, 0, Constants.GLOBAL_WIDTH, PADDING);
-		listBox.setBounds((Constants.GLOBAL_WIDTH - Constants.UNITHEIGHT) / 2,
-				PADDING, Constants.GLOBAL_WIDTH, Constants.UNITHEIGHT);
+		dictNameLabel = new WMLabel(ScriptConstants.CHIN_DICTNAME,
+				WMLabel.LABEL_TINY);
+		dictNameLabel.setBounds(0, 0, UI_Constants.GLOBAL_WIDTH, PADDING);
+		listBox.setBounds((UI_Constants.GLOBAL_WIDTH - UI_Constants.UNITHEIGHT-30) / 2,
+				PADDING, UI_Constants.GLOBAL_WIDTH, UI_Constants.UNITHEIGHT);
 		centerPanel.add(dictNameLabel);
 		centerPanel.add(listBox);
 	}
@@ -323,14 +333,14 @@ public class RecordView extends WMView {
 		infoPanel.setLayout(new GridLayout(5, 1));
 		infoPanel.setOpaque(false);
 
-		dictSizeLabel = new WMLabel(Constants.CHIN_TOTAL, Constants.LABEL_TINY);
-		dictRecitedLabel = new WMLabel(Constants.CHIN_RECITED,
-				Constants.LABEL_TINY);
-		dictCorrectLabel = new WMLabel(Constants.CHIN_CORRECT,
-				Constants.LABEL_TINY);
-		dictWrongLabel = new WMLabel(Constants.CHIN_WRONG, Constants.LABEL_TINY);
-		dictRateLabel = new WMLabel(Constants.CHIN_RATE, Constants.LABEL_TINY);
-		
+		dictSizeLabel = new WMLabel(ScriptConstants.CHIN_TOTAL, WMLabel.LABEL_TINY);
+		dictRecitedLabel = new WMLabel(ScriptConstants.CHIN_RECITED,
+				WMLabel.LABEL_TINY);
+		dictCorrectLabel = new WMLabel(ScriptConstants.CHIN_CORRECT,
+				WMLabel.LABEL_TINY);
+		dictWrongLabel = new WMLabel(ScriptConstants.CHIN_WRONG, WMLabel.LABEL_TINY);
+		dictRateLabel = new WMLabel(ScriptConstants.CHIN_RATE, WMLabel.LABEL_TINY);
+
 		dictSizeLabel.setHorizontalAlignment(JLabel.LEFT);
 		dictRecitedLabel.setHorizontalAlignment(JLabel.LEFT);
 		dictCorrectLabel.setHorizontalAlignment(JLabel.LEFT);
@@ -342,18 +352,19 @@ public class RecordView extends WMView {
 		infoPanel.add(dictCorrectLabel);
 		infoPanel.add(dictWrongLabel);
 		infoPanel.add(dictRateLabel);
-		infoPanel.setBounds(Constants.UNITHEIGHT, Constants.UNITHEIGHT - PADDING / 2, 2
-				* Constants.UNITHEIGHT, Constants.GLOBAL_HEIGHT - 2
-				* Constants.UNITHEIGHT - 2 * PADDING);
+		infoPanel.setBounds(UI_Constants.UNITHEIGHT, UI_Constants.UNITHEIGHT
+				- PADDING / 2, 2 * UI_Constants.UNITHEIGHT,
+				UI_Constants.GLOBAL_HEIGHT - 2 * UI_Constants.UNITHEIGHT - 2
+						* PADDING);
 
 		centerPanel.add(infoPanel);
 	}
 
 	private void initIconPanel() {
 		iconPanel = new JPanel();
-		iconPanel.setBounds(2 * Constants.UNITHEIGHT + PADDING,
-				Constants.UNITHEIGHT, 2 * Constants.ICON_MIDDLE + PADDING,
-				Constants.ICON_MIDDLE + PADDING);
+		iconPanel.setBounds(2 * UI_Constants.UNITHEIGHT + PADDING,
+				UI_Constants.UNITHEIGHT, 2 * IconConstants.ICON_MIDDLE + PADDING,
+				IconConstants.ICON_MIDDLE + PADDING);
 		iconPanel.setLayout(null);
 		iconPanel.setOpaque(false);
 
@@ -369,11 +380,11 @@ public class RecordView extends WMView {
 		// default
 		ArrayList<String> names = new ArrayList<String>();
 		ArrayList<Integer> values = new ArrayList<Integer>();
-		names.add(Constants.CHIN_TOTAL);
-		names.add(Constants.CHIN_RECITED);
-		names.add(Constants.CHIN_CORRECT);
-		names.add(Constants.CHIN_WRONG);
-		names.add(Constants.CHIN_RATE);
+		names.add(ScriptConstants.CHIN_TOTAL);
+		names.add(ScriptConstants.CHIN_RECITED);
+		names.add(ScriptConstants.CHIN_CORRECT);
+		names.add(ScriptConstants.CHIN_WRONG);
+		names.add(ScriptConstants.CHIN_RATE);
 		values.add(dictSizeValue);
 		values.add(dictRecitedValue);
 		values.add(dictCorrectValue);
@@ -381,80 +392,90 @@ public class RecordView extends WMView {
 		values.add(dictRateValue);
 
 		tableIcon = new WMTable(values, names);
-		tableIcon.setBounds(0, PADDING, 2 * Constants.ICON_MIDDLE + PADDING,
-				Constants.ICON_MIDDLE / 2);
+		tableIcon.setBounds(0, PADDING, 2 * IconConstants.ICON_MIDDLE + PADDING,
+				IconConstants.ICON_MIDDLE / 2);
 
 		tablePanel.setLayout(null);
 		tablePanel.setOpaque(false);
 		tablePanel.add(tableIcon);
 
-		tablePanel.setBounds(0, 0, 2 * Constants.ICON_MIDDLE + PADDING,
-				Constants.ICON_MIDDLE + PADDING);
+		tablePanel.setBounds(0, 0, 2 * IconConstants.ICON_MIDDLE + PADDING,
+				IconConstants.ICON_MIDDLE + PADDING);
 	}
 
 	private void initPiePanel() {
 		piePanel = new JPanel();
 		pieCorrectIcon = new WMPie();
 		pieRecitedIcon = new WMPie();
-		WMLabel corrLabel = new WMLabel(Constants.CHIN_CORRECT_WRONG_RATIO,
-				Constants.LABEL_TINY);
-		WMLabel reciLabel = new WMLabel(Constants.CHIN_RECITE_PIE,
-				Constants.LABEL_TINY);
+		WMLabel corrLabel = new WMLabel(ScriptConstants.CHIN_CORRECT_WRONG_RATIO,
+				WMLabel.LABEL_TINY);
+		WMLabel reciLabel = new WMLabel(ScriptConstants.CHIN_RECITE_PIE,
+				WMLabel.LABEL_TINY);
 
 		piePanel.setLayout(null);
 		piePanel.setOpaque(false);
 
-		pieCorrectIcon.setBounds(0, 0, Constants.ICON_MIDDLE,
-				Constants.ICON_MIDDLE);
-		pieRecitedIcon.setBounds(Constants.ICON_MIDDLE + PADDING, 0,
-				Constants.ICON_MIDDLE, Constants.ICON_MIDDLE);
-		corrLabel.setBounds(0, Constants.ICON_MIDDLE + 10,
-				Constants.ICON_MIDDLE, Constants.LABEL_SMALL);
-		reciLabel.setBounds(Constants.ICON_MIDDLE + PADDING,
-				Constants.ICON_MIDDLE + 10, Constants.ICON_MIDDLE,
-				Constants.LABEL_SMALL);
+		pieCorrectIcon.setBounds(0, 0, IconConstants.ICON_MIDDLE,
+				IconConstants.ICON_MIDDLE);
+		pieRecitedIcon.setBounds(IconConstants.ICON_MIDDLE + PADDING, 0,
+				IconConstants.ICON_MIDDLE, IconConstants.ICON_MIDDLE);
+		corrLabel.setBounds(0, IconConstants.ICON_MIDDLE + 10,
+				IconConstants.ICON_MIDDLE, WMLabel.LABEL_SMALL);
+		reciLabel.setBounds(IconConstants.ICON_MIDDLE + PADDING,
+				IconConstants.ICON_MIDDLE + 10, IconConstants.ICON_MIDDLE,
+				WMLabel.LABEL_SMALL);
 
 		piePanel.add(pieCorrectIcon);
 		piePanel.add(pieRecitedIcon);
 		piePanel.add(corrLabel);
 		piePanel.add(reciLabel);
 
-		piePanel.setBounds(0, 0, 2 * Constants.ICON_MIDDLE + PADDING,
-				Constants.ICON_MIDDLE + PADDING);
+		piePanel.setBounds(0, 0, 2 * IconConstants.ICON_MIDDLE + PADDING,
+				IconConstants.ICON_MIDDLE + PADDING);
 	}
 
 	private void initBarPanel() {
 		barPanel = new JPanel();
 		barCorrectIcon = new WMBar();
 		barRecitedIcon = new WMBar();
+		WMLabel barCorrectLabel = new WMLabel(
+				ScriptConstants.CHIN_CORRECT_WRONG_RATIO_BAR, WMLabel.LABEL_TINY);
+		WMLabel barRecitedLabel = new WMLabel(ScriptConstants.CHIN_RECITE_BAR,
+				WMLabel.LABEL_TINY);
 
 		barPanel.setLayout(null);
 		barPanel.setOpaque(false);
 
-		barCorrectIcon.setBounds(0, 0, 2 * Constants.ICON_MIDDLE,
-				Constants.UNITHEIGHT);
-		barRecitedIcon.setBounds(0, Constants.UNITHEIGHT + PADDING,
-				2 * Constants.ICON_MIDDLE, Constants.UNITHEIGHT);
+		barCorrectIcon.setBounds(0, 0, 2 * IconConstants.ICON_MIDDLE,
+				UI_Constants.UNITHEIGHT);
+		barRecitedIcon.setBounds(0, UI_Constants.UNITHEIGHT+25,
+				2 * IconConstants.ICON_MIDDLE, UI_Constants.UNITHEIGHT);
+		barCorrectLabel.setBounds(0, UI_Constants.UNITHEIGHT-PADDING+10,
+				2 * IconConstants.ICON_MIDDLE, UI_Constants.UNITHEIGHT);
+		barRecitedLabel.setBounds(0, 2 * UI_Constants.UNITHEIGHT-15,
+				2 * IconConstants.ICON_MIDDLE, UI_Constants.UNITHEIGHT);
 
 		barPanel.add(barCorrectIcon);
 		barPanel.add(barRecitedIcon);
+		barPanel.add(barCorrectLabel);
+		barPanel.add(barRecitedLabel);
 
-		barPanel.setBounds(0, 0, 2 * Constants.ICON_MIDDLE + PADDING,
-				Constants.ICON_MIDDLE + PADDING);
+		barPanel.setBounds(0, 0, 2 * IconConstants.ICON_MIDDLE + PADDING,
+				IconConstants.ICON_MIDDLE + PADDING);
 	}
 
 	private void initBottomNav() {
 		currentBtnIndex = 0;
 		bottomNav = new JPanel();
-		tableBlock = new WMButton(Constants.TABLEICON96);
-		pieBlock = new WMButton(Constants.PIEICON96);
-		barBlock = new WMButton(Constants.BARICON96);
+		tableBlock = new WMButton(IconConstants.TABLEICON96);
+		pieBlock = new WMButton(IconConstants.PIEICON96);
+		barBlock = new WMButton(IconConstants.BARICON96);
 		tableBlock.setBorder(null);
 		pieBlock.setBorder(null);
 		barBlock.setBorder(null);
-		tableBlock.setColor(Constants.NORMALGREEN, Constants.DARKGREEN);
-		pieBlock.setColor(Constants.NORMALGREEN, Constants.DARKGREEN);
-		barBlock.setColor(Constants.NORMALGREEN, Constants.DARKGREEN);
+		tableBlock.setColor(UI_Constants.NORMALGREEN, UI_Constants.DARKGREEN);
+		pieBlock.setColor(UI_Constants.NORMALGREEN, UI_Constants.DARKGREEN);
+		barBlock.setColor(UI_Constants.NORMALGREEN, UI_Constants.DARKGREEN);
 		tableBlock.setOpaque(true);
 		pieBlock.setOpaque(true);
 		barBlock.setOpaque(true);
@@ -463,15 +484,15 @@ public class RecordView extends WMView {
 		centerPanel.add(pieBlock);
 		centerPanel.add(barBlock);
 
-		tableBlock.setBounds(0, Constants.GLOBAL_HEIGHT - 2
-				* Constants.UNITHEIGHT, Constants.GLOBAL_WIDTH / 3,
-				Constants.UNITHEIGHT);
-		pieBlock.setBounds(Constants.GLOBAL_WIDTH / 3, Constants.GLOBAL_HEIGHT
-				- 2 * Constants.UNITHEIGHT, Constants.GLOBAL_WIDTH / 3 + 1,
-				Constants.UNITHEIGHT);
-		barBlock.setBounds(Constants.GLOBAL_WIDTH * 2 / 3,
-				Constants.GLOBAL_HEIGHT - 2 * Constants.UNITHEIGHT,
-				Constants.GLOBAL_WIDTH / 3, Constants.UNITHEIGHT);
+		tableBlock.setBounds(0, UI_Constants.GLOBAL_HEIGHT - 2
+				* UI_Constants.UNITHEIGHT, UI_Constants.GLOBAL_WIDTH / 3,
+				UI_Constants.UNITHEIGHT);
+		pieBlock.setBounds(UI_Constants.GLOBAL_WIDTH / 3, UI_Constants.GLOBAL_HEIGHT
+				- 2 * UI_Constants.UNITHEIGHT, UI_Constants.GLOBAL_WIDTH / 3 + 1,
+				UI_Constants.UNITHEIGHT);
+		barBlock.setBounds(UI_Constants.GLOBAL_WIDTH * 2 / 3,
+				UI_Constants.GLOBAL_HEIGHT - 2 * UI_Constants.UNITHEIGHT,
+				UI_Constants.GLOBAL_WIDTH / 3, UI_Constants.UNITHEIGHT);
 	}
 
 	@Override
@@ -480,7 +501,7 @@ public class RecordView extends WMView {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				System.exit(0); // TODO should fire quit
+				controller.closeWindow();
 			}
 
 		});
@@ -500,7 +521,6 @@ public class RecordView extends WMView {
 			public void actionPerformed(ActionEvent arg0) {
 				currentBtnIndex = INTABLE;
 				setCurrentBlock(tableBlock);
-				// showTablePanel(); // TODO should be remove after publish
 			}
 		});
 
@@ -510,7 +530,6 @@ public class RecordView extends WMView {
 			public void actionPerformed(ActionEvent arg0) {
 				currentBtnIndex = INPIE;
 				setCurrentBlock(pieBlock);
-				// showPiePanel(); // TODO should be remove after publish
 			}
 		});
 
@@ -520,11 +539,10 @@ public class RecordView extends WMView {
 			public void actionPerformed(ActionEvent arg0) {
 				currentBtnIndex = INBAR;
 				setCurrentBlock(barBlock);
-				// showBarPanel(); // TODO should be remove after publish
 			}
 		});
 
-		listBox.addPropertyChangeListener(Constants.PROPERTY_DICTCHANGE,
+		listBox.addPropertyChangeListener(UI_Constants.PROPERTY_DICTCHANGE,
 				new PropertyChangeListener() {
 
 					@Override
@@ -552,13 +570,12 @@ public class RecordView extends WMView {
 		barBlock.paintLocal();
 		clickedbtn.paintPress();
 		clickedbtn.fix();
-		// inform controller TODO should remove comment
 		if (currentBtnIndex == INTABLE) {
 			controller.showRecordByTable(currentDicIndex);
 		} else if (currentBtnIndex == INPIE) {
 			controller.showRecordByPie(currentDicIndex);
 		} else if (currentBtnIndex == INBAR) {
-			controller.showRecordByBar();
+			controller.showRecordByBar(currentDicIndex);
 		}
 
 	}
@@ -567,11 +584,11 @@ public class RecordView extends WMView {
 		// default
 		ArrayList<String> names = new ArrayList<String>();
 		ArrayList<Integer> values = new ArrayList<Integer>();
-		names.add(Constants.CHIN_TOTAL);
-		names.add(Constants.CHIN_RECITED);
-		names.add(Constants.CHIN_CORRECT);
-		names.add(Constants.CHIN_WRONG);
-		names.add(Constants.CHIN_RATE);
+		names.add(ScriptConstants.CHIN_TOTAL);
+		names.add(ScriptConstants.CHIN_RECITED);
+		names.add(ScriptConstants.CHIN_CORRECT);
+		names.add(ScriptConstants.CHIN_WRONG);
+		names.add(ScriptConstants.CHIN_RATE);
 		values.add(dictSizeValue);
 		values.add(dictRecitedValue);
 		values.add(dictCorrectValue);
@@ -584,7 +601,6 @@ public class RecordView extends WMView {
 		iconPanel.repaint();
 
 		// TODO
-		// controller.showRecordByPie(currentDicIndex);
 		currentBtnIndex = INTABLE;
 		listBox.setCurrentIndex(currentDicIndex);
 	}
@@ -595,7 +611,6 @@ public class RecordView extends WMView {
 		iconPanel.repaint();
 
 		// TODO
-		// controller.showRecordByPie(currentDicIndex);
 		currentBtnIndex = INPIE;
 		listBox.setCurrentIndex(currentDicIndex);
 	}
@@ -606,7 +621,6 @@ public class RecordView extends WMView {
 		iconPanel.repaint();
 
 		// TODO
-		// controller.showRecordByPie(currentDicIndex);
 		currentBtnIndex = INBAR;
 		listBox.setCurrentIndex(currentDicIndex);
 	}
@@ -614,12 +628,12 @@ public class RecordView extends WMView {
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.setColor(Constants.LIGHTGREEN);
-		g.fillRect(0, 0, Constants.GLOBAL_WIDTH, Constants.GLOBAL_HEIGHT);
-		g.setColor(Constants.NORMALGREEN);
-		g.fillRect(0, 0, Constants.GLOBAL_WIDTH, Constants.UNITHEIGHT);
-		g.fillRect(0, Constants.GLOBAL_HEIGHT - Constants.UNITHEIGHT,
-				Constants.GLOBAL_WIDTH, Constants.UNITHEIGHT);
+		g.setColor(UI_Constants.LIGHTGREEN);
+		g.fillRect(0, 0, UI_Constants.GLOBAL_WIDTH, UI_Constants.GLOBAL_HEIGHT);
+		g.setColor(UI_Constants.NORMALGREEN);
+		g.fillRect(0, 0, UI_Constants.GLOBAL_WIDTH, UI_Constants.UNITHEIGHT);
+		g.fillRect(0, UI_Constants.GLOBAL_HEIGHT - UI_Constants.UNITHEIGHT,
+				UI_Constants.GLOBAL_WIDTH, UI_Constants.UNITHEIGHT);
 	}
 
 }

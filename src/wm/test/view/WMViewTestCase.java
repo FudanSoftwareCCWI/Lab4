@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 
 import org.jmock.Mockery;
 
-import wm.config.Constants;
+import wm.config.UI_Constants;
 
 /**
  * <b>WMViewTestCase</b>
@@ -34,11 +34,11 @@ public abstract class WMViewTestCase {
 	
 	protected static void setUpFrame(){
 		frame = new JFrame();
-		Dimension fixedDimension = new Dimension(Constants.GLOBAL_WIDTH,
-				Constants.GLOBAL_HEIGHT+20);
+		Dimension fixedDimension = new Dimension(UI_Constants.GLOBAL_WIDTH,
+				UI_Constants.GLOBAL_HEIGHT+20);
 		frame.setSize(fixedDimension);
 		frame.setResizable(false);
-		frame.setBackground(Constants.NORMALGREEN);
+		frame.setBackground(UI_Constants.NORMALGREEN);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);

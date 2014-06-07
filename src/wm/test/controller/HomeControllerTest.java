@@ -14,11 +14,11 @@ import org.junit.Test;
 
 /**
  * @author hewenqi
- *
+ * 
  */
 public class HomeControllerTest {
-	private Mockery context;
-	
+	protected Mockery context;
+
 	/**
 	 * @throws java.lang.Exception
 	 */
@@ -38,8 +38,8 @@ public class HomeControllerTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		context= new Mockery();
-		
+		context = new Mockery();
+
 	}
 
 	/**
@@ -50,7 +50,8 @@ public class HomeControllerTest {
 	}
 
 	/**
-	 * Test method for {@link wm.controller.HomeController#HomeController(wm.SwitchDelegate)}.
+	 * Test method for
+	 * {@link wm.controller.HomeController#HomeController(wm.SwitchDelegate)}.
 	 */
 	@Test
 	public void testHomeController() {

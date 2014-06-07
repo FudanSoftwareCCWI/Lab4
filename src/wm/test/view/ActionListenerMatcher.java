@@ -20,7 +20,6 @@ public class ActionListenerMatcher extends BaseMatcher<ActionListener> {
 
 	@Override
 	public void describeTo(Description arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 

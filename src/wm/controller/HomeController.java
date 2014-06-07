@@ -31,5 +31,10 @@ public class HomeController implements IHomeController {
 		return view;
 	}
 
+	@Override
+	public void closeWindow() {
+		System.exit(0);
+	}
+
 	
 }

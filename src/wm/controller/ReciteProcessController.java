@@ -12,6 +12,8 @@ import javax.swing.Timer;
 import wm.SwitchDelegate;
 import wm.model.Dictionary;
 import wm.model.Record;
+import wm.model.dao.DictionaryDAO;
+import wm.model.dao.DictionaryImpl;
 import wm.view.ReciteRecordView;
 import wm.view.ReciteWordView;
 import wm.view.SizeSelectView;
@@ -32,7 +34,6 @@ public class ReciteProcessController implements IReciteProcessController {
 	ReciteRecordView reciteRecordView;
 	WMView currentView;
 	Dictionary model;
-	Timer timer;
 
 	// recite word control
 	private int startWord;
@@ -156,13 +157,13 @@ public class ReciteProcessController implements IReciteProcessController {
 			reciteWordView.setCorrectInfoText("不对");
 		}
 		//wait for one minute to recite next word
-		timer = new Timer(1000, new ActionListener() {
+		Timer timer = new Timer(500, null);
+		timer.addActionListener(new SecondListener(timer){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				reciteNextWord();
-				timer.stop();
+				t.stop();
 			}
-
 		});
 		timer.start();
 	}
@@ -215,12 +216,42 @@ public class ReciteProcessController implements IReciteProcessController {
 	 */
 	@Override
 	public void switchToHome() {
+		//when switch to home in these two views, should store the dictionary state
+		if(currentView==reciteWordView||currentView==reciteRecordView){
+			DictionaryDAO dictionaryDAO=new DictionaryImpl();
+			dictionaryDAO.updateDictionary(model);
+		}
 		delegate.getHome();
 	}
 
 	@Override
 	public WMView getView() {
 		return currentView;
+	}
+
+	@Override
+	public void closeWindow() {
+		//when closing in these two views, should store the dictionary state
+		if(currentView==reciteWordView||currentView==reciteRecordView){
+			DictionaryDAO dictionaryDAO=new DictionaryImpl();
+			dictionaryDAO.updateDictionary(model);
+		}
+		System.exit(0);
+	}
+	
+	private class SecondListener implements ActionListener{
+
+		Timer t;
+		
+		SecondListener(Timer timer){
+			t = timer;
+		}
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// nothing
+		}
+		
 	}
 
 }

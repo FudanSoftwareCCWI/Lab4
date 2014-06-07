@@ -7,7 +7,10 @@ import javax.swing.JButton;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import wm.config.Constants;
+
+import wm.config.UI_Constants;
+import wm.config.IconConstants;
+import wm.config.ScriptConstants;
 import wm.controller.IReciteProcessController;
 import wm.view.component.WMLabel;
 
@@ -43,12 +46,13 @@ public class SizeSelectView extends ReciteProcessView {
 	}
 
 	protected void addComponents() {
-		setTip(Constants.CHIN_SELECT_SZIE);
+		setTip(ScriptConstants.CHIN_SELECT_SZIE);
 
-		nextBtn = new JButton(Constants.NEXTICON);
-		nextTip = new WMLabel(Constants.CHIN_COMFIRM_TO_START,
-				Constants.LABEL_TINY);
-		nextBtn.setBorder(null);
+		nextBtn = new JButton(IconConstants.NEXTICON);
+		nextTip = new WMLabel(ScriptConstants.CHIN_COMFIRM_TO_START,
+				WMLabel.LABEL_TINY);
+		nextBtn.setBorderPainted(false);
+		nextBtn.setBackground(UI_Constants.LIGHTGREEN);
 
 		leftValue = 1;
 		rightValue = controller.getAvailableSize();
@@ -56,9 +60,11 @@ public class SizeSelectView extends ReciteProcessView {
 		pivotValue = rightValue / 2;
 		slider = new JSlider(leftValue, rightValue);
 		slider = new JSlider(leftValue, rightValue, pivotValue);
-		left = new WMLabel(String.valueOf(leftValue), Constants.LABEL_SMALL);
-		right = new WMLabel(String.valueOf(rightValue), Constants.LABEL_SMALL);
-		pivot = new WMLabel(String.valueOf(pivotValue), Constants.LABEL_SMALL);
+		slider.setBackground(UI_Constants.LIGHTGREEN);
+		slider.setForeground(UI_Constants.DARKGREEN);
+		left = new WMLabel(String.valueOf(leftValue), WMLabel.LABEL_SMALL);
+		right = new WMLabel(String.valueOf(rightValue), WMLabel.LABEL_SMALL);
+		pivot = new WMLabel(String.valueOf(pivotValue), WMLabel.LABEL_SMALL);
 
 		centerPanel.add(slider);
 		centerPanel.add(nextBtn);
@@ -67,20 +73,20 @@ public class SizeSelectView extends ReciteProcessView {
 		centerPanel.add(right);
 		centerPanel.add(pivot);
 
-		slider.setBounds(Constants.GLOBAL_WIDTH / 4, 2*Constants.UNITHEIGHT,
-				Constants.GLOBAL_WIDTH / 2, Constants.UNITHEIGHT);
-		left.setBounds(Constants.GLOBAL_WIDTH / 4 - 20,
-				2 * Constants.UNITHEIGHT + 37, Constants.LABEL_SMALL,
-				Constants.LABEL_SMALL);
-		right.setBounds((int) (Constants.GLOBAL_WIDTH * 0.75),
-				2 * Constants.UNITHEIGHT + 37, Constants.LABEL_NORMAL,
-				Constants.LABEL_SMALL);
+		slider.setBounds(UI_Constants.GLOBAL_WIDTH / 4, 2*UI_Constants.UNITHEIGHT+PADDING-10,
+				UI_Constants.GLOBAL_WIDTH / 2, 20);
+		left.setBounds(UI_Constants.GLOBAL_WIDTH / 4 - 20,
+				2 * UI_Constants.UNITHEIGHT + 37, WMLabel.LABEL_SMALL,
+				WMLabel.LABEL_SMALL);
+		right.setBounds((int) (UI_Constants.GLOBAL_WIDTH * 0.75),
+				2 * UI_Constants.UNITHEIGHT + 37, WMLabel.LABEL_NORMAL,
+				WMLabel.LABEL_SMALL);
 		setPivot(pivotValue);
-		nextBtn.setBounds((Constants.GLOBAL_WIDTH - Constants.ICON_TINY) / 2, 3
-				* Constants.UNITHEIGHT + PADDING, Constants.ICON_TINY,
-				Constants.ICON_TINY);
-		nextTip.setBounds(0, 3 * Constants.UNITHEIGHT + PADDING + 5,
-				Constants.GLOBAL_WIDTH, Constants.UNITHEIGHT);
+		nextBtn.setBounds((UI_Constants.GLOBAL_WIDTH - IconConstants.ICON_TINY) / 2, 3
+				* UI_Constants.UNITHEIGHT + PADDING, IconConstants.ICON_TINY,
+				IconConstants.ICON_TINY);
+		nextTip.setBounds(0, 3 * UI_Constants.UNITHEIGHT + PADDING + 5,
+				UI_Constants.GLOBAL_WIDTH, UI_Constants.UNITHEIGHT);
 
 	}
 
@@ -104,20 +110,12 @@ public class SizeSelectView extends ReciteProcessView {
 	}
 
 	private void setPivot(int value) {
-		int x = (int) (Constants.GLOBAL_WIDTH / 4 + (double) value
-				/ (double) rightValue * Constants.GLOBAL_WIDTH / 2)
-				- Constants.LABEL_SMALL;
+		int x = (int) (UI_Constants.GLOBAL_WIDTH / 4 + (double) value
+				/ (double) rightValue * UI_Constants.GLOBAL_WIDTH / 2)
+				- WMLabel.LABEL_SMALL;
 		pivot.setText(String.valueOf(value));
-		pivot.setBounds(x, 2 * Constants.UNITHEIGHT, Constants.LABEL_NORMAL,
-				Constants.LABEL_SMALL);
-	}
-
-	/**
-	 * 
-	 * @param maxSize
-	 */
-	public void setAvaliableSizeText(int maxSize) {
-		// TODO
+		pivot.setBounds(x, 2 * UI_Constants.UNITHEIGHT, WMLabel.LABEL_NORMAL,
+				WMLabel.LABEL_SMALL);
 	}
 
 	public int getSelectedSize() {
