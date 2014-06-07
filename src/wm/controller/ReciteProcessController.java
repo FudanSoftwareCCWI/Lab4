@@ -11,9 +11,15 @@ import javax.swing.Timer;
 
 import wm.SwitchDelegate;
 import wm.model.Dictionary;
+import wm.model.IDictionary;
 import wm.model.Record;
 import wm.model.dao.DictionaryDAO;
 import wm.model.dao.DictionaryImpl;
+import wm.view.IReciteRecordView;
+import wm.view.IReciteWordView;
+import wm.view.ISizeSelectView;
+import wm.view.IStartSelectView;
+import wm.view.IStartWordDefineView;
 import wm.view.ReciteRecordView;
 import wm.view.ReciteWordView;
 import wm.view.SizeSelectView;
@@ -27,20 +33,20 @@ import wm.view.WMView;
  */
 public class ReciteProcessController implements IReciteProcessController {
 	SwitchDelegate delegate;
-	StartSelectView startSelectView;
-	StartWordDefineView startWordDefineView;
-	SizeSelectView sizeSelectView;
-	ReciteWordView reciteWordView;
-	ReciteRecordView reciteRecordView;
+	IStartSelectView startSelectView;
+	IStartWordDefineView startWordDefineView;
+	ISizeSelectView sizeSelectView;
+	IReciteWordView reciteWordView;
+	IReciteRecordView reciteRecordView;
 	WMView currentView;
-	Dictionary model;
+	IDictionary model;
 
 	// recite word control
 	private int startWord;
 	private int presentWord;
 	private int reciteSize;
 
-	public ReciteProcessController(SwitchDelegate delegate, Dictionary model) {
+	public ReciteProcessController(SwitchDelegate delegate, IDictionary model) {
 		super();
 		this.delegate = delegate;
 		this.model = model;

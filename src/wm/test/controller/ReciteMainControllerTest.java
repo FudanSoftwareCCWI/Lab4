@@ -14,8 +14,8 @@ import org.junit.Test;
 import wm.SwitchDelegate;
 import wm.controller.IReciteMainController;
 import wm.controller.ReciteMainController;
-import wm.model.Dictionaries;
-import wm.view.ReciteMainView;
+import wm.model.IDictionaries;
+import wm.view.IReciteMainView;
 
 /**
  * @author Maggie He
@@ -24,8 +24,8 @@ import wm.view.ReciteMainView;
 public class ReciteMainControllerTest {
 	protected static Mockery context;
 	protected static SwitchDelegate delegate;
-	protected static ReciteMainView view;
-	protected static Dictionaries model;
+	protected static IReciteMainView view;
+	protected static IDictionaries model;
 	protected static IReciteMainController controller;
 	
 	/**
@@ -48,17 +48,10 @@ public class ReciteMainControllerTest {
 	@Before
 	public void setUp() throws Exception {
 		context= new Mockery();
-		controller = context.mock(ReciteMainController.class);
-		context.checking(new Expectations(){
-			{
-				allowing(controller).showDictionaryDetail(with(any(int.class)));
-			}
-		});
-		context.assertIsSatisfied();
 		delegate=context.mock(SwitchDelegate.class);
-		view=context.mock(ReciteMainView.class);
-//		model=context.mock(Dictionaries.class);
-//		controller=new ReciteMainController(delegate, model);
+		view=context.mock(IReciteMainView.class);
+		model=context.mock(IDictionaries.class);
+		controller=new ReciteMainController(delegate, model);
 	}
 
 	/**
@@ -101,7 +94,7 @@ public class ReciteMainControllerTest {
 	public void testSwitchToHome() {
 		context.checking(new Expectations(){
 			{
-				
+				oneOf(delegate).getHome();
 			}
 		});
 	}
