@@ -21,7 +21,7 @@ import wm.view.IReciteMainView;
  * @author Maggie He
  *
  */
-public class ReciteMainControllerTest {
+public class ReciteMainControllerTest  extends MockObjectTestCase{
 	protected static Mockery context;
 	protected static SwitchDelegate delegate;
 	protected static IReciteMainView view;

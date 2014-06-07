@@ -1,16 +1,16 @@
 package wm.controller;
 
 import wm.SwitchDelegate;
-import wm.model.IDictionaries;
-import wm.view.IReciteMainView;
+import wm.model.Dictionaries;
 import wm.view.ReciteMainView;
+import wm.view.WMView;
 
 public class ReciteMainController implements IReciteMainController {
 	SwitchDelegate delegate;
-	IReciteMainView view;
-	IDictionaries model;
+	ReciteMainView view;
+	Dictionaries model;
 
-	public ReciteMainController(SwitchDelegate delegate, IDictionaries model) {
+	public ReciteMainController(SwitchDelegate delegate, Dictionaries model) {
 		super();
 		this.delegate = delegate;
 		this.view = new ReciteMainView(this);
@@ -41,8 +41,8 @@ public class ReciteMainController implements IReciteMainController {
 	}
 
 	@Override
-	public ReciteMainView getView() {
-		return (ReciteMainView)view;
+	public WMView getView() {
+		return view;
 	}
 
 	@Override

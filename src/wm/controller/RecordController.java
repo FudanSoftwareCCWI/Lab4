@@ -4,17 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wm.SwitchDelegate;
-import wm.model.IRecords;
 import wm.model.Record;
-import wm.view.IRecordView;
+import wm.model.Records;
 import wm.view.RecordView;
 
 public class RecordController implements IRecordController {
 	SwitchDelegate delegate;
-	IRecordView view;
-	IRecords model;
+	RecordView view;
+	Records model;
 
-	public RecordController(SwitchDelegate delegate, IRecords model) {
+	public RecordController(SwitchDelegate delegate, Records model) {
 		super();
 		this.delegate = delegate;
 		this.model = model;
@@ -129,11 +128,6 @@ public class RecordController implements IRecordController {
 	public void closeWindow() {
 		System.exit(0);
 	}
-
-<<<<<<< HEAD
-	public RecordView getView() {
-		return (RecordView) view;
-	}
 	
 	private void setView(Record record){
 		view.setSizeText(record.getTotalSize());
@@ -143,6 +137,4 @@ public class RecordController implements IRecordController {
 		view.setCorrectPercentage(record.getCorrectRate());
 	}
 	
-=======
->>>>>>> version3.0
 }

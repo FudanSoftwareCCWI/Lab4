@@ -33,11 +33,11 @@ import wm.view.WMView;
  */
 public class ReciteProcessController implements IReciteProcessController {
 	SwitchDelegate delegate;
-	IStartSelectView startSelectView;
-	IStartWordDefineView startWordDefineView;
-	ISizeSelectView sizeSelectView;
-	IReciteWordView reciteWordView;
-	IReciteRecordView reciteRecordView;
+	StartSelectView startSelectView;
+	StartWordDefineView startWordDefineView;
+	SizeSelectView sizeSelectView;
+	ReciteWordView reciteWordView;
+	ReciteRecordView reciteRecordView;
 	WMView currentView;
 	IDictionary model;
 
@@ -46,7 +46,7 @@ public class ReciteProcessController implements IReciteProcessController {
 	private int presentWord;
 	private int reciteSize;
 
-	public ReciteProcessController(SwitchDelegate delegate, IDictionary model) {
+	public ReciteProcessController(SwitchDelegate delegate, Dictionary model) {
 		super();
 		this.delegate = delegate;
 		this.model = model;
