@@ -1,3 +1,6 @@
+/**
+ * Software Engineer lab4
+ */
 package wm.test.view;
 
 import org.jmock.Expectations;
@@ -11,6 +14,12 @@ import org.junit.Test;
 import wm.controller.IReciteProcessController;
 import wm.view.ReciteWordView;
 
+
+/**
+ * 
+ * @author SidneyFan
+ *
+ */
 public class ReciteWordViewTest extends WMViewTestCase {
 
 	ReciteWordView view;

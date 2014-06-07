@@ -17,23 +17,27 @@ import wm.model.Dictionary;
  */
 public interface DictionaryDAO {
 	/**
+	 * Get the dictionaries by the filename.
 	 * 
-	 * @return
+	 * @return {@code Dictionaries}
 	 * @throws IOException 
 	 */
 	public Dictionaries selectAllDictionay(String filename);
 	
 	/**
+	 * Update the dictionaries info into the file.
 	 * 
-	 * @param dictionaries
-	 * @return
+	 * @param {@code dictionaries}
+	 * @return {@code boolean}
 	 */
 	public boolean updateAllDictionary(Dictionaries dictionaries);
 	
 	/**
+	 * Update dictionary info by the dictionary name
 	 * 
 	 * @param name
-	 * @return
+	 * 			the name of the dictionary
+	 * @return {@code Dictionary}
 	 */
 	public Dictionary selectDictionary(String name);
 	
@@ -45,9 +49,11 @@ public interface DictionaryDAO {
 	public boolean insertDictionary(Dictionary dictionary);
 	
 	/**
+	 * Update the dictionary info.
 	 * 
 	 * @param dictionary
-	 * @return
+	 * 			The dictionary to be updated
+	 * @return {@code boolean}
 	 */
 	public boolean updateDictionary(Dictionary dictionary);
 	

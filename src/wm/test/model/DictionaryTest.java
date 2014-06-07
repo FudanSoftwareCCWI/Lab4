@@ -1,48 +1,33 @@
 /**
- * Software Engineer lab4
+ * Qian Cheng
+ * 2014年6月7日 下午8:11:00
  */
 package wm.test.model;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import wm.model.Dictionary;
-import wm.model.Record;
-import wm.model.Word;
-
 /**
- * @author ArielQian
+ * @author qiancheng
  *
  */
- 
 public class DictionaryTest {
-	static Dictionary dictionary1;
-	static Dictionary dictionary2;
-	
+
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		List<Word> words = new ArrayList<Word>();
-		words.add(new Word("abandon", "抛弃，放弃", false, false));
-		words.add(new Word("abandonment", "放弃", false, false));
-		words.add(new Word("abbreviation", "缩写", false, false));
-		words.add(new Word("abeyance", "缓办，终止", false, false));
-		words.add(new Word("abide", "遵守", false, false));
-		words.add(new Word("ability", "能力", false, false));
-		words.add(new Word("able", "有能力的，能干的", false, false));
-		words.add(new Word("abnormal", "反常的", false, false));
-		words.add(new Word("aboard", "船（车）上", false, false));
-		words.add(new Word("abolish", "废除，取消", false, false));
-		
-		dictionary1 = new Dictionary("test1", words);
-		dictionary2 = new Dictionary("test2", words, 4);
+	}
+
+	/**
+	 * @throws java.lang.Exception
+	 */
+	@Before
+	public void setUp() throws Exception {
 	}
 
 	/**
@@ -50,7 +35,7 @@ public class DictionaryTest {
 	 */
 	@Test
 	public void testDictionaryStringListOfWord() {
-		assertNotNull(dictionary1);
+		fail("Not yet implemented");
 	}
 
 	/**
@@ -58,7 +43,7 @@ public class DictionaryTest {
 	 */
 	@Test
 	public void testDictionaryStringListOfWordInt() {
-		assertNotNull(dictionary2);
+		fail("Not yet implemented");
 	}
 
 	/**
@@ -66,7 +51,7 @@ public class DictionaryTest {
 	 */
 	@Test
 	public void testGetName() {
-		assertEquals("test1", dictionary1.getName());
+		fail("Not yet implemented");
 	}
 
 	/**
@@ -74,15 +59,7 @@ public class DictionaryTest {
 	 */
 	@Test
 	public void testGetSize() {
-		assertEquals(10, dictionary1.getSize());
-	}
-	
-	/**
-	 * Test method for {@link wm.model.Dictionary#getPresentWord()}.
-	 */
-	@Test
-	public void testGetPresentWord() {
-		assertEquals(4, dictionary2.getPresentWord());
+		fail("Not yet implemented");
 	}
 
 	/**
@@ -90,44 +67,103 @@ public class DictionaryTest {
 	 */
 	@Test
 	public void testGetMatchWords() {
-		String match="aba";
-		List<String> result = dictionary1.getMatchWords(match);
-		assertEquals(2, result.size());
-		assertEquals("abandon", result.get(0));
-		assertEquals("abandonment", result.get(1));
-	
+		fail("Not yet implemented");
 	}
 
 	/**
-	 * Test method for {@link wm.model.Dictionary#getKey()}.
+	 * Test method for {@link wm.model.Dictionary#getPresentWord()}.
+	 */
+	@Test
+	public void testGetPresentWord() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link wm.model.Dictionary#getKey(int)}.
 	 */
 	@Test
 	public void testGetKey() {
-		assertEquals("abandon", dictionary1.getKey(0));
+		fail("Not yet implemented");
 	}
 
 	/**
-	 * Test method for {@link wm.model.Dictionary#getMeaning()}.
+	 * Test method for {@link wm.model.Dictionary#getMeaning(int)}.
 	 */
 	@Test
 	public void testGetMeaning() {
-		assertEquals("遵守", dictionary2.getMeaning(4));
+		fail("Not yet implemented");
 	}
 
+	/**
+	 * Test method for {@link wm.model.Dictionary#getWordRecited(int)}.
+	 */
+	@Test
+	public void testGetWordRecited() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link wm.model.Dictionary#getWordCorrect(int)}.
+	 */
+	@Test
+	public void testGetWordCorrect() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link wm.model.Dictionary#getWordEntry(int)}.
+	 */
+	@Test
+	public void testGetWordEntry() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link wm.model.Dictionary#getWordIndex(java.lang.String)}.
+	 */
+	@Test
+	public void testGetWordIndex() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link wm.model.Dictionary#setPresentWord(int)}.
+	 */
+	@Test
+	public void testSetPresentWord() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link wm.model.Dictionary#setWordRecited(int)}.
+	 */
+	@Test
+	public void testSetWordRecited() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link wm.model.Dictionary#setWordCorrect(int, boolean)}.
+	 */
+	@Test
+	public void testSetWordCorrect() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link wm.model.Dictionary#calAvailableSize(int)}.
+	 */
+	@Test
+	public void testCalAvailableSize() {
+		fail("Not yet implemented");
+	}
 
 	/**
 	 * Test method for {@link wm.model.Dictionary#produceRecord()}.
 	 */
 	@Test
 	public void testProduceRecord() {
-		dictionary1.setPresentWord(5);
-		dictionary1.setWordRecited();
-		dictionary1.setWordCorrect(true);
-		Record record = dictionary1.produceRecord();
-		assertEquals(1, record.getRecitedSize());
-		assertEquals(0, record.getWrong());
-		assertEquals(10, record.getTotalSize());
-		
+		fail("Not yet implemented");
 	}
 
 	/**
@@ -135,13 +171,7 @@ public class DictionaryTest {
 	 */
 	@Test
 	public void testProduceRecordIntInt() {
-		dictionary1.setPresentWord(5);
-		dictionary1.setWordRecited();
-		dictionary1.setWordCorrect(true);
-		Record record = dictionary1.produceRecord(2, 5);
-		assertEquals(1, record.getRecitedSize());
-		assertEquals(0, record.getWrong());
-		assertEquals(4, record.getTotalSize());
+		fail("Not yet implemented");
 	}
 
 }
