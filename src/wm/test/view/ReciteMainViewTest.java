@@ -1,3 +1,6 @@
+/**
+ * Software Engineer lab4
+ */
 package wm.test.view;
 
 import java.util.ArrayList;
@@ -14,6 +17,11 @@ import org.junit.Test;
 import wm.controller.IReciteMainController;
 import wm.view.ReciteMainView;
 
+/**
+ * 
+ * @author SidneyFan
+ *
+ */
 public class ReciteMainViewTest extends WMViewTestCase {
 
 	private static ReciteMainView reciteMainView;
