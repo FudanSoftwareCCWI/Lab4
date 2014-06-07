@@ -4,10 +4,8 @@
 package wm.model.dao;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +38,7 @@ public class DictionaryImpl implements DictionaryDAO {
 			String latest = "";
 			boolean recited = false;
 			boolean correct = false;
+			@SuppressWarnings("resource")
 			BufferedReader dicReader = new BufferedReader(
 					new FileReader(allDic));
 
@@ -50,6 +49,7 @@ public class DictionaryImpl implements DictionaryDAO {
 				createLatestFile();
 			}
 
+			@SuppressWarnings("resource")
 			BufferedReader logReader = new BufferedReader(new FileReader(
 					logfile));
 
@@ -76,6 +76,7 @@ public class DictionaryImpl implements DictionaryDAO {
 						new Word(entry[0], entry[1], recited, correct));
 			}
 
+			@SuppressWarnings("resource")
 			BufferedReader latestReader = new BufferedReader(new FileReader(
 					latestRicite));
 			int i = 0;
@@ -128,13 +129,11 @@ public class DictionaryImpl implements DictionaryDAO {
 
 	@Override
 	public Dictionary selectDictionary(String name) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public boolean insertDictionary(Dictionary dictionary) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
@@ -159,8 +158,10 @@ public class DictionaryImpl implements DictionaryDAO {
 			String[] entry;
 			PrintWriter logWriter = new PrintWriter(newLogfile);
 			PrintWriter latestWriter = new PrintWriter(newLatestfile);
+			@SuppressWarnings("resource")
 			BufferedReader logReader = new BufferedReader(new FileReader(
 					logfile));
+			@SuppressWarnings("resource")
 			BufferedReader latestReader = new BufferedReader(new FileReader(
 					latestfile));
 			while ((logline = logReader.readLine()) != null) {
@@ -201,13 +202,11 @@ public class DictionaryImpl implements DictionaryDAO {
 
 	@Override
 	public boolean deleteDictionary(String name) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	private void createLogfile(String filename) {
 		String dicEntry = "";
-		String logEntry = "";
 		String first = "";
 
 		try {
@@ -217,6 +216,7 @@ public class DictionaryImpl implements DictionaryDAO {
 				logfile.createNewFile();
 			}
 			PrintWriter logWriter = new PrintWriter(logfile);
+			@SuppressWarnings("resource")
 			BufferedReader dicReader = new BufferedReader(new FileReader(
 					dictionary));
 			while ((dicEntry = dicReader.readLine()) != null) {

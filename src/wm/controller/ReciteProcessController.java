@@ -34,7 +34,6 @@ public class ReciteProcessController implements IReciteProcessController {
 	ReciteRecordView reciteRecordView;
 	WMView currentView;
 	Dictionary model;
-	Timer timer;
 
 	// recite word control
 	private int startWord;
@@ -158,13 +157,13 @@ public class ReciteProcessController implements IReciteProcessController {
 			reciteWordView.setCorrectInfoText("不对");
 		}
 		//wait for one minute to recite next word
-		timer = new Timer(1000, new ActionListener() {
+		Timer timer = new Timer(500, null);
+		timer.addActionListener(new SecondListener(timer){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				reciteNextWord();
-				timer.stop();
+				t.stop();
 			}
-
 		});
 		timer.start();
 	}
@@ -238,6 +237,21 @@ public class ReciteProcessController implements IReciteProcessController {
 			dictionaryDAO.updateDictionary(model);
 		}
 		System.exit(0);
+	}
+	
+	private class SecondListener implements ActionListener{
+
+		Timer t;
+		
+		SecondListener(Timer timer){
+			t = timer;
+		}
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// nothing
+		}
+		
 	}
 
 }

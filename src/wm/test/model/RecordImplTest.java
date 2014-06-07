@@ -5,14 +5,10 @@ package wm.test.model;
 
 import static org.junit.Assert.*;
 
-import java.util.List;
-
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import wm.model.Dictionaries;
-import wm.model.Record;
 import wm.model.dao.DictionaryImpl;
 import wm.model.dao.RecordImpl;
 

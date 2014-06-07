@@ -8,7 +8,8 @@ import java.awt.event.KeyEvent;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
-import wm.config.Constants;
+import wm.config.UI_Constants;
+import wm.config.ScriptConstants;
 import wm.controller.IReciteProcessController;
 import wm.view.component.WMLabel;
 
@@ -36,31 +37,31 @@ public class ReciteWordView extends ReciteProcessView {
 	}
 
 	protected void addComponents() {
-		setHeadLineText(Constants.CHIN_RECITING);
+		setHeadLineText(ScriptConstants.CHIN_RECITING);
 		hideTip();
 
-		paraphrase = new WMLabel("", Constants.LABEL_MIDDLE);
+		paraphrase = new WMLabel("", WMLabel.LABEL_MIDDLE);
 		inputField = new JTextField();
-		resultHint = new WMLabel("", Constants.LABEL_SMALL);
+		resultHint = new WMLabel("", WMLabel.LABEL_SMALL);
 
-		inputField.setBackground(Constants.LIGHTGREEN);
+		inputField.setBackground(UI_Constants.LIGHTGREEN);
 		inputField.setForeground(Color.WHITE);
 		inputField.setBorder(new LineBorder(Color.WHITE, 2));
-		inputField.setFont(new Font(Constants.LABEL_FONT, Font.PLAIN,
-				Constants.LABEL_MIDDLE));
+		inputField.setFont(new Font(WMLabel.LABEL_FONT, Font.PLAIN,
+				WMLabel.LABEL_MIDDLE));
 		inputField.setHorizontalAlignment(JTextField.CENTER);
 
 		centerPanel.add(paraphrase);
 		centerPanel.add(inputField);
 		centerPanel.add(resultHint);
 
-		paraphrase.setBounds(0, PADDING, Constants.GLOBAL_WIDTH,
-				Constants.UNITHEIGHT);
-		inputField.setBounds(Constants.GLOBAL_WIDTH / 2
-				- (int) (Constants.UNITHEIGHT * 1.5), Constants.UNITHEIGHT
-				+ PADDING, 3 * Constants.UNITHEIGHT, Constants.LABEL_LARGE);
-		resultHint.setBounds(0, 3 * Constants.UNITHEIGHT,
-				Constants.GLOBAL_WIDTH, Constants.UNITHEIGHT);
+		paraphrase.setBounds(0, PADDING, UI_Constants.GLOBAL_WIDTH,
+				UI_Constants.UNITHEIGHT);
+		inputField.setBounds(UI_Constants.GLOBAL_WIDTH / 2
+				- (int) (UI_Constants.UNITHEIGHT * 1.5), UI_Constants.UNITHEIGHT
+				+ PADDING, 3 * UI_Constants.UNITHEIGHT, WMLabel.LABEL_LARGE);
+		resultHint.setBounds(0, 3 * UI_Constants.UNITHEIGHT,
+				UI_Constants.GLOBAL_WIDTH, UI_Constants.UNITHEIGHT);
 
 	}
 

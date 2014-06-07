@@ -3,7 +3,6 @@
  */
 package wm.view;
 
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -20,7 +19,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import wm.config.Constants;
+import wm.config.UI_Constants;
+import wm.config.IconConstants;
 import wm.controller.IReciteMainController;
 import wm.view.component.*;
 
@@ -78,15 +78,15 @@ public class ReciteMainView extends WMView {
 		this.add(dictionaryInfoPanel);
 		this.add(scrollPane);
 		// set position and size
-		dictionaryInfoPanel.setBounds(0, 0, Constants.UNITSHORTWIDTH,
-				Constants.GLOBAL_HEIGHT);
+		dictionaryInfoPanel.setBounds(0, 0, UI_Constants.UNITSHORTWIDTH,
+				UI_Constants.GLOBAL_HEIGHT);
 		dictionaryInfoPanel.setOpaque(false);
-		scrollPane.setBounds(Constants.UNITSHORTWIDTH, 0,
-				Constants.UNITLONGWIDTH, Constants.GLOBAL_HEIGHT);
+		scrollPane.setBounds(UI_Constants.UNITSHORTWIDTH, 0,
+				UI_Constants.UNITLONGWIDTH, UI_Constants.GLOBAL_HEIGHT);
 		scrollPane.setOpaque(false);
 		scrollPane.getVerticalScrollBar().setUI(null);
 		listPanel.setPreferredSize(new Dimension(scrollPane.getWidth() - 50,
-				Constants.NUM_ROW * Constants.UNITHEIGHT));
+				UI_Constants.NUM_ROW * UI_Constants.UNITHEIGHT));
 		listPanel.revalidate();
 	}
 
@@ -98,11 +98,11 @@ public class ReciteMainView extends WMView {
 		// 1 row
 		JPanel titlePanel = new JPanel();
 		titlePanel.setLayout(new GridLayout(1, 1));
-		titlePanel.add(new WMLabel("Word Master", Constants.LABEL_NORMAL));
+		titlePanel.add(new WMLabel("Word Master", WMLabel.LABEL_NORMAL));
 		titlePanel.setOpaque(false);
 
 		// 2 row
-		dictionaryNameLabel = new WMLabel("词库 ~", Constants.LABEL_MIDDLE);
+		dictionaryNameLabel = new WMLabel("词库 ~", WMLabel.LABEL_MIDDLE);
 		JPanel totalPanel = new JPanel();
 		totalPanel.setLayout(new GridLayout(1, 1));
 		totalPanel.add(dictionaryNameLabel);
@@ -111,12 +111,12 @@ public class ReciteMainView extends WMView {
 		// 3 row
 		JPanel infoPanel = new JPanel();
 		infoPanel.setLayout(new GridLayout(2, 3));
-		WMLabel recite = new WMLabel("单词总量", Constants.LABEL_SMALL);
-		WMLabel correct = new WMLabel("单词量", Constants.LABEL_SMALL);
-		WMLabel rate = new WMLabel("词量比例", Constants.LABEL_SMALL);
-		totalNumLabel = new WMLabel("~", Constants.LABEL_SMALL);
-		dictSizeLabel = new WMLabel("~", Constants.LABEL_SMALL);
-		sizeRateLabel = new WMLabel("~", Constants.LABEL_SMALL);
+		WMLabel recite = new WMLabel("单词总量", WMLabel.LABEL_SMALL);
+		WMLabel correct = new WMLabel("单词量", WMLabel.LABEL_SMALL);
+		WMLabel rate = new WMLabel("词量比例", WMLabel.LABEL_SMALL);
+		totalNumLabel = new WMLabel("~", WMLabel.LABEL_SMALL);
+		dictSizeLabel = new WMLabel("~", WMLabel.LABEL_SMALL);
+		sizeRateLabel = new WMLabel("~", WMLabel.LABEL_SMALL);
 		totalNumLabel.setVerticalAlignment(JLabel.TOP);
 		dictSizeLabel.setVerticalAlignment(JLabel.TOP);
 		sizeRateLabel.setVerticalAlignment(JLabel.TOP);
@@ -130,23 +130,23 @@ public class ReciteMainView extends WMView {
 
 		// 4-5
 		pie = new WMPie();
-		pie.setBounds((Constants.UNITSHORTWIDTH - Constants.ICON_MIDDLE) / 2,
-				0, Constants.ICON_MIDDLE + 1, Constants.ICON_MIDDLE);
+		pie.setBounds((UI_Constants.UNITSHORTWIDTH - IconConstants.ICON_MIDDLE) / 2,
+				0, IconConstants.ICON_MIDDLE + 1, IconConstants.ICON_MIDDLE);
 		piePanel = new JPanel();
 		piePanel.setLayout(null);
 		piePanel.setOpaque(false);
 		piePanel.add(pie);
 
 		// 6
-		quitBtn = new JButton(Constants.QUITICON);
-		homeBtn = new JButton(Constants.HOMEICON);
-		nextBtn = new JButton(Constants.NEXTICON);
+		quitBtn = new JButton(IconConstants.QUITICON);
+		homeBtn = new JButton(IconConstants.HOMEICON);
+		nextBtn = new JButton(IconConstants.NEXTICON);
 		quitBtn.setBorderPainted(false);
 		homeBtn.setBorderPainted(false);
 		nextBtn.setBorderPainted(false);
-		quitBtn.setBackground(Constants.DARKGREEN);
-		homeBtn.setBackground(Constants.DARKGREEN);
-		nextBtn.setBackground(Constants.DARKGREEN);
+		quitBtn.setBackground(UI_Constants.DARKGREEN);
+		homeBtn.setBackground(UI_Constants.DARKGREEN);
+		nextBtn.setBackground(UI_Constants.DARKGREEN);
 
 		JPanel iconPanel = new JPanel();
 		iconPanel.setOpaque(false);
@@ -161,16 +161,16 @@ public class ReciteMainView extends WMView {
 		dictionaryInfoPanel.add(infoPanel);
 		dictionaryInfoPanel.add(piePanel);
 		dictionaryInfoPanel.add(iconPanel);
-		titlePanel.setBounds(0, 0, Constants.UNITSHORTWIDTH,
-				Constants.UNITHEIGHT);
-		totalPanel.setBounds(0, Constants.UNITHEIGHT, Constants.UNITSHORTWIDTH,
-				Constants.UNITHEIGHT);
-		infoPanel.setBounds(25, 2 * Constants.UNITHEIGHT,
-				Constants.UNITSHORTWIDTH - 50, Constants.UNITHEIGHT);
-		piePanel.setBounds(0, 3 * Constants.UNITHEIGHT,
-				Constants.UNITSHORTWIDTH, 2 * Constants.UNITHEIGHT);
-		iconPanel.setBounds(0, Constants.GLOBAL_HEIGHT - Constants.UNITHEIGHT,
-				Constants.UNITSHORTWIDTH, Constants.UNITHEIGHT);
+		titlePanel.setBounds(0, 0, UI_Constants.UNITSHORTWIDTH,
+				UI_Constants.UNITHEIGHT);
+		totalPanel.setBounds(0, UI_Constants.UNITHEIGHT, UI_Constants.UNITSHORTWIDTH,
+				UI_Constants.UNITHEIGHT);
+		infoPanel.setBounds(25, 2 * UI_Constants.UNITHEIGHT,
+				UI_Constants.UNITSHORTWIDTH - 50, UI_Constants.UNITHEIGHT);
+		piePanel.setBounds(0, 3 * UI_Constants.UNITHEIGHT,
+				UI_Constants.UNITSHORTWIDTH, 2 * UI_Constants.UNITHEIGHT);
+		iconPanel.setBounds(0, UI_Constants.GLOBAL_HEIGHT - UI_Constants.UNITHEIGHT,
+				UI_Constants.UNITSHORTWIDTH, UI_Constants.UNITHEIGHT);
 	}
 
 	private void initListPanel() {
@@ -185,7 +185,7 @@ public class ReciteMainView extends WMView {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				System.exit(0); // TODO should fire quit
+				controller.closeWindow();
 			}
 
 		});
@@ -247,14 +247,14 @@ public class ReciteMainView extends WMView {
 		int i = 0;
 		while (it.hasNext()) {
 			tempname = it.next();
-			tempBlock = new WMBlock(Constants.UNITLONGWIDTH,
-					Constants.UNITHEIGHT, 1, 1);
-			tempBlock.addLabel(tempname, Constants.LABEL_MIDDLE);
+			tempBlock = new WMBlock(UI_Constants.UNITLONGWIDTH,
+					UI_Constants.UNITHEIGHT, 1, 1);
+			tempBlock.addLabel(tempname, WMLabel.LABEL_MIDDLE);
 			listPanel.add(tempBlock);
 			if (i % 2 == 0) {
-				tempBlock.setColor(Constants.NORMALGREEN, Constants.DARKGREEN);
+				tempBlock.setColor(UI_Constants.NORMALGREEN, UI_Constants.DARKGREEN);
 			} else {
-				tempBlock.setColor(Constants.LIGHTGREEN, Constants.DARKGREEN);
+				tempBlock.setColor(UI_Constants.LIGHTGREEN, UI_Constants.DARKGREEN);
 			}
 			i++;
 		}
@@ -352,10 +352,10 @@ public class ReciteMainView extends WMView {
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.setColor(Constants.DARKGREEN);
-		g.fillRect(0, 0, Constants.UNITSHORTWIDTH, Constants.GLOBAL_HEIGHT);
-		g.setColor(Constants.LIGHTGREEN);
-		g.fillRect(Constants.UNITSHORTWIDTH, 0, Constants.UNITLONGWIDTH,
-				Constants.GLOBAL_HEIGHT);
+		g.setColor(UI_Constants.DARKGREEN);
+		g.fillRect(0, 0, UI_Constants.UNITSHORTWIDTH, UI_Constants.GLOBAL_HEIGHT);
+		g.setColor(UI_Constants.LIGHTGREEN);
+		g.fillRect(UI_Constants.UNITSHORTWIDTH, 0, UI_Constants.UNITLONGWIDTH,
+				UI_Constants.GLOBAL_HEIGHT);
 	}
 }

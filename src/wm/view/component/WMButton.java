@@ -9,6 +9,10 @@ import javax.swing.JButton;
 
 public class WMButton extends JButton {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1361934025073621202L;
 	private int blockState;
 	private WMButton thisWMButton;
 	private Color localColor;

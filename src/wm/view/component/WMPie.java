@@ -3,16 +3,19 @@ package wm.view.component;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
 
-import javax.swing.JComponent;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import wm.config.Constants;
+import wm.config.UI_Constants;
+import wm.config.IconConstants;
 
 public class WMPie extends JPanel {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2346626324147860273L;
+
 	class Slice {
 		double value;
 		Color color;
@@ -37,7 +40,7 @@ public class WMPie extends JPanel {
 		slices = new Slice[nums.length];
 		slices[0] = new Slice(nums[0], Color.WHITE);
 		for (int i = 1; i < nums.length; i++) {
-			slices[i] = new Slice(nums[i], Constants.NOTEALPHA);
+			slices[i] = new Slice(nums[i], UI_Constants.NOTEALPHA);
 		}
 		this.repaint();
 	}
@@ -59,7 +62,7 @@ public class WMPie extends JPanel {
 			g.setColor(slices[i].color);
 			if (i == slices.length - 1)
 				arcAngle = 360 - startAngle;
-			g.fillArc(0, 0,Constants.ICON_MIDDLE, Constants.ICON_MIDDLE, startAngle,
+			g.fillArc(0, 0,IconConstants.ICON_MIDDLE, IconConstants.ICON_MIDDLE, startAngle,
 					arcAngle);
 			curValue += slices[i].value;
 		}
