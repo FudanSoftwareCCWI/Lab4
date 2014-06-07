@@ -32,7 +32,7 @@ import wm.view.component.*;
  * @author Sidney Fan
  * 
  */
-public class ReciteMainView extends WMView {
+public class ReciteMainView extends WMView implements IReciteMainView{
 
 	/**
 	 * Generated serial version ID
@@ -223,20 +223,7 @@ public class ReciteMainView extends WMView {
 		}
 	}
 
-	/**
-	 * <b>setListPanelContent</b>
-	 * 
-	 * <pre>
-	 * <code>public void <b>setListPanelContent</b>(List&lt;<em>String</em>&gt; nameList)</code>
-	 * </pre>
-	 * 
-	 * <blockquote> Set the content of the dictionary list panel. <br>
-	 * <br>
-	 * 
-	 * @param nameList
-	 *            -The name list of all dictionaries, such as "Dictionary A" or
-	 *            "Dictionary B". </blockquote>
-	 */
+	@Override
 	public void setListPanelContent(List<String> nameList) {
 		dictList = nameList;
 		listPanel.removeAll();
@@ -262,26 +249,13 @@ public class ReciteMainView extends WMView {
 		setListBlockListener();
 	}
 
-	/**
-	 * Set the text of the name label the name of the selected dictionary.
-	 * 
-	 * @param name
-	 *            The name of the dictionary
-	 */
+	@Override
 	public void setNameLabelText(String name) {
 		dictionaryNameLabel.setText(name);
 		dictionaryNameLabel.revalidate();
 	}
 
-	/**
-	 * Set the pie icon according the size of the selected dictionary and total
-	 * size of all dictionaries.
-	 * 
-	 * @param size
-	 *            The size of the selected dictionary
-	 * @param totalSize
-	 *            The total size of all dictionaries
-	 */
+	@Override
 	public void setPieIcon(int size, int totalSize) {
 		dictSizeLabel.setText(String.valueOf(size));
 		totalNumLabel.setText(String.valueOf(totalSize));
@@ -292,42 +266,22 @@ public class ReciteMainView extends WMView {
 		piePanel.repaint();
 	}
 
-	/**
-	 * Set the text of the size label.
-	 * 
-	 * @param size
-	 *            The size of the selected dictionary
-	 */
+	@Override
 	public void setSizeLabelText(int size) {
 		dictSizeLabel.setText(String.valueOf(size));
 	}
 
-	/**
-	 * Set the text of the total size label.
-	 * 
-	 * @param size
-	 *            The total size of all dictionaries
-	 */
+	@Override
 	public void setTotalSizeLabelText(int totalSize) {
 		totalNumLabel.setText(String.valueOf(totalSize));
 	}
 
-	/**
-	 * Returns current clicked dictionary's index. Should be called when switch
-	 * to recite process view.
-	 * 
-	 * @return currentDictIndex
-	 */
+	@Override
 	public int getCurrentDictIndex() {
 		return currentDictIndex;
 	}
 
-	/**
-	 * Set the current dictionary. This method will paint the current index
-	 * block simultaneously.
-	 * 
-	 * @param currentDictIndex
-	 */
+	@Override
 	public void setCurrentDictIndex(int currentDictIndex) {
 		setCurrentBlock((WMBlock) (listPanel.getComponents()[currentDictIndex]));
 		this.currentDictIndex = currentDictIndex;

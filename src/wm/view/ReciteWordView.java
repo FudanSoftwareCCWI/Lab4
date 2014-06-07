@@ -20,7 +20,7 @@ import wm.view.component.WMLabel;
  * @author Sidney Fan
  * 
  */
-public class ReciteWordView extends ReciteProcessView {
+public class ReciteWordView extends ReciteProcessView implements IReciteWordView{
 
 	/**
 	 * 
@@ -34,6 +34,24 @@ public class ReciteWordView extends ReciteProcessView {
 		super(controller);
 		addComponents();
 		addListener();
+	}
+	
+	@Override
+	public void setCorrectInfoText(String info) {
+		resultHint.setText(info);
+	}
+
+	@Override
+	public void setMeaningText(String meaning) {
+		paraphrase.setText(meaning);
+	}
+	@Override
+	public void emptyInputField(){
+		inputField.setText("");
+		resultHint.setText("");
+		inputField.setEditable(true);
+		inputField.repaint();
+		resultHint.repaint();
 	}
 
 	protected void addComponents() {
@@ -76,33 +94,6 @@ public class ReciteWordView extends ReciteProcessView {
 				}
 			}
 		});
-	}
-
-	/**
-	 * Set the result info text and set visible.
-	 * @param info
-	 */
-	public void setCorrectInfoText(String info) {
-		resultHint.setText(info);
-	}
-
-	/**
-	 * Set the paraphrase Chinese meaning. Simultaneously hide the correct info text.
-	 * @param meaning
-	 */
-	public void setMeaningText(String meaning) {
-		paraphrase.setText(meaning);
-	}
-	
-	/**
-	 * Empty the input field.
-	 */
-	public void emptyInputField(){
-		inputField.setText("");
-		resultHint.setText("");
-		inputField.setEditable(true);
-		inputField.repaint();
-		resultHint.repaint();
 	}
 
 }

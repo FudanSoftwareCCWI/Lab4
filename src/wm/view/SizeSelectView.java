@@ -21,7 +21,7 @@ import wm.view.component.WMLabel;
  * @author Sidney Fan
  * 
  */
-public class SizeSelectView extends ReciteProcessView {
+public class SizeSelectView extends ReciteProcessView implements ISizeSelectView{
 
 	/**
 	 * 
@@ -43,6 +43,11 @@ public class SizeSelectView extends ReciteProcessView {
 		super(controller);
 		addComponents();
 		addListener();
+	}
+	
+	@Override
+	public int getSelectedSize() {
+		return pivotValue;
 	}
 
 	protected void addComponents() {
@@ -104,7 +109,6 @@ public class SizeSelectView extends ReciteProcessView {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				controller.setReciteSize(slider.getValue());
-//				controller.switchToReciteWord();
 			}
 		});
 	}
@@ -116,10 +120,6 @@ public class SizeSelectView extends ReciteProcessView {
 		pivot.setText(String.valueOf(value));
 		pivot.setBounds(x, 2 * UI_Constants.UNITHEIGHT, WMLabel.LABEL_NORMAL,
 				WMLabel.LABEL_SMALL);
-	}
-
-	public int getSelectedSize() {
-		return pivotValue;
 	}
 
 }
