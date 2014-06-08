@@ -100,4 +100,10 @@ public interface IRecordView {
 	 * @return head line string text.
 	 */
 	public String getHeadLineText();
+
+	public void showTablePanel();
+
+	public void showPiePanel();
+
+	public void showBarPanel();
 }

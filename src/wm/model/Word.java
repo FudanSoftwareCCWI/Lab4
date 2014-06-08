@@ -72,4 +72,19 @@ public class Word implements IWord{
 		return meaning;
 	}
 
+	public String toString(){
+		String c = "";
+		String r = "";
+		String prefix = key.substring(0,1).toLowerCase();
+		if (recited)
+			r = "1";
+		else
+			r = "0";
+
+		if (correct)
+			c = "1";
+		else
+			c = "0";
+		return prefix + "\t" + r + "\t" + c;
+	}
 }
