@@ -11,9 +11,15 @@ import javax.swing.Timer;
 
 import wm.SwitchDelegate;
 import wm.model.Dictionary;
+import wm.model.IDictionary;
 import wm.model.Record;
 import wm.model.dao.DictionaryDAO;
 import wm.model.dao.DictionaryImpl;
+import wm.view.IReciteRecordView;
+import wm.view.IReciteWordView;
+import wm.view.ISizeSelectView;
+import wm.view.IStartSelectView;
+import wm.view.IStartWordDefineView;
 import wm.view.ReciteRecordView;
 import wm.view.ReciteWordView;
 import wm.view.SizeSelectView;
@@ -27,25 +33,25 @@ import wm.view.WMView;
  */
 public class ReciteProcessController implements IReciteProcessController {
 	SwitchDelegate delegate;
-	StartSelectView startSelectView;
-	StartWordDefineView startWordDefineView;
-	SizeSelectView sizeSelectView;
-	ReciteWordView reciteWordView;
-	ReciteRecordView reciteRecordView;
+	IStartSelectView startSelectView;
+	IStartWordDefineView startWordDefineView;
+	ISizeSelectView sizeSelectView;
+	IReciteWordView reciteWordView;
+	IReciteRecordView reciteRecordView;
 	WMView currentView;
-	Dictionary model;
+	IDictionary model;
 
 	// recite word control
 	private int startWord;
 	private int presentWord;
 	private int reciteSize;
 
-	public ReciteProcessController(SwitchDelegate delegate, Dictionary model) {
+	public ReciteProcessController(SwitchDelegate delegate, IDictionary model) {
 		super();
 		this.delegate = delegate;
 		this.model = model;
 		this.startSelectView = new StartSelectView(this);
-		this.currentView = startSelectView;
+		this.currentView = (WMView) startSelectView;
 	}
 
 	/**
@@ -92,7 +98,7 @@ public class ReciteProcessController implements IReciteProcessController {
 	@Override
 	public void switchToStartWordDefine() {
 		startWordDefineView=new StartWordDefineView(this);
-		this.currentView = startWordDefineView;
+		this.currentView = (WMView) startWordDefineView;
 		delegate.getStartWordDefine();
 	}
 	
@@ -103,7 +109,7 @@ public class ReciteProcessController implements IReciteProcessController {
 	 */
 	private void switchToSizeSelect() {
 		sizeSelectView=new SizeSelectView(this);
-		this.currentView = sizeSelectView;
+		this.currentView = (WMView) sizeSelectView;
 		delegate.getSizeSelect();
 	}
 	
@@ -186,7 +192,7 @@ public class ReciteProcessController implements IReciteProcessController {
 	 */
 	private void switchToReciteWord() {
 		reciteWordView = new ReciteWordView(this);
-		this.currentView = reciteWordView;
+		this.currentView = (WMView) reciteWordView;
 		this.reciteNextWord();
 		delegate.getReciteWord();//MODIFY NIGHT
 	}
@@ -198,7 +204,7 @@ public class ReciteProcessController implements IReciteProcessController {
 	 */
 	private void switchToReciteRecord() {
 		reciteRecordView=new ReciteRecordView(this);
-		this.currentView = reciteRecordView;
+		this.currentView = (WMView) reciteRecordView;
 		Record record=model.produceRecord(this.startWord,this.presentWord);
 		reciteRecordView.setNameText(model.getName());
 		reciteRecordView.setRecitedSizeText(this.reciteSize);
@@ -219,7 +225,7 @@ public class ReciteProcessController implements IReciteProcessController {
 		//when switch to home in these two views, should store the dictionary state
 		if(currentView==reciteWordView||currentView==reciteRecordView){
 			DictionaryDAO dictionaryDAO=new DictionaryImpl();
-			dictionaryDAO.updateDictionary(model);
+			dictionaryDAO.updateDictionary((Dictionary)model);
 		}
 		delegate.getHome();
 	}
@@ -234,7 +240,7 @@ public class ReciteProcessController implements IReciteProcessController {
 		//when closing in these two views, should store the dictionary state
 		if(currentView==reciteWordView||currentView==reciteRecordView){
 			DictionaryDAO dictionaryDAO=new DictionaryImpl();
-			dictionaryDAO.updateDictionary(model);
+			dictionaryDAO.updateDictionary((Dictionary)model);
 		}
 		System.exit(0);
 	}

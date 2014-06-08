@@ -3,19 +3,35 @@
  */
 package wm.test.controller;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+
+import org.jmock.Expectations;
+import org.jmock.Mockery;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import wm.SwitchDelegate;
+import wm.controller.IRecordController;
+import wm.controller.RecordController;
+import wm.model.IRecords;
+import wm.model.Record;
+import wm.model.Records;
+import wm.view.WMView;
+
 /**
  * @author Maggie He
  *
  */
 public class RecordControllerTest {
+	private Mockery context;
+	private IRecordController controller;
+	private SwitchDelegate delegate;
+	private IRecords model;
 
 	/**
 	 * @throws java.lang.Exception
@@ -36,6 +52,10 @@ public class RecordControllerTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
+		context=new Mockery();
+		model=new Records(new ArrayList<Record>(), new Record("all", 0, 0, 0));
+		delegate=context.mock(SwitchDelegate.class);
+		controller=new RecordController(delegate, model);
 	}
 
 	/**
@@ -48,25 +68,26 @@ public class RecordControllerTest {
 	/**
 	 * Test method for {@link wm.controller.RecordController#showRecordByPie(int)}.
 	 */
-	@Test
+	@Test(expected=ArrayIndexOutOfBoundsException.class)
 	public void testShowRecordByPieInt() {
-		fail("Not yet implemented");
+		
+		controller.showRecordByBar(-1);
 	}
 
 	/**
 	 * Test method for {@link wm.controller.RecordController#showRecordByBar(int)}.
 	 */
-	@Test
+	@Test(expected=ArrayIndexOutOfBoundsException.class)
 	public void testShowRecordByBarInt() {
-		fail("Not yet implemented");
+		controller.showRecordByBar(-1);
 	}
 
 	/**
 	 * Test method for {@link wm.controller.RecordController#showRecordByTable(int)}.
 	 */
-	@Test
+	@Test(expected=ArrayIndexOutOfBoundsException.class)
 	public void testShowRecordByTable() {
-		fail("Not yet implemented");
+		controller.showRecordByTable(-1);
 	}
 
 	/**
@@ -74,7 +95,12 @@ public class RecordControllerTest {
 	 */
 	@Test
 	public void testSwitchToHome() {
-		fail("Not yet implemented");
+		context.checking(new Expectations(){
+			{
+				oneOf(delegate).getHome();
+			}
+		});
+		controller.switchToHome();
 	}
 
 	/**
@@ -82,15 +108,8 @@ public class RecordControllerTest {
 	 */
 	@Test
 	public void testGetView() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link wm.controller.RecordController#closeWindow()}.
-	 */
-	@Test
-	public void testCloseWindow() {
-		fail("Not yet implemented");
+		WMView view=controller.getView();
+		assertTrue(view!=null);
 	}
 
 }

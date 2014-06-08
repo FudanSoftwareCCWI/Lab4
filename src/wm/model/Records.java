@@ -5,13 +5,6 @@ package wm.model;
 
 import java.util.List;
 
-<<<<<<< HEAD
-public class Records extends WMModel{
-	/**
-	 * Generated 
-	 */
-	private static final long serialVersionUID = -720321694165706292L;
-=======
 /**
  * Class Records contains the record of the whole dictionary. And the list of
  * the record of each dictionary.
@@ -25,7 +18,6 @@ public class Records extends WMModel implements IRecords{
 	 * Generated serial version ID
 	 */
 	private static final long serialVersionUID = -434440532466459449L;
->>>>>>> version3.0
 	private Record allRecord;
 	private List<Record> records;
 

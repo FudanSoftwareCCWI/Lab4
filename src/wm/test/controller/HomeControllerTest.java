@@ -3,7 +3,7 @@
  */
 package wm.test.controller;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import org.jmock.Expectations;
 import org.jmock.Mockery;
@@ -16,7 +16,6 @@ import org.junit.Test;
 import wm.SwitchDelegate;
 import wm.controller.HomeController;
 import wm.controller.IHomeController;
-import wm.model.Word;
 import wm.view.WMView;
 
 /**
@@ -64,7 +63,7 @@ public class HomeControllerTest {
 	 */
 	@Test
 	public void testHomeController() {
-		assertTrue(controller!=null);
+		assertTrue(controller.getView()!=null);
 	}
 
 	/**

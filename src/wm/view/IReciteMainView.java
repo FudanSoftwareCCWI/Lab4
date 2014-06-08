@@ -1,12 +1,6 @@
 package wm.view;
 
-import java.awt.GridLayout;
-import java.util.Iterator;
 import java.util.List;
-
-import wm.config.UI_Constants;
-import wm.view.component.WMBlock;
-import wm.view.component.WMLabel;
 
 /**
  * Interface IReciteMainView represents a recite main view, which shows a list

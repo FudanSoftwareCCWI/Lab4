@@ -4,16 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wm.SwitchDelegate;
+import wm.model.IRecords;
 import wm.model.Record;
-import wm.model.Records;
+import wm.view.IRecordView;
 import wm.view.RecordView;
+import wm.view.WMView;
 
 public class RecordController implements IRecordController {
 	SwitchDelegate delegate;
-	RecordView view;
-	Records model;
+	IRecordView view;
+	IRecords model;
 
-	public RecordController(SwitchDelegate delegate, Records model) {
+	public RecordController(SwitchDelegate delegate, IRecords model) {
 		super();
 		this.delegate = delegate;
 		this.model = model;
@@ -24,7 +26,7 @@ public class RecordController implements IRecordController {
 	}
 
 	@Override
-	public void showRecordByPie(int index) {
+	public void showRecordByPie(int index) throws ArrayIndexOutOfBoundsException{
 		Record record;
 		if (index == 0) {
 			record = model.getAllRecord();
@@ -64,7 +66,7 @@ public class RecordController implements IRecordController {
 	}
 
 	@Override
-	public void showRecordByBar(int index) {
+	public void showRecordByBar(int index) throws ArrayIndexOutOfBoundsException{
 		List<Record> records = model.getRecords();
 		List<Integer> recited = new ArrayList<Integer>();
 		List<Integer> correct = new ArrayList<Integer>();
@@ -85,7 +87,7 @@ public class RecordController implements IRecordController {
 	}
 
 	@Override
-	public void showRecordByTable(int index) {
+	public void showRecordByTable(int index) throws ArrayIndexOutOfBoundsException{
 		Record record;
 		if (index == 0) {
 			record = model.getAllRecord();
@@ -112,8 +114,8 @@ public class RecordController implements IRecordController {
 		delegate.getHome();
 	}
 
-	public RecordView getView() {
-		return view;
+	public WMView getView() {
+		return (RecordView) view;
 	}
 
 	@Override

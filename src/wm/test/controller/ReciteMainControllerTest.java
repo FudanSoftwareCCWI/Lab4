@@ -21,6 +21,7 @@ import wm.controller.IReciteMainController;
 import wm.controller.ReciteMainController;
 import wm.model.Dictionaries;
 import wm.model.Dictionary;
+import wm.model.IDictionaries;
 import wm.model.Word;
 import wm.view.WMView;
 
@@ -32,9 +33,7 @@ public class ReciteMainControllerTest {
 	private Mockery context;
 	private IReciteMainController controller;
 	private SwitchDelegate delegate;
-	private Dictionaries model; 
-	private Dictionary d1;
-	private Dictionary d2;
+
 	
 	/**
 	 * @throws java.lang.Exception
@@ -57,13 +56,10 @@ public class ReciteMainControllerTest {
 	public void setUp() throws Exception {
 		context=new Mockery();
 		delegate=context.mock(SwitchDelegate.class);
-		d1=new Dictionary("d1", new ArrayList<Word>());
-		d2=new Dictionary("d2", new ArrayList<Word>());
 		List<Dictionary>list=new ArrayList<Dictionary>();
-		list.add(d1);
-		list.add(d2);
-		model=new Dictionaries(list);
-		controller=new ReciteMainController(delegate,model);
+		list.add(new Dictionary("test", new ArrayList<Word>()));
+		IDictionaries d=new Dictionaries(list);
+		controller=new ReciteMainController(delegate, d);
 	}
 
 	/**
@@ -72,7 +68,7 @@ public class ReciteMainControllerTest {
 	@After
 	public void tearDown() throws Exception {
 	}
-
+	
 	/**
 	 * Test method for {@link wm.controller.ReciteMainController#switchToStartSelect(int)}.
 	 */
