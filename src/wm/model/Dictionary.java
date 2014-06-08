@@ -10,12 +10,12 @@ import java.util.Observable;
 /**
  * Class Dictionary represents a particular dictionary in the recite process. It
  * provides users several methods to manage a recite process and fetch current
- * recite record.
+ * recite record.It implements {@code IDictionary}
  * 
  * @author Ariel Qian
  * 
  */
-public class Dictionary extends Observable {
+public class Dictionary extends Observable implements IDictionary{
 
 	private String name;
 	private List<Word> words;
@@ -50,31 +50,18 @@ public class Dictionary extends Observable {
 		this.presentWord = presentWord;
 	}
 
-	/**
-	 * Get the name of the dictionary.
-	 * 
-	 * @return The name of the dictionary
-	 */
+
+	@Override
 	public String getName() {
 		return name;
 	}
 
-	/**
-	 * Get the size of the dictionary.
-	 * 
-	 * @return The size of the dictionary
-	 */
+	@Override
 	public int getSize() {
 		return words.size();
 	}
 
-	/**
-	 * Get a list of words in the dictionary that has a particular prefix.
-	 * 
-	 * @param prefix
-	 *            The particular prefix
-	 * @return A list of words with this prefix
-	 */
+	@Override
 	public List<String> getMatchWords(String prefix) {
 		List<String> match = new ArrayList<String>();
 		for (Word w : words) {
@@ -84,22 +71,33 @@ public class Dictionary extends Observable {
 		return match;
 	}
 
-	/**
-	 * Get the presentWord.
-	 * 
-	 * @return {@code precentWord}
-	 */
+	@Override
 	public int getPresentWord() {
 		return presentWord;
 	}
 
+	@Override
 	public String getKey(int index){
 		return words.get(index).getKey();
 	}
 	
+	@Override
 	public String getMeaning(int index){
 		return words.get(index).getMeaning();
 	}
+<<<<<<< HEAD
+=======
+	
+	@Override
+	public boolean getWordRecited(int index) {
+		return words.get(index).isRecited();
+	}
+
+	@Override
+	public boolean getWordCorrect(int index) {
+		return words.get(index).isCorrect();
+	}
+>>>>>>> version3.0
 
 	/**
 	 * Get the word if recited and correct. This function is used to record the
@@ -113,6 +111,7 @@ public class Dictionary extends Observable {
 		return words.get(index).toString();
 	}
 	
+	@Override
 	public int getWordIndex(String key) {
 		int index = 0;
 		for (int i = 0; i < words.size(); i++) {
@@ -124,73 +123,46 @@ public class Dictionary extends Observable {
 		return index;
 	}
 
-	/**
-	 * Set the index of the present word. Must be called when setStartWord() is
-	 * called.
-	 * 
-	 * @param index
-	 *            The index of the present word
-	 */
+	@Override
 	public void setPresentWord(int index) {
 		presentWord = index;
 	}
 
-	/**
-	 * Set the present word is already recited
-	 * 
-	 */
+	@Override
 	public void setWordRecited() {
 		words.get(presentWord).setRecited(true);
 	}
 
-	/**
-	 * Set the present word is already recited
-	 * 
-	 */
+	@Override
 	public void setWordRecited(int index) {
 		words.get(index).setRecited(true);
 	}
 	
-	/**
-	 * Set the present word is correct or not. If the word is already correct, do not modify it.
-	 * 
-	 * @param correct
-	 * 			a boolean show if the word is correct 
-	 */
+	@Override
 	public void setWordCorrect(boolean correct) {
 		boolean isCorrect=words.get(presentWord).isCorrect();
 		if(!isCorrect)
 			words.get(presentWord).setCorrect(correct);
 	}
 	
+	@Override
 	public void setWordCorrect(int index,boolean correct) {
 		boolean isCorrect=words.get(index).isCorrect();
 		if(!isCorrect)
 			words.get(index).setCorrect(correct);
 	}
 	
+	@Override
 	public int calAvailableSize(int start) {
 		return words.size() - start;
 	}
 
-	/**
-	 * Produce a record for the whole dictionary.
-	 * 
-	 * @return A record
-	 */
+	@Override
 	public Record produceRecord() {
 		return produceRecord(0,getSize()-1);
 	}
 
-	/**
-	 * Produce a record with start and end(included).
-	 * 
-	 * @param start
-	 *            The start index
-	 * @param end
-	 *            The end index
-	 * @return A record
-	 */
+	@Override
 	public Record produceRecord(int start, int end) {
 		String recordName = name;
 		int totalSize = end - start + 1;

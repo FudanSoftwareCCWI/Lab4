@@ -7,11 +7,12 @@ package wm.model;
  * Class Word represents a word. It has an English key and Chinese meaning. Some
  * statistic information is also included in class Word, such as recited and
  * correctness. It provides get and set methods to manage the word. record.
+ * It implements {@link IWord}
  * 
  * @author Ariel Qian
  * 
  */
-public class Word {
+public class Word implements IWord{
 	private String key;
 	private String meaning;
 	private boolean recited;
@@ -40,56 +41,33 @@ public class Word {
 		this.correct = correct;
 	}
 
-	/**
-	 * The get function of {@code recited}.
-	 * 
-	 * @return {@code recited}
-	 */
+	@Override
 	public boolean isRecited() {
 		return recited;
 	}
 
-	/**
-	 * The set function of {@code recited}.
-	 * 
-	 * @param recited
-	 */
+	@Override
 	public void setRecited(boolean recited) {
 		this.recited = recited;
 	}
 
-	/**
-	 * The get function of {@code correct}.
-	 * 
-	 * @return {@code correct}
-	 */
+	@Override
 	public boolean isCorrect() {
 		return correct;
 	}
 
-	/**
-	 * The set function of {@code correct}.
-	 * 
-	 * @param correct
-	 */
+	@Override
 	public void setCorrect(boolean correct) {
 		this.correct = correct;
 	}
 
-	/**
-	 * The get function of {@code key}.
-	 * 
-	 * @return {@code key}
-	 */
+	@Override
 	public String getKey() {
 		return key;
 	}
 
-	/**
-	 * The get function of {@code meaning}.
-	 * 
-	 * @return {@code meaning}
-	 */
+
+	@Override
 	public String getMeaning() {
 		return meaning;
 	}

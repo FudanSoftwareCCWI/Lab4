@@ -21,7 +21,7 @@ import wm.view.component.WMLabel;
  * @author Sidney Fan
  * 
  */
-public class SizeSelectView extends ReciteProcessView {
+public class SizeSelectView extends ReciteProcessView implements ISizeSelectView{
 
 	/**
 	 * 
