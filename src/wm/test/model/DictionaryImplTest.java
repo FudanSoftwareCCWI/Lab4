@@ -50,7 +50,7 @@ public class DictionaryImplTest {
 	public void testUpdateAllDictionary() {
 		reader.updateAllDictionary(dic);
 		dic = reader.selectAllDictionay("dictionary.txt");
-		Dictionary dictionary = dic.getDictionary(0);
+//		Dictionary dictionary = dic.getDictionary(0);
 //		assertEquals(true, dictionary.getWordCorrect(0));
 //		assertEquals(true, dictionary.getWordRecited(0));
 	}
