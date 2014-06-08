@@ -5,6 +5,11 @@ import wm.view.HomeView;
 import wm.view.IHomeView;
 import wm.view.WMView;
 
+/**
+ * HomeController responsible for homeView control.
+ * @author Sidney Fan
+ *
+ */
 public class HomeController implements IHomeController {
 	SwitchDelegate delegate;
 	IHomeView view;

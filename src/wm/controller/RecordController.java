@@ -10,6 +10,11 @@ import wm.view.IRecordView;
 import wm.view.RecordView;
 import wm.view.WMView;
 
+/**
+ * RecordController responsible for recordView.
+ * @author Sidney Fan
+ *
+ */
 public class RecordController implements IRecordController {
 	SwitchDelegate delegate;
 	IRecordView view;

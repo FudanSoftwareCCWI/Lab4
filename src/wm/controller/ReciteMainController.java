@@ -6,6 +6,11 @@ import wm.view.IReciteMainView;
 import wm.view.ReciteMainView;
 import wm.view.WMView;
 
+/**
+ * ReciteMainController responsible for reciteMainView.
+ * @author Sidney Fan
+ *
+ */
 public class ReciteMainController implements IReciteMainController {
 	SwitchDelegate delegate;
 	IReciteMainView view;

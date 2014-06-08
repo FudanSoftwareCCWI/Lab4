@@ -28,6 +28,7 @@ import wm.view.StartWordDefineView;
 import wm.view.WMView;
 
 /**
+ * ReciteProcessController responsible for reciteProcessView.
  * @author Maggie He
  * 
  */
