@@ -5,6 +5,7 @@ package wm.test.view;
 
 import static org.junit.Assert.fail;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.lang.reflect.Field;
@@ -20,6 +21,7 @@ import org.junit.Test;
 
 import wm.controller.IHomeController;
 import wm.view.HomeView;
+import wm.view.IHomeView;
 
 import org.jmock.Expectations;
 import org.jmock.Mockery;
@@ -44,7 +46,7 @@ import org.jmock.States;
 
 public class HomeViewTest extends WMViewTestCase {
 
-	private static HomeView homeView;
+	private static IHomeView homeView;
 	private static IHomeController controller;
 
 	@BeforeClass
@@ -63,7 +65,7 @@ public class HomeViewTest extends WMViewTestCase {
 		controller = context.mock(IHomeController.class);
 		homeView = new HomeView(controller);
 		frame.getContentPane().removeAll();
-		frame.getContentPane().add(homeView);
+		frame.getContentPane().add((Component) homeView);
 		frame.repaint();
 		frame.validate();
 	}

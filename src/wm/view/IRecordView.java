@@ -2,8 +2,6 @@ package wm.view;
 
 import java.util.List;
 
-import wm.config.ScriptConstants;
-
 /**
  * Interface IRecordView represents a record view and is managed by a record
  * view controller. It provides different methods to show the recite record.

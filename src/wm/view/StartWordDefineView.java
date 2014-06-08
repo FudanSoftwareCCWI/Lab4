@@ -117,6 +117,10 @@ public class StartWordDefineView extends ReciteProcessView implements IStartWord
 		nextTag = TOSIZEVIEW;
 	}
 
+	protected JTextField getField(){
+		return searchBox.field;
+	}
+	
 	protected class WMComboBox extends JComponent {
 
 		/**
@@ -246,10 +250,6 @@ public class StartWordDefineView extends ReciteProcessView implements IStartWord
 			}
 			clickedBlock.paintPress();
 			clickedBlock.fix();
-		}
-
-		public JTextField getField() {
-			return field;
 		}
 
 	}

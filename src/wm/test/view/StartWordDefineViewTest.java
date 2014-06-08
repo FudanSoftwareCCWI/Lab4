@@ -3,7 +3,15 @@
  */
 package wm.test.view;
 
+import static org.junit.Assert.fail;
+
+import java.awt.Component;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
+
+import javax.swing.JTextField;
+import javax.swing.event.CaretEvent;
 
 import org.jmock.Expectations;
 import org.jmock.Mockery;
@@ -14,6 +22,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import wm.controller.IReciteProcessController;
+import wm.view.IStartWordDefineView;
 import wm.view.StartWordDefineView;
 
 /**
@@ -22,7 +31,7 @@ import wm.view.StartWordDefineView;
  */
 public class StartWordDefineViewTest extends WMViewTestCase {
 
-	StartWordDefineView view;
+	IStartWordDefineView view;
 	IReciteProcessController controller;
 
 	static ArrayList<String> result;
@@ -33,13 +42,7 @@ public class StartWordDefineViewTest extends WMViewTestCase {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		setUpFrame();
-		result = new ArrayList<String>();
-		result.add("abandon");
-		result.add("abase");
-		result.add("abash");
-		result.add("abate");
-		result.add("abbreviate");
-		result.add("abdicate");
+		getData();
 	}
 
 	/**
@@ -56,16 +59,9 @@ public class StartWordDefineViewTest extends WMViewTestCase {
 	public void setUp() throws Exception {
 		context = new Mockery();
 		controller = context.mock(IReciteProcessController.class);
-		context.checking(new Expectations() {
-			{
-				allowing(controller).getAvailableWordList(
-						with(any(String.class)));
-				will(returnValue(result));
-			}
-		});
 		view = new StartWordDefineView(controller);
 		frame.getContentPane().removeAll();
-		frame.getContentPane().add(view);
+		frame.getContentPane().add((Component) view);
 		frame.repaint();
 		frame.validate();
 	}
@@ -77,8 +73,63 @@ public class StartWordDefineViewTest extends WMViewTestCase {
 	public void tearDown() throws Exception {
 	}
 
+	/*
+	 * Test type VL_ENTER.
+	 */
 	@Test
-	public void test() {
+	public void test_type_enter() {
+		// expect
+		context.checking(new Expectations() {
+			{
+				oneOf(controller).getAvailableWordList(with(any(String.class)));
+			}
+		});
+		// get private button
+		JTextField field = null;
+		Method method;
+		try {
+			method = StartWordDefineView.class.getDeclaredMethod("getField");
+			method.setAccessible(true);
+			field = (JTextField)method.invoke(view);
+		} catch (SecurityException e) {
+			fail("Cannot init");
+		} catch (NoSuchMethodException e) {
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		} 
+		field.getCaretListeners()[0].caretUpdate(new CaretEvent(field) {
+			
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 7466182497566543826L;
+
+			@Override
+			public int getMark() {
+				return 0;
+			}
+			
+			@Override
+			public int getDot() {
+				return 0;
+			}
+		}); 
+
 		context.assertIsSatisfied();
+	}
+
+	private static void getData() {
+		result = new ArrayList<String>();
+		result.add("abandon");
+		result.add("abase");
+		result.add("abash");
+		result.add("abate");
+		result.add("abbreviate");
+		result.add("abdicate");
 	}
 }

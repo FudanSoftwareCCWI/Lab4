@@ -9,7 +9,7 @@ import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 
 /**
- * 
+ * This is a analog action matcher.
  * @author SidneyFan
  *
  */
