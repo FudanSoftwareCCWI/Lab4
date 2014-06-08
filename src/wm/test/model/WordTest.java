@@ -29,7 +29,7 @@ public class WordTest {
 	}
 
 	/**
-	 * Test method for
+	 * Test construction method.
 	 * {@link wm.model.Word#Word(java.lang.String, java.lang.String, boolean, boolean)}
 	 * .
 	 */

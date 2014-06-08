@@ -1,6 +1,9 @@
 package wm.test.view;
 
 import java.awt.event.MouseEvent;
+import java.lang.reflect.Field;
+
+import javax.swing.JButton;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -17,15 +20,22 @@ import org.jmock.States;
 
 /**
  * <b>HomeViewTest</b>
- * <pre> public class <b>HomeViewTest</b> extends {@link WMViewTestCase} </pre>
+ * 
+ * <pre>
+ * public class <b>HomeViewTest</b> extends {@link WMViewTestCase}
+ * </pre>
+ * 
  * <blockquote>
- * <p>Tests if mouse click in HomeView invoke corresponding controller. Uses JMock.</p>
+ * <p>
+ * Tests if mouse click in HomeView invoke corresponding controller. Uses JMock.
+ * </p>
  * </blockquote>
+ * 
  * @author Sidney Fan
- *
+ * 
  */
 
-public class HomeViewTest extends WMViewTestCase{
+public class HomeViewTest extends WMViewTestCase {
 
 	private static HomeView homeView;
 	private static IHomeController controller;
@@ -45,23 +55,12 @@ public class HomeViewTest extends WMViewTestCase{
 		context = new Mockery();
 		controller = context.mock(IHomeController.class);
 		homeView = new HomeView(controller);
-		final States viewState = context.states("view").startsAs("showing");
-		
-		context.checking(new Expectations() {
-			
-			{
-				oneOf(controller).switchToRecite();
-				when(viewState.is("showing"));
-				then(viewState.is("disappear"));
-			}
-			
-		});
 		frame.getContentPane().removeAll();
 		frame.getContentPane().add(homeView);
 		frame.repaint();
 		frame.validate();
 	}
-	
+
 	@After
 	public void tearDown() throws Exception {
 		controller = null;
@@ -69,13 +68,78 @@ public class HomeViewTest extends WMViewTestCase{
 		context = null;
 	}
 
+	/**
+	 * Test click recite panel button then home view disappear.
+	 */
 	@Test
-	public void click_and_disappear() {
+	public void click_recite_and_disappear() {
+		final States viewState = context.states("view").startsAs("showing");
+		context.checking(new Expectations() {
+
+			{
+				oneOf(controller).switchToRecite();
+				when(viewState.is("showing"));
+				then(viewState.is("disappear"));
+			}
+
+		});
 		homeView.getRecitePanel().getMouseListeners()[0]
 				.mouseClicked(new MouseEvent(homeView.getRecitePanel(),
 						MouseEvent.MOUSE_CLICKED, 0,
 						MouseEvent.BUTTON1_DOWN_MASK, 1, 1, 1, false));
 		context.assertIsSatisfied();
 	}
-	
+
+	/**
+	 * Test click record panel button then home view disappear.
+	 */
+	@Test
+	public void click_record_and_disappear() {
+		final States viewState = context.states("view").startsAs("showing");
+		context.checking(new Expectations() {
+
+			{
+				oneOf(controller).switchToRecord();
+				when(viewState.is("showing"));
+				then(viewState.is("disappear"));
+			}
+
+		});
+		homeView.getStatisticPanel().getMouseListeners()[0]
+				.mouseClicked(new MouseEvent(homeView.getStatisticPanel(),
+						MouseEvent.MOUSE_CLICKED, 0,
+						MouseEvent.BUTTON1_DOWN_MASK, 1, 1, 1, false));
+		context.assertIsSatisfied();
+	}
+
+	/**
+	 * Test click quit panel button then home view disappear.
+	 */
+	@Test
+	public void click_close_and_disappear() {
+		JButton btn;
+		
+//		Field buttonField = HomeView.class.getDeclaredField("quitBtn");
+//		buttonField.setAccessible(true);
+//		buttonField.set(btn, new JButton());
+		
+		final States viewState = context.states("view").startsAs("showing");
+		context.checking(new Expectations() {
+
+			{
+				oneOf(controller).closeWindow();
+				when(viewState.is("showing"));
+				then(viewState.is("disappear"));
+			}
+
+		});
+		
+//		btn = (JButton)buttonField.get(homeView);
+//		btn.getMouseListeners()[0]
+//				.mouseClicked(new MouseEvent(homeView.getRecitePanel(),
+//						MouseEvent.MOUSE_CLICKED, 0,
+//						MouseEvent.BUTTON1_DOWN_MASK, 1, 1, 1, false));
+		context.assertIsSatisfied();
+	}
+
 }
