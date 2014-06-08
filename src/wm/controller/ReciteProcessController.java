@@ -188,7 +188,7 @@ public class ReciteProcessController implements IReciteProcessController {
 		reciteWordView = new ReciteWordView(this);
 		this.currentView = reciteWordView;
 		this.reciteNextWord();
-		delegate.getReciteRecord();
+		delegate.getReciteWord();//MODIFY NIGHT
 	}
 
 	/**
