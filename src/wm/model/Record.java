@@ -6,12 +6,12 @@ package wm.model;
 /**
  * Class Record represents a particular record in the recite process. It
  * provides users statistic information in the recite process, either of one
- * particular dictionary or all dictionaries.
+ * particular dictionary or all dictionaries.It implements the {@link IRecord}
  * 
  * @author Ariel Qian
  * 
  */
-public class Record extends WMModel {
+public class Record extends WMModel implements IRecord{
 	/**
 	 * Generated serial version ID
 	 */
@@ -42,57 +42,32 @@ public class Record extends WMModel {
 		this.correct = correct;
 	}
 
-	/**
-	 * Get the name of the dictionary.
-	 * 
-	 * @return The {@code name} of the dictionary
-	 */
+	@Override
 	public String getName() {
 		return name;
 	}
 
-	/**
-	 * Get the total size of the dictionary.
-	 * 
-	 * @return {@code totalSize}, the number of words in the dictionary.
-	 */
+	@Override
 	public int getTotalSize() {
 		return totalSize;
 	}
 
-	/**
-	 * Get the recited size.
-	 * 
-	 * @return {@code recitedSize}, the number of words recited.
-	 */
+	@Override
 	public int getRecitedSize() {
 		return recitedSize;
 	}
 
-	/**
-	 * Get the correct number of words recited.
-	 * 
-	 * @return The {@code correct} number of words recited
-	 */
+	@Override
 	public int getCorrect() {
 		return correct;
 	}
 
-	/**
-	 * Get the wrong number of words recited, obtained by subtract correct
-	 * number from recitedSize.
-	 * 
-	 * @return The wrong number of words recited
-	 */
+	@Override
 	public int getWrong() {
 		return recitedSize - correct;
 	}
 
-	/**
-	 * Get the correct rate of words recited.
-	 * 
-	 * @return The correct rate of words recited
-	 */
+	@Override
 	public double getCorrectRate() {
 		if(recitedSize!=0)
 			return (double) correct / (double) recitedSize;
