@@ -65,6 +65,7 @@ public class HomeView extends WMView implements IHomeView{
 	 */
 	public HomeView(IHomeController controller) {
 		super();
+		this.setBackground(UI_Constants.NORMALGREEN);
 		this.controller = controller;
 		initComponents();
 		initListener();

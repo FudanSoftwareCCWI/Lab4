@@ -2,11 +2,12 @@ package wm.controller;
 
 import wm.SwitchDelegate;
 import wm.view.HomeView;
+import wm.view.IHomeView;
 import wm.view.WMView;
 
 public class HomeController implements IHomeController {
 	SwitchDelegate delegate;
-	HomeView view;
+	IHomeView view;
 	
 	
 	
@@ -28,7 +29,7 @@ public class HomeController implements IHomeController {
 
 	@Override
 	public WMView getView() {
-		return view;
+		return (HomeView) view;
 	}
 
 	@Override

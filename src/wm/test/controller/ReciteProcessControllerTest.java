@@ -5,7 +5,6 @@ package wm.test.controller;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.jmock.Expectations;
@@ -17,23 +16,20 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import wm.SwitchDelegate;
-import wm.controller.IReciteMainController;
-import wm.controller.ReciteMainController;
-import wm.model.Dictionaries;
-import wm.model.Dictionary;
-import wm.model.IDictionaries;
-import wm.model.Word;
+import wm.controller.IReciteProcessController;
+import wm.controller.ReciteProcessController;
+import wm.model.IDictionary;
 import wm.view.WMView;
 
 /**
  * @author Maggie He
  *
  */
-public class ReciteMainControllerTest {
+public class ReciteProcessControllerTest {
 	private Mockery context;
-	private IReciteMainController controller;
+	private IReciteProcessController controller;
 	private SwitchDelegate delegate;
-
+	private IDictionary model;
 	
 	/**
 	 * @throws java.lang.Exception
@@ -56,10 +52,8 @@ public class ReciteMainControllerTest {
 	public void setUp() throws Exception {
 		context=new Mockery();
 		delegate=context.mock(SwitchDelegate.class);
-		List<Dictionary>list=new ArrayList<Dictionary>();
-		list.add(new Dictionary("test", new ArrayList<Word>()));
-		IDictionaries d=new Dictionaries(list);
-		controller=new ReciteMainController(delegate, d);
+		model=context.mock(IDictionary.class);
+		controller=new ReciteProcessController(delegate, model);
 	}
 
 	/**
@@ -68,22 +62,36 @@ public class ReciteMainControllerTest {
 	@After
 	public void tearDown() throws Exception {
 	}
-	
+
 	/**
-	 * Test method for {@link wm.controller.ReciteMainController#switchToStartSelect(int)}.
+	 * Test method for {@link wm.controller.ReciteProcessController#switchToStartWordDefine()}.
 	 */
 	@Test
-	public void testSwitchToStartSelect() {
+	public void testSwitchToStartWordDefine() {
 		context.checking(new Expectations(){
 			{
-				oneOf(delegate).getStartWordSelect(0);
+				oneOf(delegate).getStartWordDefine();
 			}
 		});
-		controller.switchToStartSelect(0);
+		controller.switchToStartWordDefine();
 	}
 
 	/**
-	 * Test method for {@link wm.controller.ReciteMainController#switchToHome()}.
+	 * Test method for {@link wm.controller.ReciteProcessController#getAvailableWordList(java.lang.String)}.
+	 */
+	@Test
+	public void testGetAvailableWordList() {
+		context.checking(new Expectations(){
+			{
+				oneOf(model).getMatchWords("prefix");
+			}
+		});
+		List<String> list=controller.getAvailableWordList("prefix");
+		assertTrue(list!=null);
+	}
+
+	/**
+	 * Test method for {@link wm.controller.ReciteProcessController#switchToHome()}.
 	 */
 	@Test
 	public void testSwitchToHome() {
@@ -95,9 +103,14 @@ public class ReciteMainControllerTest {
 		controller.switchToHome();
 	}
 
+	/**
+	 * Test method for {@link wm.controller.ReciteProcessController#getView()}.
+	 */
 	@Test
-	public void testGetView(){
+	public void testGetView() {
 		WMView view=controller.getView();
 		assertTrue(view!=null);
 	}
+
+
 }

@@ -81,5 +81,16 @@ public class DictionaryImplTest {
 		Dictionary dictionary = dic.getDictionary(0);
 		assertNotNull(dictionary);
 	}
+	
+	/**
+	 * Test method for {@link wm.model.dao.DictionaryImpl#updateADictionary(wm.model.Dictionary)}.
+	 */
+	@Test
+	public void testUpdateDictionary() {
+		Dictionary dictionary = dic.getDictionary(1);
+		dictionary.setWordRecited();
+		dictionary.setWordCorrect(false);
+		reader.updateDictionary(dictionary);
+	}
 
 }

@@ -90,6 +90,19 @@ public class Dictionary extends Observable implements IDictionary{
 		return words.get(index).getMeaning();
 	}
 
+	
+	@Override
+	public boolean getWordRecited(int index) {
+		return words.get(index).isRecited();
+	}
+
+	@Override
+	public boolean getWordCorrect(int index) {
+		return words.get(index).isCorrect();
+	}
+
+
+
 	/**
 	 * Get the word if recited and correct. This function is used to record the
 	 * info.
@@ -98,7 +111,8 @@ public class Dictionary extends Observable implements IDictionary{
 	 *            The index of the word
 	 * @return A String: {@code recited} + "\t" + {@code correct}
 	 */
-	public String getWordEntry(int index) {	
+
+	public String getWordEntry(int index) {
 		return words.get(index).toString();
 	}
 	
