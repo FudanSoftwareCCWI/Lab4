@@ -32,7 +32,7 @@ import wm.view.component.*;
  * @author Sidney Fan
  * 
  */
-public class ReciteMainView extends WMView {
+public class ReciteMainView extends WMView implements IReciteMainView {
 
 	/**
 	 * Generated serial version ID
@@ -65,6 +65,72 @@ public class ReciteMainView extends WMView {
 	}
 
 	@Override
+	public void setListPanelContent(List<String> nameList) {
+		dictList = nameList;
+		listPanel.removeAll();
+		listPanel.setLayout(new GridLayout(nameList.size(), 1));
+		WMBlock tempBlock;
+		String tempname;
+		Iterator<String> it = dictList.iterator();
+		int i = 0;
+		while (it.hasNext()) {
+			tempname = it.next();
+			tempBlock = new WMBlock(UI_Constants.UNITLONGWIDTH,
+					UI_Constants.UNITHEIGHT, 1, 1);
+			tempBlock.addLabel(tempname, WMLabel.LABEL_MIDDLE);
+			listPanel.add(tempBlock);
+			if (i % 2 == 0) {
+				tempBlock.setColor(UI_Constants.NORMALGREEN,
+						UI_Constants.DARKGREEN);
+			} else {
+				tempBlock.setColor(UI_Constants.LIGHTGREEN,
+						UI_Constants.DARKGREEN);
+			}
+			i++;
+		}
+		// set new blocks listener
+		setListBlockListener();
+	}
+
+	@Override
+	public void setNameLabelText(String name) {
+		dictionaryNameLabel.setText(name);
+		dictionaryNameLabel.revalidate();
+	}
+
+	@Override
+	public void setPieIcon(int size, int totalSize) {
+		dictSizeLabel.setText(String.valueOf(size));
+		totalNumLabel.setText(String.valueOf(totalSize));
+
+		double rate = (double) (((double) size / (double) totalSize) * 100);
+		sizeRateLabel.setText(String.format("%.2f%%", rate));
+		pie.createPie(new int[] { size, totalSize - size });
+		piePanel.repaint();
+	}
+
+	@Override
+	public void setSizeLabelText(int size) {
+		dictSizeLabel.setText(String.valueOf(size));
+	}
+
+	@Override
+	public void setTotalSizeLabelText(int totalSize) {
+		totalNumLabel.setText(String.valueOf(totalSize));
+	}
+
+	@Override
+	public int getCurrentDictIndex() {
+		return currentDictIndex;
+	}
+
+	@Override
+	public void setCurrentDictIndex(int currentDictIndex) {
+		setCurrentBlock((WMBlock) (listPanel.getComponents()[currentDictIndex]));
+		this.currentDictIndex = currentDictIndex;
+	}
+
+	@Override
 	protected void initComponents() {
 		initUnitInfoPanel();
 		initListPanel();
@@ -84,7 +150,7 @@ public class ReciteMainView extends WMView {
 		scrollPane.setBounds(UI_Constants.UNITSHORTWIDTH, 0,
 				UI_Constants.UNITLONGWIDTH, UI_Constants.GLOBAL_HEIGHT);
 		scrollPane.setOpaque(false);
-//		scrollPane.getVerticalScrollBar().setUI(null);
+		// scrollPane.getVerticalScrollBar().setUI(null);
 		listPanel.setPreferredSize(new Dimension(scrollPane.getWidth() - 50,
 				UI_Constants.NUM_ROW * UI_Constants.UNITHEIGHT));
 		listPanel.revalidate();
@@ -130,7 +196,8 @@ public class ReciteMainView extends WMView {
 
 		// 4-5
 		pie = new WMPie();
-		pie.setBounds((UI_Constants.UNITSHORTWIDTH - IconConstants.ICON_MIDDLE) / 2,
+		pie.setBounds(
+				(UI_Constants.UNITSHORTWIDTH - IconConstants.ICON_MIDDLE) / 2,
 				0, IconConstants.ICON_MIDDLE + 1, IconConstants.ICON_MIDDLE);
 		piePanel = new JPanel();
 		piePanel.setLayout(null);
@@ -163,14 +230,15 @@ public class ReciteMainView extends WMView {
 		dictionaryInfoPanel.add(iconPanel);
 		titlePanel.setBounds(0, 0, UI_Constants.UNITSHORTWIDTH,
 				UI_Constants.UNITHEIGHT);
-		totalPanel.setBounds(0, UI_Constants.UNITHEIGHT, UI_Constants.UNITSHORTWIDTH,
-				UI_Constants.UNITHEIGHT);
+		totalPanel.setBounds(0, UI_Constants.UNITHEIGHT,
+				UI_Constants.UNITSHORTWIDTH, UI_Constants.UNITHEIGHT);
 		infoPanel.setBounds(25, 2 * UI_Constants.UNITHEIGHT,
 				UI_Constants.UNITSHORTWIDTH - 50, UI_Constants.UNITHEIGHT);
 		piePanel.setBounds(0, 3 * UI_Constants.UNITHEIGHT,
 				UI_Constants.UNITSHORTWIDTH, 2 * UI_Constants.UNITHEIGHT);
-		iconPanel.setBounds(0, UI_Constants.GLOBAL_HEIGHT - UI_Constants.UNITHEIGHT,
-				UI_Constants.UNITSHORTWIDTH, UI_Constants.UNITHEIGHT);
+		iconPanel.setBounds(0, UI_Constants.GLOBAL_HEIGHT
+				- UI_Constants.UNITHEIGHT, UI_Constants.UNITSHORTWIDTH,
+				UI_Constants.UNITHEIGHT);
 	}
 
 	private void initListPanel() {
@@ -223,122 +291,12 @@ public class ReciteMainView extends WMView {
 		}
 	}
 
-	/**
-	 * <b>setListPanelContent</b>
-	 * 
-	 * <pre>
-	 * <code>public void <b>setListPanelContent</b>(List&lt;<em>String</em>&gt; nameList)</code>
-	 * </pre>
-	 * 
-	 * <blockquote> Set the content of the dictionary list panel. <br>
-	 * <br>
-	 * 
-	 * @param nameList
-	 *            -The name list of all dictionaries, such as "Dictionary A" or
-	 *            "Dictionary B". </blockquote>
-	 */
-	public void setListPanelContent(List<String> nameList) {
-		dictList = nameList;
-		listPanel.removeAll();
-		listPanel.setLayout(new GridLayout(nameList.size(), 1));
-		WMBlock tempBlock;
-		String tempname;
-		Iterator<String> it = dictList.iterator();
-		int i = 0;
-		while (it.hasNext()) {
-			tempname = it.next();
-			tempBlock = new WMBlock(UI_Constants.UNITLONGWIDTH,
-					UI_Constants.UNITHEIGHT, 1, 1);
-			tempBlock.addLabel(tempname, WMLabel.LABEL_MIDDLE);
-			listPanel.add(tempBlock);
-			if (i % 2 == 0) {
-				tempBlock.setColor(UI_Constants.NORMALGREEN, UI_Constants.DARKGREEN);
-			} else {
-				tempBlock.setColor(UI_Constants.LIGHTGREEN, UI_Constants.DARKGREEN);
-			}
-			i++;
-		}
-		// set new blocks listener
-		setListBlockListener();
-	}
-
-	/**
-	 * Set the text of the name label the name of the selected dictionary.
-	 * 
-	 * @param name
-	 *            The name of the dictionary
-	 */
-	public void setNameLabelText(String name) {
-		dictionaryNameLabel.setText(name);
-		dictionaryNameLabel.revalidate();
-	}
-
-	/**
-	 * Set the pie icon according the size of the selected dictionary and total
-	 * size of all dictionaries.
-	 * 
-	 * @param size
-	 *            The size of the selected dictionary
-	 * @param totalSize
-	 *            The total size of all dictionaries
-	 */
-	public void setPieIcon(int size, int totalSize) {
-		dictSizeLabel.setText(String.valueOf(size));
-		totalNumLabel.setText(String.valueOf(totalSize));
-
-		double rate = (double) (((double) size / (double) totalSize) * 100);
-		sizeRateLabel.setText(String.format("%.2f%%", rate));
-		pie.createPie(new int[] { size, totalSize - size });
-		piePanel.repaint();
-	}
-
-	/**
-	 * Set the text of the size label.
-	 * 
-	 * @param size
-	 *            The size of the selected dictionary
-	 */
-	public void setSizeLabelText(int size) {
-		dictSizeLabel.setText(String.valueOf(size));
-	}
-
-	/**
-	 * Set the text of the total size label.
-	 * 
-	 * @param size
-	 *            The total size of all dictionaries
-	 */
-	public void setTotalSizeLabelText(int totalSize) {
-		totalNumLabel.setText(String.valueOf(totalSize));
-	}
-
-	/**
-	 * Returns current clicked dictionary's index. Should be called when switch
-	 * to recite process view.
-	 * 
-	 * @return currentDictIndex
-	 */
-	public int getCurrentDictIndex() {
-		return currentDictIndex;
-	}
-
-	/**
-	 * Set the current dictionary. This method will paint the current index
-	 * block simultaneously.
-	 * 
-	 * @param currentDictIndex
-	 */
-	public void setCurrentDictIndex(int currentDictIndex) {
-		setCurrentBlock((WMBlock) (listPanel.getComponents()[currentDictIndex]));
-		this.currentDictIndex = currentDictIndex;
-	}
-
 	private void setCurrentBlock(WMBlock clickedBlock) {
 		Component[] siblings = listPanel.getComponents();
 		int i = 0;
 		for (Component block : siblings) {
 			if (clickedBlock.equals((WMBlock) block)) {
-				System.out.println("setCurrentBlock: "+i);
+				System.out.println("setCurrentBlock: " + i);
 				this.currentDictIndex = i;
 				continue;
 			}
@@ -353,7 +311,8 @@ public class ReciteMainView extends WMView {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		g.setColor(UI_Constants.DARKGREEN);
-		g.fillRect(0, 0, UI_Constants.UNITSHORTWIDTH, UI_Constants.GLOBAL_HEIGHT);
+		g.fillRect(0, 0, UI_Constants.UNITSHORTWIDTH,
+				UI_Constants.GLOBAL_HEIGHT);
 		g.setColor(UI_Constants.LIGHTGREEN);
 		g.fillRect(UI_Constants.UNITSHORTWIDTH, 0, UI_Constants.UNITLONGWIDTH,
 				UI_Constants.GLOBAL_HEIGHT);
