@@ -25,7 +25,7 @@ public class RecordImpl implements RecordDAO {
 			recitedSize += record.getRecitedSize();
 			correct += record.getCorrect();
 		}
-		Record all = new Record("All Records", totalSize, recitedSize, correct);
+		Record all = new Record("All Record", totalSize, recitedSize, correct);
 		return new Records(r, all);
 	}
 

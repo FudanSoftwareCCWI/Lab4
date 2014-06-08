@@ -58,7 +58,8 @@ public class Word implements IWord{
 
 	@Override
 	public void setCorrect(boolean correct) {
-		this.correct = correct;
+		if(!this.correct)
+			this.correct = correct;
 	}
 
 	@Override
@@ -70,6 +71,21 @@ public class Word implements IWord{
 	@Override
 	public String getMeaning() {
 		return meaning;
+	}
+	
+	public String toString(){
+		String c = "";
+		String r = "";
+		if (recited)
+			r = "1";
+		else
+			r = "0";
+
+		if (correct)
+			c = "1";
+		else
+			c = "0";
+		return key.substring(0,1) + "\t" + r + "\t" + c;
 	}
 
 }

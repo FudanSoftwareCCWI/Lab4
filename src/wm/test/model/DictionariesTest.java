@@ -8,13 +8,16 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.BeforeClass;
+import org.jmock.Expectations;
+import org.jmock.Mockery;
+import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import wm.model.Dictionaries;
 import wm.model.Dictionary;
+import wm.model.IDictionaries;
 import wm.model.Record;
 import wm.model.Word;
 
@@ -25,15 +28,20 @@ import wm.model.Word;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class DictionariesTest {
-	static Dictionaries dic;
-	static Dictionary dictionary1;
-	static Dictionary dictionary2;
+	Dictionaries dic;
+	IDictionaries dicmock;
+	Dictionary dictionary1;
+	Dictionary dictionary2;
+	Mockery context;
 
 	/**
 	 * @throws java.lang.Exception
 	 */
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
+	@Before
+	public void setUp() throws Exception {
+		context = new Mockery();
+		dicmock = context.mock(IDictionaries.class);
+		
 		List<Word> words1 = new ArrayList<Word>();
 		List<Word> words2 = new ArrayList<Word>();
 		words1.add(new Word("abandon", "抛弃，放弃", false, false));
@@ -56,19 +64,17 @@ public class DictionariesTest {
 	}
 
 	/**
-	 * Test method for {@link wm.model.Dictionaries#Dictionaries(java.util.List)}.
-	 */
-	@Test
-	public void testDictionaries() {
-		assertNotNull(dic);
-	}
-
-	/**
 	 * Test method for {@link wm.model.Dictionaries#getDictionary(int)}.
 	 */
 	@Test
 	public void testGetDictionaryInt() {
-		assertEquals(dictionary1, dic.getDictionary(0));
+		context.checking(new Expectations(){
+			{
+				allowing(dicmock).getDictionary(0);
+				will(returnValue(dictionary1));
+			}
+		});
+		assertEquals(dictionary1, dicmock.getDictionary(0));
 	}
 
 	/**
@@ -76,7 +82,13 @@ public class DictionariesTest {
 	 */
 	@Test
 	public void testGetDictionaryString() {
-		assertEquals(dictionary2, dic.getDictionary("test2"));
+		context.checking(new Expectations(){
+			{
+				allowing(dicmock).getDictionary("test2");
+				will(returnValue(dictionary1));
+			}
+		});
+		assertEquals(dictionary1, dicmock.getDictionary("test2"));
 	}
 
 	/**
@@ -94,6 +106,7 @@ public class DictionariesTest {
 	 */
 	@Test	
 	public void testGetTotalSize() {
+
 		assertEquals(2, dic.getDicNumber());
 	}
 

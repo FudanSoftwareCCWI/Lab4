@@ -5,7 +5,8 @@ package wm.test.model;
 
 import static org.junit.Assert.*;
 
-import org.junit.BeforeClass;
+import org.junit.Before;
+
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
@@ -18,32 +19,24 @@ import wm.model.Word;
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class WordTest {
-	static Word word;
-
+	Word word;
+	
 	/**
 	 * @throws java.lang.Exception
 	 */
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-		word = new Word("a", "一个", false, false);
+	@Before
+	public void setUp() throws Exception {
+		word = new Word("abandon", "放弃", false, false);
 	}
 
-	/**
-	 * Test construction method.
-	 * {@link wm.model.Word#Word(java.lang.String, java.lang.String, boolean, boolean)}
-	 * .
-	 */
-	@Test
-	public void testWord() {
-		assertNotNull(word);
-	}
-
+	
 	/**
 	 * Test method for {@link wm.model.Word#isRecited()}.
 	 */
 	@Test
 	public void testIsRecited() {
-		assertEquals(false, word.isRecited());
+		word.setRecited(true);;
+		assertEquals(true, word.isRecited());
 	}
 
 	/**
@@ -51,8 +44,9 @@ public class WordTest {
 	 */
 	@Test
 	public void testSetRecited() {
-		word.setRecited(true);
-		assertEquals(true, word.isRecited());
+		word.setRecited(false);
+		
+		assertEquals(false, word.isRecited());
 	}
 
 	/**
@@ -60,15 +54,28 @@ public class WordTest {
 	 */
 	@Test
 	public void testIsCorrect() {
+		word.setCorrect(false);
+		assertEquals(false, word.isCorrect());
+	}
+	
+	/**
+	 * Test method for {@link wm.model.Word#setCorrect(boolean)}.
+	 */
+	@Test
+	public void testSetCorrectCase1() {
+		word.setCorrect(false);
 		assertEquals(false, word.isCorrect());
 	}
 
 	/**
 	 * Test method for {@link wm.model.Word#setCorrect(boolean)}.
+	 * Test if set the word correct true and then set it false.
+	 * Hope the correct still be true.
 	 */
 	@Test
-	public void testSetCorrect() {
+	public void testSetCorrectCase2() {
 		word.setCorrect(true);
+		word.setCorrect(false);
 		assertEquals(true, word.isCorrect());
 	}
 
@@ -77,7 +84,7 @@ public class WordTest {
 	 */
 	@Test
 	public void testGetKey() {
-		assertEquals("a", word.getKey());
+		assertEquals("abandon", word.getKey());
 	}
 
 	/**
@@ -85,7 +92,7 @@ public class WordTest {
 	 */
 	@Test
 	public void testGetMeaning() {
-		assertEquals("一个", word.getMeaning());
+		assertEquals("放弃", word.getMeaning());
 	}
 
 }
