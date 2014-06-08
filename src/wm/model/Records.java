@@ -7,13 +7,12 @@ import java.util.List;
 
 /**
  * Class Records contains the record of the whole dictionary. And the list of
- * the record of each dictionary.
- * It implements the {@link IRcords}
+ * the record of each dictionary. It implements the {@link IRcords}
  * 
  * @author ArielQian
  * 
  */
-public class Records extends WMModel implements IRecords{
+public class Records extends WMModel implements IRecords {
 	/**
 	 * Generated serial version ID
 	 */
@@ -29,11 +28,15 @@ public class Records extends WMModel implements IRecords{
 
 	@Override
 	public List<Record> getRecords() {
+
 		return records;
 	}
 
 	@Override
 	public Record getSingleRecord(int index) {
+		if (index < 0) {
+			throw new IllegalArgumentException();
+		}
 		return records.get(index);
 	}
 

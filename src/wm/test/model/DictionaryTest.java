@@ -8,7 +8,8 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.BeforeClass;
+import org.junit.Before;
+
 import org.junit.Test;
 
 import wm.model.Dictionary;
@@ -21,14 +22,14 @@ import wm.model.Word;
  */
  
 public class DictionaryTest {
-	static Dictionary dictionary1;
-	static Dictionary dictionary2;
+	Dictionary dictionary1;
+	Dictionary dictionary2;
 	
 	/**
 	 * @throws java.lang.Exception
 	 */
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
+	@Before
+	public void setUp() throws Exception {
 		List<Word> words = new ArrayList<Word>();
 		words.add(new Word("abandon", "抛弃，放弃", false, false));
 		words.add(new Word("abandonment", "放弃", false, false));
@@ -84,6 +85,15 @@ public class DictionaryTest {
 	public void testGetPresentWord() {
 		assertEquals(4, dictionary2.getPresentWord());
 	}
+	
+	/**
+	 * Test method for {@link wm.model.Dictionary#setPresentWord()}.
+	 * Test the illegal input.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testSetPresentWordException() {
+		dictionary2.setPresentWord(-1);
+	}
 
 	/**
 	 * Test method for {@link wm.model.Dictionary#getMatchWords(java.lang.String)}.
@@ -97,6 +107,16 @@ public class DictionaryTest {
 		assertEquals("abandonment", result.get(1));
 	
 	}
+	
+	/**
+	 * Test method for {@link wm.model.Dictionary#getMatchWords(java.lang.String)}.
+	 */
+	@Test
+	public void testGetMatchWordsNull() {
+		String match="zzzzz";
+		List<String> result = dictionary1.getMatchWords(match);
+		assertEquals(0, result.size());
+	}
 
 	/**
 	 * Test method for {@link wm.model.Dictionary#getKey()}.
@@ -106,12 +126,32 @@ public class DictionaryTest {
 		assertEquals("abandon", dictionary1.getKey(0));
 	}
 
+	
+	/**
+	 * Test method for {@link wm.model.Dictionary#getKey()}.
+	 * Test the illegal input.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testGetKeyException() {
+		dictionary1.getKey(-1);
+	}
+
 	/**
 	 * Test method for {@link wm.model.Dictionary#getMeaning()}.
 	 */
 	@Test
 	public void testGetMeaning() {
 		assertEquals("遵守", dictionary2.getMeaning(4));
+	}
+
+
+	/**
+	 * Test method for {@link wm.model.Dictionary#getMeaning()}.
+	 * Test the illegal input.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testGetMeaningException() {
+		dictionary2.getMeaning(-1);
 	}
 
 
@@ -142,6 +182,15 @@ public class DictionaryTest {
 		assertEquals(1, record.getRecitedSize());
 		assertEquals(0, record.getWrong());
 		assertEquals(4, record.getTotalSize());
+	}
+	
+	/**
+	 * Test method for {@link wm.model.Dictionary#produceRecord(int, int)}.
+	 * Test the illegal input.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testProduceRecordIntIntException() {
+		dictionary1.produceRecord(6, 5);
 	}
 
 }

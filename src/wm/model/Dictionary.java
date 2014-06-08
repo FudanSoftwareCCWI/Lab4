@@ -78,22 +78,16 @@ public class Dictionary extends Observable implements IDictionary{
 
 	@Override
 	public String getKey(int index){
+		if(index < 0)
+			throw new IllegalArgumentException();
 		return words.get(index).getKey();
 	}
 	
 	@Override
 	public String getMeaning(int index){
+		if(index < 0)
+			throw new IllegalArgumentException();
 		return words.get(index).getMeaning();
-	}
-	
-	@Override
-	public boolean getWordRecited(int index) {
-		return words.get(index).isRecited();
-	}
-
-	@Override
-	public boolean getWordCorrect(int index) {
-		return words.get(index).isCorrect();
 	}
 
 	/**
@@ -104,23 +98,10 @@ public class Dictionary extends Observable implements IDictionary{
 	 *            The index of the word
 	 * @return A String: {@code recited} + "\t" + {@code correct}
 	 */
-	public String getWordEntry(int index) {
-		boolean recited = this.getWordRecited(index);
-		boolean correct = this.getWordCorrect(index);
-		String c = "";
-		String r = "";
-		String prefix = name.substring(11,12).toLowerCase();
-		if (recited)
-			r = "1";
-		else
-			r = "0";
-
-		if (correct)
-			c = "1";
-		else
-			c = "0";
-		return prefix + "\t" + r + "\t" + c;
+	public String getWordEntry(int index) {	
+		return words.get(index).toString();
 	}
+	
 	
 	@Override
 	public int getWordIndex(String key) {
@@ -136,6 +117,8 @@ public class Dictionary extends Observable implements IDictionary{
 
 	@Override
 	public void setPresentWord(int index) {
+		if(index < 0)
+			throw new IllegalArgumentException();
 		presentWord = index;
 	}
 
@@ -175,6 +158,8 @@ public class Dictionary extends Observable implements IDictionary{
 
 	@Override
 	public Record produceRecord(int start, int end) {
+		if(start > end)
+			throw new IllegalArgumentException();
 		String recordName = name;
 		int totalSize = end - start + 1;
 		int recitedSize = 0;

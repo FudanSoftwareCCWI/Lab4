@@ -62,23 +62,6 @@ public interface IDictionary {
 	 */
 	public String getMeaning(int index);
 	
-	/**
-	 * Get the word's if recited by the index.
-	 * 
-	 * @param index
-	 *            The index of the word
-	 * @return The {@code recited} of the word
-	 */
-	public boolean getWordRecited(int index);
-	
-	/**
-	 * Get the word's if correct by the index.
-	 * 
-	 * @param index
-	 *            The index of the word
-	 * @return The {@code correct} of the word
-	 */
-	public boolean getWordCorrect(int index);
 	
 	/**
 	 * Get the word index according to the key

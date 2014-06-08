@@ -5,7 +5,7 @@ package wm.test.model;
 
 import static org.junit.Assert.*;
 
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 
 import wm.model.Record;
@@ -15,13 +15,13 @@ import wm.model.Record;
  *
  */
 public class RecordTest {
-	static Record record;
+	Record record;
 
 	/**
 	 * @throws java.lang.Exception
 	 */
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
+	@Before
+	public void setUp() throws Exception {
 		record = new Record("Test Record", 20, 10, 8);
 	}
 
