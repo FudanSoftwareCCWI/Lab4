@@ -91,18 +91,6 @@ public class Dictionary extends Observable implements IDictionary{
 	}
 
 	
-	@Override
-	public boolean getWordRecited(int index) {
-		return words.get(index).isRecited();
-	}
-
-	@Override
-	public boolean getWordCorrect(int index) {
-		return words.get(index).isCorrect();
-	}
-
-
-
 	/**
 	 * Get the word if recited and correct. This function is used to record the
 	 * info.
