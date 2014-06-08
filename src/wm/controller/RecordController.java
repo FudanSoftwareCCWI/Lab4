@@ -78,11 +78,7 @@ public class RecordController implements IRecordController {
 		} else {
 			record = model.getSingleRecord(index - 1);
 		}
-		view.setSizeText(record.getTotalSize());
-		view.setReciteSizeText(record.getRecitedSize());
-		view.setCorrectText(record.getCorrect());
-		view.setWrongText(record.getWrong());
-		view.setCorrectPercentage(record.getCorrectRate());
+		setView(record);
 		view.setBarRecitedIcon(recited);
 		view.setBarCorrectIcon(correct);
 		view.showBarPanel();
@@ -96,11 +92,7 @@ public class RecordController implements IRecordController {
 		} else {
 			record = model.getSingleRecord(index - 1);
 		}
-		view.setSizeText(record.getTotalSize());
-		view.setReciteSizeText(record.getRecitedSize());
-		view.setCorrectText(record.getCorrect());
-		view.setWrongText(record.getWrong());
-		view.setCorrectPercentage(record.getCorrectRate());
+		setView(record);
 		view.showTablePanel();
 	}
 

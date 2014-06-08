@@ -11,7 +11,6 @@ import javax.swing.Timer;
 
 import wm.SwitchDelegate;
 import wm.model.Dictionary;
-import wm.model.IDictionary;
 import wm.model.Record;
 import wm.model.dao.DictionaryDAO;
 import wm.model.dao.DictionaryImpl;
@@ -23,7 +22,7 @@ import wm.view.StartWordDefineView;
 import wm.view.WMView;
 
 /**
- * @author hewenqi
+ * @author Maggie He
  * 
  */
 public class ReciteProcessController implements IReciteProcessController {
@@ -34,14 +33,14 @@ public class ReciteProcessController implements IReciteProcessController {
 	ReciteWordView reciteWordView;
 	ReciteRecordView reciteRecordView;
 	WMView currentView;
-	IDictionary model;
+	Dictionary model;
 
 	// recite word control
 	private int startWord;
 	private int presentWord;
 	private int reciteSize;
 
-	public ReciteProcessController(SwitchDelegate delegate, IDictionary model) {
+	public ReciteProcessController(SwitchDelegate delegate, Dictionary model) {
 		super();
 		this.delegate = delegate;
 		this.model = model;
@@ -114,7 +113,7 @@ public class ReciteProcessController implements IReciteProcessController {
 	 * @see wm.controller.IReciteProcessController#getAvailableWordList(java.lang.String)
 	 */
 	@Override
-	public List<String> getAvailableWordList(String prefix) {//TODO
+	public List<String> getAvailableWordList(String prefix) {
 		List<String> words = model.getMatchWords(prefix);
 		return words;
 	}
@@ -125,7 +124,7 @@ public class ReciteProcessController implements IReciteProcessController {
 	 * @see wm.controller.IReciteProcessController#getAvailableSize()
 	 */
 	@Override
-	public int getAvailableSize() {//TODO
+	public int getAvailableSize() {
 		return model.calAvailableSize(startWord);
 	}
 

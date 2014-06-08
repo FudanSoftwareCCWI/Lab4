@@ -1,10 +1,14 @@
 /**
- * 
+ * Software Engineer lab4
  */
 package wm.test.controller;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -13,26 +17,24 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import wm.SwitchDelegate;
+import wm.controller.IReciteMainController;
 import wm.controller.ReciteMainController;
-import wm.model.IDictionaries;
-import wm.view.IReciteMainView;
+import wm.model.Dictionaries;
+import wm.model.Dictionary;
+import wm.model.Word;
+import wm.view.WMView;
 
 /**
- * @author hewenqi
+ * @author Maggie He
  *
  */
-public class ReciteMainControllerTest  extends MockObjectTestCase{
-	protected static Mockery context;
-	protected static SwitchDelegate delegate;
-<<<<<<< HEAD
-	protected static IReciteMainView view;
-	protected static IDictionaries model;
-	protected static IReciteMainController controller;
-=======
-	protected static ReciteMainView view;
-	protected static Dictionaries model;
-	protected static ReciteMainController controller;
->>>>>>> version3.0
+public class ReciteMainControllerTest {
+	private Mockery context;
+	private IReciteMainController controller;
+	private SwitchDelegate delegate;
+	private Dictionaries model; 
+	private Dictionary d1;
+	private Dictionary d2;
 	
 	/**
 	 * @throws java.lang.Exception
@@ -53,16 +55,15 @@ public class ReciteMainControllerTest  extends MockObjectTestCase{
 	 */
 	@Before
 	public void setUp() throws Exception {
-		context= new Mockery();
+		context=new Mockery();
 		delegate=context.mock(SwitchDelegate.class);
-<<<<<<< HEAD
-		view=context.mock(IReciteMainView.class);
-		model=context.mock(IDictionaries.class);
-=======
-		view=context.mock(ReciteMainView.class);
-		model=context.mock(Dictionaries.class);
->>>>>>> version3.0
-		controller=new ReciteMainController(delegate, model);
+		d1=new Dictionary("d1", new ArrayList<Word>());
+		d2=new Dictionary("d2", new ArrayList<Word>());
+		List<Dictionary>list=new ArrayList<Dictionary>();
+		list.add(d1);
+		list.add(d2);
+		model=new Dictionaries(list);
+		controller=new ReciteMainController(delegate,model);
 	}
 
 	/**
@@ -73,27 +74,16 @@ public class ReciteMainControllerTest  extends MockObjectTestCase{
 	}
 
 	/**
-	 * Test method for {@link wm.controller.ReciteMainController#ReciteMainController(wm.SwitchDelegate, wm.model.Dictionaries)}.
-	 */
-	@Test
-	public void testReciteMainController() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link wm.controller.ReciteMainController#showDictionaryDetail(int)}.
-	 */
-	@Test
-	public void testShowDictionaryDetail() {
-		fail("Not yet implemented");
-	}
-
-	/**
 	 * Test method for {@link wm.controller.ReciteMainController#switchToStartSelect(int)}.
 	 */
 	@Test
 	public void testSwitchToStartSelect() {
-		fail("Not yet implemented");
+		context.checking(new Expectations(){
+			{
+				oneOf(delegate).getStartWordSelect(0);
+			}
+		});
+		controller.switchToStartSelect(0);
 	}
 
 	/**
@@ -101,23 +91,17 @@ public class ReciteMainControllerTest  extends MockObjectTestCase{
 	 */
 	@Test
 	public void testSwitchToHome() {
-<<<<<<< HEAD
 		context.checking(new Expectations(){
 			{
 				oneOf(delegate).getHome();
 			}
 		});
-=======
-		fail("Not yet implemented");
+		controller.switchToHome();
 	}
 
-	/**
-	 * Test method for {@link wm.controller.ReciteMainController#getView()}.
-	 */
 	@Test
-	public void testGetView() {
-		fail("Not yet implemented");
->>>>>>> version3.0
+	public void testGetView(){
+		WMView view=controller.getView();
+		assertTrue(view!=null);
 	}
-
 }

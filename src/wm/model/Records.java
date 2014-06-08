@@ -2,7 +2,11 @@ package wm.model;
 
 import java.util.List;
 
-public class Records {
+public class Records extends WMModel{
+	/**
+	 * Generated 
+	 */
+	private static final long serialVersionUID = -720321694165706292L;
 	private Record allRecord;
 	private List<Record> records;
 	

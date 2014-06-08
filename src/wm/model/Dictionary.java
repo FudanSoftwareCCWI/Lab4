@@ -100,28 +100,6 @@ public class Dictionary extends Observable {
 	public String getMeaning(int index){
 		return words.get(index).getMeaning();
 	}
-	
-	/**
-	 * Get the word's if recited by the index.
-	 * 
-	 * @param index
-	 *            The index of the word
-	 * @return The {@code recited} of the word
-	 */
-	public boolean getWordRecited(int index) {
-		return words.get(index).isRecited();
-	}
-
-	/**
-	 * Get the word's if correct by the index.
-	 * 
-	 * @param index
-	 *            The index of the word
-	 * @return The {@code correct} of the word
-	 */
-	public boolean getWordCorrect(int index) {
-		return words.get(index).isCorrect();
-	}
 
 	/**
 	 * Get the word if recited and correct. This function is used to record the
@@ -132,21 +110,7 @@ public class Dictionary extends Observable {
 	 * @return A String: {@code recited} + "\t" + {@code correct}
 	 */
 	public String getWordEntry(int index) {
-		boolean recited = this.getWordRecited(index);
-		boolean correct = this.getWordCorrect(index);
-		String c = "";
-		String r = "";
-		String prefix = name.substring(11,12).toLowerCase();
-		if (recited)
-			r = "1";
-		else
-			r = "0";
-
-		if (correct)
-			c = "1";
-		else
-			c = "0";
-		return prefix + "\t" + r + "\t" + c;
+		return words.get(index).toString();
 	}
 	
 	public int getWordIndex(String key) {
