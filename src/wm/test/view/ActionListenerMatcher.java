@@ -5,6 +5,12 @@ import java.awt.event.ActionListener;
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 
+/**
+ * This is a analog action matcher.
+ * @author SidneyFan
+ *
+ */
+
 public class ActionListenerMatcher extends BaseMatcher<ActionListener> {
 
 	private ActionListener actionListener;

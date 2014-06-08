@@ -174,17 +174,4 @@ public class StartSelectView extends ReciteProcessView implements IStartSelectVi
 		}
 	}
 
-	public SelectButton getStartByFirstBtn() {
-		return startByFirstBtn;
-	}
-
-	public SelectButton getStartByLastBtn() {
-		return startByLastBtn;
-	}
-
-	public SelectButton getStartByCustomBtn() {
-		return startByCustomBtn;
-	}
-	
-	
 }

@@ -262,9 +262,6 @@ public class ReciteMainView extends WMView implements IReciteMainView {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				// System.out.println("UnitView: Fire dictionaryViewToHomeCommand");
-				// ReciteMainView.this.firePropertyChange("dictionaryViewToHomeCommand",
-				// null, null);
 				controller.switchToHome();
 			}
 
@@ -296,7 +293,6 @@ public class ReciteMainView extends WMView implements IReciteMainView {
 		int i = 0;
 		for (Component block : siblings) {
 			if (clickedBlock.equals((WMBlock) block)) {
-				System.out.println("setCurrentBlock: " + i);
 				this.currentDictIndex = i;
 				continue;
 			}

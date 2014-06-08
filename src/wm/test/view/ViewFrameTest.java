@@ -10,11 +10,15 @@ import wm.config.UI_Constants;
 import wm.controller.*;
 import wm.view.*;
 
+/**
+ * This is a Test case for eye watching of UI.
+ * @author Sidney Fan
+ *
+ */
+
 public class ViewFrameTest {
 	
 	static JFrame frame;
-//	private static ReciteRecordView view;
-//	private static IReciteProcessController controller;
 
 	private static RecordView view;
 	private static IRecordController controller;

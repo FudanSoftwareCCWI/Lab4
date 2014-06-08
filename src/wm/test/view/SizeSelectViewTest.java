@@ -2,6 +2,8 @@ package wm.test.view;
 
 import static org.junit.Assert.*;
 
+import java.awt.Component;
+
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.junit.After;
@@ -11,11 +13,12 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import wm.controller.IReciteProcessController;
+import wm.view.ISizeSelectView;
 import wm.view.SizeSelectView;
 
 public class SizeSelectViewTest extends WMViewTestCase {
 
-	SizeSelectView view;
+	ISizeSelectView view;
 	IReciteProcessController controller;
 	int expected;
 
@@ -41,7 +44,7 @@ public class SizeSelectViewTest extends WMViewTestCase {
 		});
 		view = new SizeSelectView(controller);
 		frame.getContentPane().removeAll();
-		frame.getContentPane().add(view);
+		frame.getContentPane().add((Component) view);
 		frame.repaint();
 		frame.validate();
 	}
@@ -50,9 +53,12 @@ public class SizeSelectViewTest extends WMViewTestCase {
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * Test get the pivot value.
+	 */
 	@Test
 	public void test_pivot_value() {
-		int actual = view.getSelectedSize();
+		int actual = ((SizeSelectView) view).getSelectedSize();
 		assertEquals(expected, actual);
 	}
 
