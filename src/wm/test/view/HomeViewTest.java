@@ -3,10 +3,14 @@
  */
 package wm.test.view;
 
+import static org.junit.Assert.fail;
+
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.lang.reflect.Field;
 
 import javax.swing.JButton;
+import javax.swing.JPanel;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -76,6 +80,21 @@ public class HomeViewTest extends WMViewTestCase {
 	 */
 	@Test
 	public void click_recite_and_disappear() {
+		JPanel panel = null;
+		Field buttonField = null;
+		try {
+			buttonField = HomeView.class.getDeclaredField("recitePanel");
+			buttonField.setAccessible(true);
+			panel = (JPanel) buttonField.get(homeView);
+		} catch (SecurityException e) {
+			fail("Cannot init panel");
+		} catch (NoSuchFieldException e) {
+			fail("Cannot init panel");
+		} catch (IllegalArgumentException e) {
+			fail("Cannot init panel");
+		} catch (IllegalAccessException e) {
+			fail("Cannot init panel");
+		}
 		final States viewState = context.states("view").startsAs("showing");
 		context.checking(new Expectations() {
 
@@ -86,10 +105,9 @@ public class HomeViewTest extends WMViewTestCase {
 			}
 
 		});
-		homeView.getRecitePanel().getMouseListeners()[0]
-				.mouseClicked(new MouseEvent(homeView.getRecitePanel(),
-						MouseEvent.MOUSE_CLICKED, 0,
-						MouseEvent.BUTTON1_DOWN_MASK, 1, 1, 1, false));
+		panel.getMouseListeners()[0].mouseClicked(new MouseEvent(panel,
+				MouseEvent.MOUSE_CLICKED, 0, MouseEvent.BUTTON1_DOWN_MASK, 1,
+				1, 1, false));
 		context.assertIsSatisfied();
 	}
 
@@ -98,6 +116,21 @@ public class HomeViewTest extends WMViewTestCase {
 	 */
 	@Test
 	public void click_record_and_disappear() {
+		JPanel panel = null;
+		Field buttonField = null;
+		try {
+			buttonField = HomeView.class.getDeclaredField("statisticPanel");
+			buttonField.setAccessible(true);
+			panel = (JPanel) buttonField.get(homeView);
+		} catch (SecurityException e) {
+			fail("Cannot init panel");
+		} catch (NoSuchFieldException e) {
+			fail("Cannot init panel");
+		} catch (IllegalArgumentException e) {
+			fail("Cannot init panel");
+		} catch (IllegalAccessException e) {
+			fail("Cannot init panel");
+		}
 		final States viewState = context.states("view").startsAs("showing");
 		context.checking(new Expectations() {
 
@@ -108,24 +141,32 @@ public class HomeViewTest extends WMViewTestCase {
 			}
 
 		});
-		homeView.getStatisticPanel().getMouseListeners()[0]
-				.mouseClicked(new MouseEvent(homeView.getStatisticPanel(),
-						MouseEvent.MOUSE_CLICKED, 0,
-						MouseEvent.BUTTON1_DOWN_MASK, 1, 1, 1, false));
+		panel.getMouseListeners()[0].mouseClicked(new MouseEvent(panel,
+				MouseEvent.MOUSE_CLICKED, 0, MouseEvent.BUTTON1_DOWN_MASK, 1,
+				1, 1, false));
 		context.assertIsSatisfied();
 	}
 
 	/**
-	 * Test click quit panel button then home view disappear.
+	 * Test click quit button then home view disappear.
 	 */
 	@Test
 	public void click_close_and_disappear() {
-		JButton btn;
-		
-//		Field buttonField = HomeView.class.getDeclaredField("quitBtn");
-//		buttonField.setAccessible(true);
-//		buttonField.set(btn, new JButton());
-		
+		JButton btn = null;
+		Field buttonField = null;
+		try {
+			buttonField = HomeView.class.getDeclaredField("quitBtn");
+			buttonField.setAccessible(true);
+			btn = (JButton) buttonField.get(homeView);
+		} catch (SecurityException e) {
+			fail("Cannot init btn");
+		} catch (NoSuchFieldException e) {
+			fail("Cannot init btn");
+		} catch (IllegalArgumentException e) {
+			fail("Cannot init btn");
+		} catch (IllegalAccessException e) {
+			fail("Cannot init btn");
+		}
 		final States viewState = context.states("view").startsAs("showing");
 		context.checking(new Expectations() {
 
@@ -136,12 +177,8 @@ public class HomeViewTest extends WMViewTestCase {
 			}
 
 		});
-		
-//		btn = (JButton)buttonField.get(homeView);
-//		btn.getMouseListeners()[0]
-//				.mouseClicked(new MouseEvent(homeView.getRecitePanel(),
-//						MouseEvent.MOUSE_CLICKED, 0,
-//						MouseEvent.BUTTON1_DOWN_MASK, 1, 1, 1, false));
+		btn.getActionListeners()[0].actionPerformed(new ActionEvent(btn,
+				ActionEvent.ACTION_PERFORMED, "quitClick"));
 		context.assertIsSatisfied();
 	}
 
