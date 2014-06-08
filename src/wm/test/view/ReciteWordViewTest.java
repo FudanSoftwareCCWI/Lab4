@@ -62,13 +62,6 @@ public class ReciteWordViewTest extends WMViewTestCase {
 	public void tearDown() throws Exception {
 	}
 
-	/**
-	 * Test allow checkCorrect();
-	 */
-	@Test
-	public void test() {
-		context.assertIsSatisfied();
-	}
 
 	/**
 	 * test setCorrectInfoText() function.
