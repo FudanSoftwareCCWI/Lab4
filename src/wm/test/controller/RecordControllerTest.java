@@ -68,7 +68,7 @@ public class RecordControllerTest {
 	/**
 	 * Test method for {@link wm.controller.RecordController#showRecordByPie(int)}.
 	 */
-	@Test(expected=ArrayIndexOutOfBoundsException.class)
+	@Test(expected=IllegalArgumentException.class)
 	public void testShowRecordByPieInt() {
 		
 		controller.showRecordByBar(-1);
@@ -77,7 +77,7 @@ public class RecordControllerTest {
 	/**
 	 * Test method for {@link wm.controller.RecordController#showRecordByBar(int)}.
 	 */
-	@Test(expected=ArrayIndexOutOfBoundsException.class)
+	@Test(expected=IllegalArgumentException.class)
 	public void testShowRecordByBarInt() {
 		controller.showRecordByBar(-1);
 	}
@@ -85,7 +85,7 @@ public class RecordControllerTest {
 	/**
 	 * Test method for {@link wm.controller.RecordController#showRecordByTable(int)}.
 	 */
-	@Test(expected=ArrayIndexOutOfBoundsException.class)
+	@Test(expected=IllegalArgumentException.class)
 	public void testShowRecordByTable() {
 		controller.showRecordByTable(-1);
 	}

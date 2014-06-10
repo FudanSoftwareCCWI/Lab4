@@ -90,8 +90,7 @@ public class DictionaryImplTest {
 	@Test
 	public void testUpdateDictionary() {
 		Dictionary dictionary = dic.getDictionary(1);
-		dictionary.setWordRecited();
-		dictionary.setWordCorrect(false);
+		
 		reader.updateDictionary(dictionary);
 	}
 

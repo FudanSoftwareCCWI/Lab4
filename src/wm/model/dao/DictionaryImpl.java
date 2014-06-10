@@ -5,7 +5,9 @@ package wm.model.dao;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileReader;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +42,7 @@ public class DictionaryImpl implements DictionaryDAO {
 			boolean correct = false;
 			@SuppressWarnings("resource")
 			BufferedReader dicReader = new BufferedReader(
-					new FileReader(allDic));
+					new InputStreamReader(new FileInputStream(allDic), "UTF-8"));
 
 			if (!logfile.exists()) {
 				createLogfile(filename);
@@ -152,7 +154,7 @@ public class DictionaryImpl implements DictionaryDAO {
 			if (!newLogfile.exists()) {
 				newLogfile.createNewFile();
 			}
-			if(!newLatestfile.exists()){
+			if (!newLatestfile.exists()) {
 				newLatestfile.createNewFile();
 			}
 			String[] entry;
@@ -176,7 +178,7 @@ public class DictionaryImpl implements DictionaryDAO {
 				}
 			}
 			logWriter.close();
-			while((latestline = latestReader.readLine())!=null){
+			while ((latestline = latestReader.readLine()) != null) {
 				entry = latestline.split("\t");
 
 				if (entry[0].substring(0, 1).equals(prefix)) {
